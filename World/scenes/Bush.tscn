@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://jlbt7nbl8k2q"]
 
-[ext_resource type="Texture2D" uid="uid://bwaa54n1lbty2" path="res://World/Bush.png" id="1_qmslc"]
+[ext_resource type="Texture2D" uid="uid://bwaa54n1lbty2" path="res://World/Bush.png" id="1_axica"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8dhi"]
 height = 28.0
@@ -8,7 +8,7 @@ height = 28.0
 [node name="Bush" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qmslc")
+texture = ExtResource("1_axica")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

@@ -1,11 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=14 format=4 uid="uid://d0m5edtxtg4kd"]
 
-[ext_resource type="PackedScene" uid="uid://jlbt7nbl8k2q" path="res://World/Bush.tscn" id="1_8a836"]
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
 [ext_resource type="PackedScene" uid="uid://cl2g1spse5o22" path="res://Enemies/chainsaw_unit.tscn" id="4_3f78f"]
 [ext_resource type="Texture2D" uid="uid://bmic402sit16n" path="res://World/DirtTileset.png" id="5_bkhv4"]
+[ext_resource type="PackedScene" uid="uid://jlbt7nbl8k2q" path="res://World/scenes/Bush.tscn" id="6_eidgh"]
 [ext_resource type="Texture2D" uid="uid://bl5f311sqmeh4" path="res://World/CliffTileset.png" id="6_yf0ba"]
+[ext_resource type="PackedScene" uid="uid://d3a1r6waeofxe" path="res://World/scenes/tree.tscn" id="7_oe8m4"]
+[ext_resource type="PackedScene" uid="uid://cdceogijv2j4p" path="res://Enemies/slime.tscn" id="8_eidgh"]
+[ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="9_oe8m4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
 texture = ExtResource("6_yf0ba")
@@ -686,14 +689,15 @@ sources/0 = SubResource("TileSetAtlasSource_eidgh")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(160, 90)
+position = Vector2(239.5, 112)
+scale = Vector2(1.95938, 2.1)
 texture = ExtResource("1_j8job")
 region_enabled = true
 region_rect = Rect2(0, 0, 320, 180)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_as_relative = false
-tile_map_data = PackedByteArray("AAAIAAAAAAABAAIAAAAJAAAAAAABAAIAAAAKAAAAAAABAAIAAAAHAAAAAAABAAIAAAAGAAAAAAABAAIAAAAIAAMAAAAEAAMAAAACAAEAAAABAAMAAAADAAEAAAABAAMAAAAEAAEAAAACAAMAAAAEAAAAAAABAAIAAAADAAAAAAABAAIAAAACAAAAAAABAAIAAAABAAAAAAABAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAAUAAAABAAIAAAD//wUAAAABAAIAAAD+/wUAAAABAAIAAAABAAUAAAABAAIAAAACAAQAAAACAAEAAAACAAMAAAACAAEAAAACAAIAAAACAAEAAAACAAUAAAACAAIAAAACAAEAAAACAAEAAAACAAAAAAABAAEAAAALAAEAAAAAAAEAAAALAAIAAAAAAAEAAAALAAMAAAAAAAEAAAALAAQAAAAAAAEAAAALAAUAAAAAAAEAAAALAAYAAAAAAAIAAAAMAAYAAAAGAAEAAAAMAAcAAAAAAAIAAAANAAcAAAABAAIAAAAOAAcAAAABAAIAAAAPAAcAAAABAAIAAAAQAAcAAAABAAIAAAA=")
 tile_set = SubResource("TileSet_lo5ox")
 
 [node name="Ysort" type="Node2D" parent="."]
@@ -705,17 +709,47 @@ position = Vector2(202, 56)
 
 [node name="Camera2D" type="Camera2D" parent="Ysort/player"]
 
-[node name="Bush2" parent="Ysort" instance=ExtResource("1_8a836")]
-position = Vector2(220, 92)
-
 [node name="ChainsawUnit" parent="Ysort" instance=ExtResource("4_3f78f")]
-position = Vector2(57, 128)
-
-[node name="Bush" parent="Ysort" instance=ExtResource("1_8a836")]
-position = Vector2(58, 106)
+position = Vector2(-117, 250)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAALAAcAAAABAAEAAAAMAAcAAAABAAEAAAANAAcAAAACAAEAAAANAAgAAAABAAEAAAAMAAgAAAABAAEAAAALAAgAAAABAAEAAAALAAYAAAABAAEAAAAMAAYAAAABAAEAAAANAAYAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAALAAcAAAAAAAEAAAAMAAcAAAABAAEAAAANAAcAAAACAAEAAAANAAgAAAABAAEAAAAMAAgAAAABAAEAAAALAAgAAAAAAAEAAAALAAYAAAABAAEAAAAMAAYAAAABAAEAAAANAAYAAAABAAAAAAALAAUAAAAFAAIAAAAKAAUAAAABAAIAAAAKAAQAAAABAAEAAAAKAAMAAAAFAAIAAAAJAAMAAAABAAIAAAAJAAIAAAABAAEAAAAJAAEAAAABAAEAAAAIAAEAAAABAAIAAAAIAAAAAAABAAEAAAAHAAAAAAABAAIAAAAHAP//AAABAAAAAAAGAP//AAABAAIAAAAFAP//AAAFAAEAAAAEAP//AAABAAEAAAAMAAUAAAABAAAAAAALAAQAAAACAAEAAAALAAMAAAABAAAAAAAKAAIAAAACAAEAAAAKAAEAAAABAAAAAAAJAAAAAAABAAAAAAAIAP//AAABAAEAAAAGAP7/AAABAAEAAAAFAP7/AAABAAEAAAANAAkAAAABAAEAAAANAAoAAAAFAAEAAAANAAsAAAAKAAMAAAANAAwAAAAKAAMAAAANAA0AAAAFAAIAAAANAA4AAAABAAEAAAANAA8AAAAFAAEAAAANABAAAAAFAAMAAAAMAA8AAAABAAEAAAAMAA4AAAABAAEAAAALAA4AAAABAAEAAAALAA0AAAAAAAEAAAALAAwAAAABAAEAAAALAAsAAAAGAAIAAAALAAoAAAAGAAEAAAALAAkAAAABAAEAAAAMAAoAAAABAAEAAAAMAAsAAAABAAEAAAAMAAwAAAABAAEAAAAMAA0AAAABAAEAAAALAA8AAAABAAEAAAAKAA8AAAABAAEAAAAKABAAAAABAAEAAAAJABAAAAABAAEAAAAIABAAAAABAAEAAAAHABAAAAABAAEAAAAGABAAAAABAAEAAAAFABAAAAABAAEAAAAEABAAAAABAAEAAAADABEAAAABAAEAAAACABEAAAABAAEAAAABABEAAAABAAEAAAAAABEAAAABAAEAAAD//xEAAAABAAEAAAD//xIAAAABAAIAAAD+/xIAAAABAAEAAAD9/xIAAAABAAEAAAD8/xIAAAABAAEAAAAMABAAAAABAAEAAAALABAAAAABAAEAAAAJAA8AAAABAAEAAAAJAA4AAAABAAEAAAAKAA4AAAABAAEAAAAIAA4AAAAAAAEAAAAIAA8AAAABAAEAAAAHAA8AAAABAAEAAAAGAA8AAAABAAEAAAAFAA8AAAABAAEAAAAEAA8AAAABAAEAAAADAA8AAAAAAAEAAAADABAAAAABAAEAAAACABAAAAABAAEAAAABABAAAAABAAEAAAAAABAAAAABAAEAAAD//xAAAAAAAAEAAAD+/xEAAAABAAEAAAD9/xEAAAABAAEAAAD8/xEAAAAAAAEAAAD7/xIAAAABAAEAAAAMABEAAAABAAEAAAALABEAAAABAAEAAAAKABEAAAABAAEAAAAJABEAAAABAAEAAAAIABEAAAABAAEAAAAHABEAAAABAAIAAAAGABEAAAABAAEAAAAGABIAAAABAAEAAAAFABIAAAABAAEAAAAFABEAAAABAAEAAAAEABEAAAABAAEAAAADABIAAAABAAIAAAACABIAAAABAAIAAAABABIAAAABAAIAAAAAABIAAAABAAIAAAAEABIAAAABAAEAAAAMAAkAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_oe8m4")
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bush" parent="Trees" instance=ExtResource("6_eidgh")]
+position = Vector2(425, 133)
+
+[node name="Tree" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-61, 138)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-61, -52)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-60, -23)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-61, 8)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-61, 42)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-62, 68)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-62, 95)
+
+[node name="Tree8" parent="Trees" instance=ExtResource("7_oe8m4")]
+position = Vector2(-60, 117)
+
+[node name="Slime" parent="." instance=ExtResource("8_eidgh")]
+position = Vector2(50, 15)
+
+[node name="MegaSlime" parent="." instance=ExtResource("9_oe8m4")]
+position = Vector2(482, 165)

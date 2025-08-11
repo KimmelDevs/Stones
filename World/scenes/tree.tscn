@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3a1r6waeofxe"]
+
+[ext_resource type="Texture2D" uid="uid://cw220p2e22hqu" path="res://World/Tree.png" id="1_coh6s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4nadt"]
+height = 28.0
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_coh6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4nadt")
