@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl2g1spse5o22"]
+[gd_scene load_steps=11 format=3 uid="uid://cl2g1spse5o22"]
 
 [ext_resource type="Script" uid="uid://cn1yjt1bgksy0" path="res://Enemies/chainsaw_unit.gd" id="1_ljqmw"]
 [ext_resource type="Texture2D" uid="uid://3d51ytyoqp7b" path="res://Enemies/Untitled-fefe.png" id="1_osc2e"]
+[ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_h17bi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljqmw"]
 radius = 28.0179
@@ -62,18 +63,26 @@ _data = {
 &"attack": SubResource("Animation_hwali")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hwali"]
+radius = 24.0
+height = 48.0
+
 [node name="ChainsawUnit" type="Node2D"]
 script = ExtResource("1_ljqmw")
 
 [node name="Detector" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+visible = false
 position = Vector2(12, 7)
 shape = SubResource("CircleShape2D_ljqmw")
 
 [node name="Chase_Area" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
+visible = false
 position = Vector2(18, 10)
 shape = SubResource("CircleShape2D_h17bi")
 
@@ -88,7 +97,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_hwali")
 }
 
+[node name="HurtBox" parent="." instance=ExtResource("3_h17bi")]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-6, 7)
+shape = SubResource("CapsuleShape2D_hwali")
+
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
 [connection signal="body_entered" from="Chase_Area" to="." method="_on_chase_area_body_entered"]
 [connection signal="body_exited" from="Chase_Area" to="." method="_on_chase_area_body_exited"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]
