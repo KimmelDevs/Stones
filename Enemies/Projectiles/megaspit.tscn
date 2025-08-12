@@ -1,23 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dosk5ag1kmxb7"]
+[gd_scene load_steps=9 format=3 uid="uid://dosk5ag1kmxb7"]
 
 [ext_resource type="Script" uid="uid://b3tov4304gnbg" path="res://megaspit.gd" id="1_v0yrn"]
 [ext_resource type="Texture2D" uid="uid://y8fcniw36n1u" path="res://Enemies/slime.png" id="2_t2ki0"]
-
-[sub_resource type="Animation" id="Animation_4ep3j"]
-resource_name = "spit"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 0]
-}
 
 [sub_resource type="Animation" id="Animation_ephwa"]
 length = 0.001
@@ -50,6 +34,22 @@ tracks/0/keys = {
 "values": [3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_4ep3j"]
+resource_name = "spit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_500x2"]
 _data = {
 &"RESET": SubResource("Animation_ephwa"),
@@ -59,6 +59,8 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmoqc"]
 radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0yrn"]
 
 [node name="megaspit" type="Node2D"]
 script = ExtResource("1_v0yrn")
@@ -78,5 +80,11 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_mmoqc")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, 3)
+shape = SubResource("CircleShape2D_v0yrn")
 
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]

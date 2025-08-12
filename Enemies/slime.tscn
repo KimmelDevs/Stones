@@ -1,10 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdceogijv2j4p"]
+[gd_scene load_steps=14 format=3 uid="uid://cdceogijv2j4p"]
 
 [ext_resource type="Script" uid="uid://o7wsl6vn42y7" path="res://slime.gd" id="1_7mise"]
 [ext_resource type="Texture2D" uid="uid://y8fcniw36n1u" path="res://Enemies/slime.png" id="2_xwn1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_00swj"]
 radius = 11.0
+
+[sub_resource type="Animation" id="Animation_ora3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_87lq7"]
 resource_name = "anticipation"
@@ -22,8 +37,9 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 5, 6]
 }
 
-[sub_resource type="Animation" id="Animation_ora3b"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_l0ce4"]
+resource_name = "finish_shoot"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,26 +47,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_0tjn4"]
-resource_name = "jump"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9, 10, 11]
+"values": [17, 18, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_200yf"]
@@ -67,6 +67,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0tjn4"]
+resource_name = "jump"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
 }
 
 [sub_resource type="Animation" id="Animation_8mopq"]
@@ -101,22 +117,6 @@ tracks/0/keys = {
 "values": [16]
 }
 
-[sub_resource type="Animation" id="Animation_l0ce4"]
-resource_name = "finish_shoot"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [17, 18, 19, 20, 21]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qq8p"]
 _data = {
 &"RESET": SubResource("Animation_ora3b"),
@@ -130,6 +130,8 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amke3"]
 radius = 195.023
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mise"]
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_7mise")
@@ -156,6 +158,12 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_amke3")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, 3)
+shape = SubResource("CircleShape2D_7mise")
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

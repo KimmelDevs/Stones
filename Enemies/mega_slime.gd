@@ -117,7 +117,7 @@ func shoot_mega_spit() -> void:
 		var spit = MegaSpitScene.instantiate()
 		get_tree().current_scene.add_child(spit)
 		spit.global_position = global_position
-		var dir = (target.global_position - global_position).normalized()
+ 		var dir = (target.global_position - global_position).normalized()
 		spit.velocity = dir * spit_speed
 
 		if spit.has_node("AnimationPlayer"):
