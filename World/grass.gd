@@ -7,6 +7,6 @@ func spawn_grass_effect() -> void:
 	effect_instance.global_position = global_position
 	get_parent().add_child(effect_instance)
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
+func _on_hurt_box_area_entered(_area: Area2D) -> void:
 	spawn_grass_effect()
 	queue_free()

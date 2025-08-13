@@ -153,7 +153,7 @@ func play_idle_animation() -> void:
 		"down":  animation_player.play("idle_down")
 
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
+func _on_hurt_box_area_entered(_area: Area2D):
 	stats.health -= 1
 	hurtbox.start_invisibility(0.5)
 	hurtbox.create_hit_effect()

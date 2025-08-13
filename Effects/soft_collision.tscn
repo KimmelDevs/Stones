@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dscgjxhxc23qx"]
+
+[node name="SoftCollision" type="Area2D"]
