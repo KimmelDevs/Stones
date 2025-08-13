@@ -1,133 +1,207 @@
-extends Node2D
+extends CharacterBody2D
 
-@export var damage := 200
+# --- Combat / Knockback ---
+var knockback: Vector2 = Vector2.ZERO
+@export var knockback_speed: float = 200.0
+@export var knockback_duration: float = 0.2
+
+# --- Movement ---
+@export var acceleration: float = 200
+@export var maxspeed: float = 50
+@export var friction: float = 200
+@export var wander_change_interval: float = 1.5
+@export var wander_radius: float = 150
+
+# --- Chase Boxer Movement ---
+@export var chase_radius: float = 200.0
+@export var sway_speed: float = 4.0
+@export var sway_amplitude: float = 20.0
+@export var unpredictability: float = 0.005
+
+# --- Attack / Jump ---
+@export var attack_range: float = 40.0
+@export var attack_cooldown: float = 0.5
 @export var jump_force := 200.0
-@export var air_time := 0.4          # Time in air after a jump
-@export var jump_cooldown := 2.0     # Time before next jump
-@export var chase_speed := 60.0      # Speed when chasing on the ground
-@export var spit_speed := 250.0      # Speed of megaspit
-@export var spit_delay := 0.2        # Delay between spits
-@export var jumps_before_spit := 3   # How many jumps before shooting
-
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Node2D = $Sprite2D
-@onready var detection_area: Area2D = $DetectionArea
-@onready var hit_area: Area2D = $HitArea
-
-var target: Node2D = null
+@export var air_time := 0.4
+@export var jump_cooldown := 2.0
+@export var spit_speed := 250.0
+@export var spit_delay := 0.2
+@export var jumps_before_spit := 3
+var can_attack: bool = true
 var is_jumping := false
 var can_jump := true
-var is_chasing := false
-var velocity := Vector2.ZERO
 var jump_count := 0
 
+# --- Nodes ---
+@onready var hurtbox = $HurtBox
+@onready var stats = $Stats
+@onready var playerdetectionzone = $PlayerDetectionArea
+@onready var sprite = $Sprite2D
+@onready var anim_player = $AnimationPlayer
+
+# --- Projectile Scene ---
 var MegaSpitScene := preload("res://Enemies/Projectiles/megaspit.tscn")
 
+# --- State machine ---
+enum { IDLE, WANDER, CHASE }
+var state = IDLE
+
+# --- Variables ---
+var move_velocity: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
+var dying: bool = false
+var wander_direction: Vector2 = Vector2.ZERO
+var wander_timer: float = 0.0
+var home_position: Vector2
+
+# Boxer sway vars
+var sway_time: float = 0.0
+var sway_direction: int = 1
+
 func _ready() -> void:
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
-	hit_area.connect("body_entered", Callable(self, "_on_hit_area_body_entered"))
+	home_position = global_position
 
 func _physics_process(delta: float) -> void:
-	if is_jumping and target:
-		global_position += velocity * delta
-	elif is_chasing and target and not is_jumping:
-		var dir = (target.global_position - global_position).normalized()
-		global_position += dir * chase_speed * delta
-		anim_player.play("walk")
+	seek_player()
 
-		if dir.x < 0:
-			sprite.scale.x = 1
-		elif dir.x > 0:
-			sprite.scale.x = -1
+	if is_jumping:
+		velocity = move_velocity
+	else:
+		match state:
+			IDLE:
+				move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta)
+				if randf() < 0.01:
+					state = WANDER
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		target = body
-		is_chasing = true
-		if can_jump:
-			start_jump_sequence()
+			WANDER:
+				wander_timer -= delta
+				if wander_timer <= 0:
+					pick_new_wander_direction()
+					wander_timer = wander_change_interval
+				move_velocity = move_velocity.move_toward(wander_direction * maxspeed, acceleration * delta)
 
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body == target:
-		is_chasing = false
-		target = null
-		anim_player.play("idle")
+				if global_position.distance_to(home_position) > wander_radius:
+					var dir_to_home = (home_position - global_position).normalized()
+					move_velocity = move_velocity.move_toward(dir_to_home * maxspeed, acceleration * delta)
 
-func start_jump_sequence() -> void:
-	if target and target.is_inside_tree():
-		can_jump = false
-		is_chasing = false
+				if move_velocity.length() > 0.1:
+					update_sprite_facing(move_velocity)
 
-		if target.global_position.x < global_position.x:
-			sprite.scale.x = 1
+			CHASE:
+				var player = playerdetectionzone.player
+				if player != null and not is_jumping:
+					_chase_with_boxer_movement(player, delta)
+
+		if knockback_timer > 0:
+			velocity = knockback
+			knockback_timer -= delta
+			if knockback_timer <= 0 and dying:
+				spawn_Death_effect()
+				queue_free()
 		else:
-			sprite.scale.x = -1
+			if not dying:
+				velocity = move_velocity
 
-		anim_player.play("anticipation")
-		await get_tree().create_timer(0.5).timeout
-		jump_towards_player()
+	move_and_slide()
 
-func jump_towards_player() -> void:
-	if target and target.is_inside_tree():
-		is_jumping = true
-		var dir = (target.global_position - global_position).normalized()
-		velocity = dir * jump_force
-		anim_player.play("jump")
+func _chase_with_boxer_movement(player: Node2D, delta: float) -> void:
+	var dist_to_player = global_position.distance_to(player.global_position)
 
-		await get_tree().create_timer(air_time).timeout
-		velocity = Vector2.ZERO
-		is_jumping = false
-		anim_player.play("idle")
+	var effective_sway = sway_amplitude
+	if dist_to_player < attack_range * 2:
+		effective_sway *= 0.4
 
-		jump_count += 1
-		if jump_count >= jumps_before_spit:
-			jump_count = 0
-			await shoot_mega_spit()
+	var to_player = (player.global_position - global_position).normalized()
+	var perp = Vector2(-to_player.y, to_player.x) * sway_direction
+	sway_time += delta * sway_speed
+	var sway_offset = perp * sin(sway_time) * effective_sway
 
-		await get_tree().create_timer(jump_cooldown).timeout
-		can_jump = true
-
-		if target and is_instance_valid(target) and target.is_inside_tree():
-			is_chasing = true
-			if can_jump:
-				start_jump_sequence()
-
-# --- Mega spit attack ---
-func shoot_mega_spit() -> void:
-	if not target or not is_instance_valid(target):
+	var lunge_forward = Vector2.ZERO
+	if dist_to_player <= attack_range * 1.5 and can_attack and can_jump:
+		start_jump_sequence(player)
 		return
 
-	# Added extra delay before preparing to shoot
+	var chase_target = player.global_position + sway_offset + lunge_forward
+	var random_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	chase_target += random_offset * 0.1
+
+	if chase_target.distance_to(home_position) > chase_radius:
+		var dir_to_home = (chase_target - home_position).normalized()
+		chase_target = home_position + dir_to_home * chase_radius
+
+	var dir = (chase_target - global_position).normalized()
+	move_velocity = move_velocity.move_toward(dir * maxspeed, acceleration * delta)
+
+	if randf() < unpredictability:
+		sway_direction *= -1
+
+	update_sprite_facing(dir)
+
+# --- Jump & MegaSpit ---
+func start_jump_sequence(player: Node2D) -> void:
+	if not player or not is_instance_valid(player):
+		return
+	can_jump = false
+	is_jumping = true
+	move_velocity = (player.global_position - global_position).normalized() * jump_force
+	anim_player.play("anticipation")
 	await get_tree().create_timer(0.5).timeout
+	anim_player.play("jump")
+	await get_tree().create_timer(air_time).timeout
+	is_jumping = false
+	move_velocity = Vector2.ZERO
+	anim_player.play("idle")
+	jump_count += 1
+	if jump_count >= jumps_before_spit:
+		jump_count = 0
+		await shoot_mega_spit(player)
+	await get_tree().create_timer(jump_cooldown).timeout
+	can_jump = true
 
-	# Face the player before shooting
-	if target.global_position.x < global_position.x:
-		sprite.scale.x = 1
-	else:
-		sprite.scale.x = -1
-
-	# Play ready animation and wait for it to finish
+func shoot_mega_spit(player: Node2D) -> void:
+	if not player or not is_instance_valid(player):
+		return
 	anim_player.play("ready_shoot")
 	await anim_player.animation_finished
-
-	# Play shooting animation and shoot 3 spits
 	anim_player.play("shoot")
 	for i in range(3):
 		var spit = MegaSpitScene.instantiate()
 		get_tree().current_scene.add_child(spit)
 		spit.global_position = global_position
- 		var dir = (target.global_position - global_position).normalized()
+		var dir = (player.global_position - global_position).normalized()
 		spit.velocity = dir * spit_speed
-
 		if spit.has_node("AnimationPlayer"):
 			spit.get_node("AnimationPlayer").play("spit")
-
 		await get_tree().create_timer(spit_delay).timeout
-
-	# Play finish animation
 	anim_player.play("finish_shoot")
 	await anim_player.animation_finished
-
-	# Return to idle before resuming jumps
 	anim_player.play("idle")
+
+# --- Utility ---
+func pick_new_wander_direction() -> void:
+	wander_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+
+func seek_player() -> void:
+	if playerdetectionzone.can_see_player():
+		state = CHASE
+	else:
+		if state == CHASE:
+			state = WANDER
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	knockback = area.knockback_vector * knockback_speed
+	knockback_timer = knockback_duration
+	stats.health -= 1
+	hurtbox.create_hit_effect()
+	if stats.health <= 0:
+		dying = true
+
+func spawn_Death_effect() -> void:
+	var effect_scene = preload("res://Effects/bat_death.tscn")
+	var effect_instance = effect_scene.instantiate()
+	effect_instance.global_position = global_position
+	get_parent().add_child(effect_instance)
+
+func update_sprite_facing(direction: Vector2) -> void:
+	if abs(direction.x) > abs(direction.y):
+		sprite.flip_h = direction.x < 0

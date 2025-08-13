@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=22 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdlbc6m1xshi" path="res://World/ball.tscn" id="11_0wqet"]
 [ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="12_h2aik"]
 [ext_resource type="PackedScene" uid="uid://cv3yi7o2jq3qt" path="res://UI/health_ui.tscn" id="14_awrha"]
+[ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="15_f23eu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
 texture = ExtResource("6_yf0ba")
@@ -1621,7 +1622,7 @@ gravity_scale = 0.0
 y_sort_enabled = true
 
 [node name="Bat" parent="Ysort/enemies" instance=ExtResource("12_h2aik")]
-position = Vector2(171, 36)
+position = Vector2(91, 283)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1641,3 +1642,6 @@ position = Vector2(-9, 256)
 
 [node name="Blockers4" parent="." instance=ExtResource("10_w47uh")]
 position = Vector2(-40, -214)
+
+[node name="MegaSlime" parent="." instance=ExtResource("15_f23eu")]
+position = Vector2(112, 63)
