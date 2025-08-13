@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cl2g1spse5o22"]
+[gd_scene load_steps=12 format=3 uid="uid://cl2g1spse5o22"]
 
 [ext_resource type="Script" uid="uid://cn1yjt1bgksy0" path="res://Enemies/chainsaw_unit.gd" id="1_ljqmw"]
 [ext_resource type="Texture2D" uid="uid://3d51ytyoqp7b" path="res://Enemies/Untitled-fefe.png" id="1_osc2e"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_h17bi"]
+[ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="4_hwali"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljqmw"]
 radius = 28.0179
@@ -104,6 +105,10 @@ collision_mask = 16
 position = Vector2(-6, 7)
 shape = SubResource("CapsuleShape2D_hwali")
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="HitBox" parent="Marker2D" instance=ExtResource("4_hwali")]
+
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
 [connection signal="body_entered" from="Chase_Area" to="." method="_on_chase_area_body_entered"]
@@ -111,3 +116,4 @@ shape = SubResource("CapsuleShape2D_hwali")
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]
+[editable path="Marker2D/HitBox"]

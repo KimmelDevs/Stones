@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbg6v5slse0b4"
-path="res://.godot/imported/SmallShadow.png-5e32714e38d94da2c1b597c947bda29e.ctex"
+path="res://.godot/imported/SmallShadow.png-40e5f388a5b0f566e4df21175c368d79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadows/SmallShadow.png"
-dest_files=["res://.godot/imported/SmallShadow.png-5e32714e38d94da2c1b597c947bda29e.ctex"]
+source_file="res://World/scenes/SmallShadow.png"
+dest_files=["res://.godot/imported/SmallShadow.png-40e5f388a5b0f566e4df21175c368d79.ctex"]
 
 [params]
 
