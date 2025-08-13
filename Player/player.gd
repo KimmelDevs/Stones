@@ -13,7 +13,8 @@ var roll_direction := Vector2.ZERO
 var can_move := true
 var is_attacking := false
 var attack_timer := 0.0
-
+var stats = PlayerStats
+@onready var hurtbox = $HurtBox
 # --- Nodes ---
 var animation_player: AnimationPlayer
 var sword_hitbox: Area2D
@@ -21,6 +22,8 @@ var sword_hitbox: Area2D
 func _ready():
 	animation_player = $AnimationPlayer
 	sword_hitbox = $Marker2D/HitBox
+	stats.connect("no_health", Callable(self, "queue_free"))
+
 
 	if not animation_player:
 		push_error("No AnimationPlayer node found at $AnimationPlayer")
@@ -148,3 +151,10 @@ func play_idle_animation() -> void:
 		"left":  animation_player.play("idle_left")
 		"up":    animation_player.play("idle_up")
 		"down":  animation_player.play("idle_down")
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	stats.health -= 1
+	hurtbox.start_invisibility(0.5)
+	hurtbox.create_hit_effect()
+	

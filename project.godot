@@ -15,6 +15,10 @@ run/main_scene="uid://d0m5edtxtg4kd"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerStats="*res://Player/player_stats.tscn"
+
 [display]
 
 window/size/viewport_width=320
@@ -67,6 +71,7 @@ move_down={
 2d_physics/layer_3="PlayerHurtBox"
 2d_physics/layer_4="EnemyHurtBox"
 2d_physics/layer_5="PlayerHitBox"
+2d_physics/layer_6="enemy"
 
 [rendering]
 
