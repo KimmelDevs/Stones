@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvqsuigp5o81r"]
+
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://stick_collectable.gd" id="1_epkkg"]
+[ext_resource type="Texture2D" uid="uid://djx45s8lhu2tm" path="res://Inventory/textures/berrytexture.png" id="2_6l21q"]
+[ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="2_pdddx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdddx"]
+radius = 14.0357
+
+[node name="StickCollectable" type="StaticBody2D"]
+script = ExtResource("1_epkkg")
+item = ExtResource("2_pdddx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6l21q")
+
+[node name="interactable_area" type="Area2D" parent="."]
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+position = Vector2(3, 5)
+shape = SubResource("CircleShape2D_pdddx")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]

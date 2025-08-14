@@ -166,3 +166,7 @@ func _on_hurt_box_area_entered(_area: Area2D):
 # --- Player Marker Function ---
 func player():
 	pass
+	
+func collect(item):
+	Inv.insert(item)
+	

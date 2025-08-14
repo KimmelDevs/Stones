@@ -2,10 +2,12 @@ extends StaticBody2D
 
 var state = "berries"
 var player_in_area = false
+var player: Node = null
 
 @onready var timer = $Growth_timer
 @onready var sprite = $AnimatedSprite2D
 @onready var berry_scene = preload("res://World/scenes/berry.tscn")
+@export var item: InvItem
 
 func _ready():
 	if state == "no berries":
@@ -23,14 +25,14 @@ func _process(delta):
 			drop_berry()
 
 func _on_pickable_area_body_entered(body: Node2D) -> void:
-	if body.has_method("player"): 
+	if body.has_method("player"):
 		player_in_area = true
-	
+		player = body  # store the reference to the player
 
 func _on_pickable_area_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_area = false
-		
+		player = null  # clear reference when player leaves
 
 func drop_berry():
 	var berry_instance = berry_scene.instantiate()
@@ -38,6 +40,10 @@ func drop_berry():
 	berry_instance.z_index = 1  # make sure bush has z_index 0
 	get_parent().add_child(berry_instance)
 	print("dropped")
+
+	# Give berry to the player if possible
+	if player != null and player.has_method("collect"):
+		player.collect(item)
 
 	# Wait before regrowing berries
 	await get_tree().create_timer(260).timeout
