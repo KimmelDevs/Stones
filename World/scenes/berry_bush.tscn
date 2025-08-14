@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://biubxd4ucuro4"]
+
+[ext_resource type="Script" uid="uid://cyh715bhodluf" path="res://World/berry_bush.gd" id="1_h8k17"]
+[ext_resource type="Texture2D" uid="uid://dg3cnj7v3w304" path="res://World/Bush with berries 32 px.png" id="1_r4pop"]
+[ext_resource type="Texture2D" uid="uid://ebjrumiu08g2" path="res://World/Bush no berries 32 px.png" id="3_rabx2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r4pop"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pe225"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r4pop")
+}],
+"loop": true,
+"name": &"Berries",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rabx2")
+}],
+"loop": true,
+"name": &"NoBerries",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_od2e6"]
+radius = 47.0106
+
+[node name="BerryBush" type="StaticBody2D"]
+script = ExtResource("1_h8k17")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_r4pop")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pe225")
+animation = &"Berries"
+
+[node name="PickableArea" type="Area2D" parent="."]
+visible = false
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
+visible = false
+shape = SubResource("CircleShape2D_od2e6")
+
+[node name="Growth_timer" type="Timer" parent="."]
+wait_time = 260.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(4, -4)
+
+[connection signal="body_entered" from="PickableArea" to="." method="_on_pickable_area_body_entered"]
+[connection signal="body_exited" from="PickableArea" to="." method="_on_pickable_area_body_exited"]
+[connection signal="timeout" from="Growth_timer" to="." method="_on_growth_timer_timeout"]

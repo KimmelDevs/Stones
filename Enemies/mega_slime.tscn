@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://d12bl3gic7t5p"]
+[gd_scene load_steps=21 format=3 uid="uid://d12bl3gic7t5p"]
 
 [ext_resource type="Script" uid="uid://dj4qmyeyip1di" path="res://Enemies/mega_slime.gd" id="1_200yf"]
 [ext_resource type="Texture2D" uid="uid://y8fcniw36n1u" path="res://Enemies/slime.png" id="1_xq6hy"]
+[ext_resource type="Texture2D" uid="uid://lqpi74afqnac" path="res://Shadows/MediumShadow.png" id="2_e6hro"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_7vi6b"]
 [ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="4_l0ce4"]
 [ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="4_pesms"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="6_e6hro"]
+[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/health_bar.tscn" id="8_b7xan"]
 
 [sub_resource type="Animation" id="Animation_ora3b"]
 length = 0.001
@@ -32,6 +34,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-9, -12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_87lq7"]
@@ -168,6 +182,11 @@ radius = 11.0
 collision_layer = 32
 script = ExtResource("1_200yf")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(1, 14)
+scale = Vector2(1.75, 1)
+texture = ExtResource("2_e6hro")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 5)
 scale = Vector2(1.155, 1)
@@ -182,17 +201,18 @@ libraries = {
 }
 
 [node name="HurtBox" parent="." instance=ExtResource("3_7vi6b")]
-visible = false
 collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_b7xan")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 visible = false
 
 [node name="HitBox" parent="Marker2D" instance=ExtResource("4_l0ce4")]
+visible = false
 collision_layer = 32
 collision_mask = 4
 
@@ -201,16 +221,24 @@ position = Vector2(-9, -12)
 shape = SubResource("CircleShape2D_pesms")
 
 [node name="Stats" parent="." instance=ExtResource("6_e6hro")]
-max_health = 5
+max_health = 5.0
 
 [node name="PlayerDetectionArea" parent="." instance=ExtResource("4_pesms")]
+visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetectionArea" index="0"]
 shape = SubResource("CircleShape2D_l8h2n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_e6hro")
+
+[node name="HealthBar" parent="." instance=ExtResource("8_b7xan")]
+offset_left = -12.0
+offset_top = -14.0
+offset_right = 13.0
+offset_bottom = -9.0
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]

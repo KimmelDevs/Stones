@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsu2nuolwob33"]
+
+[ext_resource type="Script" uid="uid://cet3ynt05vkq7" path="res://Effects/progress_bar.gd" id="1_xu5ut"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4oya"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8pua"]
+bg_color = Color(0.204106, 0.974377, 0.937522, 1)
+
+[node name="EnergyBar" type="ProgressBar"]
+offset_right = 7.0
+offset_bottom = 53.0
+theme_override_styles/background = SubResource("StyleBoxFlat_u4oya")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q8pua")
+fill_mode = 3
+show_percentage = false
+script = ExtResource("1_xu5ut")

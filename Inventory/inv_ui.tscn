@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1misyki6xqvj"]
+
+[ext_resource type="Script" uid="uid://uy7tjsmf38o8" path="res://inv_ui.gd" id="1_605em"]
+[ext_resource type="PackedScene" uid="uid://dwgn11r34kia7" path="res://Inventory/inv_ui_slot.tscn" id="2_actet"]
+
+[node name="Inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_605em")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Inv_UI_Slot" parent="." instance=ExtResource("2_actet")]
+layout_mode = 0

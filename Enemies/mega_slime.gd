@@ -10,7 +10,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var air_time := 0.4
 @export var jump_cooldown := 2.0
 @export var spit_speed := 250.0
-@export var spit_delay := 0.2
+@export var spit_delay := 0.2	
 @export var jumps_before_spit := 3
 
 # --- States ---
@@ -23,6 +23,7 @@ var state = IDLE
 @onready var playerdetectionzone = $PlayerDetectionArea
 @onready var sprite = $Sprite2D
 @onready var anim_player = $AnimationPlayer
+
 
 # --- Projectile Scene ---
 var MegaSpitScene := preload("res://Enemies/Projectiles/megaspit.tscn")
@@ -112,6 +113,13 @@ func shoot_mega_spit() -> void:
 
 	anim_player.play("ready_shoot")
 	await anim_player.animation_finished
+
+	# FIX: Use global_position.x and keep flip logic consistent
+	if player.global_position.x < global_position.x:
+		sprite.flip_h = true   # Facing left
+	else:
+		sprite.flip_h = false  # Facing right
+
 	anim_player.play("shoot")
 
 	var target_pos = player.global_position  # Lock aim position now
@@ -134,7 +142,7 @@ func shoot_mega_spit() -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	knockback = area.knockback_vector * knockback_speed
 	knockback_timer = knockback_duration
-	stats.health -= 1
+	stats.set_health(stats.health - 1)
 	hurtbox.create_hit_effect()
 	if stats.health <= 0:
 		dying = true

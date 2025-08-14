@@ -27,6 +27,12 @@ func _ready():
 	health = max_health
 	energy = max_energy
 
+	# Only allow health regen if this node or its parent has a `player()` method
+	var target = self
+	if not target.has_method("player") and get_parent():
+		target = get_parent()
+	health_regen_enabled = target.has_method("player")
+
 func _process(delta: float) -> void:
 	# Track time since damage
 	time_since_damage += delta

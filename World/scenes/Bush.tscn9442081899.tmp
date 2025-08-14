@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://jlbt7nbl8k2q"]
+
+[ext_resource type="Texture2D" uid="uid://bwaa54n1lbty2" path="res://World/Bush.png" id="1_axica"]
+[ext_resource type="Script" uid="uid://benppn4px846e" path="res://World/scenes/bush.gd" id="1_rl3mu"]
+[ext_resource type="Texture2D" uid="uid://bxfm7lsj2su8u" path="res://Shadows/LargeShadow.png" id="1_vdt5u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8dhi"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0nad"]
+radius = 47.0106
+
+[node name="Bush" type="StaticBody2D"]
+script = ExtResource("1_rl3mu")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(1, 6)
+texture = ExtResource("1_vdt5u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_axica")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_q8dhi")
+
+[node name="BushCamera" type="Camera2D" parent="."]
+
+[node name="HideableArea" type="Area2D" parent="."]
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HideableArea"]
+shape = SubResource("CircleShape2D_v0nad")
+
+[connection signal="body_entered" from="HideableArea" to="." method="_on_hideable_area_body_entered"]
+[connection signal="body_exited" from="HideableArea" to="." method="_on_hideable_area_body_exited"]

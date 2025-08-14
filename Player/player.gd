@@ -1,29 +1,32 @@
 extends CharacterBody2D
 
-# --- Movement & combat settings ---
+# --- Movement & Combat Settings ---
 @export var SPEED: float = 100.0
 @export var ROLL_SPEED: float = 200.0
 @export var ROLL_DURATION: float = 0.5
 @export var ATTACK_DURATION: float = 0.4 # Attack time in seconds
 
+@export var Inv: Inv
+
+
+# --- State Variables ---
 var last_direction := "down"
 var is_rolling := false
 var roll_timer := 0.0
 var roll_direction := Vector2.ZERO
 var can_move := true
+var can_roll := true
 var is_attacking := false
 var attack_timer := 0.0
+
+# --- References ---
 var stats = PlayerStats
 @onready var hurtbox = $HurtBox
-# --- Nodes ---
-var animation_player: AnimationPlayer
-var sword_hitbox: Area2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sword_hitbox: Area2D = $Marker2D/HitBox
 
 func _ready():
-	animation_player = $AnimationPlayer
-	sword_hitbox = $Marker2D/HitBox
 	stats.connect("no_health", Callable(self, "queue_free"))
-
 
 	if not animation_player:
 		push_error("No AnimationPlayer node found at $AnimationPlayer")
@@ -38,24 +41,26 @@ func _physics_process(delta: float) -> void:
 			is_attacking = false
 			can_move = true
 			play_idle_animation()
-		# Stop player movement during attack
-		return
+		return # Stop everything else while attacking
 
-	# --- Handle attack input ---
+	# --- Attack Input ---
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
 		start_attack()
 		return
 
-	# --- Movement input ---
+	# --- Movement Input ---
 	var input_vector := Vector2.ZERO
 	if can_move:
 		input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-	# --- Handle roll input ---
-	if Input.is_action_just_pressed("roll") and not is_rolling and not is_attacking:
-		start_roll(input_vector)
+	# --- Roll Input ---
+	if Input.is_action_just_pressed("roll") and can_roll and not is_rolling and not is_attacking:
+		if stats.consume_energy(3):
+			start_roll(input_vector)
+		else:
+			print("Not enough energy to roll!")
 
-	# --- Rolling ---
+	# --- Rolling Movement ---
 	if is_rolling:
 		velocity = roll_direction * ROLL_SPEED
 		move_and_slide()
@@ -66,11 +71,11 @@ func _physics_process(delta: float) -> void:
 			play_idle_animation()
 		return
 
-	# --- Normal movement ---
+	# --- Normal Movement ---
 	velocity = input_vector * SPEED
 	move_and_slide()
 
-	# --- Animation updates ---
+	# --- Animations ---
 	if input_vector != Vector2.ZERO:
 		if input_vector.x > 0:
 			animation_player.play("walk_right")
@@ -87,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		play_idle_animation()
 
-# --- Start a roll action ---
+# --- Start a Roll ---
 func start_roll(input_vector: Vector2) -> void:
 	is_rolling = true
 	can_move = false
@@ -102,7 +107,7 @@ func start_roll(input_vector: Vector2) -> void:
 			"up":    roll_direction = Vector2.UP
 			"down":  roll_direction = Vector2.DOWN
 
-	# Update last direction based on roll
+	# Update last_direction for animations
 	if roll_direction.x > 0:
 		last_direction = "right"
 	elif roll_direction.x < 0:
@@ -119,13 +124,13 @@ func start_roll(input_vector: Vector2) -> void:
 	else:
 		print("Missing roll animation:", anim_name)
 
-# --- Start an attack ---
+# --- Start an Attack ---
 func start_attack() -> void:
 	is_attacking = true
 	can_move = false
 	attack_timer = ATTACK_DURATION
 
-	# Determine direction from mouse position
+	# Aim based on mouse position
 	var mouse_pos = get_global_mouse_position()
 	var dir_vector = (mouse_pos - global_position).normalized()
 
@@ -134,7 +139,7 @@ func start_attack() -> void:
 	else:
 		last_direction = "down" if dir_vector.y > 0 else "up"
 
-	# Set knockback vector for sword hitbox
+	# Apply knockback direction to sword hitbox
 	sword_hitbox.knockback_vector = dir_vector
 
 	# Play attack animation
@@ -144,7 +149,7 @@ func start_attack() -> void:
 	else:
 		print("Missing attack animation:", anim_name)
 
-# --- Play idle animation based on last direction ---
+# --- Play Idle Animation ---
 func play_idle_animation() -> void:
 	match last_direction:
 		"right": animation_player.play("idle_right")
@@ -152,9 +157,12 @@ func play_idle_animation() -> void:
 		"up":    animation_player.play("idle_up")
 		"down":  animation_player.play("idle_down")
 
-
+# --- When Hit ---
 func _on_hurt_box_area_entered(_area: Area2D):
-	stats.health -= 1
-	hurtbox.start_invisibility(0.5)
+	stats.set_health(stats.health - 1)
+	hurtbox.start_invisibility(2)
 	hurtbox.create_hit_effect()
-	
+
+# --- Player Marker Function ---
+func player():
+	pass
