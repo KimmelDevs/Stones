@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvqsuigp5o81r"]
 
-[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://stick_collectable.gd" id="1_epkkg"]
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_epkkg"]
 [ext_resource type="Texture2D" uid="uid://djx45s8lhu2tm" path="res://Inventory/textures/berrytexture.png" id="2_6l21q"]
 [ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="2_pdddx"]
 

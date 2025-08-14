@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwe4a4dqm40ik"]
+
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_4ph2y"]
+[ext_resource type="Resource" uid="uid://3ksal4dwua65" path="res://Enemies/EnemyDrops/BatHead.tres" id="2_woak2"]
+[ext_resource type="Texture2D" uid="uid://5vern3glw231" path="res://Inventory/textures/batHead.png" id="3_4ph2y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gtoj2"]
+radius = 14.0357
+
+[node name="BatHead" type="StaticBody2D"]
+script = ExtResource("1_4ph2y")
+item = ExtResource("2_woak2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_4ph2y")
+
+[node name="interactable_area" type="Area2D" parent="."]
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_gtoj2")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]

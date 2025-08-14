@@ -1679,6 +1679,9 @@ position = Vector2(342, -153)
 [node name="BerryBush4" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
 position = Vector2(272, -9)
 
+[node name="BerryBush6" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
+position = Vector2(299, -8)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource("14_awrha")]

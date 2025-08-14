@@ -25,7 +25,6 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="ItemDisplay" type="Sprite2D" parent="CenterContainer/Panel"]
-offset = Vector2(-4, -5)
 
 [node name="Label" type="Label" parent="CenterContainer/Panel"]
 layout_mode = 0

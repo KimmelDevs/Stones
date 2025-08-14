@@ -36,7 +36,6 @@ script = ExtResource("1_h8k17")
 item = ExtResource("2_rabx2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-2, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_r4pop")
@@ -46,11 +45,9 @@ sprite_frames = SubResource("SpriteFrames_pe225")
 animation = &"Berries"
 
 [node name="PickableArea" type="Area2D" parent="."]
-visible = false
 collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
-visible = false
 shape = SubResource("CircleShape2D_od2e6")
 
 [node name="Growth_timer" type="Timer" parent="."]

@@ -4,10 +4,8 @@ extends CharacterBody2D
 @export var SPEED: float = 100.0
 @export var ROLL_SPEED: float = 200.0
 @export var ROLL_DURATION: float = 0.5
-@export var ATTACK_DURATION: float = 0.4 # Attack time in seconds
-
+@export var ATTACK_DURATION: float = 0.4
 @export var Inv: Inv
-
 
 # --- State Variables ---
 var last_direction := "down"
@@ -28,11 +26,6 @@ var stats = PlayerStats
 func _ready():
 	stats.connect("no_health", Callable(self, "queue_free"))
 
-	if not animation_player:
-		push_error("No AnimationPlayer node found at $AnimationPlayer")
-	if not sword_hitbox:
-		push_error("No HitBox node found at $Marker2D/HitBox")
-
 func _physics_process(delta: float) -> void:
 	# --- Handle attack duration ---
 	if is_attacking:
@@ -41,12 +34,18 @@ func _physics_process(delta: float) -> void:
 			is_attacking = false
 			can_move = true
 			play_idle_animation()
-		return # Stop everything else while attacking
+		return
 
 	# --- Attack Input ---
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
 		start_attack()
 		return
+
+	# --- Pick Input ---
+	if Input.is_action_just_pressed("Pick"):
+		var nearest = get_nearest_bush()
+		if nearest:
+			nearest.drop_berry(self)
 
 	# --- Movement Input ---
 	var input_vector := Vector2.ZERO
@@ -92,6 +91,23 @@ func _physics_process(delta: float) -> void:
 	else:
 		play_idle_animation()
 
+# --- Get nearest bush (only with berries) ---
+func get_nearest_bush() -> Node:
+	var bushes = get_tree().get_nodes_in_group("berry_bush")
+	var nearest_bush = null
+	var nearest_dist = INF
+	var pick_range = 32 # Max distance to pick
+
+	for bush in bushes:
+		if bush.state != "berries": # Skip bushes with no berries
+			continue
+		var dist = bush.global_position.distance_to(global_position)
+		if dist < nearest_dist and dist <= pick_range:
+			nearest_bush = bush
+			nearest_dist = dist
+
+	return nearest_bush
+
 # --- Start a Roll ---
 func start_roll(input_vector: Vector2) -> void:
 	is_rolling = true
@@ -107,7 +123,6 @@ func start_roll(input_vector: Vector2) -> void:
 			"up":    roll_direction = Vector2.UP
 			"down":  roll_direction = Vector2.DOWN
 
-	# Update last_direction for animations
 	if roll_direction.x > 0:
 		last_direction = "right"
 	elif roll_direction.x < 0:
@@ -117,12 +132,9 @@ func start_roll(input_vector: Vector2) -> void:
 	elif roll_direction.y > 0:
 		last_direction = "down"
 
-	# Play roll animation
 	var anim_name = "roll_" + last_direction
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
-	else:
-		print("Missing roll animation:", anim_name)
 
 # --- Start an Attack ---
 func start_attack() -> void:
@@ -130,7 +142,6 @@ func start_attack() -> void:
 	can_move = false
 	attack_timer = ATTACK_DURATION
 
-	# Aim based on mouse position
 	var mouse_pos = get_global_mouse_position()
 	var dir_vector = (mouse_pos - global_position).normalized()
 
@@ -139,15 +150,11 @@ func start_attack() -> void:
 	else:
 		last_direction = "down" if dir_vector.y > 0 else "up"
 
-	# Apply knockback direction to sword hitbox
 	sword_hitbox.knockback_vector = dir_vector
 
-	# Play attack animation
 	var anim_name = "attack_" + last_direction
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
-	else:
-		print("Missing attack animation:", anim_name)
 
 # --- Play Idle Animation ---
 func play_idle_animation() -> void:
@@ -163,10 +170,8 @@ func _on_hurt_box_area_entered(_area: Area2D):
 	hurtbox.start_invisibility(2)
 	hurtbox.create_hit_effect()
 
-# --- Player Marker Function ---
 func player():
 	pass
-	
+
 func collect(item):
 	Inv.insert(item)
-	
