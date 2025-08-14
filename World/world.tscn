@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=27 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dl5nye6xmusnb" path="res://World/Watertileset.png" id="8_w47uh"]
 [ext_resource type="PackedScene" uid="uid://bv531wsn8yrlq" path="res://World/scenes/grass.tscn" id="10_lo5ox"]
 [ext_resource type="PackedScene" uid="uid://u61tqc8ypnjm" path="res://World/blockers.tscn" id="10_w47uh"]
+[ext_resource type="PackedScene" uid="uid://bqfn6lnudv1qv" path="res://UI/hot_bar.tscn" id="11_0lysu"]
 [ext_resource type="PackedScene" uid="uid://cwdlbc6m1xshi" path="res://World/ball.tscn" id="11_0wqet"]
 [ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/energy_bar.tscn" id="12_5xkvv"]
 [ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="12_h2aik"]
@@ -1683,6 +1684,12 @@ position = Vector2(272, -9)
 position = Vector2(299, -8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HotBar" parent="CanvasLayer" instance=ExtResource("11_0lysu")]
+offset_left = 84.0
+offset_top = 149.0
+offset_right = 124.0
+offset_bottom = 189.0
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource("14_awrha")]
 offset_left = 4.0
