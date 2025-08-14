@@ -21,6 +21,9 @@ var knockback: Vector2 = Vector2.ZERO
 # --- Attack ---
 @export var attack_range: float = 40.0
 @export var attack_cooldown: float = 0.5
+@export var attack_dive_speed: float = 180.0
+@export var anticipation_time: float = 0.4
+@export var recovery_time: float = 0.6
 var can_attack: bool = true
 
 # --- Nodes ---
@@ -31,7 +34,7 @@ var can_attack: bool = true
 @onready var anim_player = $AnimationPlayer
 
 # --- State machine ---
-enum { IDLE, WANDER, CHASE }
+enum { IDLE, WANDER, CHASE, ANTICIPATE, DIVE, RECOVER }
 var state = IDLE
 
 # --- Variables ---
@@ -45,6 +48,10 @@ var home_position: Vector2
 # Boxer sway vars
 var sway_time: float = 0.0
 var sway_direction: int = 1
+
+# Attack vars
+var attack_target: Vector2
+var attack_timer: float = 0.0
 
 func _ready() -> void:
 	home_position = global_position
@@ -77,7 +84,39 @@ func _physics_process(delta: float) -> void:
 		CHASE:
 			var player = playerdetectionzone.player
 			if player != null:
-				_chase_with_boxer_movement(player, delta)
+				var dist = global_position.distance_to(player.global_position)
+				if dist <= attack_range and can_attack:
+					state = ANTICIPATE
+					attack_timer = anticipation_time
+					attack_target = player.global_position
+					move_velocity = Vector2.ZERO
+					#anim_player.play("anticipate") # You must make this animation
+				else:
+					_chase_with_boxer_movement(player, delta)
+
+		ANTICIPATE:
+			attack_timer -= delta
+			if attack_timer <= 0:
+				state = DIVE
+				attack_timer = 0.0
+				#anim_player.play("dive") # Make dive animation
+
+		DIVE:
+			var dir = (attack_target - global_position).normalized()
+			move_velocity = dir * attack_dive_speed
+			if global_position.distance_to(attack_target) < 10:
+				state = RECOVER
+				attack_timer = recovery_time
+				move_velocity = Vector2.ZERO
+				#anim_player.play("recover") # Make recover animation
+
+		RECOVER:
+			attack_timer -= delta
+			if attack_timer <= 0:
+				state = CHASE
+				can_attack = false
+				await get_tree().create_timer(attack_cooldown).timeout
+				can_attack = true
 
 	# Apply knockback if active
 	if knockback_timer > 0:
@@ -91,62 +130,47 @@ func _physics_process(delta: float) -> void:
 			velocity = move_velocity
 
 	move_and_slide()
+
 func _chase_with_boxer_movement(player: Node2D, delta: float) -> void:
 	var dist_to_player = global_position.distance_to(player.global_position)
-
-	# Adjust sway amplitude based on distance
 	var effective_sway = sway_amplitude
 	if dist_to_player < attack_range * 2:
-		effective_sway *= 0.4  # smaller sway when close
+		effective_sway *= 0.4
 
-	# Main direction toward player
 	var to_player = (player.global_position - global_position).normalized()
-
-	# Perpendicular vector for sideways movement
 	var perp = Vector2(-to_player.y, to_player.x) * sway_direction
-
-	# Add sinusoidal sway for curved motion
 	sway_time += delta * sway_speed
 	var sway_offset = perp * sin(sway_time) * effective_sway
 
-	# Add slight forward lunge effect when close
 	var lunge_forward = Vector2.ZERO
 	if dist_to_player <= attack_range * 1.5 and can_attack:
 		lunge_forward = to_player * 15.0
 
-	# Combine sway + lunge to create a curved path
 	var chase_target = player.global_position + sway_offset + lunge_forward
-
-	# Optional: Add some noise for unpredictability
 	var random_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
-	chase_target += random_offset * 0.1  # small jitter
+	chase_target += random_offset * 0.1
 
-	# Limit to chase radius
 	if chase_target.distance_to(home_position) > chase_radius:
 		var dir_to_home = (chase_target - home_position).normalized()
 		chase_target = home_position + dir_to_home * chase_radius
 
-	# Smooth movement toward chase target
 	var dir = (chase_target - global_position).normalized()
 	move_velocity = move_velocity.move_toward(dir * maxspeed, acceleration * delta)
 
-	# Random sway flip
 	if randf() < unpredictability:
 		sway_direction *= -1
 
-	# Face toward actual chase target (not strictly the player)
 	update_sprite_facing(dir)
-
-	
 
 func pick_new_wander_direction() -> void:
 	wander_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 
 func seek_player() -> void:
 	if playerdetectionzone.can_see_player():
-		state = CHASE
+		if state in [IDLE, WANDER]:
+			state = CHASE
 	else:
-		if state == CHASE:
+		if state in [CHASE, ANTICIPATE, DIVE, RECOVER]:
 			state = WANDER
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
