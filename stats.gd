@@ -5,7 +5,7 @@ extends Node
 var health: float
 
 # --- Health Regen ---
-@export var health_regen_enabled: bool = true
+@export var health_regen_enabled: bool = false
 @export var health_regen_delay: float = 15.0  # Seconds without damage before regen starts
 @export var health_regen_interval: float = 2.0  # How often to heal
 @export var health_regen_amount: float = 1.0   # How much to heal per tick
@@ -27,14 +27,13 @@ func _ready():
 	health = max_health
 	energy = max_energy
 
-	# Only allow health regen if this node or its parent has a `player()` method
-	var target = self
-	if not target.has_method("player") and get_parent():
-		target = get_parent()
-	health_regen_enabled = target.has_method("player")
+	# If this is the global PlayerStats singleton, always enable regen
+	# Otherwise (for enemies), disable unless manually turned on
+	if self == PlayerStats:
+		health_regen_enabled = true
+
 
 func _process(delta: float) -> void:
-	# Track time since damage
 	time_since_damage += delta
 
 	# --- Health Regen ---
@@ -43,8 +42,9 @@ func _process(delta: float) -> void:
 		if health_regen_timer >= health_regen_interval:
 			health_regen_timer = 0.0
 			set_health(health + health_regen_amount)
+			print("bruh")  # Debug: Shows regen is working
 
-	# --- Energy Regen ---
+	# --- Energy Regen (works for both player and enemies)
 	energy_regen_timer += delta
 	if energy_regen_timer >= energy_regen_interval:
 		energy_regen_timer = 0.0
@@ -63,6 +63,7 @@ func get_health() -> float:
 func damage(amount: float) -> void:
 	set_health(health - amount)
 	time_since_damage = 0.0  # Reset regen delay
+	health_regen_timer = 0.0  # Reset regen tick timer
 
 # --- Energy Functions ---
 func set_energy(value: int) -> void:
