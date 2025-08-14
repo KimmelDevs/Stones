@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1misyki6xqvj"]
+[gd_scene load_steps=4 format=3 uid="uid://c1misyki6xqvj"]
 
 [ext_resource type="Script" uid="uid://uy7tjsmf38o8" path="res://inv_ui.gd" id="1_605em"]
 [ext_resource type="PackedScene" uid="uid://dwgn11r34kia7" path="res://Inventory/inv_ui_slot.tscn" id="2_actet"]
+[ext_resource type="Texture2D" uid="uid://bf04yoq6pa6hl" path="res://Inventory/brown panel.png" id="2_ltxgc"]
 
 [node name="Inv_UI" type="Control"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -12,12 +14,52 @@ script = ExtResource("1_605em")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 110.0
+offset_bottom = 83.0
+texture = ExtResource("2_ltxgc")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="Inv_UI_Slot" parent="." instance=ExtResource("2_actet")]
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
 layout_mode = 0
+offset_right = 108.0
+offset_bottom = 80.0
+columns = 4
+
+[node name="Inv_UI_Slot1" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot11" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2
+
+[node name="Inv_UI_Slot12" parent="NinePatchRect/GridContainer" instance=ExtResource("2_actet")]
+layout_mode = 2

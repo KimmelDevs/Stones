@@ -1691,6 +1691,8 @@ offset_right = 318.0
 offset_bottom = 166.0
 
 [node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("13_kcyjf")]
+offset_top = 24.0
+offset_bottom = 64.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false

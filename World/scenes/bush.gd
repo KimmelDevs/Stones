@@ -1,82 +1,79 @@
-extends Node
+extends StaticBody2D
 
-# --- Health ---
-@export var max_health: float = 1
-var health: float
+@onready var bush_cam = $BushCamera
+@onready var anim = $AnimationPlayer
 
-# --- Health Regen ---
-@export var health_regen_enabled: bool = true
-@export var health_regen_delay: float = 15.0  # Seconds without damage before regen starts
-@export var health_regen_interval: float = 2.0  # How often to heal
-@export var health_regen_amount: float = 1.0   # How much to heal per tick
-var time_since_damage: float = 0.0
-var health_regen_timer: float = 0.0
+var player_in_area = false
+var hiding_player: CharacterBody2D = null
+var player_ref: CharacterBody2D = null
 
-# --- Energy ---
-@export var max_energy: int = 10
-@export var energy_regen_interval: float = 2.0
-var energy: int
-var energy_regen_timer: float = 0.0
+# Called when a body enters the bush detection area
+func _on_hideable_area_body_entered(body: Node2D) -> void:
+	if body.has_method("player"):
+		player_in_area = true
+		player_ref = body
+		print("Player can hide")
 
-# --- Signals ---
-signal no_health
-signal health_changed(value)
-signal energy_changed(value)
+# Called when a body exits the bush detection area
+func _on_hideable_area_body_exited(body: Node2D) -> void:
+	if body.has_method("player"):
+		player_in_area = false
+		# Automatically unhide if the player was hiding
+		if hiding_player == body:
+			unhide_player()
+		player_ref = null
+		print("Player left bush area")
 
-func _ready():
-	health = max_health
-	energy = max_energy
+# Called every frame to check input
+func _process(delta):
+	if player_in_area and Input.is_action_just_pressed("Hide") and hiding_player == null:
+		hide_player(player_ref)
+	elif hiding_player != null and Input.is_action_just_pressed("Hide"):
+		unhide_player()
 
-	# Only allow health regen if this node or its parent has a `player()` method
-	var target = self
-	if not target.has_method("player") and get_parent():
-		target = get_parent()
-	health_regen_enabled = target.has_method("player")
+# Hides the player
+func hide_player(player: CharacterBody2D) -> void:
+	hiding_player = player
+	
+	# Stop player movement and rolling
+	player.can_move = false
+	player.can_roll = false
+	player.visible = false
+	
+	# Disable hurtbox and collisions
+	var hurtbox = player_ref.get_node("HurtBox")
+	hurtbox.monitoring = false
+	hurtbox.monitorable = false
+	player_ref.set_collision_layer_value(2, false)
+	
+	# Switch camera to bush
+	bush_cam.make_current()
+	
+	# Play hiding animation
+	anim.play("Hide")
+	print("Player is hiding")
 
-func _process(delta: float) -> void:
-	# Track time since damage
-	time_since_damage += delta
-
-	# --- Health Regen ---
-	if health_regen_enabled and time_since_damage >= health_regen_delay and health < max_health:
-		health_regen_timer += delta
-		if health_regen_timer >= health_regen_interval:
-			health_regen_timer = 0.0
-			set_health(health + health_regen_amount)
-
-	# --- Energy Regen ---
-	energy_regen_timer += delta
-	if energy_regen_timer >= energy_regen_interval:
-		energy_regen_timer = 0.0
-		add_energy(1)
-
-# --- Health Functions ---
-func set_health(value: float) -> void:
-	health = clamp(value, 0, max_health)
-	emit_signal("health_changed", health)
-	if health <= 0:
-		emit_signal("no_health")
-
-func get_health() -> float:
-	return health
-
-func damage(amount: float) -> void:
-	set_health(health - amount)
-	time_since_damage = 0.0  # Reset regen delay
-
-# --- Energy Functions ---
-func set_energy(value: int) -> void:
-	energy = clamp(value, 0, max_energy)
-	emit_signal("energy_changed", energy)
-
-func add_energy(amount: int) -> void:
-	set_energy(energy + amount)
-
-func consume_energy(amount: int) -> bool:
-	if energy >= amount:
-		set_energy(energy - amount)
-		return true
-	return false
-
-func get_energy() -> int:
-	return energy
+# Unhides the player
+func unhide_player() -> void:
+	if hiding_player == null:
+		return
+	
+	# Allow movement and rolling again
+	hiding_player.can_move = true
+	hiding_player.can_roll = true
+	hiding_player.visible = true
+	
+	# Re-enable hurtbox and collisions
+	var hurtbox = player_ref.get_node("HurtBox")
+	hurtbox.monitoring = true
+	hurtbox.monitorable = true
+	player_ref.set_collision_layer_value(2, true)
+	
+	# Switch camera back to player's main camera
+	var player_cam = hiding_player.get_node("Camera2D")
+	if player_cam:
+		player_cam.make_current()
+	
+	hiding_player = null
+	anim.play("Idle")
+	print("Player is back")
