@@ -116,10 +116,18 @@ func get_nearest_bush() -> Node:
 			nearest_dist = dist
 
 	return nearest_bush
-
 func equip_item(item):
-	if item and item is InvItem:  # make sure it's not null and is an InvItem
+	if item and item is InvItem:
 		print(item.name)
+
+		if item.name == "Rock":
+			var rock_scene = preload("res://Equipments/Weapons/rock_equip.tscn")
+			var rock_instance = rock_scene.instantiate()
+			rock_instance.player = self
+			rock_instance.inventory = Inv  # pass inventory reference
+			get_tree().current_scene.add_child(rock_instance)
+
+			
 	else:
 		print("No item equipped")
 

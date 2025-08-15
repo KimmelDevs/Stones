@@ -1691,6 +1691,9 @@ position = Vector2(91, 283)
 [node name="Bat2" parent="Ysort/enemies" instance=ExtResource("8_dypev")]
 position = Vector2(488, 92)
 
+[node name="MegaSlime" parent="Ysort/enemies" instance=ExtResource("19_lgbd5")]
+position = Vector2(-109, 162)
+
 [node name="BerryBush" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
@@ -1730,6 +1733,47 @@ position = Vector2(232, 27)
 [node name="Bush5" parent="Ysort/Bush" instance=ExtResource("10_376t6")]
 position = Vector2(566, -117)
 
+[node name="Collectibles" type="Node2D" parent="Ysort"]
+
+[node name="StickCollectable" parent="Ysort/Collectibles" instance=ExtResource("20_6x8jf")]
+position = Vector2(286, 14)
+
+[node name="StickCollectable2" parent="Ysort/Collectibles" instance=ExtResource("20_6x8jf")]
+position = Vector2(228, -61)
+
+[node name="StickCollectable3" parent="Ysort/Collectibles" instance=ExtResource("20_6x8jf")]
+position = Vector2(554, 77)
+
+[node name="Rock" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(243, 106)
+
+[node name="Rock2" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(269, 79)
+
+[node name="Rock3" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(374, 101)
+
+[node name="Rock4" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(367, 39)
+
+[node name="Rock5" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(480, 200)
+
+[node name="Rock6" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(422, 293)
+
+[node name="Rock7" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(142, 292)
+
+[node name="Rock8" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(51, 217)
+
+[node name="Rock9" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(45, 153)
+
+[node name="Rock10" parent="Ysort/Collectibles" instance=ExtResource("21_j83rp")]
+position = Vector2(100, -2.99998)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HotBar" parent="CanvasLayer" instance=ExtResource("11_of2w2")]
@@ -1737,20 +1781,24 @@ offset_left = 84.0
 offset_top = 149.0
 offset_right = 124.0
 offset_bottom = 189.0
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource("12_2tk76")]
 offset_left = 4.0
 offset_top = 5.0
+metadata/_edit_use_anchors_ = true
 
 [node name="EnergyBar" parent="CanvasLayer" instance=ExtResource("13_p5slj")]
 offset_left = 305.0
 offset_top = 85.0
 offset_right = 318.0
 offset_bottom = 166.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("14_8t3po")]
 offset_top = 24.0
 offset_bottom = 64.0
+metadata/_edit_use_anchors_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -20)
@@ -1765,18 +1813,3 @@ position = Vector2(-9, 256)
 
 [node name="Blockers4" parent="." instance=ExtResource("18_mr4cn")]
 position = Vector2(-40, -214)
-
-[node name="MegaSlime" parent="." instance=ExtResource("19_lgbd5")]
-position = Vector2(-109, 162)
-
-[node name="StickCollectable" parent="." instance=ExtResource("20_6x8jf")]
-position = Vector2(286, 14)
-
-[node name="StickCollectable2" parent="." instance=ExtResource("20_6x8jf")]
-position = Vector2(228, -61)
-
-[node name="StickCollectable3" parent="." instance=ExtResource("20_6x8jf")]
-position = Vector2(554, 77)
-
-[node name="Rock" parent="." instance=ExtResource("21_j83rp")]
-position = Vector2(243, 106)
