@@ -126,7 +126,6 @@ func equip_item(item):
 			# Remove the old weapon if it's already equipped
 			if equipped_weapon and equipped_weapon.is_inside_tree():
 				equipped_weapon.queue_free()
-
 			var rock_scene = preload("res://Equipments/Weapons/rock_equip.tscn")
 			var rock_instance = rock_scene.instantiate()
 			rock_instance.player = self

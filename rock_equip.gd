@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var rock_projectile_scene: PackedScene = preload("res://Equipments/Weapons/rock_projectile.tscn")
+@export var rock_projectile_scene: PackedScene = preload("res://Enemies/Projectiles/rock_projectile.tscn")
 @export var inventory: Inv
 @export var rock_item_path: String = "res://Inventory/Items/Rock.tres"
 
