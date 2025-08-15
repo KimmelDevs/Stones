@@ -7,4 +7,5 @@
 script = ExtResource("1_8nnkh")
 name = "Grass"
 texture = ExtResource("2_a1b2v")
+Category = "Material"
 metadata/_custom_type_script = "uid://uwnnphlcerum"

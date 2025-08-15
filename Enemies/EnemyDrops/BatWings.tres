@@ -7,4 +7,5 @@
 script = ExtResource("1_54ruh")
 name = "Bat Wings"
 texture = ExtResource("2_lkodr")
+Category = "Material"
 metadata/_custom_type_script = "uid://uwnnphlcerum"

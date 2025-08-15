@@ -7,4 +7,5 @@
 script = ExtResource("1_jhsck")
 name = "berry"
 texture = ExtResource("2_xgam7")
+Category = "Food"
 metadata/_custom_type_script = "uid://uwnnphlcerum"

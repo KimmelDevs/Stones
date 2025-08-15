@@ -37,9 +37,10 @@ func _input(event):
 func _update_selection():
 	for i in range(slots.size()):
 		if i == selected_index:
-			slots[i].modulate = Color(1, 1, 0)  # Yellow highlight
+			slots[i].modulate = Color(1, 1, 1)  # highlight background white
 		else:
-			slots[i].modulate = Color(1, 1, 1)  # Normal
+			slots[i].modulate = Color(0.8, 0.8, 0.8)  # normal slightly gray
+
 
 func get_selected_item():
 	if selected_index < inv.slots.size():
