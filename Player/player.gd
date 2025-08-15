@@ -26,6 +26,15 @@ var stats = PlayerStats
 func _ready():
 	stats.connect("no_health", Callable(self, "queue_free"))
 
+	# Find the HotBar node in the current scene
+	var world = get_tree().current_scene
+	var hotbar = world.get_node("CanvasLayer/HotBar")
+	if hotbar:
+		hotbar.selection_changed.connect(equip_item)
+	else:
+		push_error("HotBar not found in scene!")
+		
+
 func _physics_process(delta: float) -> void:
 	# --- Handle attack duration ---
 	if is_attacking:
@@ -107,6 +116,13 @@ func get_nearest_bush() -> Node:
 			nearest_dist = dist
 
 	return nearest_bush
+
+func equip_item(item):
+	if item and item is InvItem:  # make sure it's not null and is an InvItem
+		print(item.name)
+	else:
+		print("No item equipped")
+
 
 # --- Start a Roll ---
 func start_roll(input_vector: Vector2) -> void:

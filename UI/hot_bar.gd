@@ -1,9 +1,11 @@
 extends Control
 
-@onready var inv = preload("res://Inventory/playerinventory.tres")
-@onready var slots: Array = $HBoxContainer.get_children()  # 6 inv_ui_slot nodes
+signal selection_changed(item) # Emits the actual selected item
 
-var selected_index: int = 0  # Which slot is highlighted
+@onready var inv = preload("res://Inventory/playerinventory.tres")
+@onready var slots: Array = $HBoxContainer.get_children()  # Your 6 inv_ui_slot nodes
+
+var selected_index: int = 0
 
 func _ready():
 	update_slots()
@@ -11,10 +13,9 @@ func _ready():
 	_update_selection()
 
 func update_slots():
-	# Load inventory slots 0–5 into the hotbar
 	for i in range(slots.size()):
 		if i < inv.slots.size():
-			slots[i].update(inv.slots[i])  # Use slots 0–5
+			slots[i].update(inv.slots[i])
 		else:
 			slots[i].update(null)
 
@@ -37,12 +38,16 @@ func _input(event):
 func _update_selection():
 	for i in range(slots.size()):
 		if i == selected_index:
-			slots[i].modulate = Color(1, 1, 1)  # highlight background white
+			slots[i].modulate = Color(1, 1, 1)
 		else:
-			slots[i].modulate = Color(0.8, 0.8, 0.8)  # normal slightly gray
+			slots[i].modulate = Color(0.8, 0.8, 0.8)
 
+	# Emit currently selected item
+	emit_signal("selection_changed", get_selected_item())
 
 func get_selected_item():
 	if selected_index < inv.slots.size():
-		return inv.slots[selected_index]
+		var slot = inv.slots[selected_index]
+		if slot and slot.item:
+			return slot.item  # Return the actual InvItem
 	return null

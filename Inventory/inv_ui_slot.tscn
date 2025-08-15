@@ -46,6 +46,7 @@ text = "Hello"
 horizontal_alignment = 1
 
 [node name="CatergoryLabel" type="Label" parent="CenterContainer/Panel"]
+layout_mode = 0
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 72.0
