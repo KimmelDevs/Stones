@@ -3,8 +3,9 @@ extends Node2D
 @export var rock_projectile_scene: PackedScene = preload("res://Inventory/Items/rock_projectile.tscn")
 @export var inventory: Inv
 @export var rock_item_path: String = "res://Inventory/Items/Rock.tres"
+@export var player: Node2D  # Reference to player
+var knockback_vector: Vector2 = Vector2.ZERO
 
-var player: Node = null
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -20,3 +21,17 @@ func throw_rock():
 		get_tree().current_scene.add_child(rock)
 	else:
 		print("No more rocks in inventory!")
+
+
+func _ready():
+	var hitbox: HitBox = $Marker2D/HitBox
+	hitbox.knockback_vector = knockback_vector
+func set_player(player_node: Node2D) -> void:
+	player = player_node
+	# Optional: link weapon to player here
+
+func set_hitbox_knockback(dir_vector: Vector2) -> void:
+	knockback_vector = dir_vector
+	var hitbox = $Marker2D/HitBox
+	if hitbox and hitbox.has_variable("knockback_vector"):
+		hitbox.knockback_vector = dir_vector

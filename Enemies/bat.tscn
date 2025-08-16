@@ -75,21 +75,21 @@ sprite_frames = SubResource("SpriteFrames_751xj")
 animation = &"Bat"
 autoplay = "Bat"
 frame_progress = 0.933077
-offset = Vector2(0, -12)
 
 [node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 12)
 texture = ExtResource("2_va2ne")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
 shape = SubResource("CircleShape2D_nc5xu")
 
 [node name="HurtBox" parent="." instance=ExtResource("4_i84q7")]
-visible = false
 collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(0, -13)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0g1cs")
 
 [node name="Stats" parent="." instance=ExtResource("5_i84q7")]
@@ -102,19 +102,18 @@ visible = false
 shape = SubResource("CircleShape2D_0g1cs")
 
 [node name="HitBox" parent="." instance=ExtResource("7_0g1cs")]
-visible = false
 collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -15)
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_ppg8i")
 
 [node name="HealthBar" parent="." instance=ExtResource("8_ppg8i")]
 offset_left = -10.0
-offset_top = -29.0
+offset_top = -16.0
 offset_right = 11.0
-offset_bottom = -25.0
+offset_bottom = -12.0
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
