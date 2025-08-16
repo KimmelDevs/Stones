@@ -24,10 +24,6 @@ func drop_berry(player: Node):
 	state = "no berries"
 	timer.start()
 
-	var berry_instance = berry_scene.instantiate()
-	berry_instance.global_position = $Marker2D.global_position
-	berry_instance.z_index = 1
-	get_parent().add_child(berry_instance)
 
 	if player != null and player.has_method("collect"):
 		player.collect(item)

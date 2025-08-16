@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dyqjkvrd48ovr"]
 
 [ext_resource type="Script" uid="uid://cha3y03k6fiby" path="res://World/mugworth_plant.gd" id="1_oin8o"]
-[ext_resource type="Resource" uid="uid://d1wrka4hm04j" path="res://Enemies/EnemyDrops/BatWings.tres" id="2_5imcw"]
+[ext_resource type="Resource" uid="uid://73kasefq12rv" path="res://Inventory/Items/Mugsworth.tres" id="2_5imcw"]
 [ext_resource type="Texture2D" uid="uid://dgjg3g333xi88" path="res://World/MugworthPlant.png" id="2_hw4cj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5imcw"]
