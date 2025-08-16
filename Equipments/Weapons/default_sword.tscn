@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxyfc5a1i7kum"]
+
+[ext_resource type="Script" uid="uid://baeihay0mma03" path="res://Player/sword.gd" id="1_e0nkj"]
+[ext_resource type="Texture2D" uid="uid://c3uiva07c0kx0" path="res://Equipments/Textures/sword.png" id="2_a6lv2"]
+[ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="3_ppehi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwnis"]
+radius = 4.10079
+height = 20.0
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_e0nkj")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+visible = false
+position = Vector2(-5, 1.78814e-05)
+rotation = -2.26893
+scale = Vector2(0.1, 0.102)
+texture = ExtResource("2_a6lv2")
+flip_h = true
+
+[node name="HitBox" parent="Marker2D" instance=ExtResource("3_ppehi")]
+position = Vector2(-0.999837, 45)
+disable_mode = 2
+collision_layer = 16
+collision_mask = 9
+
+[node name="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
+visible = false
+position = Vector2(0.999908, -25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gwnis")
+
+[editable path="Marker2D/HitBox"]

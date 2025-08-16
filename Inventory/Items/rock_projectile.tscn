@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://dg3vjrfjuga76"]
 
-[ext_resource type="Script" uid="uid://gf6qjsmb1wyt" path="res://Enemies/Projectiles/rock_projectile.gd" id="1_f8ac3"]
-[ext_resource type="Texture2D" uid="uid://rmvhls44oyfy" path="res://Inventory/textures/rock_item.png" id="2_0r33i"]
-[ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="3_qgt21"]
+[ext_resource type="Script" uid="uid://gf6qjsmb1wyt" path="res://Enemies/Projectiles/rock_projectile.gd" id="1_hvlby"]
+[ext_resource type="Texture2D" uid="uid://rmvhls44oyfy" path="res://Inventory/textures/rock_item.png" id="2_ooc07"]
+[ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="3_nra1y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7gna"]
 radius = 4.0
 
 [node name="RockProjectile" type="Node2D"]
-script = ExtResource("1_f8ac3")
+script = ExtResource("1_hvlby")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_0r33i")
+texture = ExtResource("2_ooc07")
 
-[node name="HitBox" parent="." instance=ExtResource("3_qgt21")]
+[node name="HitBox" parent="." instance=ExtResource("3_nra1y")]
 collision_layer = 16
 collision_mask = 41
 

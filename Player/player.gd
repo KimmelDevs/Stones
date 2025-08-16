@@ -117,42 +117,54 @@ func get_nearest_bush() -> Node:
 
 	return nearest_bush
 var equipped_weapon: Node = null  # store current equipped weapon
+
 func equip_item(item: InvItem) -> void:
+	# Remove the old Sword node if it exists
+	var old_sword = get_node_or_null("Sword")
+	if old_sword and old_sword.is_inside_tree():
+		old_sword.queue_free()
+		equipped_weapon = null
+
+	# If no item, stop here
 	if not item:
 		print("No item equipped")
 		return
 
-	print(item.name)
+	print("Equipping: ", item.name)
 
-	# Handle current weapon
-	if $Sword and $Sword.is_inside_tree():
-		$Sword.queue_free()  # Or you can hide it as shown in previous example
-	
 	var weapon_scene: PackedScene
-	
+
 	match item.name:
 		"Rock":
 			weapon_scene = preload("res://Equipments/Weapons/rock_equip.tscn")
 		"Stick":
 			weapon_scene = preload("res://stick_weapon.tscn")
 		_:
-			print("Unknown weapon type")
+			print("Unknown weapon type: ", item.name)
 			return
 
 	if weapon_scene:
 		var weapon_instance = weapon_scene.instantiate()
+		weapon_instance.name = "Sword"  # always keep name 'Sword' for AnimationPlayer
 
-		# If weapon has set_player function, call it
+		# Give references if needed
 		if weapon_instance.has_method("set_player"):
 			weapon_instance.set_player(self)
 
-		# If it has an "inventory" property, assign it (optional)
 		if "inventory" in weapon_instance:
 			weapon_instance.inventory = Inv
 
+		# Add weapon as child of Player
 		add_child(weapon_instance)
-		weapon_instance.name = "Sword"  # Keep consistent naming
+		move_child(weapon_instance, 0)  # keep order consistent
+
+		# Update reference
 		equipped_weapon = weapon_instance
+
+		# Refresh hitbox reference so attack uses the new one
+		if equipped_weapon.has_node("Marker2D/HitBox"):
+			sword_hitbox = equipped_weapon.get_node("Marker2D/HitBox")
+
 # --- Start a Roll ---
 func start_roll(input_vector: Vector2) -> void:
 	is_rolling = true
@@ -181,8 +193,13 @@ func start_roll(input_vector: Vector2) -> void:
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
 
+
 # --- Start an Attack ---
 func start_attack() -> void:
+	if not equipped_weapon:  # Prevent attack when barehand
+		print("You can't attack without a weapon!")
+		return
+
 	is_attacking = true
 	can_move = false
 	attack_timer = ATTACK_DURATION
@@ -195,12 +212,9 @@ func start_attack() -> void:
 	else:
 		last_direction = "down" if dir_vector.y > 0 else "up"
 
-	
-
 	var anim_name = "attack_" + last_direction
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
-
 # --- Play Idle Animation ---
 func play_idle_animation() -> void:
 	match last_direction:

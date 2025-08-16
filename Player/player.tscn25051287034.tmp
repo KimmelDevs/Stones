@@ -449,7 +449,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.396006),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true]
+"values": [false, true]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1125,6 +1125,10 @@ height = 18.0
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 66
 script = ExtResource("1_4ntmi")
+SPEED = null
+ROLL_SPEED = null
+ROLL_DURATION = null
+ATTACK_DURATION = null
 Inv = ExtResource("2_fhl08")
 
 [node name="Sword" type="Node2D" parent="."]
