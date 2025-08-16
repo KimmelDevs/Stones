@@ -19,10 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://ddqk2sivyunbq" path="res://World/treegr.png" id="13_dqu5g"]
 [ext_resource type="PackedScene" uid="uid://c1misyki6xqvj" path="res://Inventory/inv_ui.tscn" id="13_kcyjf"]
 [ext_resource type="PackedScene" uid="uid://cv3yi7o2jq3qt" path="res://UI/health_ui.tscn" id="14_awrha"]
-[ext_resource type="Texture2D" uid="uid://bb2p7l3s7pjv7" path="res://World/tree pine (1).png" id="14_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="15_f23eu"]
 [ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
+[ext_resource type="Texture2D" uid="uid://c6xot186lrq64" path="res://World/pine.png" id="23_o6lw0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
 texture = ExtResource("6_yf0ba")
@@ -1785,11 +1785,6 @@ position = Vector2(267, 159)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_dqu5g")
 
-[node name="TreePine(1)" type="Sprite2D" parent="Ysort/Collectables"]
-position = Vector2(542, 37)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_o6lw0")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HotBar" parent="CanvasLayer" instance=ExtResource("11_0lysu")]
@@ -1828,3 +1823,8 @@ position = Vector2(-40, -214)
 
 [node name="MegaSlime" parent="." instance=ExtResource("15_f23eu")]
 position = Vector2(-109, 162)
+
+[node name="Pine" type="Sprite2D" parent="."]
+position = Vector2(525, -13)
+scale = Vector2(0.529167, 0.529167)
+texture = ExtResource("23_o6lw0")

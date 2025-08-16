@@ -176,7 +176,7 @@ func seek_player() -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	knockback = area.knockback_vector * knockback_speed
 	knockback_timer = knockback_duration
-	stats.set_health(stats.health - 1)
+	stats.set_health(stats.health - area.damage)
 	hurtbox.create_hit_effect()
 	if stats.health <= 0:
 		dying = true

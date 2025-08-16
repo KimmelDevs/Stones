@@ -7,7 +7,7 @@ signal slot_clicked(slot_index)
 @onready var name_label: Label = $CenterContainer/Panel/NameLabel
 @onready var category_label: Label = $CenterContainer/Panel/CatergoryLabel
 
-var slot_index: int  # set by InventoryUI so it knows which inventory slot this represents
+var slot_index: int  # set by parent (InventoryUI or HotbarUI)
 
 func _ready():
 	# Connect mouse hover signals
@@ -19,7 +19,7 @@ func _ready():
 	category_label.visible = false
 
 func update(slot: InvSlot):
-	if !slot.item:
+	if !slot or !slot.item:
 		item_visual.visible = false
 		item_count.visible = false
 		name_label.text = ""
@@ -39,7 +39,7 @@ func update(slot: InvSlot):
 			"Tool":
 				category_label.modulate = Color.RED
 			_:
-				category_label.modulate = Color.BURLYWOOD  # default color if unknown
+				category_label.modulate = Color.BURLYWOOD  # default if unknown
 
 		# Show item count if more than 1
 		if slot.amount > 1:
@@ -51,7 +51,7 @@ func update(slot: InvSlot):
 func _on_mouse_entered():
 	if name_label.text != "":
 		name_label.visible = true
-		category_label.visible = true  # now category acts like name
+		category_label.visible = true
 
 func _on_mouse_exited():
 	name_label.visible = false
@@ -59,4 +59,14 @@ func _on_mouse_exited():
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		emit_signal("slot_clicked", slot_index)
+		if DragManager.is_dragging:
+			# If dragging, this is a drop attempt
+			emit_signal("slot_clicked", slot_index)
+		else:
+			# Start dragging if this slot has an item
+			if item_visual.visible:
+				DragManager.start_drag(
+					get_parent().get_parent(),  # container (InventoryUI / HotbarUI)
+					slot_index,
+					item_visual.texture
+				)

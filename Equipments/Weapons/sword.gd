@@ -1,0 +1,57 @@
+extends Node2D
+
+# --- Sword Settings ---
+@export var slash_duration := 0.2
+@export var return_duration := 0.1
+@export var slash_angle := 180.0  # total arc, mostly 180 for vertical/horizontal swings
+
+var is_slashing := false
+var original_blade_rot := 0.0
+
+@onready var blade := $WeaponPivot/SlashingPoint/Sprite2D
+
+func _ready():
+	original_blade_rot = blade.rotation_degrees
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not is_slashing:
+			_start_slash(get_global_mouse_position())
+
+func _start_slash(target_pos: Vector2):
+	is_slashing = true
+
+	# Vector from handle (0,0) to click
+	var dir = (target_pos - global_position).normalized()
+	var start_angle := 0.0
+	var end_angle := 0.0
+
+	# Decide swing direction
+	if abs(dir.x) > abs(dir.y):
+		# Horizontal swing
+		if dir.x > 0:
+			start_angle = -90   # 12 o'clock
+			end_angle = 90      # 6 o'clock
+		else:
+			start_angle = 90    # 6 o'clock
+			end_angle = -90     # 12 o'clock
+	else:
+		# Vertical swing
+		if dir.y > 0:
+			start_angle = 0     # 3 o'clock
+			end_angle = 180     # 9 o'clock
+		else:
+			start_angle = 180   # 9 o'clock
+			end_angle = 0       # 3 o'clock
+
+	blade.rotation_degrees = start_angle
+
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUINT)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(blade, "rotation_degrees", end_angle, slash_duration)
+	tween.tween_property(blade, "rotation_degrees", original_blade_rot, return_duration)
+	tween.tween_callback(func():
+		is_slashing = false
+	)

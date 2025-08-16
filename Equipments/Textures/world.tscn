@@ -1,30 +1,30 @@
 [gd_scene load_steps=29 format=4 uid="uid://d0m5edtxtg4kd"]
 
-[ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_2vofh"]
-[ext_resource type="Texture2D" uid="uid://bl5f311sqmeh4" path="res://World/CliffTileset.png" id="2_gjkak"]
-[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="3_c6fqa"]
-[ext_resource type="PackedScene" uid="uid://cl2g1spse5o22" path="res://Enemies/chainsaw_unit.tscn" id="4_ntyu1"]
-[ext_resource type="PackedScene" uid="uid://d3a1r6waeofxe" path="res://World/scenes/tree.tscn" id="5_pd1ol"]
-[ext_resource type="PackedScene" uid="uid://bv531wsn8yrlq" path="res://World/scenes/grass.tscn" id="6_5qnsf"]
-[ext_resource type="PackedScene" uid="uid://cwdlbc6m1xshi" path="res://World/ball.tscn" id="7_qtm4j"]
-[ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="8_uv68s"]
-[ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="9_n6kws"]
-[ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="10_gd5or"]
-[ext_resource type="PackedScene" uid="uid://jlbt7nbl8k2q" path="res://World/scenes/Bush.tscn" id="11_1yf1y"]
-[ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="12_y3cib"]
-[ext_resource type="PackedScene" uid="uid://cya15mec3w7cs" path="res://World/scenes/rock.tscn" id="13_obnkm"]
-[ext_resource type="PackedScene" uid="uid://bqfn6lnudv1qv" path="res://UI/hot_bar.tscn" id="14_glxn7"]
-[ext_resource type="PackedScene" uid="uid://cv3yi7o2jq3qt" path="res://UI/health_ui.tscn" id="15_0pbpd"]
-[ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/energy_bar.tscn" id="16_6cwdt"]
-[ext_resource type="PackedScene" uid="uid://c1misyki6xqvj" path="res://Inventory/inv_ui.tscn" id="17_eymkl"]
-[ext_resource type="PackedScene" uid="uid://coe7qtcs8jsfv" path="res://UI/hand_crafting.tscn" id="18_i5acu"]
-[ext_resource type="Texture2D" uid="uid://bmic402sit16n" path="res://World/DirtTileset.png" id="19_rbeym"]
-[ext_resource type="Texture2D" uid="uid://dl5nye6xmusnb" path="res://World/Watertileset.png" id="20_0eli0"]
-[ext_resource type="Texture2D" uid="uid://btscbcwpjqyqb" path="res://World/war.png" id="21_l1reh"]
-[ext_resource type="PackedScene" uid="uid://u61tqc8ypnjm" path="res://World/blockers.tscn" id="22_jgksm"]
+[ext_resource type="PackedScene" uid="uid://3dgnvw31287s" path="res://UI/Hand_Crafting.tscn" id="1_rs70i"]
+[ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="2_ourjn"]
+[ext_resource type="Texture2D" uid="uid://bl5f311sqmeh4" path="res://World/CliffTileset.png" id="3_8d0vn"]
+[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="4_i6twx"]
+[ext_resource type="PackedScene" uid="uid://cl2g1spse5o22" path="res://Enemies/chainsaw_unit.tscn" id="5_5i7g2"]
+[ext_resource type="PackedScene" uid="uid://d3a1r6waeofxe" path="res://World/scenes/tree.tscn" id="6_by4cw"]
+[ext_resource type="PackedScene" uid="uid://bv531wsn8yrlq" path="res://World/scenes/grass.tscn" id="7_8q16e"]
+[ext_resource type="PackedScene" uid="uid://cwdlbc6m1xshi" path="res://World/ball.tscn" id="8_638cx"]
+[ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="9_gqfhr"]
+[ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="10_1c1x3"]
+[ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="11_tc38s"]
+[ext_resource type="PackedScene" uid="uid://jlbt7nbl8k2q" path="res://World/scenes/Bush.tscn" id="12_cv2hc"]
+[ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="13_rx710"]
+[ext_resource type="PackedScene" uid="uid://cya15mec3w7cs" path="res://World/scenes/rock.tscn" id="14_x8crb"]
+[ext_resource type="PackedScene" uid="uid://bqfn6lnudv1qv" path="res://UI/hot_bar.tscn" id="15_4bbao"]
+[ext_resource type="PackedScene" uid="uid://cv3yi7o2jq3qt" path="res://UI/health_ui.tscn" id="16_b1oul"]
+[ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/energy_bar.tscn" id="17_fwxos"]
+[ext_resource type="PackedScene" uid="uid://c1misyki6xqvj" path="res://Inventory/inv_ui.tscn" id="18_3jgow"]
+[ext_resource type="Texture2D" uid="uid://bmic402sit16n" path="res://World/DirtTileset.png" id="19_4i00u"]
+[ext_resource type="Texture2D" uid="uid://dl5nye6xmusnb" path="res://World/Watertileset.png" id="20_6n0p3"]
+[ext_resource type="Texture2D" uid="uid://btscbcwpjqyqb" path="res://World/war.png" id="21_n7kny"]
+[ext_resource type="PackedScene" uid="uid://u61tqc8ypnjm" path="res://World/blockers.tscn" id="22_n8pya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
-texture = ExtResource("2_gjkak")
+texture = ExtResource("3_8d0vn")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -423,7 +423,7 @@ terrain_set_0/terrain_0/color = Color(0.711214, 0.0162904, 0.281747, 1)
 sources/0 = SubResource("TileSetAtlasSource_bkhv4")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
-texture = ExtResource("19_rbeym")
+texture = ExtResource("19_4i00u")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -744,7 +744,7 @@ texture = ExtResource("19_rbeym")
 8:4/0/terrains_peering_bit/top_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lo5ox"]
-texture = ExtResource("20_0eli0")
+texture = ExtResource("20_6n0p3")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
@@ -1112,7 +1112,7 @@ texture = ExtResource("20_0eli0")
 8:4/0/terrains_peering_bit/top_side = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2aik"]
-texture = ExtResource("21_l1reh")
+texture = ExtResource("21_n7kny")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 2
@@ -1495,17 +1495,13 @@ sources/2 = SubResource("TileSetAtlasSource_h2aik")
 
 [node name="World" type="Node2D"]
 
-[node name="Hand Crafting" parent="." instance=ExtResource("18_i5acu")]
-offset_left = 164.0
-offset_top = 23.0
-offset_right = 164.0
-offset_bottom = 23.0
+[node name="Hand Crafting" parent="." instance=ExtResource("1_rs70i")]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
 position = Vector2(416, 11)
 scale = Vector2(0.999, 1)
-texture = ExtResource("1_2vofh")
+texture = ExtResource("2_ourjn")
 region_enabled = true
 region_rect = Rect2(0, -454.862, 1091.34, 831.362)
 
@@ -1519,290 +1515,290 @@ position = Vector2(-4, 0)
 tile_map_data = PackedByteArray("AAAAAAUAAAABAAIAAAD//wUAAAABAAIAAAD+/wUAAAABAAIAAAABAAUAAAABAAIAAAACAAQAAAACAAEAAAACAAMAAAACAAEAAAACAAIAAAACAAEAAAACAAUAAAACAAIAAAACAAEAAAACAAEAAAACAAAAAAABAAEAAAALAAEAAAAAAAEAAAALAAIAAAAAAAEAAAALAAMAAAAAAAEAAAALAAQAAAAAAAEAAAALAAUAAAAAAAEAAAALAAYAAAAAAAIAAAAMAAYAAAAGAAEAAAAMAAcAAAAAAAIAAAANAAcAAAABAAIAAAAOAAcAAAABAAIAAAAPAAcAAAABAAIAAAAQAAcAAAABAAIAAAAAAPf/AAAAAAEAAAAAAPj/AAAAAAEAAAAAAPn/AAAAAAIAAAABAPn/AAABAAIAAAACAPn/AAABAAIAAAADAPn/AAABAAIAAAAEAPn/AAABAAIAAAAFAPn/AAABAAIAAAAGAPn/AAABAAIAAAAHAPn/AAABAAIAAAAIAPn/AAABAAIAAAAJAPn/AAABAAIAAAAKAPn/AAABAAIAAAALAPn/AAABAAIAAAAMAPn/AAABAAIAAAANAPn/AAABAAIAAAAOAPn/AAABAAIAAAAPAPn/AAABAAIAAAAQAPn/AAABAAIAAAARAPn/AAABAAIAAAASAPn/AAABAAIAAAATAPn/AAABAAIAAAAUAPn/AAABAAIAAAAVAPn/AAABAAIAAAAWAPn/AAAGAAEAAAAWAPr/AAAAAAEAAAAWAPv/AAAAAAEAAAAXAAQAAAAAAAIAAAAYAAQAAAABAAIAAAAZAAQAAAABAAIAAAAaAAQAAAABAAIAAAAbAAQAAAABAAIAAAAWAPz/AAAAAAEAAAAWAP3/AAAAAAEAAAAWAP7/AAAAAAEAAAAWAP//AAAAAAEAAAAWAAAAAAAAAAEAAAAWAAEAAAAAAAEAAAAWAAIAAAAAAAEAAAAWAAMAAAAAAAIAAAAXAAMAAAAGAAEAAAAYAAMAAAABAAEAAAAZAAMAAAABAAEAAAAaAAMAAAABAAEAAAAbAAMAAAABAAEAAAAbAAIAAAABAAEAAAAbAAEAAAABAAEAAAAbAAAAAAABAAEAAAAbAP//AAABAAEAAAAbAP7/AAABAAEAAAAbAP3/AAABAAEAAAAbAPz/AAABAAEAAAAbAPv/AAABAAEAAAAbAPr/AAABAAEAAAAaAPv/AAABAAEAAAAaAPz/AAABAAEAAAAZAPz/AAABAAEAAAAZAP3/AAABAAEAAAAZAP7/AAABAAEAAAAYAP7/AAABAAEAAAAYAP//AAABAAEAAAAYAAAAAAABAAEAAAAXAAAAAAABAAEAAAAXAAEAAAABAAEAAAAXAAIAAAABAAEAAAAYAP3/AAABAAEAAAAYAPz/AAABAAEAAAAYAPv/AAABAAEAAAAXAPv/AAABAAEAAAAXAPz/AAABAAEAAAAXAP3/AAABAAEAAAAXAP7/AAABAAEAAAAXAP//AAABAAEAAAAYAAEAAAABAAEAAAAYAAIAAAABAAEAAAAZAAAAAAABAAEAAAAZAAEAAAABAAEAAAAZAAIAAAABAAEAAAAZAP//AAABAAEAAAAaAAAAAAABAAEAAAAaAAEAAAABAAEAAAAaAAIAAAABAAEAAAAaAP//AAABAAEAAAAaAP7/AAABAAEAAAAaAP3/AAABAAEAAAAZAPv/AAABAAEAAAAZAPr/AAABAAEAAAAYAPr/AAABAAEAAAAXAPr/AAABAAEAAAAaAPr/AAABAAEAAAAaAPn/AAABAAEAAAAaAPj/AAABAAEAAAAbAPn/AAABAAEAAAAbAPj/AAABAAEAAAAbAPf/AAABAAEAAAAaAPf/AAABAAEAAAAZAPf/AAABAAEAAAAYAPf/AAABAAEAAAAXAPf/AAABAAEAAAAXAPj/AAABAAEAAAAXAPn/AAABAAEAAAAYAPn/AAABAAEAAAAZAPn/AAABAAEAAAAWAPf/AAABAAEAAAAVAPf/AAABAAEAAAAUAPf/AAABAAEAAAATAPf/AAABAAEAAAATAPj/AAABAAEAAAAUAPj/AAABAAEAAAAVAPj/AAABAAEAAAAWAPj/AAABAAEAAAAYAPj/AAABAAEAAAASAPf/AAABAAEAAAARAPf/AAABAAEAAAARAPj/AAABAAEAAAASAPj/AAABAAEAAAAQAPj/AAABAAEAAAAPAPj/AAABAAEAAAAOAPj/AAABAAEAAAANAPj/AAABAAEAAAAMAPj/AAABAAEAAAALAPj/AAABAAEAAAAKAPj/AAABAAEAAAAJAPj/AAABAAEAAAAIAPj/AAABAAEAAAAIAPf/AAABAAEAAAABAPb/AAABAAEAAAACAPb/AAABAAEAAAADAPb/AAABAAEAAAAEAPb/AAABAAEAAAAFAPb/AAABAAEAAAAHAPb/AAABAAEAAAAGAPb/AAABAAEAAAAIAPb/AAABAAEAAAAJAPb/AAABAAEAAAAKAPb/AAABAAEAAAALAPb/AAABAAEAAAAMAPb/AAABAAEAAAANAPb/AAABAAEAAAAOAPb/AAABAAEAAAAPAPb/AAABAAEAAAAQAPb/AAABAAEAAAARAPb/AAABAAEAAAASAPb/AAABAAEAAAATAPb/AAABAAEAAAAUAPb/AAABAAEAAAAVAPb/AAABAAEAAAAWAPb/AAABAAEAAAAXAPb/AAABAAEAAAAYAPb/AAABAAEAAAAZAPb/AAAFAAIAAAAZAPj/AAABAAEAAAAQAPf/AAABAAEAAAAPAPf/AAABAAEAAAAOAPf/AAABAAEAAAANAPf/AAABAAEAAAAMAPf/AAABAAEAAAALAPf/AAABAAEAAAAKAPf/AAABAAEAAAAJAPf/AAABAAEAAAAHAPf/AAABAAEAAAAAAPb/AAAGAAEAAAAAAPX/AAABAAAAAAABAPX/AAABAAAAAAACAPX/AAABAAAAAAADAPX/AAABAAAAAAAEAPX/AAABAAAAAAAFAPX/AAABAAAAAAAGAPX/AAABAAAAAAAHAPX/AAABAAAAAAAIAPX/AAABAAAAAAAJAPX/AAABAAAAAAAKAPX/AAABAAEAAAAaAPb/AAABAAAAAAAQAPX/AAABAAEAAAAPAPX/AAABAAEAAAAOAPX/AAABAAEAAAANAPX/AAABAAEAAAAMAPX/AAABAAEAAAALAPX/AAABAAEAAAD///X/AAAAAAAAAAD///b/AAAAAAIAAAAbAPb/AAABAAAAAAABAPf/AAABAAEAAAACAPf/AAABAAEAAAABAPj/AAABAAEAAAACAPj/AAABAAEAAAADAPj/AAABAAEAAAADAPf/AAABAAEAAAAEAPf/AAABAAEAAAAEAPj/AAABAAEAAAAFAPj/AAABAAEAAAAGAPj/AAABAAEAAAAGAPf/AAABAAEAAAAFAPf/AAABAAEAAAAHAPj/AAABAAEAAAAcAPb/AAACAAAAAAARAPX/AAABAAEAAAARAPT/AAABAAAAAAAKAPT/AAAAAAAAAAALAPT/AAABAAAAAAAMAPT/AAABAAAAAAANAPT/AAABAAAAAAAOAPT/AAABAAAAAAAPAPT/AAABAAAAAAAQAPT/AAABAAAAAAASAPT/AAABAAAAAAATAPT/AAABAAAAAAAUAPT/AAABAAAAAAAVAPT/AAACAAAAAAASAPX/AAABAAEAAAATAPX/AAABAAEAAAAUAPX/AAABAAEAAAAVAPX/AAAFAAIAAAAWAPX/AAABAAAAAAAXAPX/AAABAAAAAAAYAPX/AAABAAAAAAAZAPX/AAACAAAAAAAcAPf/AAACAAEAAAAcAAQAAAACAAIAAAAcAAMAAAACAAEAAAAcAAIAAAACAAEAAAAcAAEAAAACAAEAAAAcAP7/AAACAAEAAAAcAP3/AAACAAEAAAAcAPz/AAACAAEAAAAcAPv/AAACAAEAAAAcAPr/AAACAAEAAAAcAPn/AAACAAEAAAAcAPj/AAACAAEAAAAcAP//AAACAAEAAAAcAAAAAAACAAEAAAD//wsAAAABAAEAAAD//wwAAAABAAEAAAD//w0AAAABAAEAAAAAAAsAAAABAAEAAAABAAsAAAABAAEAAAACAAsAAAABAAEAAAADAAsAAAABAAEAAAAEAAsAAAABAAEAAAAFAAsAAAABAAEAAAAGAAsAAAABAAEAAAAHAAsAAAABAAEAAAAIAAsAAAABAAEAAAAJAAsAAAABAAEAAAAKAAsAAAABAAEAAAALAAsAAAABAAEAAAAMAAsAAAABAAEAAAANAAsAAAABAAEAAAAOAAsAAAABAAEAAAAPAAsAAAABAAEAAAAQAAsAAAABAAEAAAARAAsAAAABAAEAAAASAAsAAAABAAEAAAATAAsAAAABAAEAAAAUAAsAAAABAAEAAAAVAAsAAAABAAEAAAAWAAsAAAABAAEAAAAXAAsAAAABAAEAAAAYAAsAAAABAAEAAAAZAAsAAAABAAEAAAAaAAsAAAABAAEAAAAbAAsAAAABAAEAAAAcAAsAAAABAAEAAAAdAAsAAAACAAEAAAD+/wsAAAABAAEAAAD+/wwAAAABAAEAAAAAAAwAAAABAAEAAAABAAwAAAABAAEAAAACAAwAAAABAAEAAAAAAA0AAAABAAEAAAABAA0AAAABAAEAAAACAA0AAAABAAEAAAADAA0AAAABAAEAAAAEAA0AAAABAAEAAAAFAA0AAAABAAEAAAAGAA0AAAABAAEAAAAHAA0AAAABAAEAAAAIAA0AAAABAAEAAAAGAAwAAAABAAEAAAAFAAwAAAABAAEAAAAEAAwAAAABAAEAAAADAAwAAAABAAEAAAAHAAwAAAABAAEAAAAIAAwAAAABAAEAAAAJAAwAAAABAAEAAAAKAAwAAAABAAEAAAALAAwAAAABAAEAAAAMAAwAAAABAAEAAAANAAwAAAABAAEAAAAOAAwAAAABAAEAAAAPAAwAAAABAAEAAAAQAAwAAAABAAEAAAARAAwAAAABAAEAAAASAAwAAAABAAEAAAATAAwAAAABAAEAAAAUAAwAAAABAAEAAAAVAAwAAAABAAEAAAAWAAwAAAABAAEAAAAXAAwAAAABAAEAAAAYAAwAAAABAAEAAAAZAAwAAAABAAEAAAAaAAwAAAABAAEAAAAbAAwAAAABAAEAAAAcAAwAAAABAAEAAAAdAAwAAAACAAEAAAAcAA0AAAABAAEAAAAbAA0AAAABAAEAAAAaAA0AAAABAAEAAAAZAA0AAAABAAEAAAAYAA0AAAABAAEAAAAXAA0AAAABAAEAAAAWAA0AAAABAAEAAAAVAA0AAAABAAEAAAAUAA0AAAABAAEAAAATAA0AAAABAAEAAAASAA0AAAABAAEAAAARAA0AAAABAAEAAAAQAA0AAAABAAEAAAAPAA0AAAABAAEAAAAOAA0AAAABAAEAAAANAA0AAAABAAEAAAAMAA0AAAABAAEAAAALAA0AAAABAAEAAAAKAA0AAAABAAEAAAAJAA0AAAABAAEAAAAdAA0AAAACAAEAAAAdAA4AAAACAAIAAAAcAA4AAAABAAIAAAAbAA4AAAABAAIAAAAaAA4AAAABAAIAAAAZAA4AAAABAAIAAAAYAA4AAAABAAIAAAAXAA4AAAABAAIAAAAWAA4AAAABAAIAAAAVAA4AAAABAAIAAAAUAA4AAAABAAIAAAATAA4AAAABAAIAAAASAA4AAAABAAIAAAARAA4AAAABAAIAAAAQAA4AAAABAAIAAAAPAA4AAAABAAIAAAAOAA4AAAABAAIAAAANAA4AAAABAAIAAAAMAA4AAAABAAIAAAALAA4AAAABAAIAAAAKAA4AAAABAAIAAAAJAA4AAAABAAIAAAAIAA4AAAABAAIAAAAHAA4AAAABAAIAAAAGAA4AAAABAAIAAAAFAA4AAAABAAIAAAAEAA4AAAABAAIAAAADAA4AAAABAAIAAAACAA4AAAABAAIAAAABAA4AAAABAAIAAAAAAA4AAAABAAIAAAD//w4AAAABAAIAAAD+/w4AAAABAAIAAAD+/w0AAAABAAEAAAD9/wsAAAABAAEAAAD8/wsAAAAAAAEAAAD8/wwAAAAAAAEAAAD8/w0AAAAAAAEAAAD8/w4AAAAAAAIAAAD9/w4AAAABAAIAAAD9/w0AAAABAAEAAAD9/wwAAAABAAEAAAAdAAoAAAACAAAAAAAcAAoAAAABAAAAAAAbAAoAAAABAAAAAAASAAoAAAABAAAAAAARAAoAAAABAAAAAAAQAAoAAAABAAAAAAAPAAoAAAABAAAAAAAOAAoAAAABAAAAAAANAAoAAAABAAAAAAAMAAoAAAABAAAAAAAKAAoAAAABAAAAAAAJAAoAAAABAAAAAAAIAAoAAAABAAAAAAAHAAoAAAABAAAAAAAGAAoAAAABAAAAAAAFAAoAAAABAAAAAAAEAAoAAAABAAAAAAADAAoAAAABAAAAAAACAAoAAAABAAAAAAABAAoAAAABAAAAAAAAAAoAAAABAAAAAAD//woAAAABAAAAAAD+/woAAAABAAAAAAD9/woAAAABAAAAAAD8/woAAAAAAAAAAAAaAAoAAAABAAAAAAAZAAoAAAABAAAAAAAYAAoAAAABAAAAAAAXAAoAAAABAAAAAAAWAAoAAAABAAAAAAAVAAoAAAABAAAAAAAUAAoAAAABAAAAAAATAAoAAAABAAAAAAALAAoAAAABAAAAAAAJAP3/AAAEAAIAAAAJAPz/AAADAAAAAAAJAP7/AAAAAAIAAAAKAP7/AAACAAIAAAAKAP3/AAACAAAAAAA=")
 tile_set = SubResource("TileSet_lo5ox")
 
-[node name="player" parent="Ysort" instance=ExtResource("3_c6fqa")]
+[node name="player" parent="Ysort" instance=ExtResource("4_i6twx")]
 position = Vector2(206, 67)
 
 [node name="Camera2D" type="Camera2D" parent="Ysort/player"]
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[node name="ChainsawUnit" parent="Ysort" instance=ExtResource("4_ntyu1")]
+[node name="ChainsawUnit" parent="Ysort" instance=ExtResource("5_5i7g2")]
 position = Vector2(-117, 250)
 
 [node name="Trees" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
-[node name="Tree" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(-61, 138)
 
-[node name="Tree2" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree2" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(294, 99)
 
-[node name="Tree3" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree3" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(443, -110)
 
-[node name="Tree4" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree4" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(378, -284)
 
-[node name="Tree5" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree5" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(765, 64)
 
-[node name="Tree6" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree6" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(797, -184)
 
-[node name="Tree7" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree7" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(581, -240)
 
-[node name="Tree8" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree8" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(771, -83)
 
-[node name="Tree9" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree9" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(-61, 138)
 
-[node name="Tree10" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree10" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(164, -250)
 
-[node name="Tree11" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree11" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(154, -21)
 
-[node name="Tree12" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree12" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(220, -113)
 
-[node name="Tree13" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree13" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(587, 153)
 
-[node name="Tree14" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree14" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(433, 13)
 
-[node name="Tree15" parent="Ysort/Trees" instance=ExtResource("5_pd1ol")]
+[node name="Tree15" parent="Ysort/Trees" instance=ExtResource("6_by4cw")]
 position = Vector2(416, 173)
 
 [node name="Grass" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
-[node name="Grass" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(99, 92)
 
-[node name="Grass2" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass2" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(98, 112)
 
-[node name="Grass5" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass5" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(141, 79)
 
-[node name="Grass3" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass3" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(99, 72)
 
-[node name="Grass4" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass4" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(98, 131)
 
-[node name="Grass6" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass6" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(253, 160)
 
-[node name="Grass7" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass7" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(405, 75)
 
-[node name="Grass8" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass8" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(337, 186)
 
-[node name="Grass9" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass9" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(512, 100)
 
-[node name="Grass10" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass10" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(338, 165)
 
-[node name="Grass26" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass26" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(338, 142)
 
-[node name="Grass27" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass27" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(339, 121)
 
-[node name="Grass28" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass28" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(339, 95)
 
-[node name="Grass29" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass29" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(340, 74)
 
-[node name="Grass30" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass30" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(216, 265)
 
-[node name="Grass31" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass31" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(317, 280)
 
-[node name="Grass32" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass32" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(143, 167)
 
-[node name="Grass33" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass33" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(21, 143)
 
-[node name="Grass34" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass34" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(150, -56)
 
-[node name="Grass35" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass35" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(150, -56)
 
-[node name="Grass11" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass11" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(688, 51)
 
-[node name="Grass12" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass12" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(687, 68)
 
-[node name="Grass13" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass13" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(687, 103)
 
-[node name="Grass14" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass14" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(689, 35)
 
-[node name="Grass15" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass15" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(687, 85)
 
-[node name="Grass16" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass16" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(692, -38)
 
-[node name="Grass17" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass17" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(691, -21)
 
-[node name="Grass18" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass18" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(691, 14)
 
-[node name="Grass19" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass19" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(693, -54)
 
-[node name="Grass20" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass20" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(691, -4)
 
-[node name="Grass21" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass21" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(693, -125)
 
-[node name="Grass22" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass22" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(692, -108)
 
-[node name="Grass23" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass23" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(692, -73)
 
-[node name="Grass24" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass24" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(694, -141)
 
-[node name="Grass25" parent="Ysort/Grass" instance=ExtResource("6_5qnsf")]
+[node name="Grass25" parent="Ysort/Grass" instance=ExtResource("7_8q16e")]
 position = Vector2(692, -91)
 
-[node name="Ball" parent="Ysort" instance=ExtResource("7_qtm4j")]
+[node name="Ball" parent="Ysort" instance=ExtResource("8_638cx")]
 position = Vector2(205, -16)
 gravity_scale = 0.0
 
 [node name="enemies" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
-[node name="Bat" parent="Ysort/enemies" instance=ExtResource("8_uv68s")]
+[node name="Bat" parent="Ysort/enemies" instance=ExtResource("9_gqfhr")]
 position = Vector2(91, 283)
 
-[node name="Bat2" parent="Ysort/enemies" instance=ExtResource("8_uv68s")]
+[node name="Bat2" parent="Ysort/enemies" instance=ExtResource("9_gqfhr")]
 position = Vector2(488, 92)
 
-[node name="MegaSlime" parent="Ysort/enemies" instance=ExtResource("9_n6kws")]
+[node name="MegaSlime" parent="Ysort/enemies" instance=ExtResource("10_1c1x3")]
 position = Vector2(-109, 162)
 
 [node name="BerryBush" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
-[node name="BerryBush" parent="Ysort/BerryBush" instance=ExtResource("10_gd5or")]
+[node name="BerryBush" parent="Ysort/BerryBush" instance=ExtResource("11_tc38s")]
 position = Vector2(150, 36)
 
-[node name="BerryBush2" parent="Ysort/BerryBush" instance=ExtResource("10_gd5or")]
+[node name="BerryBush2" parent="Ysort/BerryBush" instance=ExtResource("11_tc38s")]
 position = Vector2(377, 143)
 
-[node name="BerryBush5" parent="Ysort/BerryBush" instance=ExtResource("10_gd5or")]
+[node name="BerryBush5" parent="Ysort/BerryBush" instance=ExtResource("11_tc38s")]
 position = Vector2(603, 44)
 
-[node name="BerryBush3" parent="Ysort/BerryBush" instance=ExtResource("10_gd5or")]
+[node name="BerryBush3" parent="Ysort/BerryBush" instance=ExtResource("11_tc38s")]
 position = Vector2(342, -153)
 
-[node name="BerryBush4" parent="Ysort/BerryBush" instance=ExtResource("10_gd5or")]
+[node name="BerryBush4" parent="Ysort/BerryBush" instance=ExtResource("11_tc38s")]
 position = Vector2(272, -9)
 
-[node name="BerryBush6" parent="Ysort/BerryBush" instance=ExtResource("10_gd5or")]
+[node name="BerryBush6" parent="Ysort/BerryBush" instance=ExtResource("11_tc38s")]
 position = Vector2(299, -8)
 
 [node name="Bush" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
-[node name="Bush" parent="Ysort/Bush" instance=ExtResource("11_1yf1y")]
+[node name="Bush" parent="Ysort/Bush" instance=ExtResource("12_cv2hc")]
 position = Vector2(425, 133)
 
-[node name="Bush2" parent="Ysort/Bush" instance=ExtResource("11_1yf1y")]
+[node name="Bush2" parent="Ysort/Bush" instance=ExtResource("12_cv2hc")]
 position = Vector2(146, 224)
 
-[node name="Bush3" parent="Ysort/Bush" instance=ExtResource("11_1yf1y")]
+[node name="Bush3" parent="Ysort/Bush" instance=ExtResource("12_cv2hc")]
 position = Vector2(-19, 150)
 
-[node name="Bush4" parent="Ysort/Bush" instance=ExtResource("11_1yf1y")]
+[node name="Bush4" parent="Ysort/Bush" instance=ExtResource("12_cv2hc")]
 position = Vector2(232, 27)
 
-[node name="Bush5" parent="Ysort/Bush" instance=ExtResource("11_1yf1y")]
+[node name="Bush5" parent="Ysort/Bush" instance=ExtResource("12_cv2hc")]
 position = Vector2(566, -117)
 
 [node name="Collectibles" type="Node2D" parent="Ysort"]
 
-[node name="StickCollectable" parent="Ysort/Collectibles" instance=ExtResource("12_y3cib")]
+[node name="StickCollectable" parent="Ysort/Collectibles" instance=ExtResource("13_rx710")]
 position = Vector2(286, 14)
 
-[node name="StickCollectable2" parent="Ysort/Collectibles" instance=ExtResource("12_y3cib")]
+[node name="StickCollectable2" parent="Ysort/Collectibles" instance=ExtResource("13_rx710")]
 position = Vector2(228, -61)
 
-[node name="StickCollectable3" parent="Ysort/Collectibles" instance=ExtResource("12_y3cib")]
+[node name="StickCollectable3" parent="Ysort/Collectibles" instance=ExtResource("13_rx710")]
 position = Vector2(554, 77)
 
-[node name="Rock" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(243, 106)
 
-[node name="Rock2" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock2" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(269, 79)
 
-[node name="Rock3" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock3" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(374, 101)
 
-[node name="Rock4" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock4" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(367, 39)
 
-[node name="Rock5" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock5" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(480, 200)
 
-[node name="Rock6" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock6" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(422, 293)
 
-[node name="Rock7" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock7" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(142, 292)
 
-[node name="Rock8" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock8" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(51, 217)
 
-[node name="Rock9" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock9" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(45, 153)
 
-[node name="Rock10" parent="Ysort/Collectibles" instance=ExtResource("13_obnkm")]
+[node name="Rock10" parent="Ysort/Collectibles" instance=ExtResource("14_x8crb")]
 position = Vector2(100, -2.99998)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HotBar" parent="CanvasLayer" instance=ExtResource("14_glxn7")]
+[node name="HotBar" parent="CanvasLayer" instance=ExtResource("15_4bbao")]
 offset_left = 84.0
 offset_top = 149.0
 offset_right = 124.0
 offset_bottom = 189.0
 metadata/_edit_use_anchors_ = true
 
-[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("15_0pbpd")]
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("16_b1oul")]
 offset_left = 4.0
 offset_top = 5.0
 metadata/_edit_use_anchors_ = true
 
-[node name="EnergyBar" parent="CanvasLayer" instance=ExtResource("16_6cwdt")]
+[node name="EnergyBar" parent="CanvasLayer" instance=ExtResource("17_fwxos")]
 offset_left = 305.0
 offset_top = 85.0
 offset_right = 318.0
 offset_bottom = 166.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("17_eymkl")]
+[node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("18_3jgow")]
 offset_top = 24.0
 offset_bottom = 64.0
 metadata/_edit_use_anchors_ = true
@@ -1812,11 +1808,11 @@ position = Vector2(0, -20)
 tile_map_data = PackedByteArray("AAAgAP3/AAAAAAAAAAAgAP7/AAAAAAEAAAAgAP//AAAAAAIAAAAhAAAAAAAAAAIAAAAiAAAAAAACAAIAAAAiAP//AAAFAAEAAAAhAP//AAAGAAEAAAAhAP7/AAABAAEAAAAhAP3/AAAJAAEAAAAiAP3/AAABAAEAAAAiAP7/AAABAAEAAAAjAP//AAABAAIAAAAjAP7/AAABAAEAAAAkAP//AAACAAIAAAAkAP7/AAAFAAEAAAAkAP3/AAABAAEAAAAjAP3/AAABAAEAAAAjAPz/AAABAAEAAAAkAPz/AAAFAAIAAAAkAPv/AAACAAAAAAAjAPv/AAABAAAAAAAiAPv/AAAAAAAAAAAiAPz/AAAGAAIAAAAhAPz/AAAAAAAAAAAlAP3/AAAKAAMAAAAlAP7/AAACAAIAAAAlAPz/AAACAAAAAAAmAP3/AAACAAMAAAAoABAAAAAEAAIAAAAoABEAAAAAAAEAAAAoABIAAAAAAAIAAAApABIAAAAGAAEAAAAqABIAAAABAAEAAAAqABEAAAABAAEAAAApABEAAAABAAEAAAApABAAAAABAAEAAAAqABAAAAABAAEAAAArABIAAAAFAAEAAAAsABIAAAACAAIAAAAsABEAAAACAAAAAAArABEAAAAFAAIAAAArABAAAAACAAEAAAArAA8AAAACAAAAAAAqAA8AAAABAAAAAAApAA8AAAABAAAAAAAoAA8AAAAEAAAAAAApABMAAAAAAAIAAAAqABMAAAABAAIAAAArABMAAAACAAIAAAA0AAMAAAAAAAAAAAA0AAQAAAAAAAEAAAA0AAUAAAABAAEAAAA0AAYAAAAGAAEAAAA0AAcAAAAAAAIAAAA1AAcAAAABAAIAAAA1AAYAAAABAAEAAAA1AAUAAAABAAEAAAA1AAQAAAABAAEAAAA1AAMAAAAIAAIAAAA2AAUAAAABAAEAAAA3AAUAAAACAAEAAAA3AAYAAAACAAEAAAA2AAYAAAABAAEAAAA2AAcAAAABAAIAAAA3AAcAAAACAAIAAAAzAAUAAAAAAAAAAAAzAAYAAAAAAAIAAAA3AAQAAAACAAAAAAA2AAQAAAAFAAIAAAA2AAMAAAACAAAAAAA1AAIAAAADAAAAAAAHAO//AAAAAAAAAAAHAPD/AAAAAAEAAAAHAPH/AAAAAAIAAAAIAPH/AAABAAIAAAAMAPD/AAACAAIAAAAMAO//AAACAAAAAAALAO//AAABAAAAAAAKAO//AAABAAAAAAAJAO//AAABAAAAAAAIAO//AAABAAAAAAAIAPD/AAABAAEAAAAJAPD/AAABAAEAAAAKAPD/AAABAAEAAAALAPD/AAAFAAEAAAD6//f/AgAAAAAAAAD8//f/AgAGAAIAAAD9//f/AgABAAEAAAD+//f/AgABAAEAAAD///f/AgABAAEAAAAAAPf/AgAFAAIAAAABAPf/AgABAAAAAAAAAPb/AgACAAAAAAD///b/AgABAAAAAAD+//b/AgABAAAAAAD9//b/AgABAAAAAAD8//b/AgAAAAAAAAD6//j/AgAGAAIAAAD5//n/AgAAAAEAAAD5//v/AgAAAAEAAAD5//z/AgAAAAEAAAD5//3/AgAAAAEAAAD5//7/AgAAAAEAAAD5////AgAAAAEAAAD5/wAAAgAAAAEAAAD5/wEAAgAAAAEAAAD5/wIAAgAAAAEAAAD5/wMAAgAAAAEAAAD5/wQAAgAAAAIAAAD6/wQAAgABAAIAAAD7/wUAAgAAAAIAAAD8/wUAAgABAAIAAAD9/wUAAgABAAIAAAD+/wUAAgABAAIAAAD//wUAAgABAAIAAAAAAAUAAgACAAIAAAABAAQAAgABAAIAAAACAAQAAgACAAIAAAADAAIAAgACAAEAAAADAAEAAgACAAEAAAAEAAAAAgACAAIAAAAFAP//AgACAAIAAAAGAP7/AgACAAIAAAAGAP3/AgACAAEAAAAGAPz/AgACAAEAAAAGAPv/AgACAAEAAAAGAPr/AgACAAEAAAAGAPn/AgACAAEAAAAGAPj/AgACAAEAAAAGAPf/AgACAAAAAAAFAPf/AgABAAAAAAAEAPf/AgABAAAAAAACAAMAAgAFAAEAAAADAAMAAgACAAIAAAD7//f/AgABAAAAAAD5//j/AgAAAAAAAAD6//n/AgABAAEAAAD7//j/AgABAAEAAAD8//j/AgABAAEAAAD9//j/AgABAAEAAAD+//j/AgABAAEAAAD///j/AgABAAEAAAAAAPj/AgABAAEAAAABAPj/AgABAAEAAAACAPj/AgABAAEAAAADAPj/AgABAAEAAAAEAPj/AgABAAEAAAAFAPj/AgABAAEAAAAFAPn/AgABAAEAAAAFAPr/AgABAAEAAAAEAPr/AgABAAEAAAAEAPn/AgABAAEAAAADAPn/AgABAAEAAAACAPn/AgABAAEAAAABAPn/AgABAAEAAAAAAPn/AgABAAEAAAD///n/AgABAAEAAAD+//n/AgABAAEAAAD9//n/AgABAAEAAAD8//n/AgABAAEAAAD7//n/AgABAAEAAAD7//r/AgABAAEAAAD6//r/AgABAAEAAAD6//v/AgABAAEAAAD6//z/AgABAAEAAAD6//3/AgABAAEAAAD7//3/AgABAAEAAAD7//7/AgABAAEAAAD6//7/AgABAAEAAAD6////AgABAAEAAAD6/wAAAgABAAEAAAD6/wEAAgABAAEAAAD6/wIAAgABAAEAAAD6/wMAAgABAAEAAAD7/wMAAgABAAEAAAD7/wQAAgAGAAEAAAD8/wQAAgABAAEAAAD9/wQAAgABAAEAAAD+/wQAAgABAAEAAAD//wQAAgABAAEAAAAAAAQAAgAFAAEAAAAAAAMAAgABAAEAAAABAAMAAgABAAEAAAABAAIAAgABAAEAAAACAAIAAgABAAEAAAACAAEAAgABAAEAAAADAAAAAgAFAAEAAAADAP//AgABAAEAAAAEAP//AgAFAAEAAAAEAP7/AgABAAEAAAAFAP7/AgAFAAEAAAAFAP3/AgABAAEAAAAFAPz/AgABAAEAAAAFAPv/AgABAAEAAAAEAPv/AgABAAEAAAADAPr/AgABAAEAAAACAPr/AgABAAEAAAABAPr/AgABAAEAAAAAAPr/AgABAAEAAAD///r/AgABAAEAAAD+//r/AgABAAEAAAD9//r/AgABAAEAAAD8//r/AgABAAEAAAD7//v/AgABAAEAAAD7//z/AgABAAEAAAD7////AgABAAEAAAD7/wAAAgABAAEAAAD7/wEAAgABAAEAAAD8/wIAAgABAAEAAAD8/wMAAgABAAEAAAD8/wAAAgABAAEAAAD8////AgABAAEAAAD8//7/AgABAAEAAAD8//3/AgABAAEAAAD8//z/AgABAAEAAAD8//v/AgABAAEAAAD8/wEAAgABAAEAAAD7/wIAAgABAAEAAAD9/wMAAgABAAEAAAD9/wIAAgABAAEAAAD9/wEAAgABAAEAAAD9/wAAAgABAAEAAAD9////AgABAAEAAAD9//7/AgABAAEAAAD9//3/AgABAAEAAAD9//z/AgABAAEAAAD9//v/AgABAAEAAAD+/wEAAgABAAEAAAD+/wIAAgABAAEAAAD+/wMAAgABAAEAAAD+////AgABAAEAAAD+//7/AgABAAEAAAD+//3/AgABAAEAAAD+//z/AgABAAEAAAD+//v/AgABAAEAAAD+/wAAAgABAAEAAAD//wMAAgABAAEAAAD//wIAAgABAAEAAAD//wEAAgABAAEAAAD//wAAAgABAAEAAAD///3/AgABAAEAAAD///z/AgABAAEAAAD///v/AgABAAEAAAD///7/AgABAAEAAAD/////AgABAAEAAAAAAAIAAgABAAEAAAAAAP//AgABAAEAAAAAAP7/AgABAAEAAAAAAP3/AgABAAEAAAAAAPz/AgABAAEAAAAAAPv/AgABAAEAAAAAAAAAAgABAAEAAAAAAAEAAgABAAEAAAABAAAAAgABAAEAAAABAP//AgABAAEAAAABAP7/AgABAAEAAAABAP3/AgABAAEAAAABAPz/AgABAAEAAAABAPv/AgABAAEAAAABAAEAAgABAAEAAAACAP7/AgABAAEAAAACAP3/AgABAAEAAAACAPz/AgABAAEAAAACAPv/AgABAAEAAAACAP//AgABAAEAAAACAAAAAgABAAEAAAADAP7/AgABAAEAAAADAP3/AgABAAEAAAADAPz/AgABAAEAAAADAPv/AgABAAEAAAAEAP3/AgABAAEAAAAEAPz/AgABAAEAAAACAPf/AgABAAAAAAADAPf/AgABAAAAAAD5//r/AgAAAAEAAAAiABAAAgAAAAIAAAAjABAAAgABAAIAAAAjAA8AAgABAAEAAAAjAA4AAgABAAEAAAAjAA0AAgABAAAAAAAkAA0AAgABAAAAAAAlAA0AAgACAAAAAAAlAA4AAgACAAEAAAAlAA8AAgACAAIAAAAkAA8AAgAFAAEAAAAkABAAAgACAAIAAAAiAA8AAgAAAAEAAAAiAA4AAgAAAAEAAAAiAA0AAgAAAAAAAAAkAA4AAgABAAEAAAAlAPb/AgAAAAAAAAAlAPf/AgAAAAEAAAAlAPj/AgAAAAIAAAAmAPj/AgABAAIAAAAnAPj/AgAGAAEAAAAnAPf/AgABAAEAAAAoAPf/AgACAAEAAAAoAPb/AgACAAAAAAAnAPb/AgABAAAAAAAmAPb/AgABAAAAAAAmAPf/AgABAAEAAAAoAPj/AgACAAEAAAAoAPn/AgAHAAEAAAAnAPn/AgAAAAIAAAAJABAAAAABAAEAAAAJABEAAAABAAEAAAAJABIAAAABAAIAAAAKABIAAAABAAIAAAAKABEAAAABAAEAAAAKABAAAAABAAEAAAALABEAAAAFAAIAAAALABIAAAABAAIAAAAMABIAAAACAAIAAAAIABIAAAAAAAIAAAAIABEAAAAGAAEAAAAIABAAAAAGAAIAAAAIAA8AAAAAAAAAAAAJAA8AAAAGAAIAAAAKAA8AAAAFAAIAAAALAA8AAAACAAAAAAALABAAAAACAAEAAAAMABEAAAACAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAACAAAAAAAHABAAAAAAAAAAAAAHABEAAAAAAAIAAAAoAPr/AgADAAIAAAA=")
 tile_set = SubResource("TileSet_oe8m4")
 
-[node name="Blockers2" parent="." instance=ExtResource("22_jgksm")]
+[node name="Blockers2" parent="." instance=ExtResource("22_n8pya")]
 position = Vector2(805, 253)
 
-[node name="Blockers3" parent="." instance=ExtResource("22_jgksm")]
+[node name="Blockers3" parent="." instance=ExtResource("22_n8pya")]
 position = Vector2(-9, 256)
 
-[node name="Blockers4" parent="." instance=ExtResource("22_jgksm")]
+[node name="Blockers4" parent="." instance=ExtResource("22_n8pya")]
 position = Vector2(-40, -214)

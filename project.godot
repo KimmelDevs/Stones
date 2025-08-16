@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerStats="*res://Player/player_stats.tscn"
+DragManager="*res://DragManager.gd"
+GlobalInv="*res://Inventory/Inventory.gd"
 
 [display]
 

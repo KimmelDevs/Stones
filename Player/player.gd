@@ -17,15 +17,21 @@ var can_roll := true
 var is_attacking := false
 var attack_timer := 0.0
 
+var equipped_weapon: Node = null    # reference to the weapon node
+var weapon_damage: int = 0          # damage of the equipped weapon
+var weapon_knockback: float = 0.0   # knockback strength of the equipped weapon
+var equipped_skill: Node = null
+
 # --- References ---
 var stats = PlayerStats
 @onready var hurtbox = $HurtBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sword_hitbox: Area2D = $Marker2D/HitBox
+@onready var sword_hitbox: Area2D = $Sword/Marker2D/HitBox
+
 
 func _ready():
 	stats.connect("no_health", Callable(self, "queue_free"))
-
+	
 	# Find the HotBar node in the current scene
 	var world = get_tree().current_scene
 	var hotbar = world.get_node("CanvasLayer/HotBar")
@@ -33,7 +39,9 @@ func _ready():
 		hotbar.selection_changed.connect(equip_item)
 	else:
 		push_error("HotBar not found in scene!")
-		
+	# 🔥 Connect inventory update signal
+	if Inv:
+		Inv.update.connect(_on_inventory_updated)
 
 func _physics_process(delta: float) -> void:
 	# --- Handle attack duration ---
@@ -99,6 +107,11 @@ func _physics_process(delta: float) -> void:
 			last_direction = "down"
 	else:
 		play_idle_animation()
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			if equipped_skill and equipped_skill.has_method("use_skill"):
+				equipped_skill.use_skill()
 
 # --- Get nearest bush (only with berries) ---
 func get_nearest_bush() -> Node:
@@ -116,54 +129,94 @@ func get_nearest_bush() -> Node:
 			nearest_dist = dist
 
 	return nearest_bush
-var equipped_weapon: Node = null  # store current equipped weapon
-
+# --- Equip Weapon ---
 func equip_item(item: InvItem) -> void:
-	# Remove the old Sword node if it exists
-	var old_sword = get_node_or_null("Sword")
-	if old_sword and old_sword.is_inside_tree():
-		old_sword.queue_free()
-		equipped_weapon = null
-
-	# If no item, stop here
 	if not item:
 		print("No item equipped")
+		weapon_damage = 0
+		weapon_knockback = 0.0
+
+		# clear weapon sprite
+		_set_weapon_sprite(null)
+
+		# remove skill
+		if equipped_skill:
+			equipped_skill.queue_free()
+			equipped_skill = null
 		return
 
 	print("Equipping: ", item.name)
 
-	var weapon_scene: PackedScene
+	if not $Sword:
+		push_error("Sword node not found!")
+		weapon_damage = 0
+		weapon_knockback = 0.0
+		return
 
-	match item.name:
-		"Rock":
-			weapon_scene = preload("res://Equipments/Weapons/rock_equip.tscn")
-		"Stick":
-			weapon_scene = preload("res://stick_weapon.tscn")
-		_:
-			print("Unknown weapon type: ", item.name)
-			return
+	# ✅ Update weapon sprite (texture or hide if null)
+	_set_weapon_sprite(item.texture)
 
-	if weapon_scene:
-		var weapon_instance = weapon_scene.instantiate()
-		weapon_instance.name = "Sword"  # always keep name 'Sword' for AnimationPlayer
+	# Update weapon stats
+	equipped_weapon = $Sword
+	weapon_damage = item.damage
+	weapon_knockback = item.knockback_strength
 
-		# Give references if needed
-		if weapon_instance.has_method("set_player"):
-			weapon_instance.set_player(self)
+	# 🔥 Handle skill script
+	if equipped_skill:
+		equipped_skill.queue_free()
+		equipped_skill = null
 
-		if "inventory" in weapon_instance:
-			weapon_instance.inventory = Inv
+	if item.skill_scene:
+		equipped_skill = item.skill_scene.instantiate()
+		equipped_skill.player = self
+		
+		if equipped_skill.has_method("haveinv"):
+			equipped_skill.inventory = preload("res://Inventory/playerinventory.tres")
+		
+		add_child(equipped_skill)
+		print("Equipped skill scene: ", equipped_skill.name)
+	else:
+		print("No skill scene for this item")
+		equipped_skill = null
 
-		# Add weapon as child of Player
-		add_child(weapon_instance)
-		move_child(weapon_instance, 0)  # keep order consistent
+	print("Weapon Damage: ", weapon_damage, " | Knockback: ", weapon_knockback)
 
-		# Update reference
-		equipped_weapon = weapon_instance
 
-		# Refresh hitbox reference so attack uses the new one
-		if equipped_weapon.has_node("Marker2D/HitBox"):
-			sword_hitbox = equipped_weapon.get_node("Marker2D/HitBox")
+# --- Helper for weapon sprite ---
+func _set_weapon_sprite(texture: Texture2D) -> void:
+	var sword_sprite = $Sword.get_node("Marker2D/Sprite2D") as Sprite2D
+	if not sword_sprite:
+		push_error("Sprite2D node not found!")
+		return
+	
+	if texture:
+		sword_sprite.texture = texture
+		sword_sprite.visible = true
+
+		# scale properly to 12x12
+		var target_size = Vector2(12, 12)
+		var tex_size = texture.get_size()
+		if tex_size != Vector2.ZERO:
+			sword_sprite.scale = target_size / tex_size
+	else:
+		# remove texture and hide
+		sword_sprite.texture = null
+		sword_sprite.visible = false
+
+func _on_inventory_updated():
+	print("Inventory changed, checking equipment…")
+
+	# If you want to re-check current equipped item from hotbar:
+	var world = get_tree().current_scene
+	var hotbar = world.get_node("CanvasLayer/HotBar")
+	if hotbar and hotbar.get_selected_item():
+		equip_item(hotbar.get_selected_item())
+
+	# Or, if you just want to make sure equipped skill is still valid:
+	elif equipped_skill and not Inv.slots.any(func(slot): return slot.item == equipped_skill):
+		print("Equipped skill no longer in inventory, removing…")
+		equipped_skill.queue_free()
+		equipped_skill = null
 
 # --- Start a Roll ---
 func start_roll(input_vector: Vector2) -> void:
@@ -193,10 +246,9 @@ func start_roll(input_vector: Vector2) -> void:
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
 
-
 # --- Start an Attack ---
 func start_attack() -> void:
-	if not equipped_weapon:  # Prevent attack when barehand
+	if not equipped_weapon:
 		print("You can't attack without a weapon!")
 		return
 
@@ -204,17 +256,25 @@ func start_attack() -> void:
 	can_move = false
 	attack_timer = ATTACK_DURATION
 
-	var mouse_pos = get_global_mouse_position()
-	var dir_vector = (mouse_pos - global_position).normalized()
-
-	if abs(dir_vector.x) > abs(dir_vector.y):
-		last_direction = "right" if dir_vector.x > 0 else "left"
-	else:
-		last_direction = "down" if dir_vector.y > 0 else "up"
+	# --- Use last_direction for animation + knockback ---
+	var dir_vector = Vector2.ZERO
+	match last_direction:
+		"right": dir_vector = Vector2.RIGHT
+		"left":  dir_vector = Vector2.LEFT
+		"up":    dir_vector = Vector2.UP
+		"down":  dir_vector = Vector2.DOWN
 
 	var anim_name = "attack_" + last_direction
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
+
+	# --- Apply weapon stats to HitBox ---
+	if sword_hitbox:
+		sword_hitbox.damage = weapon_damage
+		sword_hitbox.knockback_vector = dir_vector * (weapon_knockback * 0.3)
+
+
+		
 # --- Play Idle Animation ---
 func play_idle_animation() -> void:
 	match last_direction:

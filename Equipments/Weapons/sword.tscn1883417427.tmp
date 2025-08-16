@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk2gj6neprsc0"]
+
+[ext_resource type="Script" uid="uid://2ukm0130ak2b" path="res://Equipments/Weapons/sword.gd" id="1_53y4w"]
+[ext_resource type="Texture2D" uid="uid://c3uiva07c0kx0" path="res://Equipments/Textures/sword.png" id="1_thqbm"]
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_53y4w")
+slash_angle = null
+slash_duration = null
+return_duration = null
+handle_offset = null
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+
+[node name="SlashingPoint" type="Marker2D" parent="WeaponPivot"]
+position = Vector2(40, 0)
+scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponPivot/SlashingPoint"]
+position = Vector2(-165, -40)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_thqbm")

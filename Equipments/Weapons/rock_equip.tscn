@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4x4sikf33jb4"]
+[gd_scene load_steps=5 format=3 uid="uid://c4x4sikf33jb4"]
 
 [ext_resource type="Script" uid="uid://c7l32x83hhmw5" path="res://rock_equip.gd" id="1_y17hc"]
 [ext_resource type="Texture2D" uid="uid://rmvhls44oyfy" path="res://Inventory/textures/rock_item.png" id="2_2535l"]
@@ -6,10 +6,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y17hc"]
 radius = 63.0079
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y17hc"]
-radius = 3.16107
-height = 12.6444
 
 [node name="Rock_Equip" type="Node2D"]
 script = ExtResource("1_y17hc")
@@ -26,27 +22,4 @@ visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_2535l")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-rotation = 1.5708
-
-[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
-visible = false
-position = Vector2(1.00001, 2)
-rotation = 2.0944
-scale = Vector2(0.6, 0.612)
-texture = ExtResource("2_2535l")
-
-[node name="HitBox" parent="Marker2D" instance=ExtResource("3_solhw")]
-position = Vector2(-0.999837, 45)
-disable_mode = 2
-collision_layer = 16
-collision_mask = 9
-
-[node name="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
-position = Vector2(1.99985, -43)
-rotation = 2.79253
-shape = SubResource("CapsuleShape2D_y17hc")
-disabled = true
-
 [editable path="HitBox"]
-[editable path="Marker2D/HitBox"]

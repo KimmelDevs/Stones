@@ -11,14 +11,10 @@ func _ready():
 	update_slots()
 	inv.update.connect(_on_inventory_changed)
 
-	# Connect clicks for selection
+	# Connect slot signals
 	for i in range(slots.size()):
-		var slot = slots[i]
-		slot.gui_input.connect(func(event):
-			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-				selected_index = i
-				_update_selection()
-		)
+		slots[i].slot_index = i
+		slots[i].connect("slot_clicked", Callable(self, "_on_slot_clicked"))
 
 	_update_selection()
 
@@ -58,3 +54,29 @@ func get_selected_item():
 		if slot and slot.item:
 			return slot.item
 	return null
+
+# Handle slot clicks (drag & drop)
+func _on_slot_clicked(slot_index: int):
+	if DragManager.is_dragging:
+		var from_container = DragManager.source_container
+		var from_index = DragManager.selected_slot_index
+
+		if from_container and from_container != self:
+			# --- Swap between Hotbar <-> Inventory ---
+			var temp = from_container.inv.slots[from_index]
+			from_container.inv.slots[from_index] = inv.slots[slot_index]
+			inv.slots[slot_index] = temp
+
+			from_container.update_slots()
+			update_slots()
+		else:
+			# --- Swap inside Hotbar ---
+			var temp = inv.slots[from_index]
+			inv.slots[from_index] = inv.slots[slot_index]
+			inv.slots[slot_index] = temp
+			update_slots()
+
+		# End drag
+		DragManager.stop_drag()
+
+	_update_selection()
