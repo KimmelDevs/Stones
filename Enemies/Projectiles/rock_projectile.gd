@@ -19,7 +19,10 @@ func _physics_process(delta):
 	if thrown:
 		position += velocity * delta
 
-func _on_body_entered(body):
+
+
+
+func _on_hit_box_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if thrown:
 		print("Rock hit:", body.name)
 		queue_free()

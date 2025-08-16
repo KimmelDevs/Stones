@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=30 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -14,9 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bqfn6lnudv1qv" path="res://UI/hot_bar.tscn" id="11_0lysu"]
 [ext_resource type="PackedScene" uid="uid://cwdlbc6m1xshi" path="res://World/ball.tscn" id="11_0wqet"]
 [ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/energy_bar.tscn" id="12_5xkvv"]
+[ext_resource type="PackedScene" uid="uid://cya15mec3w7cs" path="res://World/scenes/rock.tscn" id="12_26uyv"]
 [ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="12_h2aik"]
+[ext_resource type="Texture2D" uid="uid://ddqk2sivyunbq" path="res://World/treegr.png" id="13_dqu5g"]
 [ext_resource type="PackedScene" uid="uid://c1misyki6xqvj" path="res://Inventory/inv_ui.tscn" id="13_kcyjf"]
 [ext_resource type="PackedScene" uid="uid://cv3yi7o2jq3qt" path="res://UI/health_ui.tscn" id="14_awrha"]
+[ext_resource type="Texture2D" uid="uid://bb2p7l3s7pjv7" path="res://World/tree pine (1).png" id="14_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="15_f23eu"]
 [ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
@@ -1729,6 +1732,64 @@ position = Vector2(232, 27)
 [node name="Bush5" parent="Ysort/Bush" instance=ExtResource("6_eidgh")]
 position = Vector2(566, -117)
 
+[node name="Collectables" type="Node2D" parent="Ysort"]
+y_sort_enabled = true
+
+[node name="StickCollectable" parent="Ysort/Collectables" instance=ExtResource("19_xw5lg")]
+position = Vector2(286, 14)
+
+[node name="StickCollectable2" parent="Ysort/Collectables" instance=ExtResource("19_xw5lg")]
+position = Vector2(228, -61)
+
+[node name="StickCollectable3" parent="Ysort/Collectables" instance=ExtResource("19_xw5lg")]
+position = Vector2(554, 77)
+
+[node name="Rock" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(492, 159)
+
+[node name="Rock2" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(480, 17)
+
+[node name="Rock3" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(281, 271)
+
+[node name="Rock4" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(183, 215)
+
+[node name="Rock5" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(62, 197)
+
+[node name="Rock6" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(102, -170)
+
+[node name="Rock8" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(700, -281)
+
+[node name="Rock9" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(489, -154)
+
+[node name="Rock10" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(721, 184)
+
+[node name="Rock11" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(648, 165)
+
+[node name="Rock12" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(586, 284)
+
+[node name="Rock13" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
+position = Vector2(368, 276)
+
+[node name="Treegr" type="Sprite2D" parent="Ysort/Collectables"]
+position = Vector2(267, 159)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_dqu5g")
+
+[node name="TreePine(1)" type="Sprite2D" parent="Ysort/Collectables"]
+position = Vector2(542, 37)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_o6lw0")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HotBar" parent="CanvasLayer" instance=ExtResource("11_0lysu")]
@@ -1767,12 +1828,3 @@ position = Vector2(-40, -214)
 
 [node name="MegaSlime" parent="." instance=ExtResource("15_f23eu")]
 position = Vector2(-109, 162)
-
-[node name="StickCollectable" parent="." instance=ExtResource("19_xw5lg")]
-position = Vector2(286, 14)
-
-[node name="StickCollectable2" parent="." instance=ExtResource("19_xw5lg")]
-position = Vector2(228, -61)
-
-[node name="StickCollectable3" parent="." instance=ExtResource("19_xw5lg")]
-position = Vector2(554, 77)

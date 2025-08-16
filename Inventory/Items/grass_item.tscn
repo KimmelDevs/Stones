@@ -22,3 +22,4 @@ position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_ma44n")
 
 [connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="interactable_area" to="." method="_on_interactable_area_body_exited"]

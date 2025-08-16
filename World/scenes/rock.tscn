@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cya15mec3w7cs"]
+[gd_scene load_steps=7 format=3 uid="uid://cya15mec3w7cs"]
 
 [ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_tunef"]
 [ext_resource type="Texture2D" uid="uid://n5w1epnwi11x" path="res://Inventory/textures/rock.png" id="2_1qn22"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://World/scenes/SmallShadow.png" id="3_27i6s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tunef"]
-radius = 16.5303
+radius = 32.596
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_27i6s"]
 
 [node name="Rock" type="StaticBody2D"]
 scale = Vector2(0.4, 0.4)
@@ -30,4 +32,9 @@ collision_mask = 66
 position = Vector2(2.5, -2.5)
 shape = SubResource("CircleShape2D_tunef")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -2.5)
+shape = SubResource("CircleShape2D_27i6s")
+
 [connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="interactable_area" to="." method="_on_interactable_area_body_exited"]

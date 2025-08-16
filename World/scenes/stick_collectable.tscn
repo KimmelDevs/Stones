@@ -15,6 +15,7 @@ item = ExtResource("2_pdddx")
 texture = ExtResource("3_6l21q")
 
 [node name="interactable_area" type="Area2D" parent="."]
+visible = false
 collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
@@ -22,3 +23,4 @@ position = Vector2(3, 5)
 shape = SubResource("CircleShape2D_pdddx")
 
 [connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="interactable_area" to="." method="_on_interactable_area_body_exited"]

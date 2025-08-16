@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpv63d1s6qv6d"
-path="res://.godot/imported/Tree.png-14ac646b55f931abf82a3d71f0acdb7a.ctex"
+uid="uid://tsenn6x5f23r"
+path="res://.godot/imported/bat_meat.png-bb1c3beb922626fef09efc3c90567de1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Tree.png"
-dest_files=["res://.godot/imported/Tree.png-14ac646b55f931abf82a3d71f0acdb7a.ctex"]
+source_file="res://Inventory/textures/bat_meat.png"
+dest_files=["res://.godot/imported/bat_meat.png-bb1c3beb922626fef09efc3c90567de1.ctex"]
 
 [params]
 

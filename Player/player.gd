@@ -117,27 +117,42 @@ func get_nearest_bush() -> Node:
 
 	return nearest_bush
 var equipped_weapon: Node = null  # store current equipped weapon
-
-func equip_item(item):
-	if item and item is InvItem:
-		print(item.name)
-
-		if item.name == "Rock":
-			# Remove the old weapon if it's already equipped
-			if equipped_weapon and equipped_weapon.is_inside_tree():
-				equipped_weapon.queue_free()
-			var rock_scene = preload("res://Equipments/Weapons/rock_equip.tscn")
-			var rock_instance = rock_scene.instantiate()
-			rock_instance.player = self
-			rock_instance.inventory = Inv
-			get_tree().current_scene.add_child(rock_instance)
-
-			equipped_weapon = rock_instance  # save reference
-
-	else:
+func equip_item(item: InvItem) -> void:
+	if not item:
 		print("No item equipped")
+		return
 
+	print(item.name)
 
+	# Handle current weapon
+	if $Sword and $Sword.is_inside_tree():
+		$Sword.queue_free()  # Or you can hide it as shown in previous example
+	
+	var weapon_scene: PackedScene
+	
+	match item.name:
+		"Rock":
+			weapon_scene = preload("res://Equipments/Weapons/rock_equip.tscn")
+		"Stick":
+			weapon_scene = preload("res://stick_weapon.tscn")
+		_:
+			print("Unknown weapon type")
+			return
+
+	if weapon_scene:
+		var weapon_instance = weapon_scene.instantiate()
+
+		# If weapon has set_player function, call it
+		if weapon_instance.has_method("set_player"):
+			weapon_instance.set_player(self)
+
+		# If it has an "inventory" property, assign it (optional)
+		if "inventory" in weapon_instance:
+			weapon_instance.inventory = Inv
+
+		add_child(weapon_instance)
+		weapon_instance.name = "Sword"  # Keep consistent naming
+		equipped_weapon = weapon_instance
 # --- Start a Roll ---
 func start_roll(input_vector: Vector2) -> void:
 	is_rolling = true
@@ -180,7 +195,7 @@ func start_attack() -> void:
 	else:
 		last_direction = "down" if dir_vector.y > 0 else "up"
 
-	sword_hitbox.knockback_vector = dir_vector
+	
 
 	var anim_name = "attack_" + last_direction
 	if animation_player.has_animation(anim_name):

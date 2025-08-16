@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4x4sikf33jb4"]
+[gd_scene load_steps=5 format=3 uid="uid://c4x4sikf33jb4"]
 
 [ext_resource type="Script" uid="uid://c7l32x83hhmw5" path="res://rock_equip.gd" id="1_y17hc"]
 [ext_resource type="Texture2D" uid="uid://rmvhls44oyfy" path="res://Inventory/textures/rock_item.png" id="2_2535l"]
+[ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="3_solhw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y17hc"]
+radius = 63.0079
 
 [node name="Rock_Equip" type="Node2D"]
 script = ExtResource("1_y17hc")
@@ -9,3 +13,12 @@ script = ExtResource("1_y17hc")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_2535l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HitBox" parent="." instance=ExtResource("3_solhw")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_y17hc")
+
+[editable path="HitBox"]
