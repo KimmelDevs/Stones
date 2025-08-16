@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://x4g8icwjcb4i"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_cory6"]
+[ext_resource type="Texture2D" uid="uid://tsenn6x5f23r" path="res://Inventory/textures/bat_meat.png" id="2_56d7h"]
+
+[resource]
+script = ExtResource("1_cory6")
+name = "Bat Meat"
+texture = ExtResource("2_56d7h")
+Category = "Food"
+weapon_type = ""
+knockback_strength = 1.0
+damage = 1
+nutrition = 0
+metadata/_custom_type_script = "uid://uwnnphlcerum"

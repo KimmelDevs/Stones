@@ -14,13 +14,15 @@ script = ExtResource("1_hvlby")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ooc07")
 
-[node name="HitBox" parent="." instance=ExtResource("3_nra1y")]
+[node name="HitBox" parent="Sprite2D" instance=ExtResource("3_nra1y")]
+scale = Vector2(2, 2)
 collision_layer = 16
 collision_mask = 41
+damage = 2
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
+[node name="CollisionShape2D" parent="Sprite2D/HitBox" index="0"]
 shape = SubResource("CircleShape2D_i7gna")
 
-[connection signal="body_shape_entered" from="HitBox" to="." method="_on_hit_box_body_shape_entered"]
+[connection signal="body_shape_entered" from="Sprite2D/HitBox" to="." method="_on_hit_box_body_shape_entered"]
 
-[editable path="HitBox"]
+[editable path="Sprite2D/HitBox"]

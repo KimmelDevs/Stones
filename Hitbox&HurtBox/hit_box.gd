@@ -2,8 +2,8 @@ class_name HitBox
 extends Area2D
 
 # These will be set by the player when attacking
-var damage: int = 0
-var knockback_vector: Vector2 = Vector2.ZERO
+@export var damage: int = 0
+@export var knockback_vector: Vector2 = Vector2.ZERO
 
 # Signal for when this hitbox hits an enemy
 signal hit(target)

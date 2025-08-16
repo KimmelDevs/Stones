@@ -5,6 +5,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var knockback_speed: float = 200.0
 @export var knockback_duration: float = 0.2
 
+@onready var drop_slime = preload("res://Enemies/EnemyDrops/slimedrop.tscn")
 # --- Jump settings ---
 @export var jump_force := 200.0
 @export var charge_jump_force := 350.0
@@ -161,7 +162,7 @@ func shoot_mega_spit() -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	knockback = area.knockback_vector * knockback_speed
 	knockback_timer = knockback_duration
-	stats.set_health(stats.health - 1)
+	stats.set_health(stats.health - area.damage)
 	hurtbox.create_hit_effect()
 	if stats.health <= 0:
 		dying = true
@@ -170,6 +171,12 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 func spawn_death_effect() -> void:
 	var effect_instance = DeathEffectScene.instantiate()
 	effect_instance.global_position = global_position
+	
+
+
+	var slime_instance = drop_slime.instantiate()
+	slime_instance.global_position = global_position + Vector2(randf_range(-16, 16), randf_range(-16, 16))
+	get_parent().add_child(slime_instance)
 	get_parent().add_child(effect_instance)
 
 #func split_on_death() -> void:

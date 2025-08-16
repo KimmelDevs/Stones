@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://41q7o05q7ha"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_njys1"]
+[ext_resource type="Texture2D" uid="uid://qnx6386s4p33" path="res://Inventory/textures/slime.png" id="2_vlibb"]
+
+[resource]
+script = ExtResource("1_njys1")
+name = "Slime"
+texture = ExtResource("2_vlibb")
+Category = "Material"
+weapon_type = ""
+knockback_strength = -1.0
+damage = 0
+nutrition = 0
+metadata/_custom_type_script = "uid://uwnnphlcerum"

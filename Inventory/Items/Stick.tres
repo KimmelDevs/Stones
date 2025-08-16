@@ -10,6 +10,6 @@ texture = ExtResource("2_ggjug")
 Category = "Weapon"
 weapon_type = "Sword"
 knockback_strength = 1.0
-damage = 6
+damage = 3
 nutrition = 0
 metadata/_custom_type_script = "uid://uwnnphlcerum"

@@ -12,6 +12,6 @@ Category = "Material"
 weapon_type = ""
 skill_scene = ExtResource("2_ho8fk")
 knockback_strength = 1.0
-damage = 1
+damage = 2
 nutrition = 0
 metadata/_custom_type_script = "uid://uwnnphlcerum"

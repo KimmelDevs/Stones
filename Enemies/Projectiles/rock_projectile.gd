@@ -5,10 +5,22 @@ extends Node2D
 
 var velocity: Vector2 = Vector2.ZERO
 var thrown: bool = false
+@onready var rock_hitbox: HitBox = $Sprite2D/HitBox
+@export var weapon_damage: int = 1
+@export var weapon_knockback: int = 1
+var dir_vector: Vector2 = Vector2.ZERO
 
 func start_throw(target_pos: Vector2):
 	velocity = (target_pos - global_position).normalized() * speed
+	dir_vector = (target_pos - global_position).normalized()
 	thrown = true
+
+	# Assign hitbox values before enabling it
+	if rock_hitbox:
+		rock_hitbox.damage = weapon_damage
+		rock_hitbox.knockback_vector = dir_vector * (weapon_knockback * 0.3)
+		rock_hitbox.monitoring = true  # Enable collision AFTER setup
+
 
 func _ready():
 	if thrown:

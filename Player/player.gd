@@ -185,13 +185,14 @@ func equip_item(item: InvItem) -> void:
 # --- Helper for weapon sprite ---
 func _set_weapon_sprite(texture: Texture2D) -> void:
 	var sword_sprite = $Sword.get_node("Marker2D/Sprite2D") as Sprite2D
+	
 	if not sword_sprite:
 		push_error("Sprite2D node not found!")
 		return
 	
 	if texture:
 		sword_sprite.texture = texture
-		sword_sprite.visible = true
+		sword_sprite.visible = false
 
 		# scale properly to 12x12
 		var target_size = Vector2(12, 12)
