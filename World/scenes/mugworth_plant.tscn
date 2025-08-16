@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyqjkvrd48ovr"]
+
+[ext_resource type="Script" uid="uid://cha3y03k6fiby" path="res://World/mugworth_plant.gd" id="1_oin8o"]
+[ext_resource type="Resource" uid="uid://d1wrka4hm04j" path="res://Enemies/EnemyDrops/BatWings.tres" id="2_5imcw"]
+[ext_resource type="Texture2D" uid="uid://dgjg3g333xi88" path="res://World/MugworthPlant.png" id="2_hw4cj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5imcw"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttndt"]
+atlas = ExtResource("2_hw4cj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01ud8"]
+atlas = ExtResource("2_hw4cj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vo175"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttndt")
+}],
+"loop": true,
+"name": &"MugWorth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01ud8")
+}],
+"loop": true,
+"name": &"NoMugworth",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdrr5"]
+radius = 47.0106
+
+[node name="MugworthPlant" type="StaticBody2D"]
+script = ExtResource("1_oin8o")
+item = ExtResource("2_5imcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5imcw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vo175")
+animation = &"MugWorth"
+
+[node name="PickableArea" type="Area2D" parent="."]
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
+shape = SubResource("CircleShape2D_pdrr5")
+
+[node name="Growth_timer" type="Timer" parent="."]
+wait_time = 260.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(4, -4)
+
+[connection signal="body_entered" from="PickableArea" to="." method="_on_pickable_area_body_entered"]
+[connection signal="body_exited" from="PickableArea" to="." method="_on_pickable_area_body_exited"]
+[connection signal="timeout" from="Growth_timer" to="." method="_on_growth_timer_timeout"]

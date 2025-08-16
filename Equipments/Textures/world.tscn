@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=31 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="PackedScene" uid="uid://3dgnvw31287s" path="res://UI/Hand_Crafting.tscn" id="1_rs70i"]
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="2_ourjn"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dl5nye6xmusnb" path="res://World/Watertileset.png" id="20_6n0p3"]
 [ext_resource type="Texture2D" uid="uid://btscbcwpjqyqb" path="res://World/war.png" id="21_n7kny"]
 [ext_resource type="PackedScene" uid="uid://u61tqc8ypnjm" path="res://World/blockers.tscn" id="22_n8pya"]
+[ext_resource type="PackedScene" uid="uid://dyqjkvrd48ovr" path="res://World/scenes/mugworth_plant.tscn" id="24_ourjn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
 texture = ExtResource("3_8d0vn")
@@ -1955,3 +1956,15 @@ position = Vector2(-9, 256)
 
 [node name="Blockers4" parent="." instance=ExtResource("22_n8pya")]
 position = Vector2(-40, -214)
+
+[node name="MugworthPlant" parent="." instance=ExtResource("24_ourjn")]
+position = Vector2(647, -13)
+
+[node name="MugworthPlant2" parent="." instance=ExtResource("24_ourjn")]
+position = Vector2(380, 4)
+
+[node name="MugworthPlant3" parent="." instance=ExtResource("24_ourjn")]
+position = Vector2(256, -143)
+
+[node name="MugworthPlant4" parent="." instance=ExtResource("24_ourjn")]
+position = Vector2(270, 220)
