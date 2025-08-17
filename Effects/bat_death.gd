@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var drop_wings_scene = preload("res://Enemies/EnemyDrops/bat_wings.tscn")
 @onready var drop_head_scene = preload("res://Enemies/EnemyDrops/bat_head.tscn")
-@onready var drop_meat_scene = preload("res://Inventory/Items/bat_meat.tscn")
+@onready var drop_meat_scene = preload("res://Inventory/scenes/bat_meat.tscn")
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("Animate")

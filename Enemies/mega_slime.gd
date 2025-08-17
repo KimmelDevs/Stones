@@ -7,10 +7,10 @@ var knockback: Vector2 = Vector2.ZERO
 
 @onready var drop_slime = preload("res://Enemies/EnemyDrops/slimedrop.tscn")
 # --- Jump settings ---
-@export var jump_force := 200.0
+@export var jump_force := 100.0
 @export var charge_jump_force := 350.0
-@export var small_hop_force := 120.0
-@export var air_time := 0.4
+@export var small_hop_force := 60.0
+@export var air_time := 0.2
 @export var jump_cooldown := 2.0
 @export var spit_speed := 250.0
 @export var spit_delay := 0.2
@@ -140,34 +140,50 @@ func fake_out_jump(player_position: Vector2) -> void:
 
 # --- Mega Spit ---
 func shoot_mega_spit() -> void:
+	# Check player exists at start
 	var player = playerdetectionzone.player
-	if not player or not is_instance_valid(player):
+	if not player or not is_instance_valid(player) or dying:
 		return
 
-	anim_player.play("ready_shoot")
-	await anim_player.animation_finished
-	sprite.flip_h = player.global_position.x < global_position.x
-	anim_player.play("shoot")
-
-	var target_pos = player.global_position
 	for i in range(3):
+		# Abort if slime is dead mid-animation
+		if dying or not is_instance_valid(self):
+			return
+		if not player or not is_instance_valid(player):
+			return
+
+		anim_player.play("ready_shoot")
+		await anim_player.animation_finished
+		if dying or not is_instance_valid(self):
+			return
+		if not player or not is_instance_valid(player):
+			return
+
+		sprite.flip_h = player.global_position.x < global_position.x
+		anim_player.play("shoot")
+		await anim_player.animation_finished
+		if dying or not is_instance_valid(self):
+			return
+		if not player or not is_instance_valid(player):
+			return
+
+		# Spawn MegaSpit projectile
 		var spit = MegaSpitScene.instantiate()
 		get_tree().current_scene.add_child(spit)
 		spit.global_position = global_position
-		spit.velocity = (target_pos - global_position).normalized() * spit_speed
+		spit.velocity = (player.global_position - global_position).normalized() * spit_speed
 		if spit.has_node("AnimationPlayer"):
 			spit.get_node("AnimationPlayer").play("spit")
-		await get_tree().create_timer(spit_delay).timeout
 
-	# Optional: Drop puddle on spit
-	#if SlimePuddleScene:
-		#var puddle = SlimePuddleScene.instantiate()
-		#puddle.global_position = global_position
-		#get_parent().add_child(puddle)
+		anim_player.play("finish_shoot")
+		await anim_player.animation_finished
+		if dying or not is_instance_valid(self):
+			return
+		if not player or not is_instance_valid(player):
+			return
 
-	anim_player.play("finish_shoot")
-	await anim_player.animation_finished
-	anim_player.play("idle")
+		anim_player.play("idle")
+
 
 # --- Damage ---
 func _on_hurt_box_area_entered(area: Area2D) -> void:

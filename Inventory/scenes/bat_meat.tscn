@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://dshpvosy1tykh"]
 
-[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_xtwvb"]
-[ext_resource type="Resource" uid="uid://x4g8icwjcb4i" path="res://Enemies/EnemyDrops/BatMeat.tres" id="2_rr1l0"]
-[ext_resource type="Texture2D" uid="uid://tsenn6x5f23r" path="res://Inventory/textures/bat_meat.png" id="3_ny6xy"]
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_kedru"]
+[ext_resource type="Resource" uid="uid://x4g8icwjcb4i" path="res://Enemies/EnemyDrops/BatMeat.tres" id="2_xoump"]
+[ext_resource type="Texture2D" uid="uid://tsenn6x5f23r" path="res://Inventory/textures/bat_meat.png" id="3_arbot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rr1l0"]
 radius = 14.0357
 
 [node name="Bat_meat" type="StaticBody2D"]
-script = ExtResource("1_xtwvb")
-item = ExtResource("2_rr1l0")
+script = ExtResource("1_kedru")
+item = ExtResource("2_xoump")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_ny6xy")
+texture = ExtResource("3_arbot")
 
 [node name="interactable_area" type="Area2D" parent="."]
 collision_mask = 66

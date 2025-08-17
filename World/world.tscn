@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=36 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bpv50hf4owdoh" path="res://UI/hunger_bar.tscn" id="17_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
 [ext_resource type="PackedScene" uid="uid://3dgnvw31287s" path="res://UI/Hand_Crafting.tscn" id="20_jf64p"]
+[ext_resource type="PackedScene" uid="uid://bjdkdn2wx6m2x" path="res://UI/Craft.tscn" id="29_rw02v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
 texture = ExtResource("6_yf0ba")
@@ -2024,3 +2025,9 @@ position = Vector2(-9, 256)
 
 [node name="Blockers4" parent="." instance=ExtResource("10_w47uh")]
 position = Vector2(-40, -214)
+
+[node name="Craft" parent="." instance=ExtResource("29_rw02v")]
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 79.0
+offset_bottom = 14.0

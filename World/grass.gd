@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var drop_grass_scene = preload("res://Inventory/Items/grass_item.tscn")
+@onready var drop_grass_scene = preload("res://Inventory/scenes/grass_item.tscn")
 
 func spawn_grass_effect() -> void:
 	var effect_scene = preload("res://Effects/grass_effect.tscn")

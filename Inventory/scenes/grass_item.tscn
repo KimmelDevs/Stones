@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhnenvksa0k5k"]
 
-[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_s8de6"]
-[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="2_mp14o"]
-[ext_resource type="Texture2D" uid="uid://d2yuh1v218cjo" path="res://Inventory/textures/Grass.png" id="3_ma44n"]
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_e6ali"]
+[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="2_c3dbb"]
+[ext_resource type="Texture2D" uid="uid://d2yuh1v218cjo" path="res://Inventory/textures/Grass.png" id="3_vlstp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ma44n"]
 radius = 14.0357
 
 [node name="GrassItem" type="StaticBody2D"]
-script = ExtResource("1_s8de6")
-item = ExtResource("2_mp14o")
+script = ExtResource("1_e6ali")
+item = ExtResource("2_c3dbb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_ma44n")
+texture = ExtResource("3_vlstp")
 
 [node name="interactable_area" type="Area2D" parent="."]
 collision_mask = 66

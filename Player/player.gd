@@ -355,10 +355,20 @@ func _on_hurt_box_area_entered(area: Area2D):
 	stats.set_health(stats.health - area.damage)
 	hurtbox.create_hit_effect()
 	stats.set_health(stats.health - 1)
-	hurtbox.start_invisibility(2)
-	hurtbox.create_hit_effect()
+	$Sprite2D.modulate = Color.PALE_VIOLET_RED
+	
 	camera_shake.add_trauma(0.9)
 
+	# Reset color after 1 second
+	await get_tree().create_timer(1.0).timeout
+	$Sprite2D.modulate = Color(1, 1, 1, 1)  # reset to normal
+	# If original isn’t pure white, save and restore:
+	# var original_color = $Sprite2D.modulate
+	# 
+	# await get_tree().create_timer(1.0).timeout
+	# $Sprite2D.modulate = original_color
+
+	# Camera shake
 func player():
 	pass
 

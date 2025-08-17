@@ -1,22 +1,25 @@
-[gd_resource type="Resource" script_class="Inv" load_steps=30 format=3 uid="uid://b6y8x0idf43ao"]
+[gd_resource type="Resource" script_class="Inv" load_steps=31 format=3 uid="uid://b6y8x0idf43ao"]
 
 [ext_resource type="Script" uid="uid://dbkh5tlw3gq8c" path="res://inv_slot.gd" id="2_7uf4i"]
-[ext_resource type="Resource" uid="uid://cxe0xx02ddcl5" path="res://Equipments/Weapons/Axe.tres" id="3_oqpsp"]
 [ext_resource type="Script" uid="uid://bf38umhy5vg6f" path="res://Inventory/Inventory.gd" id="3_wq1fa"]
+[ext_resource type="Resource" uid="uid://cxe0xx02ddcl5" path="res://Inventory/Items/Axe.tres" id="3_yrre2"]
+[ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="4_yrre2"]
 
 [sub_resource type="Resource" id="Resource_ln33l"]
 script = ExtResource("2_7uf4i")
-item = ExtResource("3_oqpsp")
+item = ExtResource("3_yrre2")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_yrre2"]
 script = ExtResource("2_7uf4i")
+item = ExtResource("4_yrre2")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_wq1fa"]
 script = ExtResource("2_7uf4i")
+item = ExtResource("4_yrre2")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
