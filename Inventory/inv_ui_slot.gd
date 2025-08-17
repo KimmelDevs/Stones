@@ -19,7 +19,7 @@ func _ready():
 	category_label.visible = false
 
 func update(slot: InvSlot):
-	if !slot or !slot.item:
+	if not slot or not slot.item:
 		item_visual.visible = false
 		item_count.visible = false
 		name_label.text = ""
@@ -65,8 +65,15 @@ func _gui_input(event):
 		else:
 			# Start dragging if this slot has an item
 			if item_visual.visible:
-				DragManager.start_drag(
-					get_parent().get_parent(),  # container (InventoryUI / HotbarUI)
-					slot_index,
-					item_visual.texture
-				)
+				var container = _find_inventory_container()
+				if container:
+					DragManager.start_drag(container, slot_index, item_visual.texture)
+
+# --- Helper function to safely find the container script ---
+func _find_inventory_container():
+	var node = self
+	while node:
+		if node.has_method("invpass"):  # Only InventoryUI / HotbarUI has 'inv'
+			return node
+		node = node.get_parent()
+	return null

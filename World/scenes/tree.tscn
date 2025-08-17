@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3a1r6waeofxe"]
 
 [ext_resource type="Texture2D" uid="uid://bxfm7lsj2su8u" path="res://Shadows/LargeShadow.png" id="1_8jh7y"]
-[ext_resource type="Texture2D" uid="uid://cw220p2e22hqu" path="res://World/Tree.png" id="1_coh6s"]
+[ext_resource type="Texture2D" uid="uid://bpv63d1s6qv6d" path="res://World/Tree.png" id="1_coh6s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4nadt"]
 height = 28.0

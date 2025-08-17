@@ -6,6 +6,12 @@ extends CharacterBody2D
 @export var ROLL_DURATION: float = 0.5
 @export var ATTACK_DURATION: float = 0.4
 @export var Inv: Inv
+@export var max_hunger: int = 100
+var hunger: int = max_hunger
+var equipped_food: InvItem = null  # store the current food
+
+signal hunger_changed(value)
+
 
 # --- State Variables ---
 var last_direction := "down"
@@ -107,12 +113,20 @@ func _physics_process(delta: float) -> void:
 			last_direction = "down"
 	else:
 		play_idle_animation()
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			if equipped_skill and equipped_skill.has_method("use_skill"):
-				equipped_skill.use_skill()
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			# If food is equipped → eat
+			if equipped_food:
+				_consume_food(equipped_food)
 
+
+func set_hunger(value: int) -> void:
+	hunger = clamp(value, 0, max_hunger)
+	emit_signal("hunger_changed", hunger)
+
+func get_hunger() -> int:
+	return hunger
 # --- Get nearest bush (only with berries) ---
 func get_nearest_bush() -> Node:
 	var bushes = get_tree().get_nodes_in_group("berry_bush")
@@ -129,34 +143,33 @@ func get_nearest_bush() -> Node:
 			nearest_dist = dist
 
 	return nearest_bush
-# --- Equip Weapon ---
+# --- Equip Item ---
 func equip_item(item: InvItem) -> void:
 	if not item:
 		print("No item equipped")
-		weapon_damage = 0
-		weapon_knockback = 0.0
-
-		# clear weapon sprite
-		_set_weapon_sprite(null)
-
-		# remove skill
-		if equipped_skill:
-			equipped_skill.queue_free()
-			equipped_skill = null
+		_clear_weapon()
 		return
 
-	print("Equipping: ", item.name)
+	print("Equipping: ", item.name, " | Category: ", item.Category)
 
+	match item.Category:
+		"Weapon":
+			_equip_weapon(item)
+		"Food":
+			_equip_food(item)
+		_:
+			print("Item category not handled: ", item.Category)
+			_clear_weapon()
+func _equip_weapon(item: InvItem) -> void:
 	if not $Sword:
 		push_error("Sword node not found!")
-		weapon_damage = 0
-		weapon_knockback = 0.0
+		_clear_weapon()
 		return
 
-	# ✅ Update weapon sprite (texture or hide if null)
+	# ✅ Update weapon sprite
 	_set_weapon_sprite(item.texture)
 
-	# Update weapon stats
+	# Update stats
 	equipped_weapon = $Sword
 	weapon_damage = item.damage
 	weapon_knockback = item.knockback_strength
@@ -169,10 +182,10 @@ func equip_item(item: InvItem) -> void:
 	if item.skill_scene:
 		equipped_skill = item.skill_scene.instantiate()
 		equipped_skill.player = self
-		
+
 		if equipped_skill.has_method("haveinv"):
 			equipped_skill.inventory = preload("res://Inventory/playerinventory.tres")
-		
+
 		add_child(equipped_skill)
 		print("Equipped skill scene: ", equipped_skill.name)
 	else:
@@ -203,6 +216,49 @@ func _set_weapon_sprite(texture: Texture2D) -> void:
 		# remove texture and hide
 		sword_sprite.texture = null
 		sword_sprite.visible = false
+func _clear_weapon() -> void:
+	equipped_weapon = null
+	weapon_damage = 0
+	weapon_knockback = 0.0
+	_set_weapon_sprite(null)
+
+	if equipped_skill:
+		equipped_skill.queue_free()
+		equipped_skill = null
+func _equip_food(item: InvItem) -> void:
+	_clear_weapon()  # keep your existing weapon cleanup
+
+	if not item:
+		print("No food item equipped")
+		equipped_food = null
+		return
+
+	equipped_food = item
+	print("Equipped food: ", item.name)
+
+func _consume_food(item: InvItem) -> void:
+	if not item:
+		return
+
+	# 🥩 Restore hunger
+	PlayerStats.set_hunger(PlayerStats.get_hunger() + item.nutrition)
+
+	# ❤️ Heal player
+	PlayerStats.set_health(PlayerStats.get_health() + item.damage)
+
+	print("Ate ", item.name, " → +", item.nutrition, " hunger, +", item.damage, " health")
+
+	# 🔻 Remove 1 from stack (or remove item completely)
+	if Inv and Inv.remove_item(item, 1):  # remove 1 count of this food
+		print("Removed 1x ", item.name, " from inventory")
+	else:
+		print("Could not remove item from inventory")
+
+	# ✅ If stack is gone → unequip
+	if not Inv.has_item(item):
+		equipped_food = null
+		print(item.name, " is all gone! Unequipped.")
+
 
 func _on_inventory_updated():
 	print("Inventory changed, checking equipment…")

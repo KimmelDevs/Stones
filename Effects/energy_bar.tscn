@@ -5,14 +5,14 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4oya"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8pua"]
-bg_color = Color(0.204106, 0.974377, 0.937522, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu5ut"]
+bg_color = Color(0.158312, 0.661394, 0.802757, 1)
 
 [node name="EnergyBar" type="ProgressBar"]
 offset_right = 7.0
 offset_bottom = 53.0
 theme_override_styles/background = SubResource("StyleBoxFlat_u4oya")
-theme_override_styles/fill = SubResource("StyleBoxFlat_q8pua")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xu5ut")
 fill_mode = 3
 show_percentage = false
 script = ExtResource("1_xu5ut")

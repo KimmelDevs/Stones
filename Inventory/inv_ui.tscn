@@ -8,8 +8,9 @@
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
+offset_top = -1.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 39.0
 script = ExtResource("1_605em")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

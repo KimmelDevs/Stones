@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dlyigaruog8j5"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_mebv0"]
+[ext_resource type="Texture2D" uid="uid://ckfv58rpctiso" path="res://World/Mushrooms/Textures/FlyAlgaricMushroom.png" id="2_4njo6"]
+
+[resource]
+script = ExtResource("1_mebv0")
+name = "Fly Algaric"
+texture = ExtResource("2_4njo6")
+Category = "Food"
+weapon_type = ""
+knockback_strength = 1.0
+damage = 1
+nutrition = 0
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

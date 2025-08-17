@@ -18,17 +18,28 @@ var health_regen_timer: float = 0.0
 var energy: int
 var energy_regen_timer: float = 0.0
 
+# --- Hunger ---
+@export var max_hunger: int = 100
+@export var hunger_decrease_interval: float = 2.0
+@export var hunger_decrease_amount: int = 10
+@export var hunger_damage_interval: float = 5.0
+@export var hunger_damage_amount: float = 1.0
+
+var hunger: int
+var hunger_timer: float = 0.0
+var hunger_damage_timer: float = 0.0
+
 # --- Signals ---
 signal no_health
 signal health_changed(value)
 signal energy_changed(value)
+signal hunger_changed(value)
 
 func _ready():
 	health = max_health
 	energy = max_energy
+	hunger = max_hunger
 
-	# If this is the global PlayerStats singleton, always enable regen
-	# Otherwise (for enemies), disable unless manually turned on
 	if self == PlayerStats:
 		health_regen_enabled = true
 
@@ -36,6 +47,7 @@ func _process(delta: float) -> void:
 	# Increment timers
 	time_since_damage += delta
 	energy_regen_timer += delta
+	hunger_timer += delta
 
 	# --- Health Regen ---
 	if health_regen_enabled and health < max_health:
@@ -50,13 +62,26 @@ func _process(delta: float) -> void:
 		energy_regen_timer = 0.0
 		add_energy(1)
 
+	# --- Hunger Decrease ---
+	if hunger_timer >= hunger_decrease_interval:
+		hunger_timer = 0.0
+		set_hunger(hunger - hunger_decrease_amount)
+
+	# --- Hunger Damage ---
+	if hunger <= 0:
+		hunger_damage_timer += delta
+		if hunger_damage_timer >= hunger_damage_interval:
+			hunger_damage_timer = 0.0
+			damage(hunger_damage_amount)
+	else:
+		hunger_damage_timer = 0.0  # reset if not starving
+
 # --- Health Functions ---
 func set_health(value: float) -> void:
 	var old_health = health
 	health = clamp(value, 0, max_health)
 	emit_signal("health_changed", health)
 
-	# Reset regen if damage occurred
 	if health < old_health:
 		time_since_damage = 0.0
 		health_regen_timer = 0.0
@@ -86,3 +111,11 @@ func consume_energy(amount: int) -> bool:
 
 func get_energy() -> int:
 	return energy
+
+# --- Hunger Functions ---
+func set_hunger(value: int) -> void:
+	hunger = clamp(value, 0, max_hunger)
+	emit_signal("hunger_changed", hunger)
+
+func get_hunger() -> int:
+	return hunger

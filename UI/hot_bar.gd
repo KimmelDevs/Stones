@@ -55,7 +55,7 @@ func get_selected_item():
 			return slot.item
 	return null
 
-# Handle slot clicks (drag & drop)
+# --- Drag & Drop Slot Handling ---
 func _on_slot_clicked(slot_index: int):
 	if DragManager.is_dragging:
 		var from_container = DragManager.source_container
@@ -80,3 +80,5 @@ func _on_slot_clicked(slot_index: int):
 		DragManager.stop_drag()
 
 	_update_selection()
+func invpass():
+	pass

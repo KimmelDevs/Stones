@@ -13,3 +13,5 @@ class_name InvItem
 
 # Food-specific field
 @export var nutrition: int = 0  # for food items, 0 by default
+
+@export var Item_Recipe: PackedStringArray

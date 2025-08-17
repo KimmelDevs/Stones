@@ -42,3 +42,16 @@ func remove_item_by_path(item_path: String, amount: int = 1) -> bool:
 			else:
 				return false
 	return false
+# ✅ New function: check if inventory has an item
+func has_item(item: InvItem, amount: int = 1) -> bool:
+	for slot in slots:
+		if slot.item == item and slot.amount >= amount:
+			return true
+	return false
+
+# ✅ Variant: check by resource path
+func has_item_by_path(item_path: String, amount: int = 1) -> bool:
+	for slot in slots:
+		if slot.item and slot.item.resource_path == item_path and slot.amount >= amount:
+			return true
+	return false

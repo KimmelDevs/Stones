@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cv527me2my6r"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_v1wyl"]
+[ext_resource type="Texture2D" uid="uid://dpipriihb57m2" path="res://World/Mushrooms/Textures/Red_Mushroomitem.png" id="2_rbc5c"]
+
+[resource]
+script = ExtResource("1_v1wyl")
+name = "Red Mushroom"
+texture = ExtResource("2_rbc5c")
+Category = "Food"
+weapon_type = ""
+knockback_strength = 1.0
+damage = -4
+nutrition = 10
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

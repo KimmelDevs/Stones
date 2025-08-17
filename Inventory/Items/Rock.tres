@@ -8,10 +8,11 @@
 script = ExtResource("1_nnnwm")
 name = "Rock"
 texture = ExtResource("2_nnnwm")
-Category = "Material"
+Category = "Weapon"
 weapon_type = ""
 skill_scene = ExtResource("2_ho8fk")
 knockback_strength = 1.0
 damage = 2
 nutrition = 0
+Item_Recipe = PackedStringArray()
 metadata/_custom_type_script = "uid://uwnnphlcerum"

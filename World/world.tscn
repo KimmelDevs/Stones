@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=34 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -15,14 +15,18 @@
 [ext_resource type="PackedScene" uid="uid://cwdlbc6m1xshi" path="res://World/ball.tscn" id="11_0wqet"]
 [ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/energy_bar.tscn" id="12_5xkvv"]
 [ext_resource type="PackedScene" uid="uid://cya15mec3w7cs" path="res://World/scenes/rock.tscn" id="12_26uyv"]
+[ext_resource type="PackedScene" uid="uid://c7nhim20dyyit" path="res://World/Mushrooms/Scenes/algaric_mushroom.tscn" id="12_dqu5g"]
 [ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="12_h2aik"]
-[ext_resource type="Texture2D" uid="uid://ddqk2sivyunbq" path="res://World/treegr.png" id="13_dqu5g"]
 [ext_resource type="PackedScene" uid="uid://c1misyki6xqvj" path="res://Inventory/inv_ui.tscn" id="13_kcyjf"]
+[ext_resource type="PackedScene" uid="uid://mvlk4db7rxtx" path="res://World/Mushrooms/Scenes/red_mushroom.tscn" id="13_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://cv3yi7o2jq3qt" path="res://UI/health_ui.tscn" id="14_awrha"]
+[ext_resource type="PackedScene" uid="uid://cltirdoa42djx" path="res://World/scenes/tall_grass.tscn" id="14_yfuda"]
 [ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="15_f23eu"]
+[ext_resource type="PackedScene" uid="uid://dyqjkvrd48ovr" path="res://World/scenes/mugworth_plant.tscn" id="15_i8dl0"]
 [ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
+[ext_resource type="PackedScene" uid="uid://bpv50hf4owdoh" path="res://UI/hunger_bar.tscn" id="17_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
-[ext_resource type="Texture2D" uid="uid://c6xot186lrq64" path="res://World/pine.png" id="23_o6lw0"]
+[ext_resource type="PackedScene" uid="uid://3dgnvw31287s" path="res://UI/Hand_Crafting.tscn" id="20_jf64p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkhv4"]
 texture = ExtResource("6_yf0ba")
@@ -1671,6 +1675,15 @@ position = Vector2(693, -125)
 [node name="Grass22" parent="Ysort/Grass" instance=ExtResource("10_lo5ox")]
 position = Vector2(692, -108)
 
+[node name="Grass36" parent="Ysort/Grass" instance=ExtResource("10_lo5ox")]
+position = Vector2(630, 109)
+
+[node name="Grass38" parent="Ysort/Grass" instance=ExtResource("10_lo5ox")]
+position = Vector2(526, 65)
+
+[node name="Grass37" parent="Ysort/Grass" instance=ExtResource("10_lo5ox")]
+position = Vector2(606, -7)
+
 [node name="Grass23" parent="Ysort/Grass" instance=ExtResource("10_lo5ox")]
 position = Vector2(692, -73)
 
@@ -1693,6 +1706,9 @@ position = Vector2(91, 283)
 [node name="Bat2" parent="Ysort/enemies" instance=ExtResource("12_h2aik")]
 position = Vector2(488, 92)
 
+[node name="MegaSlime" parent="Ysort/enemies" instance=ExtResource("15_f23eu")]
+position = Vector2(-109, 162)
+
 [node name="BerryBush" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
 
@@ -1703,10 +1719,19 @@ position = Vector2(150, 36)
 position = Vector2(377, 143)
 
 [node name="BerryBush5" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
-position = Vector2(603, 44)
+position = Vector2(591, 32)
 
 [node name="BerryBush3" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
 position = Vector2(342, -153)
+
+[node name="BerryBush7" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
+position = Vector2(495, -184)
+
+[node name="BerryBush8" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
+position = Vector2(518, -184)
+
+[node name="BerryBush9" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
+position = Vector2(541, -183)
 
 [node name="BerryBush4" parent="Ysort/BerryBush" instance=ExtResource("16_oeat8")]
 position = Vector2(272, -9)
@@ -1732,58 +1757,220 @@ position = Vector2(232, 27)
 [node name="Bush5" parent="Ysort/Bush" instance=ExtResource("6_eidgh")]
 position = Vector2(566, -117)
 
-[node name="Collectables" type="Node2D" parent="Ysort"]
-y_sort_enabled = true
+[node name="Collectibles" type="Node2D" parent="Ysort"]
 
-[node name="StickCollectable" parent="Ysort/Collectables" instance=ExtResource("19_xw5lg")]
+[node name="StickCollectable" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
 position = Vector2(286, 14)
 
-[node name="StickCollectable2" parent="Ysort/Collectables" instance=ExtResource("19_xw5lg")]
+[node name="StickCollectable2" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
 position = Vector2(228, -61)
 
-[node name="StickCollectable3" parent="Ysort/Collectables" instance=ExtResource("19_xw5lg")]
+[node name="StickCollectable3" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
 position = Vector2(554, 77)
 
-[node name="Rock" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(492, 159)
+[node name="StickCollectable4" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
+position = Vector2(471, -52)
 
-[node name="Rock2" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(480, 17)
+[node name="StickCollectable5" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
+position = Vector2(489, -104)
 
-[node name="Rock3" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(281, 271)
+[node name="StickCollectable6" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
+position = Vector2(434, 77)
 
-[node name="Rock4" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(183, 215)
+[node name="StickCollectable7" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
+position = Vector2(386, -33)
 
-[node name="Rock5" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(62, 197)
+[node name="StickCollectable8" parent="Ysort/Collectibles" instance=ExtResource("19_xw5lg")]
+position = Vector2(665, 154)
 
-[node name="Rock6" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(102, -170)
+[node name="Rock" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(243, 106)
 
-[node name="Rock8" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(700, -281)
+[node name="Rock2" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(269, 79)
 
-[node name="Rock9" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(489, -154)
+[node name="Rock12" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(53, 301)
 
-[node name="Rock10" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(721, 184)
+[node name="Rock11" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(451, 4.00001)
 
-[node name="Rock11" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(648, 165)
+[node name="Rock3" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(374, 101)
 
-[node name="Rock12" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(586, 284)
+[node name="Rock4" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(367, 39)
 
-[node name="Rock13" parent="Ysort/Collectables" instance=ExtResource("12_26uyv")]
-position = Vector2(368, 276)
+[node name="Rock5" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(480, 200)
 
-[node name="Treegr" type="Sprite2D" parent="Ysort/Collectables"]
-position = Vector2(267, 159)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("13_dqu5g")
+[node name="Rock6" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(414, 295)
+
+[node name="Rock7" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(142, 292)
+
+[node name="Rock8" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(51, 217)
+
+[node name="Rock9" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(45, 153)
+
+[node name="Rock10" parent="Ysort/Collectibles" instance=ExtResource("12_26uyv")]
+position = Vector2(100, -2.99998)
+
+[node name="TallGrass" type="Node2D" parent="Ysort"]
+y_sort_enabled = true
+
+[node name="TallGrass" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(422, 262)
+
+[node name="TallGrass2" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(423, 278)
+
+[node name="TallGrass3" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(422, 295)
+
+[node name="TallGrass4" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(491, 298)
+
+[node name="TallGrass5" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(443, 263)
+
+[node name="TallGrass6" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(444, 279)
+
+[node name="TallGrass7" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(444, 294)
+
+[node name="TallGrass8" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(509, 298)
+
+[node name="TallGrass9" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(466, 263)
+
+[node name="TallGrass25" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(143, 151)
+
+[node name="TallGrass26" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(163, 136)
+
+[node name="TallGrass27" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(164, 152)
+
+[node name="TallGrass28" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(164, 167)
+
+[node name="TallGrass29" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(186, 136)
+
+[node name="TallGrass30" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(218, -128)
+
+[node name="TallGrass31" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(175, -143)
+
+[node name="TallGrass32" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(176, -127)
+
+[node name="TallGrass33" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(195, -124)
+
+[node name="TallGrass34" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(198, -143)
+
+[node name="TallGrass10" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(467, 279)
+
+[node name="TallGrass11" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(467, 291)
+
+[node name="TallGrass12" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(491, 278)
+
+[node name="TallGrass13" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(473, 8)
+
+[node name="TallGrass14" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(474, 24)
+
+[node name="TallGrass15" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(473, 41)
+
+[node name="TallGrass16" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(333, -109)
+
+[node name="TallGrass17" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(494, 9)
+
+[node name="TallGrass18" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(696, 193)
+
+[node name="TallGrass19" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(696, 208)
+
+[node name="TallGrass20" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(351, -109)
+
+[node name="TallGrass21" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(718, 177)
+
+[node name="TallGrass22" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(719, 193)
+
+[node name="TallGrass23" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(498, 33)
+
+[node name="TallGrass24" parent="Ysort/TallGrass" instance=ExtResource("14_yfuda")]
+position = Vector2(333, -129)
+
+[node name="Mugsworth" type="Node2D" parent="Ysort"]
+y_sort_enabled = true
+
+[node name="MugworthPlant" parent="Ysort/Mugsworth" instance=ExtResource("15_i8dl0")]
+position = Vector2(647, -13)
+
+[node name="MugworthPlant2" parent="Ysort/Mugsworth" instance=ExtResource("15_i8dl0")]
+position = Vector2(380, 4)
+
+[node name="MugworthPlant3" parent="Ysort/Mugsworth" instance=ExtResource("15_i8dl0")]
+position = Vector2(256, -143)
+
+[node name="MugworthPlant4" parent="Ysort/Mugsworth" instance=ExtResource("15_i8dl0")]
+position = Vector2(270, 220)
+
+[node name="Mushroom" type="Node2D" parent="Ysort"]
+y_sort_enabled = true
+
+[node name="RedMushroom" parent="Ysort/Mushroom" instance=ExtResource("13_o6lw0")]
+position = Vector2(494, 171)
+
+[node name="RedMushroom5" parent="Ysort/Mushroom" instance=ExtResource("13_o6lw0")]
+position = Vector2(344, 299)
+
+[node name="RedMushroom2" parent="Ysort/Mushroom" instance=ExtResource("13_o6lw0")]
+position = Vector2(21, 109)
+
+[node name="RedMushroom3" parent="Ysort/Mushroom" instance=ExtResource("13_o6lw0")]
+position = Vector2(182, -37)
+
+[node name="RedMushroom4" parent="Ysort/Mushroom" instance=ExtResource("13_o6lw0")]
+position = Vector2(182, -37)
+
+[node name="AlgaricMushroom" parent="Ysort/Mushroom" instance=ExtResource("12_dqu5g")]
+position = Vector2(406, 214)
+
+[node name="AlgaricMushroom3" parent="Ysort/Mushroom" instance=ExtResource("12_dqu5g")]
+position = Vector2(384, -60)
+
+[node name="AlgaricMushroom4" parent="Ysort/Mushroom" instance=ExtResource("12_dqu5g")]
+position = Vector2(544, 38)
+
+[node name="AlgaricMushroom5" parent="Ysort/Mushroom" instance=ExtResource("12_dqu5g")]
+position = Vector2(564, 292)
+
+[node name="AlgaricMushroom2" parent="Ysort/Mushroom" instance=ExtResource("12_dqu5g")]
+position = Vector2(357, 284)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1792,22 +1979,40 @@ offset_left = 84.0
 offset_top = 149.0
 offset_right = 124.0
 offset_bottom = 189.0
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource("14_awrha")]
 offset_left = 4.0
 offset_top = 5.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hand_Crafting" parent="CanvasLayer" instance=ExtResource("20_jf64p")]
+offset_left = 169.0
+offset_top = 26.0
+offset_right = 169.0
+offset_bottom = 26.0
 
 [node name="EnergyBar" parent="CanvasLayer" instance=ExtResource("12_5xkvv")]
 offset_left = 305.0
 offset_top = 85.0
 offset_right = 318.0
 offset_bottom = 166.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HungerBar" parent="CanvasLayer" instance=ExtResource("17_o6lw0")]
+offset_left = 219.0
+offset_top = 2.0
+offset_right = 314.0
+offset_bottom = 16.0
+fill_mode = 0
 
 [node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("13_kcyjf")]
 offset_top = 24.0
 offset_bottom = 64.0
+metadata/_edit_use_anchors_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
 position = Vector2(0, -20)
 tile_map_data = PackedByteArray("AAAgAP3/AAAAAAAAAAAgAP7/AAAAAAEAAAAgAP//AAAAAAIAAAAhAAAAAAAAAAIAAAAiAAAAAAACAAIAAAAiAP//AAAFAAEAAAAhAP//AAAGAAEAAAAhAP7/AAABAAEAAAAhAP3/AAAJAAEAAAAiAP3/AAABAAEAAAAiAP7/AAABAAEAAAAjAP//AAABAAIAAAAjAP7/AAABAAEAAAAkAP//AAACAAIAAAAkAP7/AAAFAAEAAAAkAP3/AAABAAEAAAAjAP3/AAABAAEAAAAjAPz/AAABAAEAAAAkAPz/AAAFAAIAAAAkAPv/AAACAAAAAAAjAPv/AAABAAAAAAAiAPv/AAAAAAAAAAAiAPz/AAAGAAIAAAAhAPz/AAAAAAAAAAAlAP3/AAAKAAMAAAAlAP7/AAACAAIAAAAlAPz/AAACAAAAAAAmAP3/AAACAAMAAAAoABAAAAAEAAIAAAAoABEAAAAAAAEAAAAoABIAAAAAAAIAAAApABIAAAAGAAEAAAAqABIAAAABAAEAAAAqABEAAAABAAEAAAApABEAAAABAAEAAAApABAAAAABAAEAAAAqABAAAAABAAEAAAArABIAAAAFAAEAAAAsABIAAAACAAIAAAAsABEAAAACAAAAAAArABEAAAAFAAIAAAArABAAAAACAAEAAAArAA8AAAACAAAAAAAqAA8AAAABAAAAAAApAA8AAAABAAAAAAAoAA8AAAAEAAAAAAApABMAAAAAAAIAAAAqABMAAAABAAIAAAArABMAAAACAAIAAAA0AAMAAAAAAAAAAAA0AAQAAAAAAAEAAAA0AAUAAAABAAEAAAA0AAYAAAAGAAEAAAA0AAcAAAAAAAIAAAA1AAcAAAABAAIAAAA1AAYAAAABAAEAAAA1AAUAAAABAAEAAAA1AAQAAAABAAEAAAA1AAMAAAAIAAIAAAA2AAUAAAABAAEAAAA3AAUAAAACAAEAAAA3AAYAAAACAAEAAAA2AAYAAAABAAEAAAA2AAcAAAABAAIAAAA3AAcAAAACAAIAAAAzAAUAAAAAAAAAAAAzAAYAAAAAAAIAAAA3AAQAAAACAAAAAAA2AAQAAAAFAAIAAAA2AAMAAAACAAAAAAA1AAIAAAADAAAAAAAHAO//AAAAAAAAAAAHAPD/AAAAAAEAAAAHAPH/AAAAAAIAAAAIAPH/AAABAAIAAAAMAPD/AAACAAIAAAAMAO//AAACAAAAAAALAO//AAABAAAAAAAKAO//AAABAAAAAAAJAO//AAABAAAAAAAIAO//AAABAAAAAAAIAPD/AAABAAEAAAAJAPD/AAABAAEAAAAKAPD/AAABAAEAAAALAPD/AAAFAAEAAAD6//f/AgAAAAAAAAD8//f/AgAGAAIAAAD9//f/AgABAAEAAAD+//f/AgABAAEAAAD///f/AgABAAEAAAAAAPf/AgAFAAIAAAABAPf/AgABAAAAAAAAAPb/AgACAAAAAAD///b/AgABAAAAAAD+//b/AgABAAAAAAD9//b/AgABAAAAAAD8//b/AgAAAAAAAAD6//j/AgAGAAIAAAD5//n/AgAAAAEAAAD5//v/AgAAAAEAAAD5//z/AgAAAAEAAAD5//3/AgAAAAEAAAD5//7/AgAAAAEAAAD5////AgAAAAEAAAD5/wAAAgAAAAEAAAD5/wEAAgAAAAEAAAD5/wIAAgAAAAEAAAD5/wMAAgAAAAEAAAD5/wQAAgAAAAIAAAD6/wQAAgABAAIAAAD7/wUAAgAAAAIAAAD8/wUAAgABAAIAAAD9/wUAAgABAAIAAAD+/wUAAgABAAIAAAD//wUAAgABAAIAAAAAAAUAAgACAAIAAAABAAQAAgABAAIAAAACAAQAAgACAAIAAAADAAIAAgACAAEAAAADAAEAAgACAAEAAAAEAAAAAgACAAIAAAAFAP//AgACAAIAAAAGAP7/AgACAAIAAAAGAP3/AgACAAEAAAAGAPz/AgACAAEAAAAGAPv/AgACAAEAAAAGAPr/AgACAAEAAAAGAPn/AgACAAEAAAAGAPj/AgACAAEAAAAGAPf/AgACAAAAAAAFAPf/AgABAAAAAAAEAPf/AgABAAAAAAACAAMAAgAFAAEAAAADAAMAAgACAAIAAAD7//f/AgABAAAAAAD5//j/AgAAAAAAAAD6//n/AgABAAEAAAD7//j/AgABAAEAAAD8//j/AgABAAEAAAD9//j/AgABAAEAAAD+//j/AgABAAEAAAD///j/AgABAAEAAAAAAPj/AgABAAEAAAABAPj/AgABAAEAAAACAPj/AgABAAEAAAADAPj/AgABAAEAAAAEAPj/AgABAAEAAAAFAPj/AgABAAEAAAAFAPn/AgABAAEAAAAFAPr/AgABAAEAAAAEAPr/AgABAAEAAAAEAPn/AgABAAEAAAADAPn/AgABAAEAAAACAPn/AgABAAEAAAABAPn/AgABAAEAAAAAAPn/AgABAAEAAAD///n/AgABAAEAAAD+//n/AgABAAEAAAD9//n/AgABAAEAAAD8//n/AgABAAEAAAD7//n/AgABAAEAAAD7//r/AgABAAEAAAD6//r/AgABAAEAAAD6//v/AgABAAEAAAD6//z/AgABAAEAAAD6//3/AgABAAEAAAD7//3/AgABAAEAAAD7//7/AgABAAEAAAD6//7/AgABAAEAAAD6////AgABAAEAAAD6/wAAAgABAAEAAAD6/wEAAgABAAEAAAD6/wIAAgABAAEAAAD6/wMAAgABAAEAAAD7/wMAAgABAAEAAAD7/wQAAgAGAAEAAAD8/wQAAgABAAEAAAD9/wQAAgABAAEAAAD+/wQAAgABAAEAAAD//wQAAgABAAEAAAAAAAQAAgAFAAEAAAAAAAMAAgABAAEAAAABAAMAAgABAAEAAAABAAIAAgABAAEAAAACAAIAAgABAAEAAAACAAEAAgABAAEAAAADAAAAAgAFAAEAAAADAP//AgABAAEAAAAEAP//AgAFAAEAAAAEAP7/AgABAAEAAAAFAP7/AgAFAAEAAAAFAP3/AgABAAEAAAAFAPz/AgABAAEAAAAFAPv/AgABAAEAAAAEAPv/AgABAAEAAAADAPr/AgABAAEAAAACAPr/AgABAAEAAAABAPr/AgABAAEAAAAAAPr/AgABAAEAAAD///r/AgABAAEAAAD+//r/AgABAAEAAAD9//r/AgABAAEAAAD8//r/AgABAAEAAAD7//v/AgABAAEAAAD7//z/AgABAAEAAAD7////AgABAAEAAAD7/wAAAgABAAEAAAD7/wEAAgABAAEAAAD8/wIAAgABAAEAAAD8/wMAAgABAAEAAAD8/wAAAgABAAEAAAD8////AgABAAEAAAD8//7/AgABAAEAAAD8//3/AgABAAEAAAD8//z/AgABAAEAAAD8//v/AgABAAEAAAD8/wEAAgABAAEAAAD7/wIAAgABAAEAAAD9/wMAAgABAAEAAAD9/wIAAgABAAEAAAD9/wEAAgABAAEAAAD9/wAAAgABAAEAAAD9////AgABAAEAAAD9//7/AgABAAEAAAD9//3/AgABAAEAAAD9//z/AgABAAEAAAD9//v/AgABAAEAAAD+/wEAAgABAAEAAAD+/wIAAgABAAEAAAD+/wMAAgABAAEAAAD+////AgABAAEAAAD+//7/AgABAAEAAAD+//3/AgABAAEAAAD+//z/AgABAAEAAAD+//v/AgABAAEAAAD+/wAAAgABAAEAAAD//wMAAgABAAEAAAD//wIAAgABAAEAAAD//wEAAgABAAEAAAD//wAAAgABAAEAAAD///3/AgABAAEAAAD///z/AgABAAEAAAD///v/AgABAAEAAAD///7/AgABAAEAAAD/////AgABAAEAAAAAAAIAAgABAAEAAAAAAP//AgABAAEAAAAAAP7/AgABAAEAAAAAAP3/AgABAAEAAAAAAPz/AgABAAEAAAAAAPv/AgABAAEAAAAAAAAAAgABAAEAAAAAAAEAAgABAAEAAAABAAAAAgABAAEAAAABAP//AgABAAEAAAABAP7/AgABAAEAAAABAP3/AgABAAEAAAABAPz/AgABAAEAAAABAPv/AgABAAEAAAABAAEAAgABAAEAAAACAP7/AgABAAEAAAACAP3/AgABAAEAAAACAPz/AgABAAEAAAACAPv/AgABAAEAAAACAP//AgABAAEAAAACAAAAAgABAAEAAAADAP7/AgABAAEAAAADAP3/AgABAAEAAAADAPz/AgABAAEAAAADAPv/AgABAAEAAAAEAP3/AgABAAEAAAAEAPz/AgABAAEAAAACAPf/AgABAAAAAAADAPf/AgABAAAAAAD5//r/AgAAAAEAAAAiABAAAgAAAAIAAAAjABAAAgABAAIAAAAjAA8AAgABAAEAAAAjAA4AAgABAAEAAAAjAA0AAgABAAAAAAAkAA0AAgABAAAAAAAlAA0AAgACAAAAAAAlAA4AAgACAAEAAAAlAA8AAgACAAIAAAAkAA8AAgAFAAEAAAAkABAAAgACAAIAAAAiAA8AAgAAAAEAAAAiAA4AAgAAAAEAAAAiAA0AAgAAAAAAAAAkAA4AAgABAAEAAAAlAPb/AgAAAAAAAAAlAPf/AgAAAAEAAAAlAPj/AgAAAAIAAAAmAPj/AgABAAIAAAAnAPj/AgAGAAEAAAAnAPf/AgABAAEAAAAoAPf/AgACAAEAAAAoAPb/AgACAAAAAAAnAPb/AgABAAAAAAAmAPb/AgABAAAAAAAmAPf/AgABAAEAAAAoAPj/AgACAAEAAAAoAPn/AgAHAAEAAAAnAPn/AgAAAAIAAAAJABAAAAABAAEAAAAJABEAAAABAAEAAAAJABIAAAABAAIAAAAKABIAAAABAAIAAAAKABEAAAABAAEAAAAKABAAAAABAAEAAAALABEAAAAFAAIAAAALABIAAAABAAIAAAAMABIAAAACAAIAAAAIABIAAAAAAAIAAAAIABEAAAAGAAEAAAAIABAAAAAGAAIAAAAIAA8AAAAAAAAAAAAJAA8AAAAGAAIAAAAKAA8AAAAFAAIAAAALAA8AAAACAAAAAAALABAAAAACAAEAAAAMABEAAAACAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAACAAAAAAAHABAAAAAAAAAAAAAHABEAAAAAAAIAAAAoAPr/AgADAAIAAAA=")
 tile_set = SubResource("TileSet_oe8m4")
@@ -1820,11 +2025,3 @@ position = Vector2(-9, 256)
 
 [node name="Blockers4" parent="." instance=ExtResource("10_w47uh")]
 position = Vector2(-40, -214)
-
-[node name="MegaSlime" parent="." instance=ExtResource("15_f23eu")]
-position = Vector2(-109, 162)
-
-[node name="Pine" type="Sprite2D" parent="."]
-position = Vector2(525, -13)
-scale = Vector2(0.529167, 0.529167)
-texture = ExtResource("23_o6lw0")

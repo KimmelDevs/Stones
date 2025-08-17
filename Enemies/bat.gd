@@ -31,7 +31,6 @@ var can_attack: bool = true
 @onready var stats = $Stats
 @onready var playerdetectionzone = $PlayerDetectionArea
 @onready var sprite = $AnimatedSprite2D
-@onready var anim_player = $AnimationPlayer
 
 # --- State machine ---
 enum { IDLE, WANDER, CHASE, ANTICIPATE, DIVE, RECOVER }

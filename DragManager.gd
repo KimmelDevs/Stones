@@ -26,4 +26,5 @@ func stop_drag():
 
 func update_drag_position():
 	if is_dragging:
-		dragged_icon.global_position = get_viewport().get_mouse_position()
+		# Offset so mouse feels like it grabs the item
+		dragged_icon.global_position = get_viewport().get_mouse_position() + Vector2(8, 8)

@@ -3,8 +3,8 @@ extends Control
 @onready var inv = preload("res://Inventory/playerinventory.tres")
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 
-var is_open = false
-var start_index = 6   # offset if hotbar uses first slots in inv
+var is_open: bool = false
+var start_index: int = 6   # offset if hotbar uses first slots in inv
 
 func _ready():
 	close()
@@ -20,8 +20,12 @@ func update_slots():
 	for i in range(min(inv.slots.size() - start_index, slots.size())):
 		slots[i].slot_index = i + start_index
 		slots[i].update(inv.slots[i + start_index])
+		
+	# If there are more slots than inventory items, clear them
+	for i in range(inv.slots.size() - start_index, slots.size()):
+		slots[i].update(null)
 
-func _process(delta):
+func _process(delta: float) -> void:
 	# Handle dragging icon following mouse
 	if DragManager.is_dragging:
 		DragManager.update_drag_position()
@@ -32,7 +36,7 @@ func _process(delta):
 		else:
 			open()
 
-func _on_slot_clicked(slot_index: int):
+func _on_slot_clicked(slot_index: int) -> void:
 	if DragManager.is_dragging:
 		var from_container = DragManager.source_container
 		var from_index = DragManager.selected_slot_index
@@ -55,23 +59,25 @@ func _on_slot_clicked(slot_index: int):
 		# End drag
 		DragManager.stop_drag()
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	# Cancel drag if left click outside slots
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if DragManager.is_dragging:
-			var hovered_slot = false
-			var mouse_pos = get_global_mouse_position()
+			var hovered_slot := false
+			var mouse_pos: Vector2 = get_global_mouse_position()
 			for slot in slots:
 				if slot.get_global_rect().has_point(mouse_pos):
 					hovered_slot = true
 					break
-			if !hovered_slot:
+			if not hovered_slot:
 				DragManager.stop_drag()
 
-func open():
+func open() -> void:
 	visible = true
 	is_open = true
 
-func close():
+func close() -> void:
 	visible = false
 	is_open = false
+func invpass():
+	pass

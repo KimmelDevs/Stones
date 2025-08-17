@@ -59,6 +59,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4k3m"]
+size = Vector2(20, 17)
 
 [node name="TallGrass" type="Node2D"]
 script = ExtResource("1_nb6hl")
@@ -82,7 +83,7 @@ libraries = {
 collision_mask = 22
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, -5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_g4k3m")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

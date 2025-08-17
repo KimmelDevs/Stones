@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://biubxd4ucuro4"]
+[gd_scene load_steps=9 format=3 uid="uid://b0ploua3op2kd"]
 
 [ext_resource type="Script" uid="uid://cyh715bhodluf" path="res://World/berry_bush.gd" id="1_h8k17"]
 [ext_resource type="Texture2D" uid="uid://dg3cnj7v3w304" path="res://World/Bush with berries 32 px.png" id="1_r4pop"]

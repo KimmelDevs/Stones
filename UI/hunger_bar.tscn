@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpv50hf4owdoh"]
+
+[ext_resource type="Script" uid="uid://ct3ps6gjv0tu0" path="res://UI/hunger_bar.gd" id="1_6kdvs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4oya"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8pua"]
+bg_color = Color(0.554842, 0.267291, 0.194584, 1)
+
+[node name="HungerBar" type="ProgressBar"]
+offset_right = 7.0
+offset_bottom = 53.0
+theme_override_styles/background = SubResource("StyleBoxFlat_u4oya")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q8pua")
+show_percentage = false
+script = ExtResource("1_6kdvs")

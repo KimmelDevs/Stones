@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctt8s75kfobi4"
-path="res://.godot/imported/mushroom.png-87ff31b78d99f649ef2d96d825b191d8.ctex"
+uid="uid://co517lf1ikqmm"
+path="res://.godot/imported/Christmas_tree1.png-6d33d61a4be9787fd73cdd4dfbcf4f76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/mushroom.png"
-dest_files=["res://.godot/imported/mushroom.png-87ff31b78d99f649ef2d96d825b191d8.ctex"]
+source_file="res://World/Christmas_tree1.png"
+dest_files=["res://.godot/imported/Christmas_tree1.png-6d33d61a4be9787fd73cdd4dfbcf4f76.ctex"]
 
 [params]
 
