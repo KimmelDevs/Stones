@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dosk5ag1kmxb7"]
+[gd_scene load_steps=9 format=3 uid="uid://dosk5ag1kmxb7"]
 
 [ext_resource type="Script" uid="uid://b3tov4304gnbg" path="res://megaspit.gd" id="1_v0yrn"]
 [ext_resource type="Texture2D" uid="uid://y8fcniw36n1u" path="res://Enemies/slime.png" id="2_t2ki0"]
@@ -58,9 +58,6 @@ _data = {
 &"spit": SubResource("Animation_4ep3j")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mmoqc"]
-radius = 12.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ep3j"]
 radius = 5.09902
 
@@ -78,13 +75,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_500x2")
 }
 
-[node name="ExplosionArea" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
-shape = SubResource("CircleShape2D_mmoqc")
-
 [node name="HitBox" parent="." instance=ExtResource("3_t2ki0")]
 collision_layer = 32
 collision_mask = 16
@@ -93,7 +83,6 @@ collision_mask = 16
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_4ep3j")
 
-[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 
 [editable path="HitBox"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cxe0xx02ddcl5"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_khe3q"]
+[ext_resource type="Texture2D" uid="uid://cyl5op08pfjy7" path="res://Equipments/Textures/axe.png" id="2_idsy3"]
+
+[resource]
+script = ExtResource("1_khe3q")
+name = ""
+texture = ExtResource("2_idsy3")
+Category = "Weapon"
+weapon_type = ""
+knockback_strength = 1.0
+damage = 3
+nutrition = 0
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

@@ -25,6 +25,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var anticipation_time: float = 0.4
 @export var recovery_time: float = 0.6
 var can_attack: bool = true
+@onready var hitbox = $HitBox
 
 # --- Nodes ---
 @onready var hurtbox = $HurtBox
@@ -54,6 +55,8 @@ var attack_timer: float = 0.0
 
 func _ready() -> void:
 	home_position = global_position
+	hitbox.damage = 2
+	hitbox.knockback_vector = Vector2(1, 0)
 
 func _physics_process(delta: float) -> void:
 	seek_player()

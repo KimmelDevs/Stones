@@ -11,5 +11,6 @@ Category = "Food"
 weapon_type = ""
 knockback_strength = 1.0
 damage = 1
-nutrition = 0
+nutrition = 8
+Item_Recipe = PackedStringArray()
 metadata/_custom_type_script = "uid://uwnnphlcerum"

@@ -17,11 +17,11 @@ var health_regen_timer: float = 0.0
 @export var energy_regen_interval: float = 2.0
 var energy: int
 var energy_regen_timer: float = 0.0
-
+@export var player = false
 # --- Hunger ---
 @export var max_hunger: int = 100
-@export var hunger_decrease_interval: float = 2.0
-@export var hunger_decrease_amount: int = 10
+@export var hunger_decrease_interval: float = 10.0
+@export var hunger_decrease_amount: int = 2
 @export var hunger_damage_interval: float = 5.0
 @export var hunger_damage_amount: float = 1.0
 
@@ -42,6 +42,7 @@ func _ready():
 
 	if self == PlayerStats:
 		health_regen_enabled = true
+		player = true
 
 func _process(delta: float) -> void:
 	# Increment timers
@@ -65,7 +66,8 @@ func _process(delta: float) -> void:
 	# --- Hunger Decrease ---
 	if hunger_timer >= hunger_decrease_interval:
 		hunger_timer = 0.0
-		set_hunger(hunger - hunger_decrease_amount)
+		if player == true:
+			set_hunger(hunger - hunger_decrease_amount)
 
 	# --- Hunger Damage ---
 	if hunger <= 0:

@@ -11,7 +11,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	anim.play("Normal")
 
 	# 5% chance to spawn an enemy
-	if randf() <= 0.01:
+	if randf() <= 0.02:
 		var enemy_scene: PackedScene
 		if randi() % 2 == 0:
 			enemy_scene = bat_scene

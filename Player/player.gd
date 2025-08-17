@@ -9,9 +9,12 @@ extends CharacterBody2D
 @export var max_hunger: int = 100
 var hunger: int = max_hunger
 var equipped_food: InvItem = null  # store the current food
-
+@onready var camera_shake = $Camera2D
 signal hunger_changed(value)
-
+var knockback: Vector2 = Vector2.ZERO
+@export var knockback_speed: float = 200.0
+@export var knockback_duration: float = 0.2
+var knockback_timer: float = 0.0
 
 # --- State Variables ---
 var last_direction := "down"
@@ -57,6 +60,11 @@ func _physics_process(delta: float) -> void:
 			is_attacking = false
 			can_move = true
 			play_idle_animation()
+		return
+	if knockback_timer > 0:
+		velocity = knockback
+		move_and_slide()
+		knockback_timer -= delta
 		return
 
 	# --- Attack Input ---
@@ -341,13 +349,22 @@ func play_idle_animation() -> void:
 		"down":  animation_player.play("idle_down")
 
 # --- When Hit ---
-func _on_hurt_box_area_entered(_area: Area2D):
+func _on_hurt_box_area_entered(area: Area2D):
+	knockback = area.knockback_vector * knockback_speed
+	knockback_timer = knockback_duration
+	stats.set_health(stats.health - area.damage)
+	hurtbox.create_hit_effect()
 	stats.set_health(stats.health - 1)
 	hurtbox.start_invisibility(2)
 	hurtbox.create_hit_effect()
+	camera_shake.add_trauma(0.9)
 
 func player():
 	pass
 
 func collect(item):
 	Inv.insert(item)
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	camera_shake.add_trauma(0.7)

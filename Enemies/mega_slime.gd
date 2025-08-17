@@ -26,7 +26,7 @@ var state = IDLE
 @onready var playerdetectionzone = $PlayerDetectionArea
 @onready var sprite = $Sprite2D
 @onready var anim_player = $AnimationPlayer
-
+@onready var hit_box = $Marker2D/HitBox
 # --- Scenes ---
 var MegaSpitScene := preload("res://Enemies/Projectiles/megaspit.tscn")
 #var SmallSlimeScene := preload("res://Enemies/small_slime.tscn")
@@ -37,18 +37,29 @@ var DeathEffectScene := preload("res://Effects/slime_death.tscn")
 var move_velocity: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
 var dying: bool = false
+var knockback_force =1
 var home_position: Vector2
 var is_jumping := false
 var can_jump := true
 var jump_count := 0
 var jump_target: Vector2 = Vector2.ZERO
-
+@export var damage := 1
 func _ready() -> void:
 	home_position = global_position
+	# Set damage directly to 2
+	hit_box.damage = damage
+	
+	# Set knockback direction from spit velocity
+	if velocity != Vector2.ZERO:
+		hit_box.knockback_vector = velocity.normalized() * knockback_force
+
 
 func _physics_process(delta: float) -> void:
 	seek_player()
+	global_position += velocity * delta
 
+	if velocity != Vector2.ZERO:
+		hit_box.knockback_vector = velocity.normalized() * knockback_force
 	if knockback_timer > 0:
 		velocity = knockback
 		knockback_timer -= delta
