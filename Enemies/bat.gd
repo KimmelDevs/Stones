@@ -19,7 +19,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var unpredictability: float = 0.005
 
 # --- Attack ---
-@export var attack_range: float = 40.0
+@export var attack_range: float = 50.0
 @export var attack_cooldown: float = 0.5
 @export var attack_dive_speed: float = 180.0
 @export var anticipation_time: float = 0.4
@@ -188,6 +188,7 @@ func spawn_Death_effect() -> void:
 	var effect_instance = effect_scene.instantiate()
 	effect_instance.global_position = global_position
 	get_parent().add_child(effect_instance)
+	
 
 func update_sprite_facing(direction: Vector2) -> void:
 	if abs(direction.x) > abs(direction.y):

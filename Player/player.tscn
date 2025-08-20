@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://lcry2kftthrf"]
+[gd_scene load_steps=32 format=3 uid="uid://lcry2kftthrf"]
 
 [ext_resource type="Script" uid="uid://ceqyqtsclonag" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://55jji1oqq4k8" path="res://Player/Player.png" id="1_l8h54"]
@@ -6,8 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://lqpi74afqnac" path="res://Shadows/MediumShadow.png" id="2_k53q1"]
 [ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="3_btcbx"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="4_gwnis"]
+[ext_resource type="Texture2D" uid="uid://0xub66i5tdl5" path="res://Inventory/textures/longstick.png" id="6_00tjw"]
 [ext_resource type="Script" uid="uid://baeihay0mma03" path="res://Player/sword.gd" id="6_od3ui"]
 [ext_resource type="Texture2D" uid="uid://c3uiva07c0kx0" path="res://Equipments/Textures/sword.png" id="6_vtle1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3vf3"]
+radius = 49.735
+height = 140.127
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwnis"]
 radius = 4.10079
@@ -139,6 +144,78 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LongSword/Marker2D/Sprite2D:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-19, -1.99993)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LongSword/Marker2D/Sprite2D:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.34223]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.329867]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6.17648, 2.50911)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("LongSword/Marker2D/Sprite2D:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_b1ygp"]
 resource_name = "attack_down"
@@ -239,6 +316,78 @@ tracks/7/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LongSword/Marker2D/Sprite2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.101641, 0.203281, 0.302211),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.99993, -20), Vector2(30, 0.999895), Vector2(24.0001, 14.9999), Vector2(12.0001, 22)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LongSword/Marker2D/Sprite2D:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.101641, 0.203281, 0.302211),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.905826, 0.647517, 1.18682, 1.72613]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LongSword/Marker2D/Sprite2D:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.39301),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-39.5693, 124.011)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.93033]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.102996, 0.302211),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_lfmf2"]
 resource_name = "attack_left"
@@ -338,6 +487,78 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LongSword/Marker2D/Sprite2D:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.102996, 0.19786, 0.308987),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-2.34223, -3.23933, -4.49597, -5.2133]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LongSword/Marker2D/Sprite2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.102996, 0.19786, 0.308987),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-17, -1.99994), Vector2(-5.99992, 21), Vector2(13.0001, 23), Vector2(24, 4.99991)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LongSword/Marker2D/Sprite2D:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.351676),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.102996, 0.302889),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.102996),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-150.744, 54.0421), Vector2(-150.744, 54.0421)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.102996),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.441568, -0.441568]
 }
 
 [sub_resource type="Animation" id="Animation_dkpta"]
@@ -451,6 +672,78 @@ tracks/8/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LongSword/Marker2D/Sprite2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.100285, 0.20938, 0.304244),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-19, -1.99993), Vector2(-2.00007, -20), Vector2(16.9999, -14.0001), Vector2(25, -2.00009)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LongSword/Marker2D/Sprite2D:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.100285, 0.20938, 0.304244),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-2.34223, -1.51495, -0.275762, 0.551524]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.329867]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6.17648, 2.50911)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.100285, 0.101641, 0.303566),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LongSword/Marker2D/Sprite2D:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_pisgm"]
 resource_name = "attack_up"
@@ -547,6 +840,78 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LongSword/Marker2D/Sprite2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.105029, 0.205314, 0.302889),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.999926, 21), Vector2(-22, 7.82013e-05), Vector2(-11.0001, -18), Vector2(-1.0001, -27)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LongSword/Marker2D/Sprite2D:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.105029, 0.205314, 0.302889),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-3.95841, -2.47837, -1.76104, -1.09781]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.105029, 0.301534),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.105029),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-110.983, -34.0682), Vector2(-110.983, -34.0682)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LongSword/Marker2D/HitBox/CollisionShape2D:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.105029),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.93033, -1.93033]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LongSword/Marker2D/Sprite2D:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.372004),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1103,6 +1468,32 @@ collision_layer = 66
 script = ExtResource("1_4ntmi")
 Inv = ExtResource("2_fhl08")
 
+[node name="LongSword" type="Node2D" parent="."]
+script = ExtResource("6_od3ui")
+
+[node name="Marker2D" type="Marker2D" parent="LongSword"]
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="LongSword/Marker2D"]
+visible = false
+position = Vector2(-19, -1.99993)
+rotation = -2.34223
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_00tjw")
+
+[node name="HitBox" parent="LongSword/Marker2D" instance=ExtResource("3_btcbx")]
+position = Vector2(0.999908, -25)
+rotation = -1.18493
+scale = Vector2(0.3, 0.3)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="LongSword/Marker2D/HitBox" index="0"]
+position = Vector2(-6.17648, 2.50911)
+rotation = -0.329867
+shape = SubResource("CapsuleShape2D_x3vf3")
+disabled = true
+
 [node name="Sword" type="Node2D" parent="."]
 script = ExtResource("6_od3ui")
 
@@ -1159,10 +1550,13 @@ shape = SubResource("CapsuleShape2D_k53q1")
 
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="area_entered" from="LongSword/Marker2D/HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="LongSword/Marker2D/HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="area_entered" from="Sword/Marker2D/HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="area_exited" from="Sword/Marker2D/HitBox" to="." method="_on_hit_box_area_exited"]
+[connection signal="body_entered" from="Sword/Marker2D/HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
+[editable path="LongSword/Marker2D/HitBox"]
 [editable path="Sword/Marker2D/HitBox"]
 [editable path="HurtBox"]

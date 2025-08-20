@@ -26,6 +26,7 @@ var can_roll := true
 var is_attacking := false
 var attack_timer := 0.0
 
+
 var equipped_weapon: Node = null    # reference to the weapon node
 var weapon_damage: int = 0          # damage of the equipped weapon
 var weapon_knockback: float = 0.0   # knockback strength of the equipped weapon
@@ -35,7 +36,10 @@ var equipped_skill: Node = null
 var stats = PlayerStats
 @onready var hurtbox = $HurtBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sword_hitbox: Area2D = $Sword/Marker2D/HitBox
+@onready var sword_node = $Sword
+@onready var longsword_node = $LongSword
+var weapon_hitbox: Area2D = null
+
 
 
 func _ready():
@@ -151,7 +155,7 @@ func get_nearest_bush() -> Node:
 			nearest_dist = dist
 
 	return nearest_bush
-# --- Equip Item ---
+
 func equip_item(item: InvItem) -> void:
 	if not item:
 		print("No item equipped")
@@ -168,21 +172,50 @@ func equip_item(item: InvItem) -> void:
 		_:
 			print("Item category not handled: ", item.Category)
 			_clear_weapon()
+
+
 func _equip_weapon(item: InvItem) -> void:
-	if not $Sword:
-		push_error("Sword node not found!")
-		_clear_weapon()
+	# Hide both weapon nodes first
+	if sword_node:
+		sword_node.hide()
+	if longsword_node:
+		longsword_node.hide()
+
+	# Reset everything to avoid stale values
+	equipped_weapon = null
+	weapon_hitbox = null
+	weapon_damage = 0
+	weapon_knockback = 0.0
+
+	# Pick the right weapon node
+	match item.weapon_type:
+		"Short":
+			if sword_node:
+				equipped_weapon = sword_node
+				weapon_hitbox = sword_node.get_node("Marker2D/HitBox")
+				print(weapon_hitbox)
+		"Long":
+			if longsword_node:
+				equipped_weapon = longsword_node
+				weapon_hitbox = longsword_node.get_node("Marker2D/HitBox")
+				print(weapon_hitbox)
+		_:
+			push_error("Unknown weapon_type: %s" % item.weapon_type)
+			return
+
+	# Apply stats
+	if equipped_weapon and weapon_hitbox:
+		equipped_weapon.show()
+		_set_weapon_sprite(item.texture, item.weapon_type)
+
+		weapon_damage = item.damage
+		weapon_knockback = item.knockback_strength
+		print("Equipped ", item.name, " | Damage: ", weapon_damage, " | Knockback: ", weapon_knockback)
+	else:
+		push_error("Equipped weapon missing hitbox!")
 		return
 
-	# ✅ Update weapon sprite
-	_set_weapon_sprite(item.texture)
-
-	# Update stats
-	equipped_weapon = $Sword
-	weapon_damage = item.damage
-	weapon_knockback = item.knockback_strength
-
-	# 🔥 Handle skill script
+	# Reset and re-add skill
 	if equipped_skill:
 		equipped_skill.queue_free()
 		equipped_skill = null
@@ -190,40 +223,37 @@ func _equip_weapon(item: InvItem) -> void:
 	if item.skill_scene:
 		equipped_skill = item.skill_scene.instantiate()
 		equipped_skill.player = self
-
 		if equipped_skill.has_method("haveinv"):
 			equipped_skill.inventory = preload("res://Inventory/playerinventory.tres")
-
 		add_child(equipped_skill)
 		print("Equipped skill scene: ", equipped_skill.name)
-	else:
-		print("No skill scene for this item")
-		equipped_skill = null
 
-	print("Weapon Damage: ", weapon_damage, " | Knockback: ", weapon_knockback)
-
-
-# --- Helper for weapon sprite ---
-func _set_weapon_sprite(texture: Texture2D) -> void:
-	var sword_sprite = $Sword.get_node("Marker2D/Sprite2D") as Sprite2D
-	
-	if not sword_sprite:
-		push_error("Sprite2D node not found!")
+func _set_weapon_sprite(texture: Texture2D, weapon_type: String = "") -> void:
+	if not equipped_weapon:
 		return
-	
-	if texture:
-		sword_sprite.texture = texture
-		sword_sprite.visible = false
 
-		# scale properly to 12x12
-		var target_size = Vector2(12, 12)
-		var tex_size = texture.get_size()
-		if tex_size != Vector2.ZERO:
-			sword_sprite.scale = target_size / tex_size
+	var weapon_sprite = equipped_weapon.get_node("Marker2D/Sprite2D") as Sprite2D
+	if not weapon_sprite:
+		push_error("Sprite2D node not found in weapon!")
+		return
+
+	if texture:
+		weapon_sprite.texture = texture
+		weapon_sprite.show()
+
+		if weapon_type == "Short":
+			# Scale properly to 12x12
+			var target_size = Vector2(12, 12)
+			var tex_size = texture.get_size()
+			if tex_size != Vector2.ZERO:
+				weapon_sprite.scale = target_size / tex_size
+		else:
+			# Long weapons keep their original size
+			weapon_sprite.scale = Vector2.ONE
 	else:
-		# remove texture and hide
-		sword_sprite.texture = null
-		sword_sprite.visible = false
+		weapon_sprite.texture = null
+		weapon_sprite.hide()
+
 func _clear_weapon() -> void:
 	equipped_weapon = null
 	weapon_damage = 0
@@ -313,7 +343,7 @@ func start_roll(input_vector: Vector2) -> void:
 
 # --- Start an Attack ---
 func start_attack() -> void:
-	if not equipped_weapon:
+	if not equipped_weapon or not weapon_hitbox:
 		print("You can't attack without a weapon!")
 		return
 
@@ -321,7 +351,6 @@ func start_attack() -> void:
 	can_move = false
 	attack_timer = ATTACK_DURATION
 
-	# --- Use last_direction for animation + knockback ---
 	var dir_vector = Vector2.ZERO
 	match last_direction:
 		"right": dir_vector = Vector2.RIGHT
@@ -333,10 +362,11 @@ func start_attack() -> void:
 	if animation_player.has_animation(anim_name):
 		animation_player.play(anim_name)
 
-	# --- Apply weapon stats to HitBox ---
-	if sword_hitbox:
-		sword_hitbox.damage = weapon_damage
-		sword_hitbox.knockback_vector = dir_vector * (weapon_knockback * 0.3)
+	# Apply weapon stats
+	weapon_hitbox.damage = weapon_damage
+	weapon_hitbox.knockback_vector = dir_vector * (weapon_knockback * 0.3)
+	print(weapon_hitbox)
+	print(weapon_damage)
 
 
 		
@@ -357,7 +387,7 @@ func _on_hurt_box_area_entered(area: Area2D):
 	stats.set_health(stats.health - 1)
 	$Sprite2D.modulate = Color.PALE_VIOLET_RED
 	
-	camera_shake.add_trauma(0.9)
+	camera_shake.add_trauma(1)
 
 	# Reset color after 1 second
 	await get_tree().create_timer(1.0).timeout
@@ -377,4 +407,13 @@ func collect(item):
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
+	pass
+		
+
+
+func _on_hit_box_area_exited(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
 	camera_shake.add_trauma(0.7)

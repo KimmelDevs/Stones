@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://b4jv6y7hk6hgo"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_chqi1"]
+[ext_resource type="Texture2D" uid="uid://bfmsrs85r2q4d" path="res://Equipments/Textures/spear.png" id="2_mv50e"]
+
+[resource]
+script = ExtResource("1_chqi1")
+name = "Spear"
+texture = ExtResource("2_mv50e")
+Category = "Weapon"
+weapon_type = "Long"
+knockback_strength = 2.0
+damage = 3
+nutrition = 0
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

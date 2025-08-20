@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bufu6v4ifmphw"]
+
+[ext_resource type="Texture2D" uid="uid://cu8j2iulfsmf7" path="res://World/Trees/Textures/BrokenTrees/Broken_tree7.png" id="1_q3e6n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3e6n"]
+size = Vector2(49, 15)
+
+[node name="FallenLog" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q3e6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 2.5)
+shape = SubResource("RectangleShape2D_q3e6n")

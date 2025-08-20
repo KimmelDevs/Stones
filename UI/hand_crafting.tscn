@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://3dgnvw31287s"]
 
 [ext_resource type="Script" uid="uid://behyhf2irx1qs" path="res://UI/hand_crafting.gd" id="1_25pym"]
-[ext_resource type="PackedScene" uid="uid://dwgn11r34kia7" path="res://Inventory/inv_ui_slot.tscn" id="1_wopn6"]
+[ext_resource type="PackedScene" uid="uid://bjdkdn2wx6m2x" path="res://UI/Craft.tscn" id="2_25pym"]
 
 [node name="Hand_Crafting" type="Control"]
 layout_mode = 3
@@ -12,63 +12,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_25pym")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VScrollBar" type="VScrollBar" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 8.0
+offset_bottom = 8.0
 
-[node name="CraftingArea" type="PanelContainer" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Craft" parent="VScrollBar" instance=ExtResource("2_25pym")]
+layout_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CraftingArea"]
-layout_mode = 2
+[node name="Craft3" parent="VScrollBar" instance=ExtResource("2_25pym")]
+layout_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CraftingArea/MarginContainer"]
-layout_mode = 2
+[node name="Craft4" parent="VScrollBar" instance=ExtResource("2_25pym")]
+layout_mode = 1
+offset_left = -11.0
+offset_top = 201.0
+offset_right = -11.0
+offset_bottom = 201.0
 
-[node name="Label" type="Label" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="CraftingSlotGroup" type="GridContainer" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 3
-
-[node name="Inv_UI_Slot1" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot2" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot3" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot4" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot5" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot6" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot7" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot8" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="Inv_UI_Slot9" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/CraftingSlotGroup" instance=ExtResource("1_wopn6")]
-layout_mode = 2
-
-[node name="ResultSlot" type="PanelContainer" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Inv_UI_Slot10" parent="VBoxContainer/CraftingArea/MarginContainer/VBoxContainer/HBoxContainer/ResultSlot" instance=ExtResource("1_wopn6")]
-layout_mode = 2
+[node name="Craft2" parent="VScrollBar" instance=ExtResource("2_25pym")]
+layout_mode = 1
+offset_left = -8.0
+offset_top = 95.0
+offset_right = -8.0
+offset_bottom = 95.0

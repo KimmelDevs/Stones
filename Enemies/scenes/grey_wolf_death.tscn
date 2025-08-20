@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://i4sey28nn5cd"]
+
+[ext_resource type="Script" uid="uid://bgvjpd67tt4m" path="res://Enemies/scenes/grey_wolf_death.gd" id="1_2miko"]
+[ext_resource type="Texture2D" uid="uid://iupjeyio0ihd" path="res://Enemies/textures/wolf/wolf_down.png" id="1_laokv"]
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://World/scenes/SmallShadow.png" id="2_2miko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abkyh"]
+atlas = ExtResource("1_laokv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jd8v"]
+atlas = ExtResource("1_laokv")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spnrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abkyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jd8v")
+}],
+"loop": false,
+"name": &"Animate",
+"speed": 5.0
+}]
+
+[node name="GreyWolfDeath" type="Node2D"]
+script = ExtResource("1_2miko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_spnrq")
+animation = &"Animate"
+autoplay = "Animate"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_2miko")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

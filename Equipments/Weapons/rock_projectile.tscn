@@ -17,7 +17,7 @@ texture = ExtResource("2_kclfx")
 [node name="HitBox" parent="Sprite2D" instance=ExtResource("3_0elju")]
 scale = Vector2(2, 2)
 collision_layer = 16
-collision_mask = 41
+collision_mask = 9
 damage = 2
 
 [node name="CollisionShape2D" parent="Sprite2D/HitBox" index="0"]

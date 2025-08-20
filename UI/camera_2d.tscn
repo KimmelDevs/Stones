@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc0wxqiei2ga5"]
+
+[ext_resource type="Script" uid="uid://bq84fp7dr4gbm" path="res://World/CameraShake.gd" id="1_faour"]
+
+[node name="Camera2D" type="Camera2D"]
+rotation_smoothing_enabled = true
+script = ExtResource("1_faour")

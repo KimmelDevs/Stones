@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvc2dlfqlrq"]
+
+[ext_resource type="Texture2D" uid="uid://dm3uh62k4gbql" path="res://World/Trees/Textures/BrokenTrees/Broken_tree3.png" id="1_n7s7y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5n7mx"]
+radius = 13.0
+
+[node name="LargeStump" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n7s7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5n7mx")

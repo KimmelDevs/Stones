@@ -5,12 +5,12 @@
 
 [resource]
 script = ExtResource("1_khe3q")
-name = ""
+name = "Short Axe"
 texture = ExtResource("2_idsy3")
 Category = "Weapon"
-weapon_type = ""
+weapon_type = "Short"
 knockback_strength = 1.0
-damage = 3
+damage = 100
 nutrition = 0
 Item_Recipe = PackedStringArray()
 metadata/_custom_type_script = "uid://uwnnphlcerum"

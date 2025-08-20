@@ -101,6 +101,7 @@ Craft={
 2d_physics/layer_5="PlayerHitBox"
 2d_physics/layer_6="enemy"
 2d_physics/layer_7="interactions"
+2d_physics/layer_8="Wolf"
 
 [rendering]
 
