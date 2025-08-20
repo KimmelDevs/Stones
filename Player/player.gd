@@ -15,7 +15,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var knockback_speed: float = 200.0
 @export var knockback_duration: float = 0.2
 var knockback_timer: float = 0.0
-
+@export var weapon_type: String = ""  # Example: "Axe", "Sword", etc.
 # --- State Variables ---
 var last_direction := "down"
 var is_rolling := false
@@ -214,7 +214,7 @@ func _equip_weapon(item: InvItem) -> void:
 	weapon_knockback = 0.0
 
 	# Pick the right weapon node
-	match item.weapon_type:
+	match item.weaponlength:
 		"Short":
 			if sword_node:
 				equipped_weapon = sword_node
@@ -230,16 +230,18 @@ func _equip_weapon(item: InvItem) -> void:
 				weapon_hitbox = longsword_node.get_node("Marker2D/HitBox")
 				print(weapon_hitbox)
 		_:
-			push_error("Unknown weapon_type: %s" % item.weapon_type)
+			push_error("Unknown weaponlength: %s" % item.weaponlength)
 			return
 
 	# Apply stats
 	if equipped_weapon and weapon_hitbox:
 		equipped_weapon.show()
-		_set_weapon_sprite(item.texture, item.weapon_type)
+		_set_weapon_sprite(item.texture, item.weaponlength)
 
 		weapon_damage = item.damage
 		weapon_knockback = item.knockback_strength
+		weapon_type = item.weapon_type  # 🔥 assuming your InvItem has this property
+		_update_weapon_collision()      # 🔥 update collision setu
 		print("Equipped ", item.name, " | Damage: ", weapon_damage, " | Knockback: ", weapon_knockback)
 	else:
 		push_error("Equipped weapon missing hitbox!")
@@ -257,8 +259,25 @@ func _equip_weapon(item: InvItem) -> void:
 			equipped_skill.inventory = preload("res://Inventory/playerinventory.tres")
 		add_child(equipped_skill)
 		print("Equipped skill scene: ", equipped_skill.name)
+func _update_weapon_collision():
+	if not weapon_hitbox:
+		return
 
-func _set_weapon_sprite(texture: Texture2D, weapon_type: String = "") -> void:
+	# Reset all first
+	for i in range(1, 21): # Godot supports up to 20 collision layers
+		weapon_hitbox.set_collision_layer_value(i, false)
+		weapon_hitbox.set_collision_mask_value(i, false)
+
+	# ✅ Default layers (always on)
+	weapon_hitbox.set_collision_layer_value(5, true)  # Layer 5 ON
+	weapon_hitbox.set_collision_mask_value(4, true)   # Mask 4 ON
+
+	# ✅ Extra layers if weapon is Axe
+	if weapon_type == "Axe":
+		weapon_hitbox.set_collision_layer_value(10, true)  # Layer 10 ON
+		weapon_hitbox.set_collision_mask_value(9, true)    # Mask 9 ON
+
+func _set_weapon_sprite(texture: Texture2D, weaponlength: String = "") -> void:
 	if not equipped_weapon:
 		return
 
@@ -271,7 +290,7 @@ func _set_weapon_sprite(texture: Texture2D, weapon_type: String = "") -> void:
 		weapon_sprite.texture = texture
 		weapon_sprite.show()
 
-		if weapon_type == "Short":
+		if weaponlength == "Short":
 			# Scale properly to 12x12
 			var target_size = Vector2(12, 12)
 			var tex_size = texture.get_size()

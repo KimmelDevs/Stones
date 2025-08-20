@@ -3,4 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="1_qm2ev"]
 
 [node name="PlayerStats" instance=ExtResource("1_qm2ev")]
-max_health = 10.0
+max_health = 6.0

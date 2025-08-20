@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://3dgnvw31287s"]
+[gd_scene load_steps=4 format=3 uid="uid://3dgnvw31287s"]
 
 [ext_resource type="Script" uid="uid://behyhf2irx1qs" path="res://UI/hand_crafting.gd" id="1_25pym"]
 [ext_resource type="PackedScene" uid="uid://bjdkdn2wx6m2x" path="res://UI/Craft.tscn" id="2_25pym"]
+[ext_resource type="Texture2D" uid="uid://bf04yoq6pa6hl" path="res://Inventory/brown panel.png" id="2_dfr5c"]
 
 [node name="Hand_Crafting" type="Control"]
 layout_mode = 3
@@ -12,27 +13,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_25pym")
 
-[node name="VScrollBar" type="VScrollBar" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = -18.0
+offset_top = -6.0
+offset_right = 97.0
+offset_bottom = 118.0
+texture = ExtResource("2_dfr5c")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -13.0
+offset_right = 89.0
+offset_bottom = 116.0
 
-[node name="Craft" parent="VScrollBar" instance=ExtResource("2_25pym")]
-layout_mode = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
 
-[node name="Craft3" parent="VScrollBar" instance=ExtResource("2_25pym")]
-layout_mode = 1
+[node name="Craft" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Craft4" parent="VScrollBar" instance=ExtResource("2_25pym")]
-layout_mode = 1
-offset_left = -11.0
-offset_top = 201.0
-offset_right = -11.0
-offset_bottom = 201.0
+[node name="Craft3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Craft2" parent="VScrollBar" instance=ExtResource("2_25pym")]
-layout_mode = 1
-offset_left = -8.0
-offset_top = 95.0
-offset_right = -8.0
-offset_bottom = 95.0
+[node name="Craft4" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true

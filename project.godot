@@ -102,6 +102,8 @@ Craft={
 2d_physics/layer_6="enemy"
 2d_physics/layer_7="interactions"
 2d_physics/layer_8="Wolf"
+2d_physics/layer_9="Tree"
+2d_physics/layer_10="Axe"
 
 [rendering]
 

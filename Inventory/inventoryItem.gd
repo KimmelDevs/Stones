@@ -10,7 +10,7 @@ class_name InvItem
 @export var skill_scene: PackedScene  # instead of Script, now a .tscn
 @export var knockback_strength: float = 0.0  # force applied when hitting enemies
 @export var damage: int = 0  # damage dealt by weapon
-
+@export var weaponlength: String ="" #"Long" "Short"
 # Food-specific field
 @export var nutrition: int = 0  # for food items, 0 by default
 
