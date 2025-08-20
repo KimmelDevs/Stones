@@ -160,26 +160,52 @@ func equip_item(item: InvItem) -> void:
 	if not item:
 		print("No item equipped")
 		_clear_weapon()
+		_clear_food()
 		return
 
 	print("Equipping: ", item.name, " | Category: ", item.Category)
 
 	match item.Category:
 		"Weapon":
+			_clear_food()  # make sure no food is equipped
 			_equip_weapon(item)
 		"Food":
+			_clear_weapon()  # make sure no weapon is equipped
 			_equip_food(item)
 		_:
 			print("Item category not handled: ", item.Category)
 			_clear_weapon()
+			_clear_food()
 
+
+func _disable_weapon(node: Node) -> void:
+	if not node:
+		return
+	node.hide()
+	node.set_process(false)
+	node.set_physics_process(false)
+
+	var hitbox = node.get_node_or_null("Marker2D/HitBox")
+	if hitbox:
+		hitbox.monitoring = false
+		hitbox.damage = 0                # 🔥 reset damage
+		hitbox.knockback_vector = Vector2.ZERO  # 🔥 reset knockback
+
+func _enable_weapon(node: Node) -> void:
+	if not node:
+		return
+	node.show()
+	node.set_process(true)
+	node.set_physics_process(true)
+
+	var hitbox = node.get_node_or_null("Marker2D/HitBox")
+	if hitbox:
+		hitbox.monitoring = true
 
 func _equip_weapon(item: InvItem) -> void:
 	# Hide both weapon nodes first
-	if sword_node:
-		sword_node.hide()
-	if longsword_node:
-		longsword_node.hide()
+	_disable_weapon(sword_node)
+	_disable_weapon(longsword_node)
 
 	# Reset everything to avoid stale values
 	equipped_weapon = null
@@ -192,11 +218,15 @@ func _equip_weapon(item: InvItem) -> void:
 		"Short":
 			if sword_node:
 				equipped_weapon = sword_node
+				
+				_enable_weapon(sword_node)
 				weapon_hitbox = sword_node.get_node("Marker2D/HitBox")
 				print(weapon_hitbox)
 		"Long":
 			if longsword_node:
 				equipped_weapon = longsword_node
+				
+				_enable_weapon(longsword_node)
 				weapon_hitbox = longsword_node.get_node("Marker2D/HitBox")
 				print(weapon_hitbox)
 		_:
@@ -253,9 +283,21 @@ func _set_weapon_sprite(texture: Texture2D, weapon_type: String = "") -> void:
 	else:
 		weapon_sprite.texture = null
 		weapon_sprite.hide()
+func _clear_food() -> void:
+	equipped_food = null
 
 func _clear_weapon() -> void:
+	if equipped_weapon:
+		var hitbox = equipped_weapon.get_node_or_null("Marker2D/HitBox")
+		if hitbox:
+			hitbox.damage = 0
+			hitbox.knockback_vector = Vector2.ZERO
+
+	_disable_weapon(sword_node)
+	_disable_weapon(longsword_node)
+
 	equipped_weapon = null
+	weapon_hitbox = null
 	weapon_damage = 0
 	weapon_knockback = 0.0
 	_set_weapon_sprite(null)
@@ -263,9 +305,8 @@ func _clear_weapon() -> void:
 	if equipped_skill:
 		equipped_skill.queue_free()
 		equipped_skill = null
-func _equip_food(item: InvItem) -> void:
-	_clear_weapon()  # keep your existing weapon cleanup
 
+func _equip_food(item: InvItem) -> void:
 	if not item:
 		print("No food item equipped")
 		equipped_food = null
