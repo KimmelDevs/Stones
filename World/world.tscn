@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=42 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://bdev4bvcbcg62" path="res://Enemies/scenes/Greywolf.tscn" id="33_3ql07"]
 [ext_resource type="PackedScene" uid="uid://bvmtodvso5867" path="res://Enemies/scenes/boss_wolf.tscn" id="34_spf4h"]
 [ext_resource type="PackedScene" uid="uid://bw6pos5ugrr02" path="res://Enemies/scenes/brownwolf.tscn" id="34_w08tj"]
+[ext_resource type="PackedScene" uid="uid://ch01d2vt3kumt" path="res://Mobs/Scenes/pig.tscn" id="35_spf4h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -2318,3 +2319,15 @@ position = Vector2(534, -530)
 
 [node name="FallenTree3" parent="." instance=ExtResource("31_w08tj")]
 position = Vector2(-210, -195)
+
+[node name="Pig" parent="." instance=ExtResource("35_spf4h")]
+position = Vector2(5, -114)
+
+[node name="Pig2" parent="." instance=ExtResource("35_spf4h")]
+position = Vector2(18, -66)
+
+[node name="Pig3" parent="." instance=ExtResource("35_spf4h")]
+position = Vector2(62, -54)
+
+[node name="Pig4" parent="." instance=ExtResource("35_spf4h")]
+position = Vector2(68, -103)

@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bufu6v4ifmphw"]
+[gd_scene load_steps=7 format=3 uid="uid://bufu6v4ifmphw"]
 
+[ext_resource type="Script" uid="uid://c8whip35yy84c" path="res://World/Trees/Scenes/BrokenTrees/fallen_tree.gd" id="1_klx5k"]
 [ext_resource type="Texture2D" uid="uid://cu8j2iulfsmf7" path="res://World/Trees/Textures/BrokenTrees/Broken_tree7.png" id="1_q3e6n"]
+[ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="2_yh5a8"]
+[ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_klx5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3e6n"]
 size = Vector2(49, 15)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u2rq"]
+height = 34.0
+
 [node name="FallenLog" type="StaticBody2D"]
+script = ExtResource("1_klx5k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q3e6n")
@@ -13,3 +20,19 @@ texture = ExtResource("1_q3e6n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 2.5)
 shape = SubResource("RectangleShape2D_q3e6n")
+
+[node name="Stats" parent="." instance=ExtResource("2_yh5a8")]
+max_health = 12.0
+
+[node name="HurtBox" parent="." instance=ExtResource("3_klx5k")]
+collision_layer = 256
+collision_mask = 512
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5u2rq")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://3dgnvw31287s"]
+[gd_scene load_steps=6 format=3 uid="uid://3dgnvw31287s"]
 
 [ext_resource type="Script" uid="uid://behyhf2irx1qs" path="res://UI/hand_crafting.gd" id="1_25pym"]
 [ext_resource type="PackedScene" uid="uid://bjdkdn2wx6m2x" path="res://UI/Craft.tscn" id="2_25pym"]
 [ext_resource type="Texture2D" uid="uid://bf04yoq6pa6hl" path="res://Inventory/brown panel.png" id="2_dfr5c"]
+[ext_resource type="PackedScene" uid="uid://b5jc6cmtoh1k7" path="res://UI/CraftingStuff/AxeCrafting.tscn" id="4_h5on3"]
+
+[sub_resource type="Theme" id="Theme_h5on3"]
 
 [node name="Hand_Crafting" type="Control"]
 layout_mode = 3
@@ -14,7 +17,8 @@ grow_vertical = 2
 script = ExtResource("1_25pym")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = -18.0
+layout_mode = 0
+offset_left = -39.0
 offset_top = -6.0
 offset_right = 97.0
 offset_bottom = 118.0
@@ -26,23 +30,23 @@ patch_margin_bottom = 6
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = -13.0
-offset_right = 89.0
-offset_bottom = 116.0
+offset_left = -34.0
+offset_right = 91.0
+offset_bottom = 109.0
+theme = SubResource("Theme_h5on3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 60
+
+[node name="AxeCraft" parent="ScrollContainer/VBoxContainer" instance=ExtResource("4_h5on3")]
+layout_mode = 2
 
 [node name="Craft" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Craft3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Craft4" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 

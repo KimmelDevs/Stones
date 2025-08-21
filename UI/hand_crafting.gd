@@ -7,8 +7,7 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	# Handle dragging icon following mouse
-	if DragManager.is_dragging:
-		DragManager.update_drag_position()
+
 
 	if Input.is_action_just_pressed("Craft"):
 		if is_open:
