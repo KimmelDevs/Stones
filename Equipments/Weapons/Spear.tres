@@ -13,5 +13,6 @@ knockback_strength = 1.0
 damage = 3
 weaponlength = "Long"
 nutrition = 0
+food_type = ""
 Item_Recipe = PackedStringArray()
 metadata/_custom_type_script = "uid://uwnnphlcerum"

@@ -184,6 +184,7 @@ func _do_flee(delta: float) -> void:
 
 # --- When pig gets hurt ---
 func _on_hurt_box_area_entered(area: Area2D) -> void:
+	hurtbox.create_hit_effect()
 	if dying:
 		return
 
