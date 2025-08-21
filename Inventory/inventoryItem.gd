@@ -13,5 +13,5 @@ class_name InvItem
 @export var weaponlength: String ="" #"Long" "Short"
 # Food-specific field
 @export var nutrition: int = 0  # for food items, 0 by default
-
+@export var food_type : String = ""
 @export var Item_Recipe: PackedStringArray

@@ -81,6 +81,8 @@ func _physics_process(delta: float) -> void:
 		var nearest = get_nearest_bush()
 		if nearest:
 			nearest.drop_berry(self)
+		else:
+			try_pick_from_choppingboard()
 
 	# --- Movement Input ---
 	var input_vector := Vector2.ZERO
@@ -131,6 +133,8 @@ func _input(event: InputEvent) -> void:
 			# If food is equipped → eat
 			if equipped_food:
 				_consume_food(equipped_food)
+	if Input.is_action_just_pressed("interact"):
+		try_place_on_choppingboard()
 
 
 func set_hunger(value: int) -> void:
@@ -304,6 +308,58 @@ func _set_weapon_sprite(texture: Texture2D, weaponlength: String = "") -> void:
 		weapon_sprite.hide()
 func _clear_food() -> void:
 	equipped_food = null
+func try_place_on_choppingboard():
+	var boards = get_tree().get_nodes_in_group("chopping_board")
+	var nearest: Node = null
+	var nearest_dist = INF
+	var place_range = 32
+
+	for board in boards:
+		var dist = board.global_position.distance_to(global_position)
+		if dist < nearest_dist and dist <= place_range:
+			nearest = board
+			nearest_dist = dist
+
+	if nearest and equipped_food \
+		and equipped_food.Category == "Food" \
+		and equipped_food.food_type == "Corpse":
+		
+		# ✅ Duplicate first before removing
+		var new_item = equipped_food.duplicate(true)
+
+		# Remove from player inventory
+		if Inv.remove_item(equipped_food, 1):
+			# Insert into board inventory
+			nearest.board_inv.insert(new_item)
+
+			print("Placed corpse on chopping board!")
+			
+			# Clear equipped AFTER
+			equipped_food = null
+func try_pick_from_choppingboard():
+	var boards = get_tree().get_nodes_in_group("chopping_board")
+	var nearest: Node = null
+	var nearest_dist = INF
+	var pick_range = 32
+
+	for board in boards:
+		var dist = board.global_position.distance_to(global_position)
+		if dist < nearest_dist and dist <= pick_range:
+			nearest = board
+			nearest_dist = dist
+
+	if nearest and nearest.board_inv:
+		# If the board has at least one item, take it back
+		for slot in nearest.board_inv.slots:
+			if slot.item:
+				var item_to_pick = slot.item
+
+				# ✅ Remove from board inventory
+				if nearest.board_inv.remove_item(item_to_pick, 1):
+					# ✅ Insert back into player inventory
+					Inv.insert(item_to_pick.duplicate(true))
+					print("Picked back ", item_to_pick.name, " from chopping board!")
+				return
 
 func _clear_weapon() -> void:
 	if equipped_weapon:
@@ -476,4 +532,4 @@ func _on_hit_box_area_exited(area: Area2D) -> void:
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	camera_shake.add_trauma(0.7)
+	camera_shake.add_trauma(0.7) 

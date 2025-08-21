@@ -7,11 +7,12 @@
 script = ExtResource("1_145kk")
 name = "Pig Corpse"
 texture = ExtResource("2_y3xau")
-Category = "Corpse"
+Category = "Food"
 weapon_type = ""
 knockback_strength = 0.0
 damage = 0
 weaponlength = ""
 nutrition = 0
+food_type = "Corpse"
 Item_Recipe = PackedStringArray()
 metadata/_custom_type_script = "uid://uwnnphlcerum"

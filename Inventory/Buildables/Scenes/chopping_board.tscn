@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://lf8go44d3k12"]
+[gd_scene load_steps=4 format=3 uid="uid://lf8go44d3k12"]
 
 [ext_resource type="Texture2D" uid="uid://ccqb5e31c25tp" path="res://Inventory/Buildables/Textures/ChoppingBoard.png" id="1_05is0"]
+[ext_resource type="Script" uid="uid://penbo2sbktnv" path="res://Inventory/Buildables/Scripts/chopping_board.gd" id="1_mjpcs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mjpcs"]
 size = Vector2(28, 22)
 
-[node name="ChoppingBoard" type="StaticBody2D"]
+[node name="ChoppingBoard" type="StaticBody2D" groups=["chopping_board"]]
+script = ExtResource("1_mjpcs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_05is0")
@@ -13,3 +15,5 @@ texture = ExtResource("1_05is0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mjpcs")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
