@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://lf8go44d3k12"]
+[gd_scene load_steps=5 format=3 uid="uid://lf8go44d3k12"]
 
 [ext_resource type="Texture2D" uid="uid://ccqb5e31c25tp" path="res://Inventory/Buildables/Textures/ChoppingBoard.png" id="1_05is0"]
 [ext_resource type="Script" uid="uid://penbo2sbktnv" path="res://Inventory/Buildables/Scripts/chopping_board.gd" id="1_mjpcs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mjpcs"]
 size = Vector2(28, 22)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjpcs"]
+radius = 23.0
 
 [node name="ChoppingBoard" type="StaticBody2D" groups=["chopping_board"]]
 script = ExtResource("1_mjpcs")
@@ -17,3 +20,14 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mjpcs")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+
+[node name="InteractableArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_mjpcs")
+
+[connection signal="body_entered" from="InteractableArea" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="InteractableArea" to="." method="_on_interactable_area_body_exited"]

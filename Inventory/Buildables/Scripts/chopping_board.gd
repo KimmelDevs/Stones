@@ -45,3 +45,11 @@ func chop():
 			board_inv.remove_item(slot.item, 1)
 			_update_sprite()   # refresh sprite after removal
 			return
+
+
+func _on_interactable_area_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_interactable_area_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
