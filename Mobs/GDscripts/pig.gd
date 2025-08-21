@@ -192,8 +192,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 	if stats.health <= 0:
 		dying = true
-		sprite.play("Death")
-		await sprite.animation_finished
+		spawn_Death_effect()
 		queue_free()
 	else:
 		# Switch to flee immediately after being hurt
@@ -205,6 +204,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		if sprite.animation != "Run":
 			sprite.play("Run")
 
+func spawn_Death_effect() -> void:
+	var effect_scene = preload("res://Mobs/Scenes/pig_death.tscn")
+	var effect_instance = effect_scene.instantiate()
+	effect_instance.global_position = global_position
+	get_parent().add_child(effect_instance)
 # --- Reset wander if woken up ---
 func wake_up() -> void:
 	if state == SLEEP and not dying:

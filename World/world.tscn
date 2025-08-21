@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=43 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://bvmtodvso5867" path="res://Enemies/scenes/boss_wolf.tscn" id="34_spf4h"]
 [ext_resource type="PackedScene" uid="uid://bw6pos5ugrr02" path="res://Enemies/scenes/brownwolf.tscn" id="34_w08tj"]
 [ext_resource type="PackedScene" uid="uid://ch01d2vt3kumt" path="res://Mobs/Scenes/pig.tscn" id="35_spf4h"]
+[ext_resource type="PackedScene" uid="uid://lf8go44d3k12" path="res://Inventory/Buildables/Scenes/chopping_board.tscn" id="36_or3hn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -2331,3 +2332,6 @@ position = Vector2(62, -54)
 
 [node name="Pig4" parent="." instance=ExtResource("35_spf4h")]
 position = Vector2(68, -103)
+
+[node name="ChoppingBoard" parent="." instance=ExtResource("36_or3hn")]
+position = Vector2(104, -63)
