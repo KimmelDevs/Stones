@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://blhwp77q2rx2j"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_e0fmd"]
+[ext_resource type="Texture2D" uid="uid://ybxmlecprtis" path="res://Inventory/textures/Pig Head.png" id="2_x2lss"]
+
+[resource]
+script = ExtResource("1_e0fmd")
+name = "Pig Head"
+texture = ExtResource("2_x2lss")
+Category = "Food"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = "Corpse"
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://coj8d2kqn3qvr"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_0w5sy"]
+[ext_resource type="Texture2D" uid="uid://ch506iyiac61i" path="res://Inventory/textures/Pork.png" id="2_ohvf8"]
+
+[resource]
+script = ExtResource("1_0w5sy")
+name = "Pork"
+texture = ExtResource("2_ohvf8")
+Category = "Food"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = "Corpse"
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

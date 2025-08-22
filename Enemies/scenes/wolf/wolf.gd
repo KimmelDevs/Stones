@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 	match state:
 		IDLE:
 			move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta)
-			sprite.play("idle_down")
+			sprite.play("IdleDown")
 			if randf() < 0.01:
 				state = WANDER
 

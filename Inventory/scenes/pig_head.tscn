@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://e0cee6gcj7vo"]
+
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_nhcy2"]
+[ext_resource type="Texture2D" uid="uid://ybxmlecprtis" path="res://Inventory/textures/Pig Head.png" id="1_smns8"]
+[ext_resource type="Resource" uid="uid://blhwp77q2rx2j" path="res://Inventory/Items/PigHead.tres" id="2_etk2q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvp8j"]
+radius = 14.0357
+
+[node name="PigHead" type="StaticBody2D"]
+script = ExtResource("1_nhcy2")
+item = ExtResource("2_etk2q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_smns8")
+
+[node name="interactable_area" type="Area2D" parent="."]
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+position = Vector2(3, 5)
+shape = SubResource("CircleShape2D_wvp8j")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="interactable_area" to="." method="_on_interactable_area_body_exited"]

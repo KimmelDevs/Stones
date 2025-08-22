@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://by4ookyyc87qs"]
+
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_5b11n"]
+[ext_resource type="Resource" uid="uid://dqethbpy4kg43" path="res://Inventory/Items/PigFoot.tres" id="2_6yga0"]
+[ext_resource type="Texture2D" uid="uid://cfek8ekl7lesq" path="res://Inventory/textures/Pig Foot.png" id="2_wc6kg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b11n"]
+radius = 14.0357
+
+[node name="PigFoot" type="StaticBody2D"]
+script = ExtResource("1_5b11n")
+item = ExtResource("2_6yga0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wc6kg")
+
+[node name="interactable_area" type="Area2D" parent="."]
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+position = Vector2(3, 5)
+shape = SubResource("CircleShape2D_5b11n")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="interactable_area" to="." method="_on_interactable_area_body_exited"]

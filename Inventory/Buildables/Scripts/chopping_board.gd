@@ -45,21 +45,21 @@ func chop():
 			_update_sprite()
 			
 			# Spawn the drops
-			var head_scene = preload("res://Enemies/EnemyDrops/bat_head.tscn")
-			var wings_scene = preload("res://Enemies/EnemyDrops/bat_wings.tscn")
-			
+			var head_scene = preload("res://Inventory/scenes/pig_head.tscn")
+			var wings_scene = preload("res://Inventory/scenes/pork.tscn")
+			var foot_scene = preload("res://Inventory/scenes/pig_foot.tscn")
+			var foot_instance = foot_scene.instantiate()
 			var head_instance = head_scene.instantiate()
 			var wings_instance = wings_scene.instantiate()
 			
 			# Set their positions at the chopping board
 			head_instance.global_position = global_position
 			wings_instance.global_position = global_position
-			
+			foot_instance.global_position = global_position
 			# Add them to the scene tree
 			get_tree().current_scene.add_child(head_instance)
 			get_tree().current_scene.add_child(wings_instance)
-			
-			print("Spawned bat_head and bat_wings!")
+			get_tree().current_scene.add_child(foot_instance)
 			return  # only chop 1 item at a time
 
 	for slot in board_inv.slots:

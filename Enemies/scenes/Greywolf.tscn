@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bdev4bvcbcg62"]
+[gd_scene load_steps=76 format=3 uid="uid://bdev4bvcbcg62"]
 
 [ext_resource type="Texture2D" uid="uid://iupjeyio0ihd" path="res://Enemies/textures/wolf/wolf_down.png" id="1_eh8k4"]
 [ext_resource type="Script" uid="uid://bf58agwaa2v7k" path="res://Enemies/scenes/wolf/wolf.gd" id="1_s155q"]
@@ -81,6 +81,22 @@ region = Rect2(224, 224, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7hu85"]
 atlas = ExtResource("2_3s7gh")
 region = Rect2(320, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6ep6"]
+atlas = ExtResource("2_3s7gh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cuc0"]
+atlas = ExtResource("2_3s7gh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ura28"]
+atlas = ExtResource("2_3s7gh")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0slam"]
+atlas = ExtResource("2_3s7gh")
+region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0f0y"]
 atlas = ExtResource("2_3s7gh")
@@ -342,6 +358,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_r6ep6")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cuc0")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ura28")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0slam")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x0f0y")
 }, {
 "duration": 1.0,
@@ -550,9 +598,8 @@ script = ExtResource("1_s155q")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_r6ep6")
-animation = &"RunDown"
+animation = &"IdleUp"
 autoplay = "RunDown"
-frame_progress = 0.995405
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(1, 5)

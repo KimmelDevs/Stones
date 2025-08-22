@@ -597,7 +597,7 @@ script = ExtResource("1_22kg2")
 position = Vector2(0, -7)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_kr1k1")
-animation = &"WalkUpRight"
+animation = &"IdleUp"
 autoplay = "WalkDownLeft"
 
 [node name="Shadow" type="Sprite2D" parent="."]
