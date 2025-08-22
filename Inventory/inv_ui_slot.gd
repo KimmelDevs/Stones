@@ -1,3 +1,4 @@
+class_name InventorySlot
 extends Panel
 
 signal slot_clicked(slot_index)

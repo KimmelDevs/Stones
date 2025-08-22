@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://c5bbetu5hfq0y"]
+
+[ext_resource type="Resource" uid="uid://cxe0xx02ddcl5" path="res://Inventory/Items/Axe.tres" id="1_5rewv"]
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="2_flbew"]
+[ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="3_5670h"]
+[ext_resource type="Resource" uid="uid://dl40c022orfxu" path="res://Inventory/Items/Rock.tres" id="4_uf8n0"]
+[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="5_5xny1"]
+[ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="6_p76bq"]
+
+[resource]
+script = ExtResource("6_p76bq")
+recipe_name = "Axe"
+recipe_final_item = ExtResource("1_5rewv")
+recipe_material_array = Array[ExtResource("2_flbew")]([ExtResource("3_5670h"), ExtResource("3_5670h"), ExtResource("4_uf8n0"), ExtResource("5_5xny1")])
+metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

@@ -22,7 +22,7 @@ layout_mode = 0
 offset_left = 4.0
 offset_top = 5.0
 offset_right = 115.0
-offset_bottom = 31.0
+offset_bottom = 23.0
 texture = ExtResource("2_onucc")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -40,19 +40,19 @@ text = "d"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 93.0
+offset_left = 98.0
 offset_top = 39.0
-offset_right = 133.0
+offset_right = 138.0
 offset_bottom = 62.0
 scale = Vector2(0.5, 0.5)
 text = "d"
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 40.0
-offset_right = 97.0
-offset_bottom = 63.0
+offset_left = 64.0
+offset_top = 39.0
+offset_right = 104.0
+offset_bottom = 62.0
 scale = Vector2(0.5, 0.5)
 text = "d"
 
@@ -61,24 +61,24 @@ position = Vector2(18, 43)
 texture = ExtResource("2_n7hyi")
 
 [node name="Material2" type="Sprite2D" parent="."]
-position = Vector2(81, 43)
+position = Vector2(87, 43)
 texture = ExtResource("2_n7hyi")
 
 [node name="Material3" type="Sprite2D" parent="."]
-position = Vector2(51, 42)
+position = Vector2(53, 46)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_n7hyi")
 
 [node name="Result" type="Sprite2D" parent="."]
-position = Vector2(20, 18)
+position = Vector2(18, 13)
 texture = ExtResource("3_onucc")
 
 [node name="ResultName" type="Label" parent="."]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 14.0
+offset_top = 9.0
 offset_right = 106.0
-offset_bottom = 37.0
+offset_bottom = 32.0
 scale = Vector2(0.5, 0.5)
 text = "LongStick"
 
@@ -93,8 +93,15 @@ text = "Craft"
 
 [node name="HideButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 10.0
-offset_right = 109.0
-offset_bottom = 26.0
+offset_left = 94.0
+offset_top = 7.0
+offset_right = 110.0
+offset_bottom = 23.0
 texture_normal = ExtResource("4_n7hyi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 24.0
+offset_right = 113.0
+offset_bottom = 64.0

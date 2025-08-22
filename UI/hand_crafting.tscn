@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://3dgnvw31287s"]
+[gd_scene load_steps=11 format=3 uid="uid://3dgnvw31287s"]
 
 [ext_resource type="Script" uid="uid://behyhf2irx1qs" path="res://UI/hand_crafting.gd" id="1_25pym"]
 [ext_resource type="PackedScene" uid="uid://bjdkdn2wx6m2x" path="res://UI/Craft.tscn" id="2_25pym"]
 [ext_resource type="Texture2D" uid="uid://bf04yoq6pa6hl" path="res://Inventory/brown panel.png" id="2_dfr5c"]
 [ext_resource type="PackedScene" uid="uid://b5jc6cmtoh1k7" path="res://UI/CraftingStuff/AxeCrafting.tscn" id="4_h5on3"]
+[ext_resource type="Texture2D" uid="uid://vssgpuslcim7" path="res://UI/CraftingIcons/Stations.png" id="5_iv0id"]
+[ext_resource type="Texture2D" uid="uid://b4aavf50v04hg" path="res://UI/CraftingIcons/Armors.png" id="6_hytsl"]
+[ext_resource type="Texture2D" uid="uid://dvt17qxvv7oiq" path="res://UI/CraftingIcons/Tools.png" id="7_03juu"]
+[ext_resource type="Texture2D" uid="uid://u3ncgyv55ww3" path="res://UI/CraftingIcons/Consumables.png" id="8_klnuq"]
+[ext_resource type="Texture2D" uid="uid://duoflpol68l2i" path="res://UI/CraftingIcons/Resources.png" id="9_tpaxr"]
 
 [sub_resource type="Theme" id="Theme_h5on3"]
 
@@ -35,21 +40,41 @@ offset_right = 91.0
 offset_bottom = 109.0
 theme = SubResource("Theme_h5on3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="Tools" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="AxeCraft" parent="ScrollContainer/VBoxContainer" instance=ExtResource("4_h5on3")]
+[node name="AxeCraft" parent="ScrollContainer/Tools" instance=ExtResource("4_h5on3")]
 layout_mode = 2
 
-[node name="Craft" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
+[node name="Craft" parent="ScrollContainer/Tools" instance=ExtResource("2_25pym")]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Craft3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -38.0
+offset_top = -11.0
+offset_right = 138.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
 
-[node name="Craft2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_25pym")]
+[node name="Stations" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-metadata/_edit_use_anchors_ = true
+texture_normal = ExtResource("5_iv0id")
+
+[node name="Armor" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_hytsl")
+
+[node name="Tools" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_03juu")
+
+[node name="Consumables" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_klnuq")
+
+[node name="Resources" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_tpaxr")

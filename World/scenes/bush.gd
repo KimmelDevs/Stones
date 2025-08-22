@@ -4,6 +4,7 @@ extends StaticBody2D
 @onready var anim = $AnimationPlayer
 
 var player_in_area = false
+
 var hiding_player: CharacterBody2D = null
 var player_ref: CharacterBody2D = null
 

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://dsk815a4mu331"]
+
+[ext_resource type="Resource" uid="uid://b4jv6y7hk6hgo" path="res://Equipments/Weapons/Spear.tres" id="1_g2idq"]
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_lcb2h"]
+[ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="2_17bqg"]
+[ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="3_2xeeh"]
+[ext_resource type="Resource" uid="uid://dl40c022orfxu" path="res://Inventory/Items/Rock.tres" id="4_tamq7"]
+[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="5_vkgat"]
+
+[resource]
+script = ExtResource("2_17bqg")
+recipe_name = "Spear"
+recipe_final_item = ExtResource("1_g2idq")
+recipe_material_array = Array[ExtResource("1_lcb2h")]([ExtResource("3_2xeeh"), ExtResource("4_tamq7"), ExtResource("3_2xeeh"), ExtResource("5_vkgat")])
+metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

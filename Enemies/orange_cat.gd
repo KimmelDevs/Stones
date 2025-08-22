@@ -107,7 +107,10 @@ func _physics_process(delta: float) -> void:
 					attack_timer = anticipation_time
 					attack_target = playerdetectionzone.player.global_position
 					move_velocity = Vector2.ZERO
+					
 					anim_player.play("ReadyJump")
+					
+					await get_tree().create_timer(10).timeout  
 				else:
 					state = WANDER
 					move_velocity = Vector2.ZERO

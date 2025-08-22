@@ -1,3 +1,4 @@
+class_name PlayerEntity
 extends CharacterBody2D
 
 # --- Movement & Combat Settings ---
