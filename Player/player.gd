@@ -339,8 +339,8 @@ func try_place_on_choppingboard():
 func try_pick_from_choppingboard():
 	var boards = get_tree().get_nodes_in_group("chopping_board")
 	var nearest: Node = null
-	var nearest_dist = INF
-	var pick_range = 32
+	var nearest_dist := INF
+	var pick_range := 32.0
 
 	for board in boards:
 		var dist = board.global_position.distance_to(global_position)
@@ -348,18 +348,41 @@ func try_pick_from_choppingboard():
 			nearest = board
 			nearest_dist = dist
 
-	if nearest and nearest.board_inv:
-		# If the board has at least one item, take it back
-		for slot in nearest.board_inv.slots:
-			if slot.item:
-				var item_to_pick = slot.item
+	if not nearest or not nearest.board_inv:
+		return
 
-				# ✅ Remove from board inventory
-				if nearest.board_inv.remove_item(item_to_pick, 1):
-					# ✅ Insert back into player inventory
-					Inv.insert(item_to_pick.duplicate(true))
-					print("Picked back ", item_to_pick.name, " from chopping board!")
-				return
+	for slot in nearest.board_inv.slots:
+		if slot.item:
+			var board_item: InvItem = slot.item
+
+			# Find a matching *reference* already in player inventory to stack onto
+			var stack_ref: InvItem = _find_existing_player_item_ref(board_item)
+
+			# Remove 1 from the board first (we're moving that exact reference out)
+			if nearest.board_inv.remove_item(board_item, 1):
+				# If we found an existing ref, insert THAT ref so Inv.insert() stacks.
+				# Otherwise insert the board's item (new stack).
+				if stack_ref:
+					Inv.insert(stack_ref)
+				else:
+					Inv.insert(board_item)
+
+				print("Picked back ", board_item.name, " from chopping board!")
+			return
+
+
+func _find_existing_player_item_ref(item: InvItem) -> InvItem:
+	# Prefer matching by resource_path if it exists; otherwise fall back to name/category/food_type.
+	for s in Inv.slots:
+		if s.item:
+			if item.resource_path != "" and s.item.resource_path == item.resource_path:
+				return s.item
+			elif s.item.name == item.name \
+				and s.item.Category == item.Category \
+				and (s.item.has_method("get") and s.item.get("food_type") == item.get("food_type")):
+				return s.item
+	return null
+
 
 func _clear_weapon() -> void:
 	if equipped_weapon:

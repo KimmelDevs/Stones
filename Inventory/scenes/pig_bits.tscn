@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://pxbpq7g61wqg"]
+
+[ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_sobpc"]
+[ext_resource type="Resource" uid="uid://ynqcibjvpnrb" path="res://Inventory/Items/PigBits.tres" id="2_kecoe"]
+[ext_resource type="Texture2D" uid="uid://dd3mm3qiavxkg" path="res://Inventory/textures/Pig Bits.png" id="3_hnemw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gh2fc"]
+radius = 14.0357
+
+[node name="PigBits" type="StaticBody2D"]
+script = ExtResource("1_sobpc")
+item = ExtResource("2_kecoe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_hnemw")
+
+[node name="interactable_area" type="Area2D" parent="."]
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+position = Vector2(3, 5)
+shape = SubResource("CircleShape2D_gh2fc")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="body_exited" from="interactable_area" to="." method="_on_interactable_area_body_exited"]

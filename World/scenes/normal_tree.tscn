@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmnb1s2vi14vd"]
+
+[ext_resource type="Script" uid="uid://dcp1ao6rdh3da" path="res://normal_tree.gd" id="1_de5yi"]
+[ext_resource type="Texture2D" uid="uid://lqpi74afqnac" path="res://Shadows/MediumShadow.png" id="2_3qpge"]
+[ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="2_rlmkq"]
+[ext_resource type="Texture2D" uid="uid://bcnx1sslnwcjr" path="res://World/Trees/Textures/Trees/NormTree.png" id="2_v2nkv"]
+[ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_v2nkv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qpge"]
+atlas = ExtResource("2_v2nkv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_660g8"]
+atlas = ExtResource("2_v2nkv")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scvjp"]
+atlas = ExtResource("2_v2nkv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qpge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qpge")
+}],
+"loop": true,
+"name": &"AdultTree",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_660g8")
+}],
+"loop": true,
+"name": &"BabyTree",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scvjp")
+}],
+"loop": true,
+"name": &"TeenTree",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tyao"]
+size = Vector2(22, 36)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_660g8"]
+radius = 12.0
+height = 24.0
+
+[node name="NormalTree" type="StaticBody2D"]
+script = ExtResource("1_de5yi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 33)
+scale = Vector2(2.03125, 1.4)
+texture = ExtResource("2_3qpge")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3qpge")
+animation = &"BabyTree"
+autoplay = "BabyTree"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 20)
+shape = SubResource("RectangleShape2D_5tyao")
+
+[node name="Stats" parent="." instance=ExtResource("2_rlmkq")]
+max_health = 8.0
+
+[node name="HurtBox" parent="." instance=ExtResource("3_v2nkv")]
+collision_layer = 256
+collision_mask = 512
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2, 21)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_660g8")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

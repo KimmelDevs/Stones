@@ -6,7 +6,7 @@ signal board_updated
 @onready var food_sprite: Sprite2D = $Sprite2D2
 var player_in_area: bool = false
 var player_ref: CharacterBody2D = null
-
+@onready var animplay: AnimationPlayer = $AnimationPlayer
 func _ready():
 	add_to_group("chopping_board")
 	_update_sprite()
@@ -39,7 +39,9 @@ func chop():
 	for slot in board_inv.slots:
 		if slot.item and slot.item.name == "Pig Corpse":
 			print("Chopping PigCorpse:", slot.item.name)
-			
+			animplay.play("Chopping")
+			await get_tree().create_timer(2.5).timeout  
+			animplay.stop()  
 			# Remove 1 PigCorpse from inventory
 			board_inv.remove_item(slot.item, 1)
 			_update_sprite()
@@ -60,6 +62,25 @@ func chop():
 			get_tree().current_scene.add_child(head_instance)
 			get_tree().current_scene.add_child(wings_instance)
 			get_tree().current_scene.add_child(foot_instance)
+			return  # only chop 1 item at a time
+		elif slot.item and slot.item.name == "Pig Head":
+			print("Chopping PigCorpse:", slot.item.name)
+			animplay.play("Chopping")
+			await get_tree().create_timer(2.5).timeout  
+			animplay.stop() 
+			# Remove 1 PigCorpse from inventory
+			board_inv.remove_item(slot.item, 1)
+			_update_sprite()
+			
+			# Spawn the drops
+			var head_scene = preload("res://Inventory/scenes/pig_bits.tscn")
+			
+			var head_instance = head_scene.instantiate()
+			
+			# Set their positions at the chopping board
+			head_instance.global_position = global_position
+			# Add them to the scene tree
+			get_tree().current_scene.add_child(head_instance)
 			return  # only chop 1 item at a time
 
 	for slot in board_inv.slots:

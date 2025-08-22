@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://lf8go44d3k12"]
+[gd_scene load_steps=8 format=3 uid="uid://lf8go44d3k12"]
 
 [ext_resource type="Texture2D" uid="uid://ccqb5e31c25tp" path="res://Inventory/Buildables/Textures/ChoppingBoard.png" id="1_05is0"]
 [ext_resource type="Script" uid="uid://penbo2sbktnv" path="res://Inventory/Buildables/Scripts/chopping_board.gd" id="1_mjpcs"]
@@ -9,11 +9,51 @@ size = Vector2(28, 22)
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjpcs"]
 radius = 23.0
 
+[sub_resource type="Animation" id="Animation_mjpcs"]
+resource_name = "Chopping"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2, 3, 4, 5, 6, 7, 6]
+}
+
+[sub_resource type="Animation" id="Animation_wnl4f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lelv"]
+_data = {
+&"Chopping": SubResource("Animation_mjpcs"),
+&"RESET": SubResource("Animation_wnl4f")
+}
+
 [node name="ChoppingBoard" type="StaticBody2D" groups=["chopping_board"]]
 script = ExtResource("1_mjpcs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_05is0")
+hframes = 3
+vframes = 3
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -28,6 +68,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_mjpcs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4lelv")
+}
 
 [connection signal="body_entered" from="InteractableArea" to="." method="_on_interactable_area_body_entered"]
 [connection signal="body_exited" from="InteractableArea" to="." method="_on_interactable_area_body_exited"]

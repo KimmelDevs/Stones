@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://ynqcibjvpnrb"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_ppqc7"]
+[ext_resource type="Texture2D" uid="uid://dd3mm3qiavxkg" path="res://Inventory/textures/Pig Bits.png" id="2_kjey0"]
+
+[resource]
+script = ExtResource("1_ppqc7")
+name = "Pig Bits"
+texture = ExtResource("2_kjey0")
+Category = "Food"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"
