@@ -13,7 +13,7 @@ offset_right = 320.0
 offset_bottom = 179.0
 script = ExtResource("1_lhtmg")
 inventory_slot = ExtResource("3_dwsxy")
-recipe_array = Array[ExtResource("2_dwsxy")]([ExtResource("4_nipvv"), ExtResource("5_teqgt"), ExtResource("6_b1rkf")])
+recipe_array = Array[ExtResource("2_dwsxy")]([ExtResource("4_nipvv"), ExtResource("5_teqgt"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -31,6 +31,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

@@ -6,11 +6,15 @@ extends PanelContainer
 @onready var item_texture: TextureRect = %ItemTexture
 @export var inventory_slot: PackedScene = null
 @export var recipe_array: Array[ItemRecipe] = []
-
+var player_inventory : Inv = null
 var Recipe_material_dictionary :Dictionary ={}
 
 func _ready() -> void:
 	build_recipe_tree()
+	visible = false  # Hide by default
+
+func set_player_inventory(new_inventory : Inv):
+	player_inventory = new_inventory
 
 func build_recipe_tree() -> void:
 	tree.hide_root = true
@@ -54,7 +58,12 @@ func build_recipe_material_window(selected_recipe : ItemRecipe) ->void:
 		new_material.update(temp_slot)
 		
 
-
+func _process(delta: float) -> void:
+	if UiManager.is_interactable() and Input.is_action_just_pressed("Pick"):
+		visible = not visible
+		# Set inventory if opening
+	elif not UiManager.is_interactable():
+		visible = false
 func clean_material_window() -> void:
 	Recipe_material_dictionary.clear()
 	

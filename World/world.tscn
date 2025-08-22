@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=47 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://bpv50hf4owdoh" path="res://UI/hunger_bar.tscn" id="17_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
-[ext_resource type="PackedScene" uid="uid://3dgnvw31287s" path="res://UI/Hand_Crafting.tscn" id="20_jf64p"]
+[ext_resource type="PackedScene" uid="uid://bx6ucca5ytue1" path="res://UI/CraftingStuff/CraftingUI.tscn" id="23_yxuth"]
 [ext_resource type="PackedScene" uid="uid://bufu6v4ifmphw" path="res://World/Trees/Scenes/BrokenTrees/FallenLog.tscn" id="29_koyeq"]
 [ext_resource type="PackedScene" uid="uid://bvc2dlfqlrq" path="res://World/Trees/Scenes/BrokenTrees/LargeStump.tscn" id="30_3ql07"]
 [ext_resource type="PackedScene" uid="uid://bgddyygtyd862" path="res://World/Trees/Scenes/BrokenTrees/FallenTree.tscn" id="31_w08tj"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://cmnb1s2vi14vd" path="res://World/scenes/normal_tree.tscn" id="37_6gebr"]
 [ext_resource type="PackedScene" uid="uid://drfhaoewi5t5" path="res://World/scenes/tree_spawner.tscn" id="38_84yts"]
 [ext_resource type="PackedScene" uid="uid://dgpv15k304mfk" path="res://World/scenes/orange_cat.tscn" id="39_15i7j"]
+[ext_resource type="PackedScene" uid="uid://df7dw0xl50u27" path="res://Inventory/Buildables/Scenes/crafting_bench.tscn" id="40_yxuth"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -2187,12 +2188,6 @@ offset_left = 4.0
 offset_top = 5.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Hand_Crafting" parent="CanvasLayer" instance=ExtResource("20_jf64p")]
-offset_left = 200.0
-offset_top = 28.0
-offset_right = 200.0
-offset_bottom = 28.0
-
 [node name="EnergyBar" parent="CanvasLayer" instance=ExtResource("12_5xkvv")]
 offset_left = 305.0
 offset_top = 85.0
@@ -2210,6 +2205,8 @@ offset_bottom = 16.0
 offset_top = 24.0
 offset_bottom = 64.0
 metadata/_edit_use_anchors_ = true
+
+[node name="CraftingUI" parent="CanvasLayer" instance=ExtResource("23_yxuth")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -20)
@@ -2350,3 +2347,6 @@ position = Vector2(954, 162)
 
 [node name="OrangeCat" parent="." instance=ExtResource("39_15i7j")]
 position = Vector2(-157, -88)
+
+[node name="CraftingBench" parent="." instance=ExtResource("40_yxuth")]
+position = Vector2(269, 284)

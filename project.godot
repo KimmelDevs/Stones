@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerStats="*res://Player/player_stats.tscn"
 DragManager="*res://DragManager.gd"
 GlobalData="*res://GlobalData.gd"
+UiManager="*res://UIManager.gd"
 
 [display]
 
