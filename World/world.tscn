@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
-[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
+[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Inventory/textures/player.tscn" id="2_j8job"]
 [ext_resource type="PackedScene" uid="uid://cc0wxqiei2ga5" path="res://UI/camera_2d.tscn" id="3_w08tj"]
 [ext_resource type="PackedScene" uid="uid://cl2g1spse5o22" path="res://Enemies/chainsaw_unit.tscn" id="4_3f78f"]
 [ext_resource type="Texture2D" uid="uid://btscbcwpjqyqb" path="res://World/war.png" id="4_lo5ox"]

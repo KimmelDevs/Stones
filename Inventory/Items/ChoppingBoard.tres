@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://coxbk330mje3y"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_cnj4h"]
+[ext_resource type="Texture2D" uid="uid://d6rroo2qgo6b" path="res://Inventory/textures/ChoppingBoardItem.png" id="2_hvg7f"]
+
+[resource]
+script = ExtResource("1_cnj4h")
+name = "Chopping Board"
+texture = ExtResource("2_hvg7f")
+Category = "Stations"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

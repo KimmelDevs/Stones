@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://bwl7vnfiwgp7w"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_ihne5"]
+[ext_resource type="Texture2D" uid="uid://dvpdkm8btwv4j" path="res://Inventory/textures/StoneKnife.png" id="2_er5f5"]
+
+[resource]
+script = ExtResource("1_ihne5")
+name = "Stone Axe"
+texture = ExtResource("2_er5f5")
+Category = "Weapon"
+weapon_type = "Sword"
+knockback_strength = 1.0
+damage = 4
+weaponlength = "Short"
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://ckrmvnqm7itik"]
+
+[ext_resource type="Resource" uid="uid://bwl7vnfiwgp7w" path="res://Inventory/Items/StoneKnife.tres" id="1_tnlo2"]
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="2_k7qc2"]
+[ext_resource type="Resource" uid="uid://dl40c022orfxu" path="res://Inventory/Items/Rock.tres" id="3_ply5j"]
+[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="4_fl76j"]
+[ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="5_pnwix"]
+[ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="6_57t3a"]
+
+[resource]
+script = ExtResource("6_57t3a")
+recipe_name = "Stone Knife"
+recipe_final_item = ExtResource("1_tnlo2")
+recipe_material_array = Array[ExtResource("2_k7qc2")]([ExtResource("3_ply5j"), ExtResource("4_fl76j"), ExtResource("5_pnwix")])
+category = "Tool"
+metadata/_custom_type_script = "uid://dpnbc4gmnldvl"
