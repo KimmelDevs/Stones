@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbg6v5slse0b4"
-path="res://.godot/imported/SmallShadow.png-40e5f388a5b0f566e4df21175c368d79.ctex"
+uid="uid://dmlhgrbyuvp8g"
+path="res://.godot/imported/Dandelion.png-1498cb1710bb957777767623011f558d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/scenes/SmallShadow.png"
-dest_files=["res://.godot/imported/SmallShadow.png-40e5f388a5b0f566e4df21175c368d79.ctex"]
+source_file="res://World/Flowers/Textures/Dandelion.png"
+dest_files=["res://.godot/imported/Dandelion.png-1498cb1710bb957777767623011f558d.ctex"]
 
 [params]
 

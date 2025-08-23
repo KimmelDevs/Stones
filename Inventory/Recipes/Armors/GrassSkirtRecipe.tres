@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=5 format=3 uid="uid://b84jnnaei2nxg"]
+
+[ext_resource type="Resource" uid="uid://b7wybmti07nd5" path="res://Inventory/Items/GrassSkirt.tres" id="1_ojiu6"]
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="2_trg3g"]
+[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="3_dosqd"]
+[ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="4_ljoo0"]
+
+[resource]
+script = ExtResource("4_ljoo0")
+recipe_name = "GrassSkirtRecipe"
+recipe_final_item = ExtResource("1_ojiu6")
+recipe_material_array = Array[ExtResource("2_trg3g")]([ExtResource("3_dosqd"), ExtResource("3_dosqd"), ExtResource("3_dosqd")])
+category = "Armors"
+metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

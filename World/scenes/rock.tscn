@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_tunef"]
 [ext_resource type="Texture2D" uid="uid://n5w1epnwi11x" path="res://Inventory/textures/rock.png" id="2_1qn22"]
 [ext_resource type="Resource" uid="uid://dl40c022orfxu" path="res://Inventory/Items/Rock.tres" id="2_27i6s"]
-[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://World/scenes/SmallShadow.png" id="3_27i6s"]
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="3_27i6s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tunef"]
 radius = 32.596

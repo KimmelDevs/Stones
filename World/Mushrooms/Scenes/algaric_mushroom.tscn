@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bl2d7842bmcua" path="res://Collectables.gd" id="1_qx20g"]
 [ext_resource type="Resource" uid="uid://dlyigaruog8j5" path="res://Inventory/Items/FlyAlgaric.tres" id="2_0ssbv"]
-[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://World/scenes/SmallShadow.png" id="3_0ssbv"]
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="3_0ssbv"]
 [ext_resource type="Texture2D" uid="uid://ckfv58rpctiso" path="res://World/Mushrooms/Textures/FlyAlgaricMushroom.png" id="3_8nawu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_boe1b"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bf58agwaa2v7k" path="res://Enemies/scenes/wolf/wolf.gd" id="1_22kg2"]
 [ext_resource type="Texture2D" uid="uid://iupjeyio0ihd" path="res://Enemies/textures/wolf/wolf_down.png" id="2_wwkfg"]
 [ext_resource type="Texture2D" uid="uid://ccimdphi1w08f" path="res://Enemies/textures/wolf/brownwolf/wolf_brown_full.png" id="3_k0du3"]
-[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://World/scenes/SmallShadow.png" id="5_tfqfs"]
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="5_tfqfs"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="6_14xyr"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="7_vps6r"]
 [ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="8_akla8"]

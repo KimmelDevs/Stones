@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ihne5")
-name = "Stone Axe"
+name = "Stone Knife"
 texture = ExtResource("2_er5f5")
 Category = "Weapon"
 weapon_type = "Sword"

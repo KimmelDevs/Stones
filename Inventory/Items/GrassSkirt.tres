@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://b7wybmti07nd5"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_ssj01"]
+[ext_resource type="Texture2D" uid="uid://djwsbgrdn8fab" path="res://Inventory/textures/GrassSkirt.png" id="2_ncic3"]
+
+[resource]
+script = ExtResource("1_ssj01")
+name = "Grass Skirt"
+texture = ExtResource("2_ncic3")
+Category = "Armor"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

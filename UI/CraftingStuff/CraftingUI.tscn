@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx6ucca5ytue1"]
+[gd_scene load_steps=16 format=3 uid="uid://bx6ucca5ytue1"]
 
 [ext_resource type="Script" uid="uid://l6oc37enxjwn" path="res://UI/CraftingStuff/crafting_ui.gd" id="1_lhtmg"]
 [ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="2_dwsxy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://vssgpuslcim7" path="res://UI/CraftingIcons/Stations.png" id="7_teqgt"]
 [ext_resource type="Texture2D" uid="uid://b4aavf50v04hg" path="res://UI/CraftingIcons/Armors.png" id="8_6d3cb"]
 [ext_resource type="Resource" uid="uid://cgk3kosv6g1fs" path="res://Inventory/Recipes/Stations/ChoppingBoardRecipe.tres" id="8_tcai8"]
+[ext_resource type="Resource" uid="uid://b84jnnaei2nxg" path="res://Inventory/Recipes/Armors/GrassSkirtRecipe.tres" id="9_qbckx"]
 [ext_resource type="Texture2D" uid="uid://dvt17qxvv7oiq" path="res://UI/CraftingIcons/Tools.png" id="9_xrecy"]
 [ext_resource type="Texture2D" uid="uid://u3ncgyv55ww3" path="res://UI/CraftingIcons/Consumables.png" id="10_tcai8"]
 [ext_resource type="Texture2D" uid="uid://duoflpol68l2i" path="res://UI/CraftingIcons/Resources.png" id="11_qbckx"]
@@ -20,7 +21,7 @@ offset_right = 457.0
 offset_bottom = 257.0
 script = ExtResource("1_lhtmg")
 inventory_slot = ExtResource("3_dwsxy")
-recipe_array = Array[ExtResource("2_dwsxy")]([ExtResource("6_b1rkf"), ExtResource("5_xrecy"), ExtResource("5_teqgt"), ExtResource("4_nipvv"), ExtResource("8_tcai8"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf")])
+recipe_array = Array[ExtResource("2_dwsxy")]([ExtResource("6_b1rkf"), ExtResource("5_xrecy"), ExtResource("5_teqgt"), ExtResource("4_nipvv"), ExtResource("8_tcai8"), ExtResource("9_qbckx"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

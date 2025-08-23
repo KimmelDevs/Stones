@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_klx5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3e6n"]
-size = Vector2(49, 15)
+size = Vector2(66, 17)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u2rq"]
 height = 34.0
@@ -18,7 +18,7 @@ script = ExtResource("1_klx5k")
 texture = ExtResource("1_q3e6n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 2.5)
+position = Vector2(5, 1.5)
 shape = SubResource("RectangleShape2D_q3e6n")
 
 [node name="Stats" parent="." instance=ExtResource("2_yh5a8")]

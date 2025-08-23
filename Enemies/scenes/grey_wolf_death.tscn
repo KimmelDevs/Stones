@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgvjpd67tt4m" path="res://Enemies/scenes/grey_wolf_death.gd" id="1_2miko"]
 [ext_resource type="Texture2D" uid="uid://iupjeyio0ihd" path="res://Enemies/textures/wolf/wolf_down.png" id="1_laokv"]
-[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://World/scenes/SmallShadow.png" id="2_2miko"]
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="2_2miko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abkyh"]
 atlas = ExtResource("1_laokv")
