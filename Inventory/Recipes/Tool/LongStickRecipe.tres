@@ -10,4 +10,5 @@ script = ExtResource("4_3ig0u")
 recipe_name = "LongStick"
 recipe_final_item = ExtResource("1_g0u0k")
 recipe_material_array = Array[ExtResource("2_gs4to")]([ExtResource("3_tipl7"), ExtResource("3_tipl7")])
+category = "Tool"
 metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

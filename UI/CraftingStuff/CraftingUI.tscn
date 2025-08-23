@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx6ucca5ytue1"]
+[gd_scene load_steps=13 format=3 uid="uid://bx6ucca5ytue1"]
 
 [ext_resource type="Script" uid="uid://l6oc37enxjwn" path="res://UI/CraftingStuff/crafting_ui.gd" id="1_lhtmg"]
 [ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="2_dwsxy"]
 [ext_resource type="Texture2D" uid="uid://cyl5op08pfjy7" path="res://Equipments/Textures/axe.png" id="2_wvcuu"]
 [ext_resource type="PackedScene" uid="uid://dwgn11r34kia7" path="res://Inventory/inv_ui_slot.tscn" id="3_dwsxy"]
-[ext_resource type="Resource" uid="uid://dsk815a4mu331" path="res://Inventory/Recipes/SpearRecipe.tres" id="4_nipvv"]
-[ext_resource type="Resource" uid="uid://c5bbetu5hfq0y" path="res://Inventory/Recipes/AxeRecipe.tres" id="5_teqgt"]
-[ext_resource type="Resource" uid="uid://njgic1rvcixc" path="res://Inventory/Recipes/LongStickRecipe.tres" id="6_b1rkf"]
+[ext_resource type="Resource" uid="uid://dsk815a4mu331" path="res://Inventory/Recipes/Tool/SpearRecipe.tres" id="4_nipvv"]
+[ext_resource type="Resource" uid="uid://c5bbetu5hfq0y" path="res://Inventory/Recipes/Tool/AxeRecipe.tres" id="5_teqgt"]
+[ext_resource type="Resource" uid="uid://njgic1rvcixc" path="res://Inventory/Recipes/Tool/LongStickRecipe.tres" id="6_b1rkf"]
+[ext_resource type="Texture2D" uid="uid://vssgpuslcim7" path="res://UI/CraftingIcons/Stations.png" id="7_teqgt"]
+[ext_resource type="Texture2D" uid="uid://b4aavf50v04hg" path="res://UI/CraftingIcons/Armors.png" id="8_6d3cb"]
+[ext_resource type="Texture2D" uid="uid://dvt17qxvv7oiq" path="res://UI/CraftingIcons/Tools.png" id="9_xrecy"]
+[ext_resource type="Texture2D" uid="uid://u3ncgyv55ww3" path="res://UI/CraftingIcons/Consumables.png" id="10_tcai8"]
+[ext_resource type="Texture2D" uid="uid://duoflpol68l2i" path="res://UI/CraftingIcons/Resources.png" id="11_qbckx"]
 
 [node name="CraftingUI" type="PanelContainer"]
-offset_right = 320.0
-offset_bottom = 179.0
+offset_right = 457.0
+offset_bottom = 257.0
 script = ExtResource("1_lhtmg")
 inventory_slot = ExtResource("3_dwsxy")
 recipe_array = Array[ExtResource("2_dwsxy")]([ExtResource("4_nipvv"), ExtResource("5_teqgt"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf"), ExtResource("6_b1rkf")])
@@ -26,12 +31,37 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 alignment = 1
 
+[node name="Icons" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Stations" type="TextureButton" parent="MarginContainer/HBoxContainer/Icons"]
+layout_mode = 2
+texture_normal = ExtResource("7_teqgt")
+
+[node name="Armors" type="TextureButton" parent="MarginContainer/HBoxContainer/Icons"]
+layout_mode = 2
+texture_normal = ExtResource("8_6d3cb")
+
+[node name="Tools" type="TextureButton" parent="MarginContainer/HBoxContainer/Icons"]
+layout_mode = 2
+texture_normal = ExtResource("9_xrecy")
+
+[node name="Consumables" type="TextureButton" parent="MarginContainer/HBoxContainer/Icons"]
+layout_mode = 2
+texture_normal = ExtResource("10_tcai8")
+
+[node name="Materials" type="TextureButton" parent="MarginContainer/HBoxContainer/Icons"]
+layout_mode = 2
+texture_normal = ExtResource("11_qbckx")
+
 [node name="Tree" type="Tree" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.57
 theme_override_font_sizes/font_size = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
@@ -122,5 +152,7 @@ layout_mode = 2
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Craft"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="cell_selected" from="MarginContainer/HBoxContainer/Tree" to="." method="_on_tree_cell_selected"]

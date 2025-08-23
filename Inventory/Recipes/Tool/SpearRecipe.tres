@@ -12,4 +12,5 @@ script = ExtResource("2_17bqg")
 recipe_name = "Spear"
 recipe_final_item = ExtResource("1_g2idq")
 recipe_material_array = Array[ExtResource("1_lcb2h")]([ExtResource("3_2xeeh"), ExtResource("4_tamq7"), ExtResource("3_2xeeh"), ExtResource("5_vkgat")])
+category = "Tool"
 metadata/_custom_type_script = "uid://dpnbc4gmnldvl"
