@@ -1,7 +1,7 @@
-[gd_scene load_steps=46 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=49 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
-[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Inventory/textures/player.tscn" id="2_j8job"]
+[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
 [ext_resource type="PackedScene" uid="uid://cc0wxqiei2ga5" path="res://UI/camera_2d.tscn" id="3_w08tj"]
 [ext_resource type="PackedScene" uid="uid://cl2g1spse5o22" path="res://Enemies/chainsaw_unit.tscn" id="4_3f78f"]
 [ext_resource type="Texture2D" uid="uid://btscbcwpjqyqb" path="res://World/war.png" id="4_lo5ox"]
@@ -38,7 +38,10 @@
 [ext_resource type="PackedScene" uid="uid://cmnb1s2vi14vd" path="res://World/scenes/normal_tree.tscn" id="37_6gebr"]
 [ext_resource type="PackedScene" uid="uid://dgpv15k304mfk" path="res://World/scenes/orange_cat.tscn" id="39_15i7j"]
 [ext_resource type="PackedScene" uid="uid://co84mfb4uo2jj" path="res://World/Flowers/Scenes/fox_gloves.tscn" id="39_yxuth"]
+[ext_resource type="PackedScene" uid="uid://b8k8y2dyupt25" path="res://World/Flowers/Scenes/chamomile.tscn" id="40_05jqx"]
 [ext_resource type="PackedScene" uid="uid://df7dw0xl50u27" path="res://Inventory/Buildables/Scenes/crafting_bench.tscn" id="40_yxuth"]
+[ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
+[ext_resource type="PackedScene" uid="uid://cowuyjqjfghay" path="res://Player/player_new.tscn" id="42_s5cut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -2403,3 +2406,12 @@ position = Vector2(269, 284)
 
 [node name="FoxGloves" parent="." instance=ExtResource("39_yxuth")]
 position = Vector2(-132, 36)
+
+[node name="Chamomile" parent="." instance=ExtResource("40_05jqx")]
+position = Vector2(-145, 72)
+
+[node name="Dandelion" parent="." instance=ExtResource("41_s5cut")]
+position = Vector2(-193, 35)
+
+[node name="PlayerNew" parent="." instance=ExtResource("42_s5cut")]
+position = Vector2(-41, 85)

@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://cowuyjqjfghay"]
+
+[ext_resource type="Texture2D" uid="uid://6we1nx6jmwv3" path="res://Player/Texture/Idle/Body-feet.png" id="1_xnlcu"]
+[ext_resource type="Texture2D" uid="uid://cdwasnd6mve5y" path="res://Player/Texture/Idle/Unarmed_Idle3_head.png" id="2_x4nfc"]
+[ext_resource type="Texture2D" uid="uid://e2nuofalmgcm" path="res://Player/Texture/Idle/Player-hand.png" id="3_x4nfc"]
+
+[sub_resource type="Animation" id="Animation_p7cvw"]
+resource_name = "WalkRight"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bodyandfeet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightHand:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_yp12m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bodyandfeet:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwrnc"]
+_data = {
+&"RESET": SubResource("Animation_yp12m"),
+&"WalkRight": SubResource("Animation_p7cvw")
+}
+
+[node name="PlayerNew" type="CharacterBody2D"]
+
+[node name="Bodyandfeet" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_xnlcu")
+hframes = 8
+vframes = 8
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+texture = ExtResource("2_x4nfc")
+hframes = 12
+vframes = 4
+frame = 6
+
+[node name="RightHand" type="Sprite2D" parent="."]
+position = Vector2(-1, 3)
+texture = ExtResource("3_x4nfc")
+hframes = 8
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bwrnc")
+}

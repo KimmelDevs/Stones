@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://rp7yy41yf2u0"]
+
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="1_e6avj"]
+[ext_resource type="Texture2D" uid="uid://dmlhgrbyuvp8g" path="res://World/Flowers/Textures/Dandelion.png" id="2_h6aol"]
+
+[node name="Dandelion" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, 8)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("1_e6avj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h6aol")

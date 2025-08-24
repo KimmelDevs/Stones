@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8k8y2dyupt25"]
+
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="1_evqin"]
+[ext_resource type="Texture2D" uid="uid://cooqaiaoofivn" path="res://World/Flowers/Textures/Chamomile.png" id="2_k15jl"]
+
+[node name="Chamomile" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, 8)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("1_evqin")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_k15jl")
