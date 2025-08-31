@@ -2255,6 +2255,7 @@ position = Vector2(-827, 485)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HotBar" parent="CanvasLayer" instance=ExtResource("11_0lysu")]
+visible = false
 offset_left = 84.0
 offset_top = 149.0
 offset_right = 124.0
@@ -2274,17 +2275,19 @@ offset_bottom = 166.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HungerBar" parent="CanvasLayer" instance=ExtResource("17_o6lw0")]
-offset_left = 219.0
-offset_top = 2.0
-offset_right = 314.0
-offset_bottom = 16.0
+offset_left = 5.0
+offset_top = 18.0
+offset_right = 100.0
+offset_bottom = 32.0
 
 [node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("13_kcyjf")]
+visible = false
 offset_top = 24.0
 offset_bottom = 64.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CraftingUI" parent="CanvasLayer" instance=ExtResource("23_yxuth")]
+visible = false
 offset_right = 325.0
 offset_bottom = 186.0
 

@@ -20,8 +20,8 @@ var energy_regen_timer: float = 0.0
 @export var player = false
 # --- Hunger ---
 @export var max_hunger: int = 100
-@export var hunger_decrease_interval: float = 10.0
-@export var hunger_decrease_amount: int = 2
+@export var hunger_decrease_interval: float = 30.0
+@export var hunger_decrease_amount: int = 1
 @export var hunger_damage_interval: float = 5.0
 @export var hunger_damage_amount: float = 1.0
 
