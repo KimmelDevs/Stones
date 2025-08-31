@@ -41,6 +41,9 @@ var stats = PlayerStats
 @onready var longsword_node = $LongSword
 var weapon_hitbox: Area2D = null
 
+# --- Station Placement ---
+var equipped_station: InvItem = null
+var station_preview: Node2D = null   # ghost preview node
 
 
 func _ready():
@@ -71,6 +74,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		knockback_timer -= delta
 		return
+	# --- Station Preview Follow Mouse ---
+	if station_preview:
+		var mouse_pos = get_global_mouse_position()
+		# Snap to grid (optional, change 16 to tile size)
+		mouse_pos = mouse_pos.snapped(Vector2(16, 16))
+		station_preview.global_position = mouse_pos
 
 	# --- Attack Input ---
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_rolling:
@@ -136,6 +145,13 @@ func _input(event: InputEvent) -> void:
 				_consume_food(equipped_food)
 	if Input.is_action_just_pressed("interact"):
 		try_place_on_choppingboard()
+	# --- Station Placement ---
+	if station_preview and event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			_place_station()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			print("Cancelled placement")
+			_clear_station()
 
 
 func set_hunger(value: int) -> void:
@@ -177,6 +193,10 @@ func equip_item(item: InvItem) -> void:
 		"Food":
 			_clear_weapon()  # make sure no weapon is equipped
 			_equip_food(item)
+		"Stations":
+			_clear_weapon()
+			_clear_food()
+			_equip_station(item)
 		_:
 			print("Item category not handled: ", item.Category)
 			_clear_weapon()
@@ -370,6 +390,55 @@ func try_pick_from_choppingboard():
 
 				print("Picked back ", board_item.name, " from chopping board!")
 			return
+
+func _equip_station(item: InvItem) -> void:
+	if not item or not item.skill_scene:
+		print("Station item has no scene to place!")
+		return
+
+	equipped_station = item
+	station_preview = item.skill_scene.instantiate()
+
+	# Add preview to world (NOT to player)
+	get_tree().current_scene.add_child(station_preview)
+
+	# Make semi-transparent blue
+	if station_preview.has_node("Sprite2D"):
+		var s: Sprite2D = station_preview.get_node("Sprite2D")
+		s.modulate = Color(0, 0.5, 1, 0.5)
+
+	# Disable collisions while previewing
+	if station_preview is CollisionObject2D:
+		station_preview.set_collision_layer(0)
+		station_preview.set_collision_mask(0)
+
+	print("Equipped station for placement: ", item.name)
+func _clear_station() -> void:
+	if station_preview:
+		station_preview.queue_free()
+		station_preview = null
+	equipped_station = null
+func _place_station() -> void:
+	if not equipped_station or not station_preview:
+		return
+
+	# Create real station
+	var placed_station = equipped_station.skill_scene.instantiate()
+	get_tree().current_scene.add_child(placed_station)
+	placed_station.global_position = station_preview.global_position
+
+	# Delete preview
+	station_preview.queue_free()
+	station_preview = null
+
+	# Remove 1 from inventory
+	if Inv.remove_item(equipped_station, 1):
+		print("Placed station: ", placed_station.name)
+	else:
+		print("Could not remove station from inventory!")
+
+	# Unequip station
+	equipped_station = null
 
 
 func _find_existing_player_item_ref(item: InvItem) -> InvItem:
