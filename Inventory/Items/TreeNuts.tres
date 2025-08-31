@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://bb53gnmarwg0d"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_fin7k"]
+[ext_resource type="PackedScene" uid="uid://dkrsuu5lis6dj" path="res://World/scenes/Normal_Sapling.tscn" id="2_ax00w"]
+[ext_resource type="Texture2D" uid="uid://dpx3rimdycefe" path="res://Inventory/textures/DediciousNuts.png" id="3_q7ocd"]
+
+[resource]
+script = ExtResource("1_fin7k")
+name = "TreeNuts"
+texture = ExtResource("3_q7ocd")
+Category = "Seeds"
+weapon_type = ""
+skill_scene = ExtResource("2_ax00w")
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

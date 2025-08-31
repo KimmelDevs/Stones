@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmnb1s2vi14vd"]
+[gd_scene load_steps=13 format=3 uid="uid://cmnb1s2vi14vd"]
 
 [ext_resource type="Script" uid="uid://dcp1ao6rdh3da" path="res://normal_tree.gd" id="1_de5yi"]
 [ext_resource type="Texture2D" uid="uid://lqpi74afqnac" path="res://Shadows/MediumShadow.png" id="2_3qpge"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="2_rlmkq"]
-[ext_resource type="Texture2D" uid="uid://bcnx1sslnwcjr" path="res://World/Trees/Textures/Trees/NormTree.png" id="2_v2nkv"]
+[ext_resource type="Texture2D" uid="uid://b6mxaue7jkwqn" path="res://World/Trees/Textures/Trees/NormTree.png" id="2_v2nkv"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_v2nkv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3qpge"]
@@ -13,6 +13,10 @@ region = Rect2(0, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_660g8"]
 atlas = ExtResource("2_v2nkv")
 region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2nkv"]
+atlas = ExtResource("2_v2nkv")
+region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scvjp"]
 atlas = ExtResource("2_v2nkv")
@@ -36,6 +40,19 @@ animations = [{
 "name": &"BabyTree",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2nkv")
+}],
+"loop": true,
+"name": &"Sapling",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_scvjp")
@@ -56,17 +73,18 @@ height = 24.0
 script = ExtResource("1_de5yi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 33)
+position = Vector2(2, 3)
 scale = Vector2(2.03125, 1.4)
 texture = ExtResource("2_3qpge")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
 sprite_frames = SubResource("SpriteFrames_3qpge")
-animation = &"BabyTree"
-autoplay = "BabyTree"
+animation = &"TeenTree"
+autoplay = "AdultTree"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 20)
+position = Vector2(2, -9)
 shape = SubResource("RectangleShape2D_5tyao")
 
 [node name="Stats" parent="." instance=ExtResource("2_rlmkq")]
@@ -77,7 +95,7 @@ collision_layer = 256
 collision_mask = 512
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(2, 21)
+position = Vector2(2, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_660g8")
 

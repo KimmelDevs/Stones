@@ -188,13 +188,22 @@ func equip_item(item: InvItem) -> void:
 
 	match item.Category:
 		"Weapon":
+			_clear_station()
 			_clear_food()  # make sure no food is equipped
 			_equip_weapon(item)
 		"Food":
+			
+			_clear_station()
 			_clear_weapon()  # make sure no weapon is equipped
 			_equip_food(item)
 		"Stations":
 			_clear_weapon()
+			_clear_food()
+			_clear_station()
+			_equip_station(item)
+		"Seeds":
+			_clear_weapon()
+			_clear_station()
 			_clear_food()
 			_equip_station(item)
 		_:
@@ -398,21 +407,21 @@ func _equip_station(item: InvItem) -> void:
 
 	equipped_station = item
 	station_preview = item.skill_scene.instantiate()
-
-	# Add preview to world (NOT to player)
 	get_tree().current_scene.add_child(station_preview)
 
-	# Make semi-transparent blue
+	# Semi-transparent blue ghost
 	if station_preview.has_node("Sprite2D"):
 		var s: Sprite2D = station_preview.get_node("Sprite2D")
 		s.modulate = Color(0, 0.5, 1, 0.5)
 
-	# Disable collisions while previewing
+	# Disable collisions for preview
+	for c in station_preview.get_children():
+		if c is CollisionShape2D or c is CollisionPolygon2D:
+			c.disabled = true
 	if station_preview is CollisionObject2D:
 		station_preview.set_collision_layer(0)
 		station_preview.set_collision_mask(0)
 
-	print("Equipped station for placement: ", item.name)
 func _clear_station() -> void:
 	if station_preview:
 		station_preview.queue_free()
@@ -426,6 +435,14 @@ func _place_station() -> void:
 	var placed_station = equipped_station.skill_scene.instantiate()
 	get_tree().current_scene.add_child(placed_station)
 	placed_station.global_position = station_preview.global_position
+
+	# Re-enable collisions on the real station
+	for c in placed_station.get_children():
+		if c is CollisionShape2D or c is CollisionPolygon2D:
+			c.disabled = false
+	if placed_station is CollisionObject2D:
+		placed_station.set_collision_layer(1) # adjust to your gameplay layer
+		placed_station.set_collision_mask(1)
 
 	# Delete preview
 	station_preview.queue_free()

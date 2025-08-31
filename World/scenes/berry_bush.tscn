@@ -1,19 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://biubxd4ucuro4"]
+[gd_scene load_steps=9 format=3 uid="uid://b0ploua3op2kd"]
 
 [ext_resource type="Script" uid="uid://cyh715bhodluf" path="res://World/berry_bush.gd" id="1_h8k17"]
-[ext_resource type="Texture2D" uid="uid://dg3cnj7v3w304" path="res://World/Bush with berries 32 px.png" id="1_r4pop"]
 [ext_resource type="Resource" uid="uid://7e8sihetpuur" path="res://Inventory/Items/Berry.tres" id="2_rabx2"]
-[ext_resource type="Texture2D" uid="uid://ebjrumiu08g2" path="res://World/Bush no berries 32 px.png" id="3_rabx2"]
+[ext_resource type="Texture2D" uid="uid://lqpi74afqnac" path="res://Shadows/MediumShadow.png" id="3_h8k17"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r4pop"]
 radius = 5.0
 height = 20.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nm21x"]
+load_path = "res://.godot/imported/Bush with berries 32 px.png-37b499a417a11371e329876282a32f0d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11py7"]
+load_path = "res://.godot/imported/Bush no berries 32 px.png-c01b35c6911774e83dd715f333102c50.ctex"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pe225"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_r4pop")
+"texture": SubResource("CompressedTexture2D_nm21x")
 }],
 "loop": true,
 "name": &"Berries",
@@ -21,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_rabx2")
+"texture": SubResource("CompressedTexture2D_11py7")
 }],
 "loop": true,
 "name": &"NoBerries",
@@ -34,6 +39,12 @@ radius = 47.0106
 [node name="BerryBush" type="StaticBody2D"]
 script = ExtResource("1_h8k17")
 item = ExtResource("2_rabx2")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-4.26326e-14, 7)
+rotation = -0.127409
+scale = Vector2(1.6875, 1)
+texture = ExtResource("3_h8k17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2)

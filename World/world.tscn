@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=45 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmic402sit16n" path="res://World/DirtTileset.png" id="5_bkhv4"]
 [ext_resource type="PackedScene" uid="uid://jlbt7nbl8k2q" path="res://World/scenes/Bush.tscn" id="6_eidgh"]
 [ext_resource type="Texture2D" uid="uid://bl5f311sqmeh4" path="res://World/CliffTileset.png" id="6_yf0ba"]
+[ext_resource type="PackedScene" uid="uid://dkrsuu5lis6dj" path="res://World/scenes/Normal_Sapling.tscn" id="7_84yts"]
 [ext_resource type="Texture2D" uid="uid://dl5nye6xmusnb" path="res://World/Watertileset.png" id="8_w47uh"]
 [ext_resource type="PackedScene" uid="uid://bv531wsn8yrlq" path="res://World/scenes/grass.tscn" id="10_lo5ox"]
 [ext_resource type="PackedScene" uid="uid://bqfn6lnudv1qv" path="res://UI/hot_bar.tscn" id="11_0lysu"]
@@ -21,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cltirdoa42djx" path="res://World/scenes/tall_grass.tscn" id="14_yfuda"]
 [ext_resource type="PackedScene" uid="uid://d12bl3gic7t5p" path="res://Enemies/mega_slime.tscn" id="15_f23eu"]
 [ext_resource type="PackedScene" uid="uid://dyqjkvrd48ovr" path="res://World/scenes/mugworth_plant.tscn" id="15_i8dl0"]
-[ext_resource type="PackedScene" uid="uid://biubxd4ucuro4" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
+[ext_resource type="PackedScene" uid="uid://b0ploua3op2kd" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://bpv50hf4owdoh" path="res://UI/hunger_bar.tscn" id="17_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
 [ext_resource type="PackedScene" uid="uid://bx6ucca5ytue1" path="res://UI/CraftingStuff/CraftingUI.tscn" id="23_yxuth"]
@@ -1646,6 +1647,15 @@ position = Vector2(694, -141)
 
 [node name="Grass25" parent="Ysort/Grass" instance=ExtResource("10_lo5ox")]
 position = Vector2(692, -91)
+
+[node name="NormalTree" parent="Ysort/Grass" instance=ExtResource("37_6gebr")]
+position = Vector2(-25, -26)
+
+[node name="NormalSapling" parent="Ysort/Grass" instance=ExtResource("7_84yts")]
+position = Vector2(104, 296)
+
+[node name="NormalSapling2" parent="Ysort/Grass" instance=ExtResource("7_84yts")]
+position = Vector2(155, 297)
 
 [node name="enemies" type="Node2D" parent="Ysort"]
 y_sort_enabled = true

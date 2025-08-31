@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drvucwge2cy0h"
-path="res://.godot/imported/Bush no berries 32 px.png-c01b35c6911774e83dd715f333102c50.ctex"
+uid="uid://dpx3rimdycefe"
+path="res://.godot/imported/DediciousNuts.png-6f9fafb22e6d88097695afd1a87c373b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Bush no berries 32 px.png"
-dest_files=["res://.godot/imported/Bush no berries 32 px.png-c01b35c6911774e83dd715f333102c50.ctex"]
+source_file="res://Inventory/textures/DediciousNuts.png"
+dest_files=["res://.godot/imported/DediciousNuts.png-6f9fafb22e6d88097695afd1a87c373b.ctex"]
 
 [params]
 
