@@ -12,6 +12,7 @@ offset_bottom = 53.0
 script = ExtResource("1_6kdvs")
 
 [node name="MeatEmpty" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 1.0
 offset_right = 14.0
@@ -21,6 +22,7 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="MeatFull" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 15.0
 offset_bottom = 11.0
 texture = ExtResource("3_neypq")
