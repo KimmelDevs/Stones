@@ -11,6 +11,15 @@ extends CharacterBody2D
 @export var flee_dodge_strength: float = 0.6
 @export var flee_cooldown: float = 1.5
 
+# --- Line of Sight ---
+var has_los: bool = false
+var last_seen_position: Vector2
+var searching: bool = false
+var los_memory_timer: float = 0.0
+@export var los_memory_duration: float = 3.0  # Shorter than bat - pigs forget faster
+var search_timer: float = 0.0
+@export var search_duration: float = 2.0
+
 # --- Personality & Liveliness ---
 @export var curiosity: float = 0.4          # How often pig investigates things
 @export var nervousness: float = 0.3        # How jumpy/alert the pig is
@@ -95,6 +104,7 @@ func _physics_process(delta: float) -> void:
 	personality_timer += delta
 	update_activity_level(delta)
 	check_stuck_prevention(delta)
+	update_los_tracking(delta)  # LOS tracking
 	
 	# Reduce danger memory over time
 	if danger_memory_timer > 0:
@@ -129,6 +139,41 @@ func _physics_process(delta: float) -> void:
 	if not dying:
 		velocity = move_velocity
 		move_and_slide()
+
+func check_line_of_sight(target: Node2D) -> bool:
+	if not target:
+		return false
+		
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, target.global_position)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	
+	return result.is_empty() or result["collider"] == target
+
+func update_los_tracking(delta: float) -> void:
+	if not player:
+		has_los = false
+		searching = false
+		return
+	
+	if check_line_of_sight(player):
+		has_los = true
+		searching = false
+		los_memory_timer = los_memory_duration
+		last_seen_position = player.global_position
+	else:
+		has_los = false
+		
+		# If we recently saw the player, start searching
+		if los_memory_timer > 0:
+			los_memory_timer -= delta
+			if not searching:
+				searching = true
+				search_timer = search_duration
+		else:
+			# Memory expired, stop searching
+			searching = false
 
 func generate_grazing_spots() -> void:
 	grazing_spots.clear()
@@ -311,14 +356,14 @@ func handle_investigate(delta: float) -> void:
 		sprite.play("Walk")
 
 func handle_cautious(delta: float) -> void:
-	# Slowly move away from danger while staying alert
 	alert_timer -= delta
 	
 	if alert_timer <= 0:
 		state = WANDER
 		return
 	
-	if player and global_position.distance_to(player.global_position) < social_distance * 2:
+	# Only be cautious if we can see the player
+	if has_los and player and global_position.distance_to(player.global_position) < social_distance * 2:
 		var dir = (global_position - player.global_position).normalized()
 		move_velocity = move_velocity.move_toward(dir * maxspeed * 0.4, acceleration * delta)
 	else:
@@ -327,17 +372,46 @@ func handle_cautious(delta: float) -> void:
 	sprite.play("Idle")
 
 func handle_alert(delta: float) -> void:
-	# Stand still and look around alertly
 	alert_timer -= delta
-	move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta * 2)
 	
-	if alert_timer <= 0:
-		if player and global_position.distance_to(player.global_position) < safe_distance * 0.5:
-			state = FLEE
-			initiate_panic_flee()
+	# If we're searching for a player we lost sight of
+	if searching and search_timer > 0:
+		search_timer -= delta
+		
+		# Look towards last seen position
+		if global_position.distance_to(last_seen_position) > 20:
+			var dir = (last_seen_position - global_position).normalized()
+			move_velocity = move_velocity.move_toward(dir * maxspeed * 0.3, acceleration * delta)
 		else:
+			# Reached last seen position, look around briefly
+			move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta)
+		
+		# If we find the player again with LOS, react
+		if has_los and player:
+			search_timer = 0
+			searching = false
+			if global_position.distance_to(player.global_position) < safe_distance * 0.5:
+				initiate_panic_flee()
+			else:
+				state = CAUTIOUS
+				alert_timer = randf_range(2, 4)
+		
+		# Stop searching after timeout
+		if search_timer <= 0:
+			searching = false
 			state = CAUTIOUS
-			alert_timer = randf_range(2, 4)
+			alert_timer = randf_range(1, 3)
+	else:
+		# Normal alert behavior
+		move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta * 2)
+		
+		if alert_timer <= 0:
+			if has_los and player and global_position.distance_to(player.global_position) < safe_distance * 0.5:
+				state = FLEE
+				initiate_panic_flee()
+			else:
+				state = CAUTIOUS
+				alert_timer = randf_range(2, 4)
 	
 	sprite.play("Idle")
 
@@ -499,6 +573,10 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	player = body
+	
+	# Only react if we can actually see the player!
+	if not check_line_of_sight(player):
+		return  # Don't react if we can't see them
 	
 	# React based on current state and nervousness
 	if state == SLEEP:
