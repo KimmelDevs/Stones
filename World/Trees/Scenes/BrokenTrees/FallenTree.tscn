@@ -23,7 +23,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rfnbq")
 
 [node name="Stats" parent="." instance=ExtResource("4_rs3t2")]
-max_health = 8.0
 
 [node name="HurtBox" parent="." instance=ExtResource("4_pb4qm")]
 collision_layer = 256

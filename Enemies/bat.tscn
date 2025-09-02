@@ -99,7 +99,6 @@ position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0g1cs")
 
 [node name="Stats" parent="." instance=ExtResource("5_i84q7")]
-max_health = 5.0
 
 [node name="PlayerDetectionArea" parent="." instance=ExtResource("6_nc5xu")]
 visible = false
@@ -121,6 +120,7 @@ offset_left = -10.0
 offset_top = -16.0
 offset_right = 11.0
 offset_bottom = -12.0
+metadata/_edit_use_anchors_ = true
 
 [node name="SoftCollision" parent="." instance=ExtResource("9_srckj")]
 

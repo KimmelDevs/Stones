@@ -619,7 +619,6 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_g8gmv")
 
 [node name="Stats" parent="." instance=ExtResource("6_rglfw")]
-max_health = 10.0
 
 [node name="PlayerDetectionArea" parent="." instance=ExtResource("7_s67n2")]
 visible = false

@@ -274,7 +274,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ifdpd")
 
 [node name="Stats" parent="." instance=ExtResource("5_4c7lm")]
-max_health = 5.0
+max_health = 6.0
 
 [node name="PlayerDetectionArea" parent="." instance=ExtResource("6_xngcp")]
 visible = false

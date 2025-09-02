@@ -88,7 +88,6 @@ position = Vector2(2, -9)
 shape = SubResource("RectangleShape2D_5tyao")
 
 [node name="Stats" parent="." instance=ExtResource("2_rlmkq")]
-max_health = 8.0
 
 [node name="HurtBox" parent="." instance=ExtResource("3_v2nkv")]
 collision_layer = 256

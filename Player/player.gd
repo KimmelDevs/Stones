@@ -2,7 +2,7 @@ class_name PlayerEntity
 extends CharacterBody2D
 
 # --- Movement & Combat Settings ---
-@export var SPEED: float = 100.0
+@export var SPEED: float = 75.0
 @export var ROLL_SPEED: float = 200.0
 @export var ROLL_DURATION: float = 0.5
 @export var ATTACK_DURATION: float = 0.4
