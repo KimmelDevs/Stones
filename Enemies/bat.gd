@@ -32,6 +32,9 @@ var can_attack: bool = true
 @onready var stats = $Stats
 @onready var playerdetectionzone = $PlayerDetectionArea
 @onready var sprite = $AnimatedSprite2D
+@onready var soft_collision: Area2D = $SoftCollision
+
+
 
 # --- State machine ---
 enum { IDLE, WANDER, CHASE, ANTICIPATE, DIVE, RECOVER }
@@ -129,7 +132,11 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 	else:
 		if not dying:
-			velocity = move_velocity
+			var total_velocity = move_velocity
+			if soft_collision.is_colliding():
+				total_velocity += soft_collision.get_push_vector() * delta * 400
+			velocity = total_velocity
+
 
 	move_and_slide()
 

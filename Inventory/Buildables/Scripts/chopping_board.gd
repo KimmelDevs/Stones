@@ -39,7 +39,7 @@ func chop():
 	for slot in board_inv.slots:
 		if slot.item and slot.item.name == "Pig Corpse":
 			print("Chopping PigCorpse:", slot.item.name)
-			animplay.play("Chopping")
+			#animplay.play("Chopping")
 			await get_tree().create_timer(2.5).timeout  
 			animplay.stop()  
 			# Remove 1 PigCorpse from inventory
@@ -65,7 +65,7 @@ func chop():
 			return  # only chop 1 item at a time
 		elif slot.item and slot.item.name == "Pig Head":
 			print("Chopping PigCorpse:", slot.item.name)
-			animplay.play("Chopping")
+			#animplay.play("Chopping")
 			await get_tree().create_timer(2.5).timeout  
 			animplay.stop() 
 			# Remove 1 PigCorpse from inventory

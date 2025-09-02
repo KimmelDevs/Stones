@@ -7,7 +7,6 @@ var is_shaking: bool = false
 # --- Nodes ---
 @onready var hurtbox = $HurtBox
 @onready var stats = $Stats
-@onready var tween = get_tree().create_tween()
 
 func _physics_process(delta: float) -> void:
 	if dying:
@@ -29,13 +28,19 @@ func spawn_death_effect() -> void:
 	get_parent().add_child(effect_instance)
 
 func shake() -> void:
-	if is_shaking: 
-		return  # Prevent overlapping shakes
+	if is_shaking:
+		return # Prevent overlapping shakes
 	is_shaking = true
-	
+
 	var original_pos = position
-	tween = create_tween()
-	tween.tween_property(self, "position", original_pos + Vector2(5, 0), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "position", original_pos - Vector2(5, 0), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "position", original_pos, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.finished.connect(func(): is_shaking = false)
+	var t = create_tween() # create fresh tween each time
+
+	t.tween_property(self, "position", original_pos + Vector2(5, 0), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(self, "position", original_pos - Vector2(5, 0), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(self, "position", original_pos, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	# Reset is_shaking when tween finishes
+	t.finished.connect(Callable(self, "_on_shake_finished"))
+
+func _on_shake_finished() -> void:
+	is_shaking = false

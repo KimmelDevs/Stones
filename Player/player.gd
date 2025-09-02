@@ -606,6 +606,7 @@ func play_idle_animation() -> void:
 
 # --- When Hit ---
 func _on_hurt_box_area_entered(area: Area2D):
+	is_rolling = false
 	knockback = area.knockback_vector * knockback_speed
 	knockback_timer = knockback_duration
 	stats.set_health(stats.health - area.damage)

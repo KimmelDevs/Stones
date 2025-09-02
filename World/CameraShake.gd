@@ -7,10 +7,16 @@ extends Camera2D
 var trauma: float = 0.0
 var trauma_power: float = 2.0
 var base_position := Vector2.ZERO
+@onready var top_left: Marker2D = $Limits/TopLeft
+@onready var bottom_right: Marker2D = $Limits/BottomRight
 
 func _ready():
 	# Remember the camera’s default position
 	base_position = position
+	limit_top = top_left.position.y
+	limit_left = top_left.position.x
+	limit_bottom = bottom_right.position.y
+	limit_right = bottom_right.position.x
 
 func _process(delta: float) -> void:
 	if trauma > 0:

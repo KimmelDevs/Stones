@@ -120,6 +120,7 @@ Chop={
 2d_physics/layer_8="Wolf"
 2d_physics/layer_9="Tree"
 2d_physics/layer_10="Axe"
+2d_physics/layer_11="SoftCollisions"
 
 [rendering]
 

@@ -80,7 +80,7 @@ texture = ExtResource("2_3qpge")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -30)
 sprite_frames = SubResource("SpriteFrames_3qpge")
-animation = &"TeenTree"
+animation = &"AdultTree"
 autoplay = "AdultTree"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -9,7 +9,7 @@ func _ready():
 	dragged_icon = Sprite2D.new()
 	dragged_icon.visible = false
 	dragged_icon.z_index = 999
-	get_tree().root.add_child(dragged_icon) # add to root so it works everywhere
+	get_tree().root.add_child.call_deferred(dragged_icon) # add to root so it works everywhere
 
 func start_drag(container, slot_index, texture):
 	is_dragging = true

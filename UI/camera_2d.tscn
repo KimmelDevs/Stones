@@ -5,3 +5,11 @@
 [node name="Camera2D" type="Camera2D"]
 rotation_smoothing_enabled = true
 script = ExtResource("1_faour")
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLeft" type="Marker2D" parent="Limits"]
+position = Vector2(-164, -90)
+
+[node name="BottomRight" type="Marker2D" parent="Limits"]
+position = Vector2(163, 97)
