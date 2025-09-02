@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=48 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -33,9 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://ch01d2vt3kumt" path="res://Mobs/Scenes/pig.tscn" id="35_spf4h"]
 [ext_resource type="PackedScene" uid="uid://lf8go44d3k12" path="res://Inventory/Buildables/Scenes/chopping_board.tscn" id="36_or3hn"]
 [ext_resource type="PackedScene" uid="uid://cmnb1s2vi14vd" path="res://World/scenes/normal_tree.tscn" id="37_6gebr"]
+[ext_resource type="Script" uid="uid://i0whl0siidk4" path="res://Time_system.gd" id="39_05jqx"]
 [ext_resource type="PackedScene" uid="uid://dgpv15k304mfk" path="res://World/scenes/orange_cat.tscn" id="39_15i7j"]
 [ext_resource type="PackedScene" uid="uid://co84mfb4uo2jj" path="res://World/Flowers/Scenes/fox_gloves.tscn" id="39_yxuth"]
 [ext_resource type="PackedScene" uid="uid://b8k8y2dyupt25" path="res://World/Flowers/Scenes/chamomile.tscn" id="40_05jqx"]
+[ext_resource type="Script" uid="uid://dk2t3j6im4um" path="res://date_time.gd" id="40_s5cut"]
 [ext_resource type="PackedScene" uid="uid://df7dw0xl50u27" path="res://Inventory/Buildables/Scenes/crafting_bench.tscn" id="40_yxuth"]
 [ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
 
@@ -1509,6 +1511,14 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.711214, 0.0162904, 0.281747, 1)
 sources/0 = SubResource("TileSetAtlasSource_bkhv4")
 
+[sub_resource type="Resource" id="Resource_it66m"]
+script = ExtResource("40_s5cut")
+seconds = 0
+minutes = 0
+hours = 0
+days = 0
+metadata/_custom_type_script = "uid://dk2t3j6im4um"
+
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -2340,5 +2350,10 @@ position = Vector2(-145, 72)
 
 [node name="Dandelion" parent="." instance=ExtResource("41_s5cut")]
 position = Vector2(-193, 35)
+
+[node name="TimeSystem" type="Node" parent="."]
+script = ExtResource("39_05jqx")
+date_time = SubResource("Resource_it66m")
+metadata/_custom_type_script = "uid://i0whl0siidk4"
 
 [editable path="Ysort/player/Camera2D"]
