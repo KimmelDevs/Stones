@@ -1,15 +1,33 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=6 format=3 uid="uid://cgk3kosv6g1fs"]
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=9 format=3 uid="uid://cgk3kosv6g1fs"]
 
+[ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_0d4l6"]
 [ext_resource type="Resource" uid="uid://coxbk330mje3y" path="res://Inventory/Items/ChoppingBoard.tres" id="1_5b81w"]
-[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="2_0d4l6"]
 [ext_resource type="Resource" uid="uid://bwl7vnfiwgp7w" path="res://Inventory/Items/StoneKnife.tres" id="3_sm7lw"]
 [ext_resource type="Resource" uid="uid://3e85wxdku8dq" path="res://Inventory/Items/Logs.tres" id="4_fl3qs"]
 [ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="5_pr5a7"]
 
+[sub_resource type="Resource" id="Resource_5b81w"]
+script = ExtResource("1_0d4l6")
+item = ExtResource("1_5b81w")
+quantity = 1
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_0d4l6"]
+script = ExtResource("1_0d4l6")
+item = ExtResource("4_fl3qs")
+quantity = 2
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_sm7lw"]
+script = ExtResource("1_0d4l6")
+item = ExtResource("3_sm7lw")
+quantity = 1
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
 [resource]
 script = ExtResource("5_pr5a7")
 recipe_name = "Chopping Board"
-recipe_final_item = ExtResource("1_5b81w")
-recipe_material_array = Array[ExtResource("2_0d4l6")]([ExtResource("3_sm7lw"), ExtResource("4_fl3qs"), ExtResource("4_fl3qs")])
+recipe_final_item = SubResource("Resource_5b81w")
+recipe_materials = Array[ExtResource("1_0d4l6")]([SubResource("Resource_0d4l6"), SubResource("Resource_sm7lw")])
 category = "Stations"
 metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

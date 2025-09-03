@@ -1,14 +1,19 @@
 class_name Crafting_UI
 extends PanelContainer
 
+# --- Scene References ---
 @onready var tree: Tree = %Tree
 @onready var grid_container: GridContainer = %GridContainer
 @onready var title_label: Label = %TitleLabel
 @onready var item_texture: TextureRect = %ItemTexture
-@export var inventory_slot: PackedScene = null
+@onready var button: Button = %Button
+
+# Slot scene for required materials
+const RESOURCE_NEED = preload("res://UI/CraftingStuff/ResourceNeed.tscn")
+
+# --- Data ---
 @export var recipe_array: Array[ItemRecipe] = []
-var player_inventory : Inv = null
-var Recipe_material_dictionary : Dictionary = {}
+@export var player_inventory : Inv = null
 
 # Category buttons
 @onready var stations: TextureButton = $MarginContainer/HBoxContainer/Icons/Stations
@@ -20,6 +25,7 @@ var Recipe_material_dictionary : Dictionary = {}
 # Current category filter
 var selected_category: String = ""
 
+# --- Setup ---
 func _ready() -> void:
 	# Connect button signals
 	stations.pressed.connect(_on_stations_pressed)
@@ -28,76 +34,59 @@ func _ready() -> void:
 	consumables.pressed.connect(_on_consumables_pressed)
 	materials.pressed.connect(_on_materials_pressed)
 
-	# Default category = Stations
+	# Default category
 	reset_category_buttons()
 	stations.modulate = Color(1,1,1,1)
 	selected_category = "Stations"
 
 	build_recipe_tree()
-	visible = false  # Hide by default
-
-func set_player_inventory(new_inventory : Inv):
-	player_inventory = new_inventory
+	visible = false  # Hidden by default
 
 # --- Recipe Tree ---
 func build_recipe_tree() -> void:
 	tree.clear()
 	tree.hide_root = true
 	var tree_root : TreeItem = tree.create_item()
-
 	var first_item: TreeItem = null
 	
 	for recipe in recipe_array:
 		# Filter by category
 		if selected_category == "" or recipe.category == selected_category:
 			var new_recipe_slot : TreeItem = tree.create_item(tree_root)
-			new_recipe_slot.set_icon(0, recipe.recipe_final_item.texture)
-			new_recipe_slot.set_text(0, recipe.recipe_final_item.name)
+			new_recipe_slot.set_icon(0, recipe.recipe_final_item.item.texture)
+			new_recipe_slot.set_text(0, recipe.recipe_final_item.item.name)
 
-			# Save first recipe for default selection
 			if first_item == null:
 				first_item = new_recipe_slot
 
-	# Auto-select the first recipe if available
+	# Auto-select first recipe
 	if first_item != null:
 		tree.set_selected(first_item, 0)
-		_on_tree_cell_selected()  # Trigger material window build
+		_on_tree_cell_selected()
 
 func _on_tree_cell_selected() -> void:
 	var cell_recipe_name: String = tree.get_selected().get_text(0)
-	print(cell_recipe_name)
-	
 	for recipe in recipe_array:
-		if recipe.recipe_final_item.name == cell_recipe_name:
+		if recipe.recipe_final_item.item.name == cell_recipe_name:
 			build_recipe_material_window(recipe)
 			return
 
-# --- Recipe Materials Window ---
+# --- Build Materials Window ---
 func build_recipe_material_window(selected_recipe : ItemRecipe) -> void:
 	clean_material_window()
-	title_label.text = selected_recipe.recipe_final_item.name
-	item_texture.texture = selected_recipe.recipe_final_item.texture
-	
-	for Recipe_material in selected_recipe.recipe_material_array:
-		if Recipe_material_dictionary.has(Recipe_material):
-			Recipe_material_dictionary[Recipe_material] += 1
-		else:
-			Recipe_material_dictionary[Recipe_material] = 1
-	print(Recipe_material_dictionary)
-	
-	for material in Recipe_material_dictionary.keys():
-		var new_material = inventory_slot.instantiate() as InventorySlot
+
+	# --- Final Item ---
+	var final_item = selected_recipe.recipe_final_item
+	title_label.text = "%s x%d" % [final_item.item.name, final_item.quantity]
+	item_texture.texture = final_item.item.texture
+
+	# --- Required Materials ---
+	for recipe_mat in selected_recipe.recipe_materials:
+		var new_material = RESOURCE_NEED.instantiate()
 		grid_container.add_child(new_material)
-		
-		# Temporary InvSlot
-		var temp_slot = InvSlot.new()
-		temp_slot.item = material
-		temp_slot.amount = Recipe_material_dictionary[material]
-		
-		new_material.update(temp_slot)
+		new_material.display_recipe_material(recipe_mat, player_inventory)
 
 func clean_material_window() -> void:
-	Recipe_material_dictionary.clear()
 	for child in grid_container.get_children():
 		child.queue_free()
 
@@ -112,7 +101,7 @@ func _process(delta: float) -> void:
 func reset_category_buttons() -> void:
 	var all_buttons = [stations, armors, tools, consumables, materials]
 	for btn in all_buttons:
-		btn.modulate = Color(0.5, 0.5, 0.5, 1.0) # darken
+		btn.modulate = Color(0.5, 0.5, 0.5, 1.0)
 
 func _on_stations_pressed() -> void:
 	reset_category_buttons()

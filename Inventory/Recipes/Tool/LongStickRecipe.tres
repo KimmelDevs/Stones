@@ -1,14 +1,26 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=5 format=3 uid="uid://njgic1rvcixc"]
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://njgic1rvcixc"]
 
+[ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_4xrdo"]
 [ext_resource type="Resource" uid="uid://cxqvlr0feppso" path="res://Inventory/Items/LongStick.tres" id="1_g0u0k"]
-[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="2_gs4to"]
 [ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="3_tipl7"]
 [ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="4_3ig0u"]
+
+[sub_resource type="Resource" id="Resource_4xrdo"]
+script = ExtResource("1_4xrdo")
+item = ExtResource("1_g0u0k")
+quantity = 1
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_1tu5a"]
+script = ExtResource("1_4xrdo")
+item = ExtResource("3_tipl7")
+quantity = 2
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [resource]
 script = ExtResource("4_3ig0u")
 recipe_name = "LongStick"
-recipe_final_item = ExtResource("1_g0u0k")
-recipe_material_array = Array[ExtResource("2_gs4to")]([ExtResource("3_tipl7"), ExtResource("3_tipl7")])
+recipe_final_item = SubResource("Resource_4xrdo")
+recipe_materials = Array[ExtResource("1_4xrdo")]([SubResource("Resource_1tu5a")])
 category = "Tool"
 metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

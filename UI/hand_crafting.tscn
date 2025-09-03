@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://3dgnvw31287s"]
+[gd_scene load_steps=11 format=3 uid="uid://bw4rgfkcblyxw"]
 
-[ext_resource type="Script" uid="uid://behyhf2irx1qs" path="res://UI/hand_crafting.gd" id="1_25pym"]
 [ext_resource type="PackedScene" uid="uid://bjdkdn2wx6m2x" path="res://UI/Craft.tscn" id="2_25pym"]
 [ext_resource type="Texture2D" uid="uid://bf04yoq6pa6hl" path="res://Inventory/brown panel.png" id="2_dfr5c"]
 [ext_resource type="PackedScene" uid="uid://b5jc6cmtoh1k7" path="res://UI/CraftingStuff/AxeCrafting.tscn" id="4_h5on3"]
@@ -9,6 +8,33 @@
 [ext_resource type="Texture2D" uid="uid://dvt17qxvv7oiq" path="res://UI/CraftingIcons/Tools.png" id="7_03juu"]
 [ext_resource type="Texture2D" uid="uid://u3ncgyv55ww3" path="res://UI/CraftingIcons/Consumables.png" id="8_klnuq"]
 [ext_resource type="Texture2D" uid="uid://duoflpol68l2i" path="res://UI/CraftingIcons/Resources.png" id="9_tpaxr"]
+
+[sub_resource type="GDScript" id="GDScript_0q2ne"]
+script/source = "extends Control
+
+var is_open = false
+
+func _ready():
+	close()
+	
+func _process(delta: float) -> void:
+	# Handle dragging icon following mouse
+
+
+	if Input.is_action_just_pressed(\"Craft\"):
+		if is_open:
+			close()
+		else:
+			open()
+
+func open() -> void:
+	visible = true
+	is_open = true
+
+func close() -> void:
+	visible = false
+	is_open = false
+"
 
 [sub_resource type="Theme" id="Theme_h5on3"]
 
@@ -19,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_25pym")
+script = SubResource("GDScript_0q2ne")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0

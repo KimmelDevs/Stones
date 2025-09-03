@@ -1,16 +1,40 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://dsk815a4mu331"]
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=11 format=3 uid="uid://dsk815a4mu331"]
 
+[ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_4wp2h"]
 [ext_resource type="Resource" uid="uid://b4jv6y7hk6hgo" path="res://Equipments/Weapons/Spear.tres" id="1_cfyo3"]
-[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="2_4wp2h"]
 [ext_resource type="Resource" uid="uid://dl40c022orfxu" path="res://Inventory/Items/Rock.tres" id="3_8hdn8"]
+[ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="3_bg7qf"]
 [ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="4_bg7qf"]
-[ext_resource type="Resource" uid="uid://cxqvlr0feppso" path="res://Inventory/Items/LongStick.tres" id="5_anj0m"]
 [ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="6_46u71"]
+
+[sub_resource type="Resource" id="Resource_cfyo3"]
+script = ExtResource("1_4wp2h")
+item = ExtResource("1_cfyo3")
+quantity = 1
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_46u71"]
+script = ExtResource("1_4wp2h")
+item = ExtResource("3_bg7qf")
+quantity = 2
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_34hfw"]
+script = ExtResource("1_4wp2h")
+item = ExtResource("4_bg7qf")
+quantity = 1
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_7iqj4"]
+script = ExtResource("1_4wp2h")
+item = ExtResource("3_8hdn8")
+quantity = 1
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [resource]
 script = ExtResource("6_46u71")
 recipe_name = "Spear"
-recipe_final_item = ExtResource("1_cfyo3")
-recipe_material_array = Array[ExtResource("2_4wp2h")]([ExtResource("3_8hdn8"), ExtResource("4_bg7qf"), ExtResource("5_anj0m")])
+recipe_final_item = SubResource("Resource_cfyo3")
+recipe_materials = Array[ExtResource("1_4wp2h")]([SubResource("Resource_46u71"), SubResource("Resource_34hfw"), SubResource("Resource_7iqj4")])
 category = "Tool"
 metadata/_custom_type_script = "uid://dpnbc4gmnldvl"
