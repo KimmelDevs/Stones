@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=52 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b0ploua3op2kd" path="res://World/scenes/berry_bush.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://bpv50hf4owdoh" path="res://UI/hunger_bar.tscn" id="17_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://cvqsuigp5o81r" path="res://World/scenes/stick_collectable.tscn" id="19_xw5lg"]
+[ext_resource type="PackedScene" uid="uid://lb7mblgfxq7l" path="res://UI/Time/Time_ui.tscn" id="23_05jqx"]
 [ext_resource type="PackedScene" uid="uid://bx6ucca5ytue1" path="res://UI/CraftingStuff/CraftingUI.tscn" id="23_yxuth"]
 [ext_resource type="PackedScene" uid="uid://bufu6v4ifmphw" path="res://World/Trees/Scenes/BrokenTrees/FallenLog.tscn" id="29_koyeq"]
 [ext_resource type="PackedScene" uid="uid://bvc2dlfqlrq" path="res://World/Trees/Scenes/BrokenTrees/LargeStump.tscn" id="30_3ql07"]
@@ -40,6 +41,7 @@
 [ext_resource type="Script" uid="uid://dk2t3j6im4um" path="res://date_time.gd" id="40_s5cut"]
 [ext_resource type="PackedScene" uid="uid://df7dw0xl50u27" path="res://Inventory/Buildables/Scenes/crafting_bench.tscn" id="40_yxuth"]
 [ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
+[ext_resource type="Script" uid="uid://cnorani15i8g" path="res://World/directional_light_2d.gd" id="42_s5cut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -1519,6 +1521,22 @@ hours = 0
 days = 0
 metadata/_custom_type_script = "uid://dk2t3j6im4um"
 
+[sub_resource type="Resource" id="Resource_s5cut"]
+script = ExtResource("40_s5cut")
+seconds = 0
+minutes = 0
+hours = 5
+days = 0
+metadata/_custom_type_script = "uid://dk2t3j6im4um"
+
+[sub_resource type="Resource" id="Resource_wm6hh"]
+script = ExtResource("40_s5cut")
+seconds = 0
+minutes = 0
+hours = 22
+days = 0
+metadata/_custom_type_script = "uid://dk2t3j6im4um"
+
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -2282,6 +2300,12 @@ position = Vector2(-827, 485)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="TimeGui" parent="CanvasLayer" instance=ExtResource("23_05jqx")]
+offset_left = 275.0
+offset_top = 2.0
+offset_right = 275.0
+offset_bottom = 2.0
+
 [node name="HotBar" parent="CanvasLayer" instance=ExtResource("11_0lysu")]
 offset_left = 84.0
 offset_top = 149.0
@@ -2348,6 +2372,18 @@ position = Vector2(-193, 35)
 [node name="TimeSystem" type="Node" parent="."]
 script = ExtResource("39_05jqx")
 date_time = SubResource("Resource_it66m")
+ticks_pr_second = 20000
 metadata/_custom_type_script = "uid://i0whl0siidk4"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.00402084, 0.0348681, 0.0178776, 1)
+script = ExtResource("42_s5cut")
+day_color = Color(0.40071, 0.53669, 0.0907243, 1)
+night_color = Color(0.0443523, 0.206277, 0.152359, 1)
+day_start = SubResource("Resource_s5cut")
+night_start = SubResource("Resource_wm6hh")
+
+[connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
+[connection signal="updated" from="TimeSystem" to="DirectionalLight2D" method="_on_time_system_updated"]
 
 [editable path="Ysort/player/Camera2D"]
