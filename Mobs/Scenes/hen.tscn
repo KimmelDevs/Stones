@@ -442,8 +442,8 @@ radius = 5.0
 script = ExtResource("1_ib0rw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 4)
-scale = Vector2(0.7, 0.75)
+position = Vector2(-0.625, 8)
+scale = Vector2(0.925, 0.75)
 texture = ExtResource("2_igl0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

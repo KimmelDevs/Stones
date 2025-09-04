@@ -441,9 +441,9 @@ radius = 5.0
 [node name="Rooster" type="CharacterBody2D"]
 script = ExtResource("1_27003")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 4)
-scale = Vector2(0.7, 0.75)
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-0.625, 8)
+scale = Vector2(0.925, 0.75)
 texture = ExtResource("2_bc0f7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -10,7 +10,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var maxspeed: float = 50
 @export var friction: float = 200
 @export var wander_change_interval: float = 1.5
-@export var wander_radius: float = 40
+@export var wander_radius: float = 150
 
 # --- Chase Boxer Movement ---
 @export var chase_radius: float = 200.0
