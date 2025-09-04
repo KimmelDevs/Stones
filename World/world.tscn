@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=51 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -41,7 +41,8 @@
 [ext_resource type="Script" uid="uid://dk2t3j6im4um" path="res://date_time.gd" id="40_s5cut"]
 [ext_resource type="PackedScene" uid="uid://df7dw0xl50u27" path="res://Inventory/Buildables/Scenes/crafting_bench.tscn" id="40_yxuth"]
 [ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
-[ext_resource type="Script" uid="uid://cnorani15i8g" path="res://World/directional_light_2d.gd" id="42_s5cut"]
+[ext_resource type="Script" uid="uid://dxjrqduef0c6i" path="res://World/DayNight.gd" id="42_it66m"]
+[ext_resource type="Texture2D" uid="uid://bj2kwea2etwk8" path="res://UI/Time/daynightcycle-gradient-texture.tres" id="43_wm6hh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -1517,23 +1518,7 @@ sources/0 = SubResource("TileSetAtlasSource_bkhv4")
 script = ExtResource("40_s5cut")
 seconds = 0
 minutes = 0
-hours = 0
-days = 0
-metadata/_custom_type_script = "uid://dk2t3j6im4um"
-
-[sub_resource type="Resource" id="Resource_s5cut"]
-script = ExtResource("40_s5cut")
-seconds = 0
-minutes = 0
-hours = 5
-days = 0
-metadata/_custom_type_script = "uid://dk2t3j6im4um"
-
-[sub_resource type="Resource" id="Resource_wm6hh"]
-script = ExtResource("40_s5cut")
-seconds = 0
-minutes = 0
-hours = 22
+hours = 8
 days = 0
 metadata/_custom_type_script = "uid://dk2t3j6im4um"
 
@@ -2372,18 +2357,14 @@ position = Vector2(-193, 35)
 [node name="TimeSystem" type="Node" parent="."]
 script = ExtResource("39_05jqx")
 date_time = SubResource("Resource_it66m")
-ticks_pr_second = 20000
+ticks_pr_second = 60
 metadata/_custom_type_script = "uid://i0whl0siidk4"
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0.00402084, 0.0348681, 0.0178776, 1)
-script = ExtResource("42_s5cut")
-day_color = Color(0.40071, 0.53669, 0.0907243, 1)
-night_color = Color(0.0443523, 0.206277, 0.152359, 1)
-day_start = SubResource("Resource_s5cut")
-night_start = SubResource("Resource_wm6hh")
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+script = ExtResource("42_it66m")
+gradient = ExtResource("43_wm6hh")
 
 [connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
-[connection signal="updated" from="TimeSystem" to="DirectionalLight2D" method="_on_time_system_updated"]
+[connection signal="updated" from="TimeSystem" to="CanvasModulate" method="_on_time_system_updated"]
 
 [editable path="Ysort/player/Camera2D"]
