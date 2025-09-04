@@ -19,6 +19,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var attack_range: float = 40.0
 @export var attack_cooldown: float = 0.5
 @export var attack_dive_speed: float = 180.0
+@export var attack_dive_distance: float = 60.0  # Fixed dash distance
 @export var anticipation_time: float = 0.4
 @export var recovery_time: float = 0.6
 var can_attack: bool = true
@@ -44,6 +45,7 @@ var home_position: Vector2
 
 # Attack vars
 var attack_target: Vector2
+var attack_start_pos: Vector2  # Starting position for fixed distance dash
 var attack_timer: float = 0.0
 
 # Last known player position
@@ -95,7 +97,10 @@ func _physics_process(delta: float) -> void:
 				if dist <= attack_range and can_attack:
 					state = ANTICIPATE
 					attack_timer = anticipation_time
-					attack_target = player.global_position
+					attack_start_pos = global_position  # Store starting position
+					# Calculate fixed distance target
+					var dir_to_player = (player.global_position - global_position).normalized()
+					attack_target = global_position + dir_to_player * attack_dive_distance
 					move_velocity = Vector2.ZERO
 					sprite.play("howl_down")
 				else:
@@ -115,7 +120,8 @@ func _physics_process(delta: float) -> void:
 			var dir = (attack_target - global_position).normalized()
 			move_velocity = dir * attack_dive_speed
 			play_movement_animation(move_velocity, true)
-			if global_position.distance_to(attack_target) < 10:
+			# Check if we've traveled the fixed distance
+			if global_position.distance_to(attack_start_pos) >= attack_dive_distance:
 				state = RECOVER
 				attack_timer = recovery_time
 				move_velocity = Vector2.ZERO
@@ -243,8 +249,21 @@ func play_movement_animation(dir: Vector2, is_running := false) -> void:
 		sprite.play("Idle" + last_anim_dir)
 		return
 
-	# --- Horizontal movement dominates ---
-	if abs(dir.x) > abs(dir.y):
+	# Use a higher threshold for diagonal detection (0.7 instead of 0.5)
+	var diagonal_threshold = 0.7
+	
+	# Check for strong diagonals first
+	if abs(dir.x) > diagonal_threshold and abs(dir.y) > diagonal_threshold:
+		if dir.x > 0 and dir.y < 0:
+			last_anim_dir = "UpRight"
+		elif dir.x < 0 and dir.y < 0:
+			last_anim_dir = "UpLeft"
+		elif dir.x > 0 and dir.y > 0:
+			last_anim_dir = "DownRight"
+		elif dir.x < 0 and dir.y > 0:
+			last_anim_dir = "DownLeft"
+	# Otherwise, use cardinal directions (horizontal takes priority)
+	elif abs(dir.x) > abs(dir.y):
 		if dir.x > 0:
 			last_anim_dir = "Right"
 		else:
@@ -254,16 +273,5 @@ func play_movement_animation(dir: Vector2, is_running := false) -> void:
 			last_anim_dir = "Down"
 		else:
 			last_anim_dir = "Up"
-
-	# --- Diagonals ---
-	if abs(dir.x) > 0.5 and abs(dir.y) > 0.5:
-		if dir.x > 0 and dir.y < 0:
-			last_anim_dir = "UpRight"
-		elif dir.x < 0 and dir.y < 0:
-			last_anim_dir = "UpLeft"
-		elif dir.x > 0 and dir.y > 0:
-			last_anim_dir = "DownRight"
-		elif dir.x < 0 and dir.y > 0:
-			last_anim_dir = "DownLeft"
 
 	sprite.play(anim_prefix + last_anim_dir)

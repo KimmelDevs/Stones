@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=54 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -43,6 +43,9 @@
 [ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
 [ext_resource type="Script" uid="uid://dxjrqduef0c6i" path="res://World/DayNight.gd" id="42_it66m"]
 [ext_resource type="Texture2D" uid="uid://bj2kwea2etwk8" path="res://UI/Time/daynightcycle-gradient-texture.tres" id="43_wm6hh"]
+[ext_resource type="PackedScene" uid="uid://cpxdnq7d6b42d" path="res://Mobs/Scenes/chick.tscn" id="44_wm6hh"]
+[ext_resource type="PackedScene" uid="uid://b81hl3pac8hco" path="res://Mobs/Scenes/Rooster.tscn" id="45_8kjm2"]
+[ext_resource type="PackedScene" uid="uid://c4lpq6lgw2ydk" path="res://Mobs/Scenes/hen.tscn" id="46_i52kj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -1517,8 +1520,8 @@ sources/0 = SubResource("TileSetAtlasSource_bkhv4")
 [sub_resource type="Resource" id="Resource_it66m"]
 script = ExtResource("40_s5cut")
 seconds = 0
-minutes = 0
-hours = 8
+minutes = 30
+hours = 7
 days = 0
 metadata/_custom_type_script = "uid://dk2t3j6im4um"
 
@@ -2361,8 +2364,36 @@ ticks_pr_second = 60
 metadata/_custom_type_script = "uid://i0whl0siidk4"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0923971, 0.0923971, 0.0923971, 1)
 script = ExtResource("42_it66m")
 gradient = ExtResource("43_wm6hh")
+
+[node name="Chick" parent="." instance=ExtResource("44_wm6hh")]
+position = Vector2(264, -90)
+
+[node name="Chick2" parent="." instance=ExtResource("44_wm6hh")]
+position = Vector2(272, -108)
+
+[node name="Chick3" parent="." instance=ExtResource("44_wm6hh")]
+position = Vector2(242, -103)
+
+[node name="Rooster" parent="." instance=ExtResource("45_8kjm2")]
+position = Vector2(211, -82)
+
+[node name="Rooster2" parent="." instance=ExtResource("45_8kjm2")]
+position = Vector2(263, -69)
+
+[node name="Rooster3" parent="." instance=ExtResource("45_8kjm2")]
+position = Vector2(236, -83)
+
+[node name="Rooster4" parent="." instance=ExtResource("45_8kjm2")]
+position = Vector2(210, -108)
+
+[node name="Hen" parent="." instance=ExtResource("46_i52kj")]
+position = Vector2(244, -119)
+
+[node name="Hen2" parent="." instance=ExtResource("46_i52kj")]
+position = Vector2(221, -97)
 
 [connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
 [connection signal="updated" from="TimeSystem" to="CanvasModulate" method="_on_time_system_updated"]

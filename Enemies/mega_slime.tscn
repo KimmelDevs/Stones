@@ -47,6 +47,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_87lq7"]
 resource_name = "anticipation"
@@ -62,6 +74,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_l0ce4"]
@@ -79,6 +103,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [17, 18, 19, 20, 21]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_200yf"]
 resource_name = "idle"
@@ -94,6 +130,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_0tjn4"]
@@ -123,6 +171,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-9, -12), Vector2(-11, 1), Vector2(-10, 5), Vector2(0, 7)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.567563),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_8mopq"]
 resource_name = "ready_shoot"
@@ -139,6 +199,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [12, 13, 14, 15, 16]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7vi6b"]
 resource_name = "shoot"
@@ -154,6 +226,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qq8p"]
@@ -183,8 +267,8 @@ collision_layer = 32
 script = ExtResource("1_200yf")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(1, 14)
-scale = Vector2(1.75, 1)
+position = Vector2(1, 13)
+scale = Vector2(1.5, 1)
 texture = ExtResource("2_e6hro")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -205,20 +289,20 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(0, 5)
+position = Vector2(3, 5)
 shape = SubResource("CircleShape2D_b7xan")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 visible = false
 
 [node name="HitBox" parent="Marker2D" instance=ExtResource("4_l0ce4")]
-visible = false
 collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Marker2D/HitBox" index="0"]
 position = Vector2(-9, -12)
 shape = SubResource("CircleShape2D_pesms")
+disabled = true
 
 [node name="Stats" parent="." instance=ExtResource("6_e6hro")]
 
