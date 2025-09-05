@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=55 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
@@ -46,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://cpxdnq7d6b42d" path="res://Mobs/Scenes/chick.tscn" id="44_wm6hh"]
 [ext_resource type="PackedScene" uid="uid://b81hl3pac8hco" path="res://Mobs/Scenes/Rooster.tscn" id="45_8kjm2"]
 [ext_resource type="PackedScene" uid="uid://c4lpq6lgw2ydk" path="res://Mobs/Scenes/hen.tscn" id="46_i52kj"]
+[ext_resource type="PackedScene" uid="uid://cowuyjqjfghay" path="res://Player/player_new.tscn" id="47_y4tau"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -2394,6 +2395,9 @@ position = Vector2(244, -119)
 
 [node name="Hen2" parent="." instance=ExtResource("46_i52kj")]
 position = Vector2(221, -97)
+
+[node name="PlayerNew" parent="." instance=ExtResource("47_y4tau")]
+position = Vector2(123, 112)
 
 [connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
 [connection signal="updated" from="TimeSystem" to="CanvasModulate" method="_on_time_system_updated"]
