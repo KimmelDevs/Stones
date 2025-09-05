@@ -88,11 +88,15 @@ func _physics_process(delta: float) -> void:
 
 	# --- Pick Input ---
 	if Input.is_action_just_pressed("Pick"):
-		var nearest = get_nearest_bush()
-		if nearest:
-			nearest.drop_berry(self)
+		var nearest_bush = get_nearest_bush()
+		if nearest_bush:
+			nearest_bush.drop_berry(self)
 		else:
-			try_pick_from_choppingboard()
+			var nearest_collectable = get_nearest_collectable()
+			if nearest_collectable:
+				nearest_collectable.playercollect()
+			else:
+				try_pick_from_choppingboard()
 
 	# --- Movement Input ---
 	var input_vector := Vector2.ZERO
@@ -152,7 +156,24 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			print("Cancelled placement")
 			_clear_station()
+# --- Get nearest collectable ---
+func get_nearest_collectable() -> Node:
+	var collectables = get_tree().get_nodes_in_group("collectables")
+	var nearest_collectable = null
+	var nearest_dist = INF
+	var pick_range = 32 # Max distance to pick
 
+	for collectable in collectables:
+		# Only consider collectables that have the player in range
+		if collectable.player != self:
+			continue
+			
+		var dist = collectable.global_position.distance_to(global_position)
+		if dist < nearest_dist and dist <= pick_range:
+			nearest_collectable = collectable
+			nearest_dist = dist
+
+	return nearest_collectable
 
 func set_hunger(value: int) -> void:
 	hunger = clamp(value, 0, max_hunger)
