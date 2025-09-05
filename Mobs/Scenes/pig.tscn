@@ -213,6 +213,7 @@ height = 14.0
 radius = 101.71
 
 [node name="Pig" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_fdqem")
 
 [node name="Shadow" type="Sprite2D" parent="."]
