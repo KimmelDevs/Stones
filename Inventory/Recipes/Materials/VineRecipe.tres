@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://bn5wge7606p8k"]
+
+[ext_resource type="Resource" uid="uid://d0nu300m46k53" path="res://Inventory/Items/Vine.tres" id="1_fdjkd"]
+[ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="2_k6t8i"]
+[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="3_oxjdc"]
+[ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="4_ssswm"]
+
+[sub_resource type="Resource" id="Resource_sfqyx"]
+script = ExtResource("2_k6t8i")
+item = ExtResource("1_fdjkd")
+quantity = 2
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[sub_resource type="Resource" id="Resource_k3we5"]
+script = ExtResource("2_k6t8i")
+item = ExtResource("3_oxjdc")
+quantity = 2
+metadata/_custom_type_script = "uid://buxrj2y6lymkm"
+
+[resource]
+script = ExtResource("4_ssswm")
+recipe_name = "Vine"
+recipe_final_item = SubResource("Resource_sfqyx")
+recipe_materials = Array[ExtResource("2_k6t8i")]([SubResource("Resource_k3we5")])
+category = "Materials"
+metadata/_custom_type_script = "uid://dpnbc4gmnldvl"

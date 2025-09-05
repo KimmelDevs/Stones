@@ -17,6 +17,13 @@ var knockback: Vector2 = Vector2.ZERO
 @export var knockback_duration: float = 0.2
 var knockback_timer: float = 0.0
 @export var weapon_type: String = ""  # Example: "Axe", "Sword", etc.
+
+# --- Pickup System ---
+var carried_object: Node2D = null
+var carry_offset: Vector2 = Vector2(0, -20)  # Position above player's head
+@export var pickup_range: float = 32.0
+@export var throw_force: float = 300.0
+
 # --- State Variables ---
 var last_direction := "down"
 var is_rolling := false
@@ -26,7 +33,6 @@ var can_move := true
 var can_roll := true
 var is_attacking := false
 var attack_timer := 0.0
-
 
 var equipped_weapon: Node = null    # reference to the weapon node
 var weapon_damage: int = 0          # damage of the equipped weapon
@@ -44,7 +50,6 @@ var weapon_hitbox: Area2D = null
 # --- Station Placement ---
 var equipped_station: InvItem = null
 var station_preview: Node2D = null   # ghost preview node
-
 
 func _ready():
 	stats.connect("no_health", Callable(self, "queue_free"))
@@ -68,12 +73,16 @@ func _physics_process(delta: float) -> void:
 			is_attacking = false
 			can_move = true
 			play_idle_animation()
+		update_carried_object_position()
 		return
+	
 	if knockback_timer > 0:
 		velocity = knockback
 		move_and_slide()
 		knockback_timer -= delta
+		update_carried_object_position()
 		return
+	
 	# --- Station Preview Follow Mouse ---
 	if station_preview:
 		var mouse_pos = get_global_mouse_position()
@@ -88,15 +97,25 @@ func _physics_process(delta: float) -> void:
 
 	# --- Pick Input ---
 	if Input.is_action_just_pressed("Pick"):
-		var nearest_bush = get_nearest_bush()
-		if nearest_bush:
-			nearest_bush.drop_berry(self)
+		if carried_object:
+			# If carrying something, throw it
+			throw_carried_object()
 		else:
-			var nearest_collectable = get_nearest_collectable()
-			if nearest_collectable:
-				nearest_collectable.playercollect()
+			# Try to pick up something
+			var pickup_target = get_nearest_pickup_target()
+			if pickup_target:
+				pickup_object(pickup_target)
 			else:
-				try_pick_from_choppingboard()
+				# Original pick logic for berries and collectables
+				var nearest_bush = get_nearest_bush()
+				if nearest_bush:
+					nearest_bush.drop_berry(self)
+				else:
+					var nearest_collectable = get_nearest_collectable()
+					if nearest_collectable:
+						nearest_collectable.playercollect()
+					else:
+						try_pick_from_choppingboard()
 
 	# --- Movement Input ---
 	var input_vector := Vector2.ZERO
@@ -119,11 +138,15 @@ func _physics_process(delta: float) -> void:
 			is_rolling = false
 			can_move = true
 			play_idle_animation()
+		update_carried_object_position()
 		return
 
 	# --- Normal Movement ---
 	velocity = input_vector * SPEED
 	move_and_slide()
+
+	# Update carried object position
+	update_carried_object_position()
 
 	# --- Animations ---
 	if input_vector != Vector2.ZERO:
@@ -141,6 +164,7 @@ func _physics_process(delta: float) -> void:
 			last_direction = "down"
 	else:
 		play_idle_animation()
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -156,6 +180,59 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			print("Cancelled placement")
 			_clear_station()
+
+# --- Pickup System Functions ---
+func get_nearest_pickup_target() -> Node2D:
+	var pickup_targets = get_tree().get_nodes_in_group("pickupable")
+	var nearest_target = null
+	var nearest_dist = INF
+
+	for target in pickup_targets:
+		# Skip if target is already being carried or can't be picked up
+		if target.has_method("can_be_picked_up") and not target.can_be_picked_up():
+			continue
+			
+		var dist = target.global_position.distance_to(global_position)
+		if dist < nearest_dist and dist <= pickup_range:
+			nearest_target = target
+			nearest_dist = dist
+
+	return nearest_target
+
+func pickup_object(target: Node2D) -> void:
+	if not target or carried_object:
+		return
+	
+	if target.has_method("get_picked_up"):
+		target.get_picked_up(self)
+		carried_object = target
+		print("Picked up: ", target.name)
+
+func throw_carried_object() -> void:
+	if not carried_object:
+		return
+	
+	# Calculate throw direction based on player's last direction
+	var throw_direction = Vector2.ZERO
+	match last_direction:
+		"right": throw_direction = Vector2.RIGHT
+		"left": throw_direction = Vector2.LEFT
+		"up": throw_direction = Vector2.UP
+		"down": throw_direction = Vector2.DOWN
+	
+	# Get throw position (a bit in front of player)
+	var throw_position = global_position + throw_direction * 24
+	
+	if carried_object.has_method("get_thrown"):
+		carried_object.get_thrown(throw_position, throw_direction * throw_force)
+		print("Threw: ", carried_object.name)
+	
+	carried_object = null
+
+func update_carried_object_position() -> void:
+	if carried_object:
+		carried_object.global_position = global_position + carry_offset
+
 # --- Get nearest collectable ---
 func get_nearest_collectable() -> Node:
 	var collectables = get_tree().get_nodes_in_group("collectables")
@@ -181,6 +258,7 @@ func set_hunger(value: int) -> void:
 
 func get_hunger() -> int:
 	return hunger
+
 # --- Get nearest bush (only with berries) ---
 func get_nearest_bush() -> Node:
 	var bushes = get_tree().get_nodes_in_group("berry_bush")
@@ -213,7 +291,6 @@ func equip_item(item: InvItem) -> void:
 			_clear_food()  # make sure no food is equipped
 			_equip_weapon(item)
 		"Food":
-			
 			_clear_station()
 			_clear_weapon()  # make sure no weapon is equipped
 			_equip_food(item)
@@ -231,7 +308,6 @@ func equip_item(item: InvItem) -> void:
 			print("Item category not handled: ", item.Category)
 			_clear_weapon()
 			_clear_food()
-
 
 func _disable_weapon(node: Node) -> void:
 	if not node:
@@ -273,14 +349,12 @@ func _equip_weapon(item: InvItem) -> void:
 		"Short":
 			if sword_node:
 				equipped_weapon = sword_node
-				
 				_enable_weapon(sword_node)
 				weapon_hitbox = sword_node.get_node("Marker2D/HitBox")
 				print(weapon_hitbox)
 		"Long":
 			if longsword_node:
 				equipped_weapon = longsword_node
-				
 				_enable_weapon(longsword_node)
 				weapon_hitbox = longsword_node.get_node("Marker2D/HitBox")
 				print(weapon_hitbox)
@@ -314,6 +388,7 @@ func _equip_weapon(item: InvItem) -> void:
 			equipped_skill.inventory = preload("res://Inventory/playerinventory.tres")
 		add_child(equipped_skill)
 		print("Equipped skill scene: ", equipped_skill.name)
+
 func _update_weapon_collision():
 	if not weapon_hitbox:
 		return
@@ -357,8 +432,10 @@ func _set_weapon_sprite(texture: Texture2D, weaponlength: String = "") -> void:
 	else:
 		weapon_sprite.texture = null
 		weapon_sprite.hide()
+
 func _clear_food() -> void:
 	equipped_food = null
+
 func try_place_on_choppingboard():
 	var boards = get_tree().get_nodes_in_group("chopping_board")
 	var nearest: Node = null
@@ -387,6 +464,7 @@ func try_place_on_choppingboard():
 			
 			# Clear equipped AFTER
 			equipped_food = null
+
 func try_pick_from_choppingboard():
 	var boards = get_tree().get_nodes_in_group("chopping_board")
 	var nearest: Node = null
@@ -448,6 +526,7 @@ func _clear_station() -> void:
 		station_preview.queue_free()
 		station_preview = null
 	equipped_station = null
+
 func _place_station() -> void:
 	if not equipped_station or not station_preview:
 		return
@@ -478,7 +557,6 @@ func _place_station() -> void:
 	# Unequip station
 	equipped_station = null
 
-
 func _find_existing_player_item_ref(item: InvItem) -> InvItem:
 	# Prefer matching by resource_path if it exists; otherwise fall back to name/category/food_type.
 	for s in Inv.slots:
@@ -490,7 +568,6 @@ func _find_existing_player_item_ref(item: InvItem) -> InvItem:
 				and (s.item.has_method("get") and s.item.get("food_type") == item.get("food_type")):
 				return s.item
 	return null
-
 
 func _clear_weapon() -> void:
 	if equipped_weapon:
@@ -543,7 +620,6 @@ func _consume_food(item: InvItem) -> void:
 	if not Inv.has_item(item):
 		equipped_food = null
 		print(item.name, " is all gone! Unequipped.")
-
 
 func _on_inventory_updated():
 	print("Inventory changed, checking equipment…")
@@ -614,8 +690,6 @@ func start_attack() -> void:
 	weapon_hitbox.knockback_vector = dir_vector * (weapon_knockback * 0.3)
 	print(weapon_hitbox)
 	print(weapon_damage)
-
-
 		
 # --- Play Idle Animation ---
 func play_idle_animation() -> void:
@@ -640,7 +714,7 @@ func _on_hurt_box_area_entered(area: Area2D):
 	# Reset color after 1 second
 	await get_tree().create_timer(1.0).timeout
 	$Sprite2D.modulate = Color(1, 1, 1, 1)  # reset to normal
-	# If original isn’t pure white, save and restore:
+	# If original isn't pure white, save and restore:
 	# var original_color = $Sprite2D.modulate
 	# 
 	# await get_tree().create_timer(1.0).timeout
@@ -653,15 +727,11 @@ func player():
 func collect(item):
 	Inv.insert(item)
 
-
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	pass
 		
-
-
 func _on_hit_box_area_exited(area: Area2D) -> void:
 	pass # Replace with function body.
 
-
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	camera_shake.add_trauma(0.7) 
+	camera_shake.add_trauma(0.7)

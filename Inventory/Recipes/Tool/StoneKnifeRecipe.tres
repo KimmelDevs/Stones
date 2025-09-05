@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_k7qc2"]
 [ext_resource type="Resource" uid="uid://bwl7vnfiwgp7w" path="res://Inventory/Items/StoneKnife.tres" id="1_tnlo2"]
 [ext_resource type="Resource" uid="uid://dl40c022orfxu" path="res://Inventory/Items/Rock.tres" id="3_ply5j"]
-[ext_resource type="Resource" uid="uid://0unyuswm2ej8" path="res://Inventory/Items/Grass.tres" id="4_fl76j"]
 [ext_resource type="Resource" uid="uid://dyx2v1f7d25vj" path="res://Inventory/Items/Stick.tres" id="5_pnwix"]
+[ext_resource type="Resource" uid="uid://d0nu300m46k53" path="res://Inventory/Items/Vine.tres" id="5_tnlo2"]
 [ext_resource type="Script" uid="uid://dpnbc4gmnldvl" path="res://Inventory/Recipes/ItemRecipe.gd" id="6_57t3a"]
 
 [sub_resource type="Resource" id="Resource_tnlo2"]
@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_57t3a"]
 script = ExtResource("1_k7qc2")
-item = ExtResource("4_fl76j")
+item = ExtResource("5_tnlo2")
 quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 

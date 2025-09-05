@@ -21,6 +21,15 @@ var knockback: Vector2 = Vector2.ZERO
 @export var flee_dodge_strength: float = 0.4
 @export var flee_cooldown: float = 2.0
 
+# --- Pickup System ---
+var is_being_carried: bool = false
+var carrier: Node2D = null
+var throw_velocity: Vector2 = Vector2.ZERO
+var is_thrown: bool = false
+var land_timer: float = 0.0
+@export var land_duration: float = 1.0
+@export var bounce_factor: float = 0.3
+
 # --- Nodes ---
 @onready var hurtbox = $HurtBox
 @onready var stats = $Stats
@@ -88,8 +97,27 @@ var danger_memory_timer: float = 0.0
 func _ready():
 	home_position = global_position
 	reset_idle_timer()
+	
+	# Add to pickupable group
+	add_to_group("pickupable")
 
 func _process(delta: float) -> void:
+	# Handle being thrown
+	if is_thrown:
+		land_timer -= delta
+		if land_timer <= 0:
+			is_thrown = false
+			throw_velocity = Vector2.ZERO
+			# Panic after being thrown
+			if not dying:
+				has_been_hurt = true
+				initiate_panic_flee()
+			return
+	
+	# Don't process normal behavior if being carried
+	if is_being_carried:
+		return
+	
 	# Update evolution timer
 	evolution_timer -= delta
 	if evolution_timer <= 0 and not dying:
@@ -150,6 +178,10 @@ func update_los_tracking(delta: float) -> void:
 			searching = false
 
 func handle_state_machine(delta: float) -> void:
+	# Don't process state machine if being carried or thrown
+	if is_being_carried or is_thrown:
+		return
+		
 	match state:
 		State.IDLE:
 			handle_idle(delta)
@@ -164,7 +196,11 @@ func handle_state_machine(delta: float) -> void:
 	
 	# Apply movement
 	if not dying:
-		velocity = move_velocity
+		if is_thrown:
+			velocity = throw_velocity
+			throw_velocity = throw_velocity.move_toward(Vector2.ZERO, friction * delta * 2)
+		else:
+			velocity = move_velocity
 		update_facing_from_velocity()
 
 func handle_idle(delta: float) -> void:
@@ -389,6 +425,59 @@ func spawn_evolution_effect() -> void:
 	tween.tween_property(animated_sprite_2d, "scale", Vector2(1.5, 1.5), 0.3)
 	tween.parallel().tween_property(animated_sprite_2d, "modulate", Color.WHITE, 0.3)
 
+# --- Pickup System Functions ---
+func can_be_picked_up() -> bool:
+	return not is_being_carried and not dying
+
+func get_picked_up(picker: Node2D) -> void:
+	if is_being_carried or dying:
+		return
+	
+	is_being_carried = true
+	carrier = picker
+	state = State.IDLE
+	move_velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
+	
+	# Disable collision while being carried
+	set_collision_layer_value(1, false)  # Disable physics layer
+	set_collision_mask_value(1, false)   # Disable collision detection
+	
+	# Play scared animation
+	animated_sprite_2d.play("IdleDown")  # or create a "scared" animation
+	
+	print("Chick got picked up by ", picker.name)
+
+func get_thrown(throw_position: Vector2, force: Vector2) -> void:
+	if not is_being_carried:
+		return
+	
+	is_being_carried = false
+	carrier = null
+	is_thrown = true
+	land_timer = land_duration
+	
+	# Re-enable collision
+	set_collision_layer_value(1, true)
+	set_collision_mask_value(1, true)
+	
+	# Set position and throw velocity
+	global_position = throw_position
+	throw_velocity = force
+	
+	# Make chick panic and remember this trauma
+	has_been_hurt = true
+	last_danger_position = throw_position
+	danger_memory_timer = danger_memory_duration * 2  # Remember being thrown longer
+	
+	# Visual effect - make chick flash red briefly
+	animated_sprite_2d.modulate = Color.PALE_VIOLET_RED
+	await get_tree().create_timer(0.5).timeout
+	if animated_sprite_2d:  # Check if still exists
+		animated_sprite_2d.modulate = Color.WHITE
+	
+	print("Chick got thrown!")
+
 # --- Animations ---
 func play_idle_animation() -> void:
 	match facing:
@@ -444,6 +533,10 @@ func _on_player_detection_area_body_exited(body: Node2D) -> void:
 
 # --- Combat Functions ---
 func _on_hurt_box_area_entered(area: Area2D) -> void:
+	# Can't be hurt while being carried
+	if is_being_carried:
+		return
+		
 	if dying:
 		return
 	

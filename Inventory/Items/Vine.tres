@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://d0nu300m46k53"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_wtd3w"]
+[ext_resource type="Texture2D" uid="uid://cac7candfw8c2" path="res://Inventory/textures/Vines.png" id="2_x6evh"]
+
+[resource]
+script = ExtResource("1_wtd3w")
+name = "Vine"
+texture = ExtResource("2_x6evh")
+Category = "Materials"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

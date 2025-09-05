@@ -90,7 +90,7 @@ shape = SubResource("RectangleShape2D_5tyao")
 [node name="Stats" parent="." instance=ExtResource("2_rlmkq")]
 
 [node name="HurtBox" parent="." instance=ExtResource("3_v2nkv")]
-collision_layer = 256
+collision_layer = 0
 collision_mask = 512
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
