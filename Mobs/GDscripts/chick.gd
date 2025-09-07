@@ -5,7 +5,7 @@ extends CharacterBody2D
 # --- Evolution Scenes ---
 var RoosterScene = preload("res://Mobs/Scenes/Rooster.tscn")
 var HenScene = preload("res://Mobs/Scenes/hen.tscn")
-var DeathEffectScene = preload("res://Effects/bat_death.tscn")
+var DeathEffectScene = preload("res://Inventory/scenes/chicken_meat.tscn")
 
 # --- Combat / Knockback ---
 var knockback: Vector2 = Vector2.ZERO

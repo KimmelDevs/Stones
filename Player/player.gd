@@ -61,27 +61,37 @@ func _ready():
 		hotbar.selection_changed.connect(equip_item)
 	else:
 		push_error("HotBar not found in scene!")
-	# 🔥 Connect inventory update signal
+	# Connect inventory update signal
 	if Inv:
 		Inv.update.connect(_on_inventory_updated)
 
 func _physics_process(delta: float) -> void:
+	# --- Handle knockback FIRST (highest priority) ---
+	if knockback_timer > 0:
+		velocity = knockback
+		move_and_slide()
+		knockback_timer -= delta
+		
+		# CRITICAL FIX: Reset can_move when knockback ends
+		if knockback_timer <= 0:
+			can_move = true
+			knockback = Vector2.ZERO
+			print("Knockback ended, movement restored")
+		
+		update_carried_object_position()
+		return
+	
 	# --- Handle attack duration ---
 	if is_attacking:
 		attack_timer -= delta
 		if attack_timer <= 0:
 			is_attacking = false
-			can_move = true
+			can_move = true  # Ensure movement is restored
+			print("Attack ended, movement restored")
 			play_idle_animation()
 		update_carried_object_position()
 		return
-	
-	if knockback_timer > 0:
-		velocity = knockback
-		move_and_slide()
-		knockback_timer -= delta
-		update_carried_object_position()
-		return
+		
 	
 	# --- Station Preview Follow Mouse ---
 	if station_preview:
@@ -136,7 +146,8 @@ func _physics_process(delta: float) -> void:
 		roll_timer -= delta
 		if roll_timer <= 0:
 			is_rolling = false
-			can_move = true
+			can_move = true  # Ensure movement is restored
+			print("Roll ended, movement restored")
 			play_idle_animation()
 		update_carried_object_position()
 		return
@@ -180,6 +191,18 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			print("Cancelled placement")
 			_clear_station()
+
+# --- Emergency Reset Function (for debugging) ---
+func reset_movement_state():
+	"""Call this function to force reset all movement blocking states"""
+	is_rolling = false
+	is_attacking = false
+	can_move = true
+	knockback_timer = 0.0
+	roll_timer = 0.0
+	attack_timer = 0.0
+	knockback = Vector2.ZERO
+	print("EMERGENCY: All movement states reset!")
 
 # --- Pickup System Functions ---
 func get_nearest_pickup_target() -> Node2D:
@@ -319,8 +342,8 @@ func _disable_weapon(node: Node) -> void:
 	var hitbox = node.get_node_or_null("Marker2D/HitBox")
 	if hitbox:
 		hitbox.monitoring = false
-		hitbox.damage = 0                # 🔥 reset damage
-		hitbox.knockback_vector = Vector2.ZERO  # 🔥 reset knockback
+		hitbox.damage = 0                # reset damage
+		hitbox.knockback_vector = Vector2.ZERO  # reset knockback
 
 func _enable_weapon(node: Node) -> void:
 	if not node:
@@ -369,8 +392,8 @@ func _equip_weapon(item: InvItem) -> void:
 
 		weapon_damage = item.damage
 		weapon_knockback = item.knockback_strength
-		weapon_type = item.weapon_type  # 🔥 assuming your InvItem has this property
-		_update_weapon_collision()      # 🔥 update collision setu
+		weapon_type = item.weapon_type  # assuming your InvItem has this property
+		_update_weapon_collision()      # update collision setup
 		print("Equipped ", item.name, " | Damage: ", weapon_damage, " | Knockback: ", weapon_knockback)
 	else:
 		push_error("Equipped weapon missing hitbox!")
@@ -398,11 +421,11 @@ func _update_weapon_collision():
 		weapon_hitbox.set_collision_layer_value(i, false)
 		weapon_hitbox.set_collision_mask_value(i, false)
 
-	# ✅ Default layers (always on)
+	# Default layers (always on)
 	weapon_hitbox.set_collision_layer_value(5, true)  # Layer 5 ON
 	weapon_hitbox.set_collision_mask_value(4, true)   # Mask 4 ON
 
-	# ✅ Extra layers if weapon is Axe
+	# Extra layers if weapon is Axe
 	if weapon_type == "Axe":
 		weapon_hitbox.set_collision_layer_value(10, true)  # Layer 10 ON
 		weapon_hitbox.set_collision_mask_value(9, true)    # Mask 9 ON
@@ -452,7 +475,7 @@ func try_place_on_choppingboard():
 		and equipped_food.Category == "Food" \
 		and equipped_food.food_type == "Corpse":
 		
-		# ✅ Duplicate first before removing
+		# Duplicate first before removing
 		var new_item = equipped_food.duplicate(true)
 
 		# Remove from player inventory
@@ -602,21 +625,21 @@ func _consume_food(item: InvItem) -> void:
 	if not item:
 		return
 
-	# 🥩 Restore hunger
+	# Restore hunger
 	PlayerStats.set_hunger(PlayerStats.get_hunger() + item.nutrition)
 
-	# ❤️ Heal player
+	# Heal player
 	PlayerStats.set_health(PlayerStats.get_health() + item.damage)
 
 	print("Ate ", item.name, " → +", item.nutrition, " hunger, +", item.damage, " health")
 
-	# 🔻 Remove 1 from stack (or remove item completely)
+	# Remove 1 from stack (or remove item completely)
 	if Inv and Inv.remove_item(item, 1):  # remove 1 count of this food
 		print("Removed 1x ", item.name, " from inventory")
 	else:
 		print("Could not remove item from inventory")
 
-	# ✅ If stack is gone → unequip
+	# If stack is gone → unequip
 	if not Inv.has_item(item):
 		equipped_food = null
 		print(item.name, " is all gone! Unequipped.")
@@ -701,26 +724,29 @@ func play_idle_animation() -> void:
 
 # --- When Hit ---
 func _on_hurt_box_area_entered(area: Area2D):
-	is_rolling = false
+	# CRITICAL FIX: Don't set is_rolling = false here!
+	# This was potentially causing state conflicts
+	
+	# Apply knockback
 	knockback = area.knockback_vector * knockback_speed
 	knockback_timer = knockback_duration
+	
+	# Take damage
 	stats.set_health(stats.health - area.damage)
 	hurtbox.create_hit_effect()
-	stats.set_health(stats.health - 1)
-	$Sprite2D.modulate = Color.PALE_VIOLET_RED
 	
+	# Visual effects
+	$Sprite2D.modulate = Color.PALE_VIOLET_RED
+	hurtbox.start_invisibility(1)
 	camera_shake.add_trauma(1)
+
+	print("Player hit! Knockback applied for ", knockback_duration, " seconds")
 
 	# Reset color after 1 second
 	await get_tree().create_timer(1.0).timeout
 	$Sprite2D.modulate = Color(1, 1, 1, 1)  # reset to normal
-	# If original isn't pure white, save and restore:
-	# var original_color = $Sprite2D.modulate
-	# 
-	# await get_tree().create_timer(1.0).timeout
-	# $Sprite2D.modulate = original_color
 
-	# Camera shake
+# Camera shake
 func player():
 	pass
 

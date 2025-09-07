@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
-[ext_resource type="PackedScene" uid="uid://lcry2kftthrf" path="res://Player/player.tscn" id="2_j8job"]
+[ext_resource type="PackedScene" uid="uid://3t33ncsoqh4n" path="res://Player/player.tscn" id="2_j8job"]
 [ext_resource type="PackedScene" uid="uid://cc0wxqiei2ga5" path="res://UI/camera_2d.tscn" id="3_w08tj"]
 [ext_resource type="PackedScene" uid="uid://cl2g1spse5o22" path="res://Enemies/chainsaw_unit.tscn" id="4_3f78f"]
 [ext_resource type="Texture2D" uid="uid://btscbcwpjqyqb" path="res://World/war.png" id="4_lo5ox"]
@@ -35,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://lf8go44d3k12" path="res://Inventory/Buildables/Scenes/chopping_board.tscn" id="36_or3hn"]
 [ext_resource type="PackedScene" uid="uid://cmnb1s2vi14vd" path="res://World/scenes/normal_tree.tscn" id="37_6gebr"]
 [ext_resource type="Script" uid="uid://i0whl0siidk4" path="res://Time_system.gd" id="39_05jqx"]
-[ext_resource type="PackedScene" uid="uid://dgpv15k304mfk" path="res://World/scenes/orange_cat.tscn" id="39_15i7j"]
+[ext_resource type="PackedScene" uid="uid://dgpv15k304mfk" path="res://Enemies/scenes/Cats/orange_cat.tscn" id="39_15i7j"]
 [ext_resource type="PackedScene" uid="uid://co84mfb4uo2jj" path="res://World/Flowers/Scenes/fox_gloves.tscn" id="39_yxuth"]
 [ext_resource type="PackedScene" uid="uid://b8k8y2dyupt25" path="res://World/Flowers/Scenes/chamomile.tscn" id="40_05jqx"]
 [ext_resource type="Script" uid="uid://dk2t3j6im4um" path="res://date_time.gd" id="40_s5cut"]
@@ -43,9 +43,9 @@
 [ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
 [ext_resource type="Script" uid="uid://dxjrqduef0c6i" path="res://World/DayNight.gd" id="42_it66m"]
 [ext_resource type="Texture2D" uid="uid://bj2kwea2etwk8" path="res://UI/Time/daynightcycle-gradient-texture.tres" id="43_wm6hh"]
-[ext_resource type="PackedScene" uid="uid://cpxdnq7d6b42d" path="res://Mobs/Scenes/chick.tscn" id="44_wm6hh"]
-[ext_resource type="PackedScene" uid="uid://b81hl3pac8hco" path="res://Mobs/Scenes/Rooster.tscn" id="45_8kjm2"]
-[ext_resource type="PackedScene" uid="uid://c4lpq6lgw2ydk" path="res://Mobs/Scenes/hen.tscn" id="46_i52kj"]
+[ext_resource type="PackedScene" uid="uid://bga7yvhc46xxl" path="res://Enemies/scenes/Predators/EliteCreature/ElitePredator.tscn" id="44_i52kj"]
+[ext_resource type="PackedScene" uid="uid://bdi0akiva3qyc" path="res://Enemies/scenes/Predators/MiniBossPredator/mini_boss_predator.tscn" id="45_y4tau"]
+[ext_resource type="PackedScene" uid="uid://c4h8xhh24pk4o" path="res://Enemies/scenes/Predators/Predator/predator.tscn" id="46_n40p1"]
 [ext_resource type="PackedScene" uid="uid://cowuyjqjfghay" path="res://Player/player_new.tscn" id="47_y4tau"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
@@ -2369,35 +2369,17 @@ color = Color(0.89059, 0.89059, 0.89059, 1)
 script = ExtResource("42_it66m")
 gradient = ExtResource("43_wm6hh")
 
-[node name="Chick" parent="." instance=ExtResource("44_wm6hh")]
-position = Vector2(264, -90)
+[node name="ElitePredator" parent="." instance=ExtResource("44_i52kj")]
+position = Vector2(46, -21)
 
-[node name="Chick2" parent="." instance=ExtResource("44_wm6hh")]
-position = Vector2(272, -108)
+[node name="MiniBossPredator" parent="." instance=ExtResource("45_y4tau")]
+position = Vector2(83, -26)
 
-[node name="Chick3" parent="." instance=ExtResource("44_wm6hh")]
-position = Vector2(242, -103)
-
-[node name="Rooster" parent="." instance=ExtResource("45_8kjm2")]
-position = Vector2(211, -82)
-
-[node name="Rooster2" parent="." instance=ExtResource("45_8kjm2")]
-position = Vector2(263, -69)
-
-[node name="Rooster3" parent="." instance=ExtResource("45_8kjm2")]
-position = Vector2(236, -83)
-
-[node name="Rooster4" parent="." instance=ExtResource("45_8kjm2")]
-position = Vector2(210, -108)
-
-[node name="Hen" parent="." instance=ExtResource("46_i52kj")]
-position = Vector2(244, -119)
-
-[node name="Hen2" parent="." instance=ExtResource("46_i52kj")]
-position = Vector2(221, -97)
+[node name="Predator" parent="." instance=ExtResource("46_n40p1")]
+position = Vector2(139, -28)
 
 [node name="PlayerNew" parent="." instance=ExtResource("47_y4tau")]
-position = Vector2(123, 112)
+position = Vector2(186, 63)
 
 [connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
 [connection signal="updated" from="TimeSystem" to="CanvasModulate" method="_on_time_system_updated"]

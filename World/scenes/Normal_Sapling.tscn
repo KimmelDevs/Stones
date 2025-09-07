@@ -25,7 +25,7 @@ size = Vector2(15, 5)
 script = ExtResource("1_03s62")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 400.0
+wait_time = 300.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -30)

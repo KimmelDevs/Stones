@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdi0akiva3qyc"]
+
+[ext_resource type="Texture2D" uid="uid://btc1aytmfy5p0" path="res://Enemies/textures/Predators/MiniBossPredator/Plant3_Attack_with_shadow.png" id="1_1swx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1swx1"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc2xf"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5412n"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwavb"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh5nb"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faquy"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ww6"]
+atlas = ExtResource("1_1swx1")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vc2xf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1swx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc2xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5412n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwavb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh5nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faquy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ww6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MiniBossPredator" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_vc2xf")
+autoplay = "default"
+frame_progress = 0.634807

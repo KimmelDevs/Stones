@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://lcry2kftthrf"]
+[gd_scene load_steps=35 format=3 uid="uid://3t33ncsoqh4n"]
 
 [ext_resource type="Script" uid="uid://ceqyqtsclonag" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://55jji1oqq4k8" path="res://Player/Player.png" id="1_l8h54"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://baeihay0mma03" path="res://Player/sword.gd" id="6_od3ui"]
 [ext_resource type="Texture2D" uid="uid://c3uiva07c0kx0" path="res://Equipments/Textures/sword.png" id="6_vtle1"]
 [ext_resource type="AudioStream" uid="uid://b43weor23sb2k" path="res://Music and Sounds/Swipe.wav" id="9_x3vf3"]
+[ext_resource type="PackedScene" uid="uid://uvb4fi6eyo04" path="res://Hitbox&HurtBox/soft_collision.tscn" id="11_apopc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3vf3"]
 radius = 49.735
@@ -1812,6 +1813,8 @@ _data = {
 radius = 6.0
 height = 18.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5htga"]
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 66
 script = ExtResource("1_4ntmi")
@@ -1879,7 +1882,6 @@ hframes = 60
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1, 7)
 shape = SubResource("CapsuleShape2D_4ntmi")
 
@@ -1889,7 +1891,6 @@ libraries = {
 }
 
 [node name="HurtBox" parent="." instance=ExtResource("4_gwnis")]
-visible = false
 collision_layer = 4
 collision_mask = 32
 
@@ -1903,6 +1904,12 @@ shape = SubResource("CapsuleShape2D_k53q1")
 stream = ExtResource("9_x3vf3")
 volume_db = 5.0
 
+[node name="SoftCollision" parent="." instance=ExtResource("11_apopc")]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+position = Vector2(-2, 4)
+shape = SubResource("CircleShape2D_5htga")
+
 [connection signal="area_entered" from="LongSword/Marker2D/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="LongSword/Marker2D/HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="area_entered" from="Sword/Marker2D/HitBox" to="." method="_on_hit_box_area_entered"]
@@ -1913,3 +1920,4 @@ volume_db = 5.0
 [editable path="LongSword/Marker2D/HitBox"]
 [editable path="Sword/Marker2D/HitBox"]
 [editable path="HurtBox"]
+[editable path="SoftCollision"]

@@ -418,7 +418,7 @@ position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_vxair")
 
 [node name="Stats" parent="." instance=ExtResource("5_vxair")]
-max_health = 1000.0
+max_health = 2.0
 
 [node name="PlayerDetectionArea" parent="." instance=ExtResource("6_bjdx7")]
 collision_layer = 0

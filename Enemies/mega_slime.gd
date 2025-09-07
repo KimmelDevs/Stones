@@ -20,7 +20,7 @@ var knockback: Vector2 = Vector2.ZERO
 @export var mini_hop_cooldown := 1.5  # Faster cooldown for approach hops
 @export var spit_speed := 250.0
 @export var spit_delay := 0.2
-@export var jumps_before_spit := 5
+@export var jumps_before_spit := 3
 @export var attack_recovery_time := 2.0  # Reduced from 3.0
 
 # --- LOS Tracking (From Bat) ---
@@ -39,9 +39,9 @@ var circle_search_angle: float = 0.0
 var dynamic_search_points: Array[Vector2] = []
 
 # --- Jump Range Management ---
-@export var max_jump_range: float = 50.0  # Maximum jump distance
+@export var max_jump_range: float = 80.0  # Maximum jump distance
 @export var approach_range: float = 25.0  # Range where mini hops start
-@export var attack_range: float = 15.0  # Close combat range
+@export var attack_range: float = 45.0  # Close combat range
 
 # --- States ---
 enum { IDLE, WANDER, CHASE, SEARCH_HOP, CIRCLE_SEARCH, INVESTIGATE, APPROACH }

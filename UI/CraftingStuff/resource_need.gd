@@ -10,6 +10,7 @@ func display_recipe_material(recipe_mat: RecipeMaterial, player_inventory: Inv):
 	if recipe_mat and recipe_mat.item:
 		var inv_item: InvItem = recipe_mat.item
 		item_display.texture = inv_item.texture
+		catergory_label.text = inv_item.Category
 		name_label.text = inv_item.name
 
 		var player_has := 0

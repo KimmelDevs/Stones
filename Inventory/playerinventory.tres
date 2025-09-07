@@ -1,28 +1,22 @@
-[gd_resource type="Resource" script_class="Inv" load_steps=34 format=3 uid="uid://b6y8x0idf43ao"]
+[gd_resource type="Resource" script_class="Inv" load_steps=30 format=3 uid="uid://b6y8x0idf43ao"]
 
 [ext_resource type="Script" uid="uid://dbkh5tlw3gq8c" path="res://inv_slot.gd" id="2_7uf4i"]
+[ext_resource type="Resource" uid="uid://dkymcr5rcb4dj" path="res://Inventory/Items/CraftingBench.tres" id="3_oqpsp"]
 [ext_resource type="Script" uid="uid://bf38umhy5vg6f" path="res://Inventory/Inventory.gd" id="3_wq1fa"]
-[ext_resource type="Resource" uid="uid://cxe0xx02ddcl5" path="res://Inventory/Items/Axe.tres" id="3_yrre2"]
-[ext_resource type="Resource" uid="uid://bwl7vnfiwgp7w" path="res://Inventory/Items/StoneKnife.tres" id="4_wq1fa"]
-[ext_resource type="Resource" uid="uid://b4jv6y7hk6hgo" path="res://Equipments/Weapons/Spear.tres" id="4_yrre2"]
-[ext_resource type="Resource" uid="uid://coxbk330mje3y" path="res://Inventory/Items/ChoppingBoard.tres" id="6_amcam"]
-[ext_resource type="Resource" uid="uid://bb53gnmarwg0d" path="res://Inventory/Items/TreeNuts.tres" id="7_to21c"]
 
 [sub_resource type="Resource" id="Resource_ln33l"]
 script = ExtResource("2_7uf4i")
-item = ExtResource("3_yrre2")
+item = ExtResource("3_oqpsp")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_yrre2"]
 script = ExtResource("2_7uf4i")
-item = ExtResource("4_wq1fa")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_wq1fa"]
 script = ExtResource("2_7uf4i")
-item = ExtResource("4_yrre2")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
@@ -33,7 +27,6 @@ metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_to21c"]
 script = ExtResource("2_7uf4i")
-item = ExtResource("6_amcam")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
@@ -44,7 +37,6 @@ metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_k5okl"]
 script = ExtResource("2_7uf4i")
-item = ExtResource("7_to21c")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
