@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://1xa8yht3eylr"]
+[gd_scene load_steps=4 format=3 uid="uid://1xa8yht3eylr"]
 
+[ext_resource type="Script" uid="uid://b1d0wwnitelwo" path="res://World/Stones/xl_rock.gd" id="1_5k3vk"]
 [ext_resource type="Texture2D" uid="uid://c63sq5qwkq0s1" path="res://World/Stones/Textures/Stones/Rock1_1.png" id="1_ds72w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ds72w"]
 radius = 16.0
 height = 38.0
 
-[node name="XLRock" type="StaticBody2D"]
+[node name="XLRock" type="StaticBody2D" groups=["rocks"]]
+script = ExtResource("1_5k3vk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)

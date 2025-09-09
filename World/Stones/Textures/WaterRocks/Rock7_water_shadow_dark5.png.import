@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dklgqyhrlknle"
-path="res://.godot/imported/slimedeath.png-99da6cee8a14773d2901de8d64c26286.ctex"
+uid="uid://vlhgk2q6e20n"
+path="res://.godot/imported/Rock7_water_shadow_dark5.png-5f24a6d657105d841b61e4f097a37ce1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Effects/slimedeath.png"
-dest_files=["res://.godot/imported/slimedeath.png-99da6cee8a14773d2901de8d64c26286.ctex"]
+source_file="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark5.png"
+dest_files=["res://.godot/imported/Rock7_water_shadow_dark5.png-5f24a6d657105d841b61e4f097a37ce1.ctex"]
 
 [params]
 

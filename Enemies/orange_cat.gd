@@ -83,6 +83,7 @@ var prowl_intensity: float = 1.0
 # Attack vars
 var attack_target: Vector2
 var attack_timer: float = 0.0
+var valid_attack_target: Vector2 = Vector2.ZERO  # Safe target position
 
 func _ready() -> void:
 	home_position = global_position
@@ -137,7 +138,8 @@ func _physics_process(delta: float) -> void:
 				if playerdetectionzone.player != null:
 					state = ANTICIPATE
 					attack_timer = anticipation_time
-					attack_target = playerdetectionzone.player.global_position
+					# Find a safe attack target position
+					valid_attack_target = find_safe_attack_position(playerdetectionzone.player.global_position)
 					move_velocity = Vector2.ZERO
 					anim_player.play("ReadyJump")
 				else:
@@ -151,22 +153,23 @@ func _physics_process(delta: float) -> void:
 			move_velocity = anticipation_wiggle
 			
 			if attack_timer <= 0:
-				if attack_target != Vector2.ZERO:
+				if valid_attack_target != Vector2.ZERO:
 					state = DIVE
 					anim_player.play("LandAttack")
 				else:
 					state = WANDER
 
 		DIVE:
-			if attack_target != Vector2.ZERO:
-				var dir = (attack_target - global_position).normalized()
+			if valid_attack_target != Vector2.ZERO:
+				var dir = (valid_attack_target - global_position).normalized()
 				move_velocity = dir * attack_dive_speed
 				update_sprite_facing(dir)
-				if global_position.distance_to(attack_target) < 10:
+				if global_position.distance_to(valid_attack_target) < 15:
 					state = RECOVER
 					attack_timer = recovery_time
 					move_velocity = Vector2.ZERO
 					anim_player.play("LandAttack")
+					valid_attack_target = Vector2.ZERO
 			else:
 				state = WANDER
 				move_velocity = Vector2.ZERO
@@ -185,6 +188,59 @@ func _physics_process(delta: float) -> void:
 
 	# Apply movement with feline grace
 	apply_movement_with_avoidance(delta)
+
+func find_safe_attack_position(target_pos: Vector2) -> Vector2:
+	var space_state = get_world_2d().direct_space_state
+	var direction = (target_pos - global_position).normalized()
+	
+	# First check if direct path to target is clear
+	var query = PhysicsRayQueryParameters2D.create(global_position, target_pos)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	
+	# If path is clear, use the target position
+	if result.is_empty():
+		return target_pos
+	
+	# If blocked, find the closest safe position along the path
+	var safe_distance = global_position.distance_to(result["position"]) - 20  # Leave some buffer
+	if safe_distance < 10:
+		safe_distance = 10  # Minimum distance
+	
+	var safe_position = global_position + direction * safe_distance
+	
+	# Try alternative positions around the target if the direct path is blocked
+	var angles = [0, PI/4, -PI/4, PI/2, -PI/2, 3*PI/4, -3*PI/4]
+	for angle in angles:
+		var test_dir = direction.rotated(angle)
+		var test_pos = global_position + test_dir * min(safe_distance, global_position.distance_to(target_pos) * 0.8)
+		
+		# Check if this position is clear
+		var test_query = PhysicsRayQueryParameters2D.create(global_position, test_pos)
+		test_query.exclude = [self]
+		var test_result = space_state.intersect_ray(test_query)
+		
+		if test_result.is_empty():
+			return test_pos
+	
+	# If all else fails, return a safe position close to current location
+	return global_position + direction * 20
+
+func is_position_safe(pos: Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	
+	# Check in multiple directions around the position to ensure it's not inside a wall
+	var check_directions = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
+	for dir in check_directions:
+		var query = PhysicsRayQueryParameters2D.create(pos, pos + dir * 16)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		
+		# If we immediately hit something, this position might be inside a wall
+		if not result.is_empty() and pos.distance_to(result["position"]) < 8:
+			return false
+	
+	return true
 
 func handle_idle_behavior(delta: float) -> void:
 	idle_fidget_timer -= delta
@@ -308,9 +364,36 @@ func check_if_stuck(delta: float) -> void:
 			var escape_dir = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 			move_velocity = escape_dir * maxspeed * 1.3
 			stuck_timer = 0
+			
+			# If really stuck, teleport to a safe nearby position
+			if stuck_timer > 2.0:
+				var safe_pos = find_safe_escape_position()
+				if safe_pos != Vector2.ZERO:
+					global_position = safe_pos
+				stuck_timer = 0
 	else:
 		stuck_timer = 0
 		last_position = global_position
+
+func find_safe_escape_position() -> Vector2:
+	var space_state = get_world_2d().direct_space_state
+	var escape_distance = 40.0
+	
+	# Try multiple directions to find a safe escape position
+	var angles = [0, PI/4, PI/2, 3*PI/4, PI, 5*PI/4, 3*PI/2, 7*PI/4]
+	for angle in angles:
+		var test_dir = Vector2(cos(angle), sin(angle))
+		var test_pos = global_position + test_dir * escape_distance
+		
+		# Check if path to this position is clear
+		var query = PhysicsRayQueryParameters2D.create(global_position, test_pos)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		
+		if result.is_empty() and is_position_safe(test_pos):
+			return test_pos
+	
+	return Vector2.ZERO  # No safe position found
 
 func get_wall_avoidance_vector() -> Vector2:
 	var space_state = get_world_2d().direct_space_state

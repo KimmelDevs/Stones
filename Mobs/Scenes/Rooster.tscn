@@ -1,9 +1,12 @@
-[gd_scene load_steps=60 format=3 uid="uid://b81hl3pac8hco"]
+[gd_scene load_steps=65 format=3 uid="uid://b81hl3pac8hco"]
 
 [ext_resource type="Script" uid="uid://1f67nde6vi6g" path="res://Mobs/GDscripts/Rooster.gd" id="1_27003"]
 [ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="2_bc0f7"]
 [ext_resource type="Texture2D" uid="uid://b27fh381kguw0" path="res://Mobs/Textures/RoosterSpriteSheet.png" id="3_5k5re"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="4_gnojp"]
+[ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="5_gnojp"]
+[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/Deaths/Scenes/player_detection_area.tscn" id="6_0t201"]
+[ext_resource type="PackedScene" uid="uid://uvb4fi6eyo04" path="res://Hitbox&HurtBox/soft_collision.tscn" id="7_un8l6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0t201"]
 atlas = ExtResource("3_5k5re")
@@ -438,6 +441,12 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_wagsg"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_spkcd"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hhqkp"]
+radius = 6.08276
+
 [node name="Rooster" type="CharacterBody2D"]
 script = ExtResource("1_27003")
 
@@ -461,4 +470,24 @@ shape = SubResource("CircleShape2D_sucs3")
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_wagsg")
 
+[node name="Stats" parent="." instance=ExtResource("5_gnojp")]
+max_health = 2.0
+
+[node name="PlayerDetectionArea" parent="." instance=ExtResource("6_0t201")]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="PlayerDetectionArea" index="0"]
+shape = SubResource("CircleShape2D_spkcd")
+
+[node name="SoftCollision" parent="." instance=ExtResource("7_un8l6")]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("CircleShape2D_hhqkp")
+
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+
 [editable path="HurtBox"]
+[editable path="PlayerDetectionArea"]
+[editable path="SoftCollision"]

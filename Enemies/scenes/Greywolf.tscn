@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="4_mmoau"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="5_ce0ym"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="6_rglfw"]
-[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="7_s67n2"]
+[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/Deaths/Scenes/player_detection_area.tscn" id="7_s67n2"]
 [ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="8_ls67c"]
-[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/health_bar.tscn" id="9_ycxru"]
+[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/Deaths/Scenes/health_bar.tscn" id="9_ycxru"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8wtm"]
 atlas = ExtResource("1_eh8k4")

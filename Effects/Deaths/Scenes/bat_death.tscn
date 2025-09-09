@@ -1,27 +1,27 @@
 [gd_scene load_steps=10 format=3 uid="uid://flbv63aygyvn"]
 
-[ext_resource type="Script" uid="uid://clc8bqyu2oenv" path="res://Effects/bat_death.gd" id="1_jjnmg"]
-[ext_resource type="Texture2D" uid="uid://k0ksu848fgt2" path="res://Effects/Batdeath.png" id="2_7utbn"]
-[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="3_52pmj"]
+[ext_resource type="Script" uid="uid://clc8bqyu2oenv" path="res://Effects/Deaths/Gdscripts/bat_death.gd" id="1_48dnn"]
+[ext_resource type="Texture2D" uid="uid://k0ksu848fgt2" path="res://Effects/Deaths/Textures/Batdeath.png" id="2_patd7"]
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="3_rhho7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tvvd"]
-atlas = ExtResource("2_7utbn")
+atlas = ExtResource("2_patd7")
 region = Rect2(0, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_876sg"]
-atlas = ExtResource("2_7utbn")
+atlas = ExtResource("2_patd7")
 region = Rect2(16, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cpm35"]
-atlas = ExtResource("2_7utbn")
+atlas = ExtResource("2_patd7")
 region = Rect2(32, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir6j4"]
-atlas = ExtResource("2_7utbn")
+atlas = ExtResource("2_patd7")
 region = Rect2(0, 24, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2aoa5"]
-atlas = ExtResource("2_7utbn")
+atlas = ExtResource("2_patd7")
 region = Rect2(16, 24, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c0g78"]
@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [node name="BatDeath" type="Node2D"]
-script = ExtResource("1_jjnmg")
+script = ExtResource("1_48dnn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -58,6 +58,6 @@ frame = 4
 frame_progress = 1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
-texture = ExtResource("3_52pmj")
+texture = ExtResource("3_rhho7")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

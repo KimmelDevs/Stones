@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://cr3uqvgssryb2"]
+
+[ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="1_1xlpf"]
+[ext_resource type="Texture2D" uid="uid://b5gm7iccemf2m" path="res://Inventory/Buildables/Textures/Torch.png" id="2_1xlpf"]
+[ext_resource type="Texture2D" uid="uid://c4tpu0i2s5t2v" path="res://Effects/Light/light.png" id="2_lxexc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lgt6"]
+atlas = ExtResource("2_1xlpf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8x11"]
+atlas = ExtResource("2_1xlpf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pn2b"]
+atlas = ExtResource("2_1xlpf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tnvu"]
+atlas = ExtResource("2_1xlpf")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqltu"]
+atlas = ExtResource("2_1xlpf")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyc4w"]
+atlas = ExtResource("2_1xlpf")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6d6fu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lgt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8x11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pn2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tnvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqltu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyc4w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Torch" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 12)
+texture = ExtResource("1_1xlpf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.902047, 0.29315, 0, 1)
+shadow_enabled = true
+texture = ExtResource("2_lxexc")
+texture_scale = 0.6
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_6d6fu")
+autoplay = "default"

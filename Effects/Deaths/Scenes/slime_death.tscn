@@ -1,50 +1,50 @@
 [gd_scene load_steps=15 format=3 uid="uid://cp41jkytws7bo"]
 
-[ext_resource type="Script" uid="uid://cedmv4ylbem8l" path="res://Enemies/slime_death.gd" id="1_agmck"]
-[ext_resource type="Texture2D" uid="uid://dklgqyhrlknle" path="res://Effects/slimedeath.png" id="2_rvhli"]
+[ext_resource type="Script" uid="uid://cedmv4ylbem8l" path="res://Enemies/slime_death.gd" id="1_y3tj4"]
+[ext_resource type="Texture2D" uid="uid://dklgqyhrlknle" path="res://Effects/Deaths/Textures/slimedeath.png" id="2_k5v8r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y3or"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pm00"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_48wka"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tt63a"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7f2l"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1p2q"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(128, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blcfw"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht76m"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(64, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bf6xd"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(128, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rm8cl"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(0, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4id1"]
-atlas = ExtResource("2_rvhli")
+atlas = ExtResource("2_k5v8r")
 region = Rect2(64, 192, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hxnb3"]
@@ -89,7 +89,7 @@ animations = [{
 }]
 
 [node name="SlimeDeath" type="Node2D"]
-script = ExtResource("1_agmck")
+script = ExtResource("1_y3tj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hxnb3")

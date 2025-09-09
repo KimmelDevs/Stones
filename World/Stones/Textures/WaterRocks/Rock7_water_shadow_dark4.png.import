@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k0ksu848fgt2"
-path="res://.godot/imported/Batdeath.png-de2ed8b9aa4276090866c5f4f32b4b2c.ctex"
+uid="uid://cyxbilk10qxa0"
+path="res://.godot/imported/Rock7_water_shadow_dark4.png-fe60289017d5011d19ca826c6dc072bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Effects/Batdeath.png"
-dest_files=["res://.godot/imported/Batdeath.png-de2ed8b9aa4276090866c5f4f32b4b2c.ctex"]
+source_file="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark4.png"
+dest_files=["res://.godot/imported/Rock7_water_shadow_dark4.png-fe60289017d5011d19ca826c6dc072bb.ctex"]
 
 [params]
 

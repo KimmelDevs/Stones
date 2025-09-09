@@ -38,7 +38,8 @@ var equipped_weapon: Node = null    # reference to the weapon node
 var weapon_damage: int = 0          # damage of the equipped weapon
 var weapon_knockback: float = 0.0   # knockback strength of the equipped weapon
 var equipped_skill: Node = null
-
+var equipped_tool: InvItem = null
+var tool_type: String = ""   # e.g., "Pickaxe", "Hoe"
 # --- References ---
 var stats = PlayerStats
 @onready var hurtbox = $HurtBox
@@ -80,7 +81,12 @@ func _physics_process(delta: float) -> void:
 		
 		update_carried_object_position()
 		return
-	
+	# Tool use input
+	if Input.is_action_just_pressed("attack") and equipped_tool and not is_attacking and not is_rolling:
+		if tool_type == "Pickaxe":
+			use_pickaxe()
+			return
+
 	# --- Handle attack duration ---
 	if is_attacking:
 		attack_timer -= delta
@@ -299,11 +305,22 @@ func get_nearest_bush() -> Node:
 
 	return nearest_bush
 
+func _equip_tool(item: InvItem) -> void:
+	if not item:
+		print("No tool equipped")
+		equipped_tool = null
+		return
+
+	equipped_tool = item
+	tool_type = item.tool_type   # Define this in your InvItem
+	print("Equipped tool: ", tool_type)
+	
 func equip_item(item: InvItem) -> void:
 	if not item:
 		print("No item equipped")
 		_clear_weapon()
 		_clear_food()
+		_clear_station()
 		return
 
 	print("Equipping: ", item.name, " | Category: ", item.Category)
@@ -327,6 +344,12 @@ func equip_item(item: InvItem) -> void:
 			_clear_station()
 			_clear_food()
 			_equip_station(item)
+		
+		"Tool":
+			_clear_weapon()
+			_clear_food()
+			_clear_station()
+			_equip_tool(item)   # <- New function
 		_:
 			print("Item category not handled: ", item.Category)
 			_clear_weapon()
@@ -761,3 +784,20 @@ func _on_hit_box_area_exited(area: Area2D) -> void:
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	camera_shake.add_trauma(0.7)
+func use_pickaxe() -> void:
+	is_attacking = true
+	can_move = false
+	attack_timer = ATTACK_DURATION
+
+	# Play animation
+	#var anim_name = "swing_pickaxe_" + last_direction
+	#if animation_player.has_animation(anim_name):
+		#animation_player.play(anim_name)
+
+	# Detect rocks (rocks should be in a group "rocks")
+	var rocks = get_tree().get_nodes_in_group("rocks")
+	for rock in rocks:
+		if rock.global_position.distance_to(global_position) < 24: # range
+			if rock.has_method("mine_hit"):
+				rock.mine_hit(equipped_tool.tool_power) # mining_power in InvItem
+				print("Hit rock with pickaxe!")

@@ -435,7 +435,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		dying = true
 
 func spawn_Death_effect() -> void:
-	var effect_scene = preload("res://Effects/bat_death.tscn")
+	var effect_scene = preload("res://Effects/Deaths/Scenes/bat_death.tscn")
 	var effect_instance = effect_scene.instantiate()
 	effect_instance.global_position = global_position
 	get_parent().add_child(effect_instance)

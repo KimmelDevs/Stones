@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://b38u14tj5f3ls" path="res://Enemies/textures/Cat/CultistCat/CultistCat.png" id="2_gjxl8"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_psrmp"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="4_mj0gl"]
-[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="5_8hjdb"]
+[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/Deaths/Scenes/player_detection_area.tscn" id="5_8hjdb"]
 [ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="6_wv11k"]
-[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/health_bar.tscn" id="7_uj0ox"]
+[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/Deaths/Scenes/health_bar.tscn" id="7_uj0ox"]
 [ext_resource type="PackedScene" uid="uid://uvb4fi6eyo04" path="res://Hitbox&HurtBox/soft_collision.tscn" id="8_if7wf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ar4ch"]
@@ -63,6 +63,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.4833),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_yhmde"]
 resource_name = "CartWheelRight"
@@ -103,6 +115,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_gjxl8"]
@@ -313,6 +337,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(-11, 6)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xioi4"]
 resource_name = "WalkLeft"
@@ -417,13 +453,13 @@ hframes = 8
 vframes = 10
 
 [node name="HurtBox" parent="." instance=ExtResource("3_psrmp")]
-visible = false
 collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_ar4ch")
+disabled = true
 
 [node name="Stats" parent="." instance=ExtResource("4_mj0gl")]
 max_health = 13.0

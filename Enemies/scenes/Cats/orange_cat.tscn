@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bbg6v5slse0b4" path="res://Shadows/SmallShadow.png" id="3_7ddhh"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="4_prby6"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="5_5ql4m"]
-[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="6_n8b5r"]
+[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/Deaths/Scenes/player_detection_area.tscn" id="6_n8b5r"]
 [ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="7_5c3cj"]
-[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/health_bar.tscn" id="8_lw0sd"]
+[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/Deaths/Scenes/health_bar.tscn" id="8_lw0sd"]
 [ext_resource type="PackedScene" uid="uid://uvb4fi6eyo04" path="res://Hitbox&HurtBox/soft_collision.tscn" id="9_gapvr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h48lm"]
@@ -137,10 +137,10 @@ tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.348431, 0.446237, 0.537929),
+"times": PackedFloat32Array(0, 0.299529, 0.527741, 0.652036),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-8, -34), Vector2(-9, -18), Vector2(-13, -10), Vector2(-13, -10)]
+"values": [Vector2(3, -30), Vector2(4, -19), Vector2(4, -11), Vector2(4, -7)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -161,10 +161,10 @@ tracks/3/path = NodePath("HitBox/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.220062, 0.350469, 0.450312, 0.63981),
+"times": PackedFloat32Array(0, 0.220062, 0.350469, 0.537929),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(13, -28), Vector2(15, -22), Vector2(6, -5), Vector2(6, -5)]
+"values": [Vector2(20, -30), Vector2(13, -28), Vector2(15, -22), Vector2(17, -10)]
 }
 
 [sub_resource type="Animation" id="Animation_7ddhh"]

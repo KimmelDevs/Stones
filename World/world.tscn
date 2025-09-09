@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://d0m5edtxtg4kd"]
+[gd_scene load_steps=68 format=4 uid="uid://d0m5edtxtg4kd"]
 
 [ext_resource type="Texture2D" uid="uid://bxukvy7cgv6dq" path="res://World/GrassBackground.png" id="1_j8job"]
 [ext_resource type="PackedScene" uid="uid://3t33ncsoqh4n" path="res://Player/player.tscn" id="2_j8job"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dl5nye6xmusnb" path="res://World/Watertileset.png" id="8_w47uh"]
 [ext_resource type="PackedScene" uid="uid://bv531wsn8yrlq" path="res://World/scenes/grass.tscn" id="10_lo5ox"]
 [ext_resource type="PackedScene" uid="uid://bqfn6lnudv1qv" path="res://UI/hot_bar.tscn" id="11_0lysu"]
-[ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/energy_bar.tscn" id="12_5xkvv"]
+[ext_resource type="PackedScene" uid="uid://bsu2nuolwob33" path="res://Effects/Deaths/Scenes/energy_bar.tscn" id="12_5xkvv"]
 [ext_resource type="PackedScene" uid="uid://cya15mec3w7cs" path="res://World/scenes/rock.tscn" id="12_26uyv"]
 [ext_resource type="PackedScene" uid="uid://c7nhim20dyyit" path="res://World/Mushrooms/Scenes/algaric_mushroom.tscn" id="12_dqu5g"]
 [ext_resource type="PackedScene" uid="uid://b0nlfl751ej5h" path="res://Enemies/bat.tscn" id="12_h2aik"]
@@ -35,18 +35,31 @@
 [ext_resource type="PackedScene" uid="uid://lf8go44d3k12" path="res://Inventory/Buildables/Scenes/chopping_board.tscn" id="36_or3hn"]
 [ext_resource type="PackedScene" uid="uid://cmnb1s2vi14vd" path="res://World/scenes/normal_tree.tscn" id="37_6gebr"]
 [ext_resource type="Script" uid="uid://i0whl0siidk4" path="res://Time_system.gd" id="39_05jqx"]
-[ext_resource type="PackedScene" uid="uid://dgpv15k304mfk" path="res://Enemies/scenes/Cats/orange_cat.tscn" id="39_15i7j"]
 [ext_resource type="PackedScene" uid="uid://co84mfb4uo2jj" path="res://World/Flowers/Scenes/fox_gloves.tscn" id="39_yxuth"]
 [ext_resource type="PackedScene" uid="uid://b8k8y2dyupt25" path="res://World/Flowers/Scenes/chamomile.tscn" id="40_05jqx"]
 [ext_resource type="Script" uid="uid://dk2t3j6im4um" path="res://date_time.gd" id="40_s5cut"]
 [ext_resource type="PackedScene" uid="uid://df7dw0xl50u27" path="res://Inventory/Buildables/Scenes/crafting_bench.tscn" id="40_yxuth"]
 [ext_resource type="PackedScene" uid="uid://rp7yy41yf2u0" path="res://World/Flowers/Scenes/dandelion.tscn" id="41_s5cut"]
 [ext_resource type="Script" uid="uid://dxjrqduef0c6i" path="res://World/DayNight.gd" id="42_it66m"]
+[ext_resource type="PackedScene" uid="uid://cpxdnq7d6b42d" path="res://Mobs/Scenes/chick.tscn" id="43_it66m"]
 [ext_resource type="Texture2D" uid="uid://bj2kwea2etwk8" path="res://UI/Time/daynightcycle-gradient-texture.tres" id="43_wm6hh"]
-[ext_resource type="PackedScene" uid="uid://bga7yvhc46xxl" path="res://Enemies/scenes/Predators/EliteCreature/ElitePredator.tscn" id="44_i52kj"]
-[ext_resource type="PackedScene" uid="uid://bdi0akiva3qyc" path="res://Enemies/scenes/Predators/MiniBossPredator/mini_boss_predator.tscn" id="45_y4tau"]
-[ext_resource type="PackedScene" uid="uid://c4h8xhh24pk4o" path="res://Enemies/scenes/Predators/Predator/predator.tscn" id="46_n40p1"]
-[ext_resource type="PackedScene" uid="uid://cowuyjqjfghay" path="res://Player/player_new.tscn" id="47_y4tau"]
+[ext_resource type="PackedScene" uid="uid://b81hl3pac8hco" path="res://Mobs/Scenes/Rooster.tscn" id="44_8kjm2"]
+[ext_resource type="PackedScene" uid="uid://c4lpq6lgw2ydk" path="res://Mobs/Scenes/hen.tscn" id="45_i52kj"]
+[ext_resource type="PackedScene" uid="uid://cr3uqvgssryb2" path="res://Inventory/Buildables/Scenes/torch.tscn" id="46_i52kj"]
+[ext_resource type="PackedScene" uid="uid://dxtwkcneyd4yh" path="res://World/Stones/Scenes/Stones/l_rock.tscn" id="47_xu702"]
+[ext_resource type="PackedScene" uid="uid://d07quaathulgn" path="res://World/Stones/Scenes/Stones/m_rock.tscn" id="48_i363k"]
+[ext_resource type="PackedScene" uid="uid://wyplutvmjekq" path="res://World/Stones/Scenes/Stones/s_rock.tscn" id="49_o2cvn"]
+[ext_resource type="PackedScene" uid="uid://1xa8yht3eylr" path="res://World/Stones/Scenes/Stones/xl_rock.tscn" id="50_4giqt"]
+[ext_resource type="PackedScene" uid="uid://n5x7a74gowp3" path="res://World/Stones/Scenes/Stones/xs_rock.tscn" id="51_8iv6r"]
+[ext_resource type="Texture2D" uid="uid://bs0x5b3a36fxt" path="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark1.png" id="52_eyejc"]
+[ext_resource type="Texture2D" uid="uid://drpsc3qjfwje0" path="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark3.png" id="53_l3fwa"]
+[ext_resource type="Texture2D" uid="uid://cyxbilk10qxa0" path="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark4.png" id="54_3i426"]
+[ext_resource type="Texture2D" uid="uid://vlhgk2q6e20n" path="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark5.png" id="55_1ex6t"]
+[ext_resource type="Texture2D" uid="uid://cw1bmlaaqc53t" path="res://World/Stones/Textures/Clay/Rock2_1.png" id="56_32rkg"]
+[ext_resource type="Texture2D" uid="uid://dib10ktautbw" path="res://World/Stones/Textures/Clay/Rock2_2.png" id="57_a5wjk"]
+[ext_resource type="Texture2D" uid="uid://by56a6qqwu088" path="res://World/Stones/Textures/Clay/Rock2_3.png" id="58_oyb3p"]
+[ext_resource type="Texture2D" uid="uid://bk8ysksamt1gk" path="res://World/Stones/Textures/Clay/Rock2_4.png" id="59_2hrtt"]
+[ext_resource type="Texture2D" uid="uid://cx3q3eig6r7f6" path="res://World/Stones/Textures/Clay/Rock2_5.png" id="60_g3lo7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eidgh"]
 texture = ExtResource("5_bkhv4")
@@ -1522,7 +1535,7 @@ sources/0 = SubResource("TileSetAtlasSource_bkhv4")
 script = ExtResource("40_s5cut")
 seconds = 0
 minutes = 30
-hours = 7
+hours = 8
 days = 0
 metadata/_custom_type_script = "uid://dk2t3j6im4um"
 
@@ -2343,9 +2356,6 @@ tile_set = SubResource("TileSet_lo5ox")
 [node name="ChoppingBoard" parent="." instance=ExtResource("36_or3hn")]
 position = Vector2(104, -63)
 
-[node name="OrangeCat" parent="." instance=ExtResource("39_15i7j")]
-position = Vector2(-157, -88)
-
 [node name="CraftingBench" parent="." instance=ExtResource("40_yxuth")]
 position = Vector2(269, 284)
 
@@ -2369,17 +2379,68 @@ color = Color(0.89059, 0.89059, 0.89059, 1)
 script = ExtResource("42_it66m")
 gradient = ExtResource("43_wm6hh")
 
-[node name="ElitePredator" parent="." instance=ExtResource("44_i52kj")]
-position = Vector2(46, -21)
+[node name="Chick" parent="." instance=ExtResource("43_it66m")]
+position = Vector2(149, -18)
 
-[node name="MiniBossPredator" parent="." instance=ExtResource("45_y4tau")]
-position = Vector2(83, -26)
+[node name="Rooster" parent="." instance=ExtResource("44_8kjm2")]
+position = Vector2(155, -23)
 
-[node name="Predator" parent="." instance=ExtResource("46_n40p1")]
-position = Vector2(139, -28)
+[node name="Hen" parent="." instance=ExtResource("45_i52kj")]
+position = Vector2(148, -9)
 
-[node name="PlayerNew" parent="." instance=ExtResource("47_y4tau")]
-position = Vector2(186, 63)
+[node name="Torch" parent="." instance=ExtResource("46_i52kj")]
+position = Vector2(-146, 149)
+
+[node name="L_Rock" parent="." instance=ExtResource("47_xu702")]
+position = Vector2(-105, 120)
+
+[node name="M_rock" parent="." instance=ExtResource("48_i363k")]
+position = Vector2(-93, 148)
+
+[node name="S_rock" parent="." instance=ExtResource("49_o2cvn")]
+position = Vector2(-132, 149)
+
+[node name="XLRock" parent="." instance=ExtResource("50_4giqt")]
+position = Vector2(-67, 118)
+
+[node name="Xs_rock" parent="." instance=ExtResource("51_8iv6r")]
+position = Vector2(-97, 177)
+
+[node name="Rock7WaterShadowDark1" type="Sprite2D" parent="."]
+position = Vector2(-351, 149)
+texture = ExtResource("52_eyejc")
+
+[node name="Rock7WaterShadowDark3" type="Sprite2D" parent="."]
+position = Vector2(-441, 228)
+texture = ExtResource("53_l3fwa")
+
+[node name="Rock7WaterShadowDark4" type="Sprite2D" parent="."]
+position = Vector2(-503, 307)
+texture = ExtResource("54_3i426")
+
+[node name="Rock7WaterShadowDark5" type="Sprite2D" parent="."]
+position = Vector2(-471, 159)
+texture = ExtResource("55_1ex6t")
+
+[node name="Rock21" type="Sprite2D" parent="."]
+position = Vector2(-187, 179)
+texture = ExtResource("56_32rkg")
+
+[node name="Rock22" type="Sprite2D" parent="."]
+position = Vector2(-215, 118)
+texture = ExtResource("57_a5wjk")
+
+[node name="Rock23" type="Sprite2D" parent="."]
+position = Vector2(-126, 203)
+texture = ExtResource("58_oyb3p")
+
+[node name="Rock24" type="Sprite2D" parent="."]
+position = Vector2(-94, 72)
+texture = ExtResource("59_2hrtt")
+
+[node name="Rock25" type="Sprite2D" parent="."]
+position = Vector2(-240, 175)
+texture = ExtResource("60_g3lo7")
 
 [connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
 [connection signal="updated" from="TimeSystem" to="CanvasModulate" method="_on_time_system_updated"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnk0c7jk1t6o6"
-path="res://.godot/imported/EnemyDeathEffect.png-b5f2aceef00ffbc3c194806ee7af6666.ctex"
+uid="uid://e6t85ofgi50u"
+path="res://.godot/imported/Rock7_water_shadow_dark2.png-430b50b807701898a3a8fc873fbcc54a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Effects/EnemyDeathEffect.png"
-dest_files=["res://.godot/imported/EnemyDeathEffect.png-b5f2aceef00ffbc3c194806ee7af6666.ctex"]
+source_file="res://World/Stones/Textures/WaterRocks/Rock7_water_shadow_dark2.png"
+dest_files=["res://.godot/imported/Rock7_water_shadow_dark2.png-430b50b807701898a3a8fc873fbcc54a.ctex"]
 
 [params]
 

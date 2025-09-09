@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://bgwxdpic6rx1a"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_ua2qn"]
+[ext_resource type="PackedScene" uid="uid://cr3uqvgssryb2" path="res://Inventory/Buildables/Scenes/torch.tscn" id="2_g8eot"]
+[ext_resource type="Texture2D" uid="uid://k3vt205hdywi" path="res://Inventory/textures/TorchItem.png" id="3_8ucw1"]
+
+[resource]
+script = ExtResource("1_ua2qn")
+name = "Torch"
+texture = ExtResource("3_8ucw1")
+Category = "Stations"
+weapon_type = ""
+skill_scene = ExtResource("2_g8eot")
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+metadata/_custom_type_script = "uid://uwnnphlcerum"

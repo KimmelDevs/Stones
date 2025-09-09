@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://lqpi74afqnac" path="res://Shadows/MediumShadow.png" id="2_e6hro"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_7vi6b"]
 [ext_resource type="PackedScene" uid="uid://brwln3cepwv11" path="res://Hitbox&HurtBox/hit_box.tscn" id="4_l0ce4"]
-[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="4_pesms"]
+[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/Deaths/Scenes/player_detection_area.tscn" id="4_pesms"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="6_e6hro"]
-[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/health_bar.tscn" id="8_b7xan"]
+[ext_resource type="PackedScene" uid="uid://b0c3qy58pnkk0" path="res://Effects/Deaths/Scenes/health_bar.tscn" id="8_b7xan"]
 
 [sub_resource type="Animation" id="Animation_ora3b"]
 length = 0.001

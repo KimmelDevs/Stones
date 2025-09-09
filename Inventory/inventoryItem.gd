@@ -15,3 +15,7 @@ class_name InvItem
 @export var nutrition: int = 0  # for food items, 0 by default
 @export var food_type : String = ""
 @export var Item_Recipe: PackedStringArray
+# Tool-specific fields
+@export var tool_type: String = ""       # e.g., "Pickaxe", "Hoe", "Axe", "WateringCan"
+@export var tool_power: int = 1          # strength of the tool (higher = breaks faster)
+@export var tool_range: float = 24.0     # how far the tool can reach

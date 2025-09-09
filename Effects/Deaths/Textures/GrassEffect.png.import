@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dck3be7goyt42"
-path="res://.godot/imported/Rock2_1_no_shadow.png-c6cbdfd9dc421e9276848cdc1959092d.ctex"
+uid="uid://bk5h7idiqbujk"
+path="res://.godot/imported/GrassEffect.png-c12b159e5adff2baa6228ae65f58d820.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Stones/Textures/Stones/Rock2_1_no_shadow.png"
-dest_files=["res://.godot/imported/Rock2_1_no_shadow.png-c6cbdfd9dc421e9276848cdc1959092d.ctex"]
+source_file="res://Effects/Deaths/Textures/GrassEffect.png"
+dest_files=["res://.godot/imported/GrassEffect.png-c12b159e5adff2baa6228ae65f58d820.ctex"]
 
 [params]
 

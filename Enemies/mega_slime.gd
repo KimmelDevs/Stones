@@ -57,7 +57,7 @@ var state = IDLE
 
 # --- Scenes ---
 var MegaSpitScene := preload("res://Enemies/Projectiles/megaspit.tscn")
-var DeathEffectScene := preload("res://Effects/slime_death.tscn")
+var DeathEffectScene := preload("res://Effects/Deaths/Scenes/slime_death.tscn")
 
 # --- Vars ---
 var move_velocity: Vector2 = Vector2.ZERO

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjlijmowecqbf"]
 
-[ext_resource type="Texture2D" uid="uid://c3bdy56ojo8me" path="res://Effects/HitEffect.png" id="1_hpmri"]
-[ext_resource type="Script" uid="uid://cinxqfwbqo7rb" path="res://Effects/hit_effect.gd" id="2_t3p3k"]
+[ext_resource type="Texture2D" uid="uid://c3bdy56ojo8me" path="res://Effects/Deaths/Textures/HitEffect.png" id="1_hpmri"]
+[ext_resource type="Script" uid="uid://cinxqfwbqo7rb" path="res://Effects/Deaths/Gdscripts/hit_effect.gd" id="2_t3p3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3p3k"]
 atlas = ExtResource("1_hpmri")

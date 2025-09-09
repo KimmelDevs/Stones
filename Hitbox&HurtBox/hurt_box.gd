@@ -3,7 +3,7 @@ extends Area2D
 @export var show_effect: bool = true
 @onready var timer: Timer = $Timer
 
-const HitEffect = preload("res://Effects/hit_effect.tscn")
+const HitEffect = preload("res://Effects/Deaths/Scenes/hit_effect.tscn")
 
 var invincible: bool = false:
 	set(value):

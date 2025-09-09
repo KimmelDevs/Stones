@@ -52,7 +52,7 @@ var stuck_timer: float = 0.0
 var last_position: Vector2
 
 # --- State Machine ---
-enum State { IDLE, WANDER, CHASE, CARTWHEEL_WINDUP, CARTWHEEL, PUNCH, RECOVER, SEARCH, HURT }
+enum State { IDLE, WANDER, CHASE, CARTWHEEL_WINDUP, CARTWHEEL, PUNCH, RECOVER, SEARCH }
 var state = State.IDLE
 
 # --- Variables ---
@@ -68,9 +68,11 @@ var attack_target: Vector2
 var attack_timer: float = 0.0
 var cartwheel_direction: Vector2 = Vector2.ZERO
 var current_facing: String = "right"  # Track which way we're facing
-var hurt_timer: float = 0.0
-@export var hurt_duration: float = 0.1
 var cartwheel_windup_timer: float = 0.0
+
+# Hurt animation tracking
+var is_playing_hurt_animation: bool = false
+@export var hurt_animation_duration: float = 0.3
 
 # Player tracking delay
 var player_exit_timer: float = 0.0
@@ -115,9 +117,6 @@ func _physics_process(delta: float) -> void:
 		
 		State.SEARCH:
 			handle_search_behavior(delta)
-		
-		State.HURT:
-			handle_hurt_behavior(delta)
 	
 	# Apply movement
 	apply_movement_with_avoidance(delta)
@@ -242,22 +241,6 @@ func handle_search_behavior(delta: float) -> void:
 	if global_position.distance_to(target) < 30:
 		state = State.WANDER
 
-func handle_hurt_behavior(delta: float) -> void:
-	hurt_timer -= delta
-	# Stay mostly still during hurt animation, but allow knockback movement
-	if knockback_timer <= 0:
-		move_velocity = move_velocity.move_toward(Vector2.ZERO, friction * delta * 3)
-	
-	if hurt_timer <= 0:
-		# Return to previous state or chase if player is nearby
-		var player = playerdetectionzone.player
-		if player and has_los and global_position.distance_to(player.global_position) <= chase_radius:
-			state = State.CHASE
-		else:
-			state = State.WANDER
-		# Force animation update when exiting hurt state
-		update_animation_and_facing()
-
 func update_player_memory(delta: float) -> void:
 	# Handle delayed player nulling
 	if player_exit_timer > 0:
@@ -275,10 +258,12 @@ func start_cartwheel_attack(target_pos: Vector2) -> void:
 	# Play cartwheel animation based on direction during windup
 	if cartwheel_direction.x >= 0:
 		current_facing = "right"
-		animation_player.play("CartWheelRight")
+		if not is_playing_hurt_animation:
+			animation_player.play("CartWheelRight")
 	else:
 		current_facing = "left"
-		animation_player.play("CartWheelLeft")
+		if not is_playing_hurt_animation:
+			animation_player.play("CartWheelLeft")
 	
 	# Update hitbox direction
 	if hitbox:
@@ -294,10 +279,12 @@ func start_punch_attack(target_pos: Vector2) -> void:
 	var dir_to_target = (target_pos - global_position).normalized()
 	if dir_to_target.x >= 0:
 		current_facing = "right"
-		animation_player.play("PunchRight")
+		if not is_playing_hurt_animation:
+			animation_player.play("PunchRight")
 	else:
 		current_facing = "left"
-		animation_player.play("PunchLeft")
+		if not is_playing_hurt_animation:
+			animation_player.play("PunchLeft")
 	
 	# Update hitbox direction
 	if hitbox:
@@ -308,8 +295,9 @@ func start_attack_cooldown() -> void:
 	can_attack = true
 
 func update_animation_and_facing() -> void:
-	if state in [State.CARTWHEEL_WINDUP, State.CARTWHEEL, State.PUNCH, State.HURT]:
-		return  # Don't change animation during attacks or hurt state
+	# Don't change animation during attacks or while playing hurt animation
+	if state in [State.CARTWHEEL_WINDUP, State.CARTWHEEL, State.PUNCH] or is_playing_hurt_animation:
+		return
 	
 	var is_moving = move_velocity.length() > 5.0
 	var new_facing = ""
@@ -423,7 +411,7 @@ func seek_player() -> void:
 			searching = false
 			reached_last_seen = false
 			last_seen_positions.clear()
-			if state in [State.CHASE, State.SEARCH] and not state in [State.CARTWHEEL_WINDUP, State.CARTWHEEL, State.PUNCH, State.RECOVER, State.HURT]:
+			if state in [State.CHASE, State.SEARCH] and not state in [State.CARTWHEEL_WINDUP, State.CARTWHEEL, State.PUNCH, State.RECOVER]:
 				state = State.WANDER
 
 func check_line_of_sight(player: Node2D) -> bool:
@@ -477,26 +465,39 @@ func spawn_death_effect() -> void:
 	# Add your death effect here
 	pass
 
-# --- Signal Handlers ---
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	# Don't get hurt again if already in hurt state
-	if state == State.HURT:
-		return
-		
-	knockback = area.knockback_vector * knockback_speed
-	knockback_timer = knockback_duration
+func play_hurt_animation(knockback_direction: Vector2) -> void:
+	is_playing_hurt_animation = true
 	
 	# Determine hurt direction based on knockback
-	if area.knockback_vector.x >= 0:
+	if knockback_direction.x >= 0:
 		current_facing = "right"
 		animation_player.play("HurtRight")
 	else:
 		current_facing = "left"
 		animation_player.play("HurtLeft")
 	
-	# Enter hurt state
-	state = State.HURT
-	hurt_timer = hurt_duration
+	# Set up a timer to reset the hurt animation flag
+	await get_tree().create_timer(hurt_animation_duration).timeout
+	is_playing_hurt_animation = false
+	
+	# Resume appropriate animation based on current state and movement
+	update_animation_and_facing()
+
+# --- Signal Handlers ---
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	knockback = area.knockback_vector * knockback_speed
+	knockback_timer = knockback_duration
+	
+	# Play hurt animation without changing state
+	play_hurt_animation(area.knockback_vector)
+	
+	# Switch to cartwheel attack after getting hurt (if player is nearby and we can attack)
+	var player = playerdetectionzone.player
+	if player and can_attack:
+		var distance_to_player = global_position.distance_to(player.global_position)
+		if distance_to_player <= cartwheel_range:
+			# Start cartwheel attack as retaliation
+			start_cartwheel_attack(player.global_position)
 	
 	if stats:
 		stats.set_health(stats.health - area.damage)

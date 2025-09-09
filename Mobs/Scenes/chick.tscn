@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7u48gga2y768" path="res://Mobs/Textures/ChickSpriteSheet.png" id="2_suji4"]
 [ext_resource type="PackedScene" uid="uid://bhan4jr3ia0k" path="res://Hitbox&HurtBox/hurt_box.tscn" id="3_suji4"]
 [ext_resource type="PackedScene" uid="uid://c4xv6q1w8gci3" path="res://stats.tscn" id="5_vxair"]
-[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/player_detection_area.tscn" id="6_bjdx7"]
+[ext_resource type="PackedScene" uid="uid://b56v5th4aekxw" path="res://Effects/Deaths/Scenes/player_detection_area.tscn" id="6_bjdx7"]
 [ext_resource type="PackedScene" uid="uid://uvb4fi6eyo04" path="res://Hitbox&HurtBox/soft_collision.tscn" id="7_15t0p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8gr5"]

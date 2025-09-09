@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0i3abk5ub46h"
-path="res://.godot/imported/BushHide.png-5227a9a5c12b89d73698d43125c990dd.ctex"
+uid="uid://k3vt205hdywi"
+path="res://.godot/imported/TorchItem.png-1d79b503ffe4dabd97cae92d057d2d19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Effects/BushHide.png"
-dest_files=["res://.godot/imported/BushHide.png-5227a9a5c12b89d73698d43125c990dd.ctex"]
+source_file="res://Inventory/textures/TorchItem.png"
+dest_files=["res://.godot/imported/TorchItem.png-1d79b503ffe4dabd97cae92d057d2d19.ctex"]
 
 [params]
 
