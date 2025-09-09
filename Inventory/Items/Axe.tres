@@ -7,8 +7,8 @@
 script = ExtResource("1_khe3q")
 name = "Short Axe"
 texture = ExtResource("2_idsy3")
-Category = "Tool"
-weapon_type = "Short"
+Category = "Weapon"
+weapon_type = "short"
 knockback_strength = 2.0
 damage = 3
 weaponlength = "Short"

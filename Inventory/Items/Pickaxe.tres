@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://b7yixw3ht5tha"]
+
+[ext_resource type="Script" uid="uid://uwnnphlcerum" path="res://Inventory/inventoryItem.gd" id="1_slduo"]
+[ext_resource type="Texture2D" uid="uid://cw4mytdytu7rc" path="res://Equipments/Textures/Pickaxe.png" id="2_74glf"]
+
+[resource]
+script = ExtResource("1_slduo")
+name = "PickAxe"
+texture = ExtResource("2_74glf")
+Category = "Tool"
+weapon_type = ""
+knockback_strength = 0.0
+damage = 0
+weaponlength = ""
+nutrition = 0
+food_type = ""
+Item_Recipe = PackedStringArray()
+tool_type = "Pickaxe"
+tool_power = 1
+tool_range = 24.0
+metadata/_custom_type_script = "uid://uwnnphlcerum"

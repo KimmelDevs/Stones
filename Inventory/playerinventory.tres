@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Inv" load_steps=32 format=3 uid="uid://b6y8x0idf43ao"]
+[gd_resource type="Resource" script_class="Inv" load_steps=33 format=3 uid="uid://b6y8x0idf43ao"]
 
 [ext_resource type="Script" uid="uid://dbkh5tlw3gq8c" path="res://inv_slot.gd" id="2_7uf4i"]
 [ext_resource type="Resource" uid="uid://dkymcr5rcb4dj" path="res://Inventory/Items/CraftingBench.tres" id="3_oqpsp"]
 [ext_resource type="Script" uid="uid://bf38umhy5vg6f" path="res://Inventory/Inventory.gd" id="3_wq1fa"]
 [ext_resource type="Resource" uid="uid://bgwxdpic6rx1a" path="res://Inventory/Items/Torch.tres" id="4_yrre2"]
 [ext_resource type="Resource" uid="uid://cxe0xx02ddcl5" path="res://Inventory/Items/Axe.tres" id="5_wq1fa"]
+[ext_resource type="Resource" uid="uid://b7yixw3ht5tha" path="res://Inventory/Items/Pickaxe.tres" id="6_amcam"]
 
 [sub_resource type="Resource" id="Resource_ln33l"]
 script = ExtResource("2_7uf4i")
@@ -36,6 +37,7 @@ metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
 [sub_resource type="Resource" id="Resource_ajmj0"]
 script = ExtResource("2_7uf4i")
+item = ExtResource("6_amcam")
 amount = 0
 metadata/_custom_type_script = "uid://dbkh5tlw3gq8c"
 
