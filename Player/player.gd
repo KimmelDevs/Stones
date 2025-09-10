@@ -761,7 +761,7 @@ func _on_hurt_box_area_entered(area: Area2D):
 	# Visual effects
 	$Sprite2D.modulate = Color.PALE_VIOLET_RED
 	hurtbox.start_invisibility(1)
-	camera_shake.add_trauma(1)
+	camera_shake.add_trauma(9)
 
 	print("Player hit! Knockback applied for ", knockback_duration, " seconds")
 

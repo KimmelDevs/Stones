@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://s551p7sabdu2"]
+
+[ext_resource type="Script" uid="uid://52qmqpccpies" path="res://World/Exits/exit.gd" id="1_8uxo7"]
+
+[node name="Exit" type="Area2D"]
+script = ExtResource("1_8uxo7")
+target_scene = "uid://br116yajxh5kq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
