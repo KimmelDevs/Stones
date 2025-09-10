@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c63sq5qwkq0s1" path="res://World/Stones/Textures/Stones/Rock1_1.png" id="1_ds72w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ds72w"]
-radius = 16.0
-height = 38.0
+radius = 14.0
 
 [node name="XLRock" type="StaticBody2D" groups=["rocks"]]
 script = ExtResource("1_5k3vk")
@@ -18,5 +17,5 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_ds72w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -1)
+position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_ds72w")

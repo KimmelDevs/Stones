@@ -797,7 +797,7 @@ func use_pickaxe() -> void:
 	# Detect rocks (rocks should be in a group "rocks")
 	var rocks = get_tree().get_nodes_in_group("rocks")
 	for rock in rocks:
-		if rock.global_position.distance_to(global_position) < 24: # range
+		if rock.global_position.distance_to(global_position) < 34: # range
 			if rock.has_method("mine_hit"):
 				rock.mine_hit(equipped_tool.tool_power) # mining_power in InvItem
 				print("Hit rock with pickaxe!")

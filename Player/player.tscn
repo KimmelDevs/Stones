@@ -1861,7 +1861,7 @@ texture = ExtResource("6_vtle1")
 flip_h = true
 
 [node name="HitBox" parent="Sword/Marker2D" instance=ExtResource("3_btcbx")]
-position = Vector2(-0.999837, 45)
+position = Vector2(-0.999835, 45)
 disable_mode = 2
 collision_layer = 16
 collision_mask = 8

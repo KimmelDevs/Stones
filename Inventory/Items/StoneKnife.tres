@@ -14,6 +14,7 @@ damage = 4
 weaponlength = "Short"
 nutrition = 0
 food_type = ""
+Item_Recipe = PackedStringArray()
 tool_type = ""
 tool_power = 1
 tool_range = 24.0
