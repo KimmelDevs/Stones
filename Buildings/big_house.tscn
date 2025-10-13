@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://wwthgnr8w8ci"]
+
+[ext_resource type="Texture2D" uid="uid://bw4or57w2u3fa" path="res://Buildings/newbighouse.png" id="1_8dacm"]
+[ext_resource type="PackedScene" uid="uid://s551p7sabdu2" path="res://World/Exits/exit.tscn" id="2_8dacm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvq17"]
+size = Vector2(21, 33)
+
+[node name="BigHouse" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8dacm")
+
+[node name="Exit" parent="." instance=ExtResource("2_8dacm")]
+collision_mask = 2
+target_scene = "uid://cbldwn77hhuel"
+
+[node name="CollisionShape2D" parent="Exit" index="0"]
+position = Vector2(-10.5, 16.5)
+shape = SubResource("RectangleShape2D_lvq17")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(1, -1, -21, 0, -20, 36, -27, 57, -29, 56, -22.0745, 34.4973, -24.0817, 33.0434, -70, 34, -70, 52, -71, 54, -76, 54, -76, 30, -76, -13, 54, -11, 71, -1, 71, 45, 56, 54, 51, 54, 51, 34, 3, 33, 0.943182, 33.4114, -6, 56, -8, 55, -2, 34, 1, 33)
+
+[connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]
+
+[editable path="Exit"]

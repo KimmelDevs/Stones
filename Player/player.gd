@@ -321,16 +321,21 @@ func equip_item(item: InvItem) -> void:
 		_clear_weapon()
 		_clear_food()
 		_clear_station()
+		_clear_tool()
 		return
 
 	print("Equipping: ", item.name, " | Category: ", item.Category)
 
 	match item.Category:
 		"Weapon":
+			
+			_clear_tool()
 			_clear_station()
 			_clear_food()  # make sure no food is equipped
 			_equip_weapon(item)
 		"Food":
+			
+			_clear_tool()
 			_clear_station()
 			_clear_weapon()  # make sure no weapon is equipped
 			_equip_food(item)
@@ -338,13 +343,17 @@ func equip_item(item: InvItem) -> void:
 			_clear_weapon()
 			_clear_food()
 			_clear_station()
+			
+			_clear_tool()
 			_equip_station(item)
 		"Seeds":
 			_clear_weapon()
 			_clear_station()
+			
+			_clear_tool()
 			_clear_food()
 			_equip_station(item)
-		
+			
 		"Tool":
 			_clear_weapon()
 			_clear_food()
@@ -353,6 +362,8 @@ func equip_item(item: InvItem) -> void:
 		_:
 			print("Item category not handled: ", item.Category)
 			_clear_weapon()
+			_clear_station()
+			_clear_tool()
 			_clear_food()
 
 func _disable_weapon(node: Node) -> void:
@@ -572,6 +583,9 @@ func _clear_station() -> void:
 		station_preview.queue_free()
 		station_preview = null
 	equipped_station = null
+func _clear_tool() -> void:
+
+	equipped_tool = null
 
 func _place_station() -> void:
 	if not equipped_station or not station_preview:

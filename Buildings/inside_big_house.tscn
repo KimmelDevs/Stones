@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbldwn77hhuel"]
+
+[ext_resource type="Texture2D" uid="uid://bwmuj66kjlch3" path="res://Buildings/InsideBigHouse.png" id="1_hw51g"]
+[ext_resource type="PackedScene" uid="uid://3t33ncsoqh4n" path="res://Player/player.tscn" id="2_qja2x"]
+[ext_resource type="PackedScene" uid="uid://cc0wxqiei2ga5" path="res://UI/camera_2d.tscn" id="3_yj0qp"]
+[ext_resource type="PackedScene" uid="uid://s551p7sabdu2" path="res://World/Exits/exit.tscn" id="4_qja2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0qp"]
+size = Vector2(21, 7)
+
+[node name="InsideBigHouse" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 123)
+texture = ExtResource("1_hw51g")
+
+[node name="player" parent="." instance=ExtResource("2_qja2x")]
+position = Vector2(0, 25)
+
+[node name="Camera2D" parent="player" instance=ExtResource("3_yj0qp")]
+
+[node name="TopLeft" parent="player/Camera2D/Limits" index="0"]
+position = Vector2(-1050, -346)
+
+[node name="BottomRight" parent="player/Camera2D/Limits" index="1"]
+position = Vector2(1672, 1165)
+
+[node name="Exit" parent="." instance=ExtResource("4_qja2x")]
+collision_mask = 2
+target_scene = "uid://d0m5edtxtg4kd"
+
+[node name="CollisionShape2D" parent="Exit" index="0"]
+position = Vector2(4, 62.5)
+shape = SubResource("RectangleShape2D_yj0qp")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(39, -77, -101, -76, -102, 65, -6, 65, -7, 59, -96, 58, -96.4519, 1.05857, -30, 1, -30, -47, -36, -47, -36, -5, -96.5036, -5.4496, -97, -68, -35.8499, -68, -36, -67, -30.1125, -67.0449, -30, -68, 95, -68, 96, 60, 15, 59, 15, 66, 96, 66, 102, 66, 102, -77)
+
+[connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]
+
+[editable path="player/Camera2D"]
+[editable path="Exit"]
