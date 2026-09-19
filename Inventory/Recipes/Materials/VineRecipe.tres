@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://bn5wge7606p8k"]
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://bn5wge7606p8k"]
 
 [ext_resource type="Resource" uid="uid://d0nu300m46k53" path="res://Inventory/Items/Vine.tres" id="1_fdjkd"]
 [ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="2_k6t8i"]

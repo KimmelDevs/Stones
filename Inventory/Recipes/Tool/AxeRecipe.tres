@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=11 format=3 uid="uid://c5bbetu5hfq0y"]
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://c5bbetu5hfq0y"]
 
 [ext_resource type="Resource" uid="uid://cxe0xx02ddcl5" path="res://Inventory/Items/Axe.tres" id="1_5rewv"]
 [ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_rmbru"]
@@ -10,7 +10,6 @@
 [sub_resource type="Resource" id="Resource_rmbru"]
 script = ExtResource("1_rmbru")
 item = ExtResource("1_5rewv")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_ts4o8"]
@@ -22,13 +21,11 @@ metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 [sub_resource type="Resource" id="Resource_lj1iq"]
 script = ExtResource("1_rmbru")
 item = ExtResource("3_5670h")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_brfgu"]
 script = ExtResource("1_rmbru")
 item = ExtResource("5_rmbru")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [resource]

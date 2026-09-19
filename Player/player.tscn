@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://3t33ncsoqh4n"]
+[gd_scene format=3 uid="uid://3t33ncsoqh4n"]
 
 [ext_resource type="Script" uid="uid://ceqyqtsclonag" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://55jji1oqq4k8" path="res://Player/Player.png" id="1_l8h54"]
@@ -1815,25 +1815,38 @@ height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5htga"]
 
-[node name="player" type="CharacterBody2D" groups=["player", "rocks"]]
+[sub_resource type="Gradient" id="Gradient_apopc"]
+offsets = PackedFloat32Array(0.048, 0.16, 0.372, 1)
+colors = PackedColorArray(0.54843986, 0.54843986, 0.54843986, 1, 0.6097561, 0.6097561, 0.6097561, 1, 0.25889087, 0.25889087, 0.25889087, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1vivr"]
+gradient = SubResource("Gradient_apopc")
+width = 240
+height = 240
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="player" type="CharacterBody2D" unique_id=816805599 groups=["player", "rocks"]]
 collision_layer = 66
 script = ExtResource("1_4ntmi")
 Inv = ExtResource("2_fhl08")
 
-[node name="LongSword" type="Node2D" parent="."]
+[node name="LongSword" type="Node2D" parent="." unique_id=649159582]
+visible = false
 script = ExtResource("6_od3ui")
 
-[node name="Marker2D" type="Marker2D" parent="LongSword"]
+[node name="Marker2D" type="Marker2D" parent="LongSword" unique_id=1753326661]
 rotation = 1.5708
 
-[node name="Sprite2D" type="Sprite2D" parent="LongSword/Marker2D"]
+[node name="Sprite2D" type="Sprite2D" parent="LongSword/Marker2D" unique_id=1337662395]
 visible = false
 position = Vector2(-19, -1.99993)
 rotation = -2.34223
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_00tjw")
 
-[node name="HitBox" parent="LongSword/Marker2D" instance=ExtResource("3_btcbx")]
+[node name="HitBox" parent="LongSword/Marker2D" unique_id=948400151 instance=ExtResource("3_btcbx")]
 position = Vector2(0.999908, -25)
 rotation = -1.18493
 scale = Vector2(0.3, 0.3)
@@ -1846,13 +1859,14 @@ rotation = -0.329867
 shape = SubResource("CapsuleShape2D_x3vf3")
 disabled = true
 
-[node name="Sword" type="Node2D" parent="."]
+[node name="Sword" type="Node2D" parent="." unique_id=596662378]
+visible = false
 script = ExtResource("6_od3ui")
 
-[node name="Marker2D" type="Marker2D" parent="Sword"]
+[node name="Marker2D" type="Marker2D" parent="Sword" unique_id=1745785259]
 rotation = 1.5708
 
-[node name="Sprite2D" type="Sprite2D" parent="Sword/Marker2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Sword/Marker2D" unique_id=141238191]
 visible = false
 position = Vector2(-5, 1.78814e-05)
 rotation = -2.26893
@@ -1860,7 +1874,7 @@ scale = Vector2(0.1, 0.102)
 texture = ExtResource("6_vtle1")
 flip_h = true
 
-[node name="HitBox" parent="Sword/Marker2D" instance=ExtResource("3_btcbx")]
+[node name="HitBox" parent="Sword/Marker2D" unique_id=2069287888 instance=ExtResource("3_btcbx")]
 position = Vector2(-0.999835, 45)
 disable_mode = 2
 collision_layer = 16
@@ -1872,26 +1886,25 @@ position = Vector2(0.999908, -25)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gwnis")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=420522552]
 position = Vector2(-1, 11)
 texture = ExtResource("2_k53q1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=723366706]
 texture = ExtResource("1_l8h54")
 hframes = 60
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=938801773]
+visible = false
 position = Vector2(-1, 9)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4ntmi")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_apopc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1511606660]
+libraries/ = SubResource("AnimationLibrary_apopc")
 
-[node name="HurtBox" parent="." instance=ExtResource("4_gwnis")]
+[node name="HurtBox" parent="." unique_id=817499355 instance=ExtResource("4_gwnis")]
 collision_layer = 4
 collision_mask = 32
 
@@ -1899,17 +1912,24 @@ collision_mask = 32
 position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_k53q1")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=692580212]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1159154306]
+visible = false
 stream = ExtResource("9_x3vf3")
 volume_db = 5.0
 
-[node name="SoftCollision" parent="." instance=ExtResource("11_apopc")]
+[node name="SoftCollision" parent="." unique_id=54040252 instance=ExtResource("11_apopc")]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 position = Vector2(-2, 4)
 shape = SubResource("CircleShape2D_5htga")
+
+[node name="VisionCone" type="PointLight2D" parent="." unique_id=863185950]
+
+[node name="NearLight" type="PointLight2D" parent="." unique_id=1051118302]
+texture = SubResource("GradientTexture2D_1vivr")
 
 [connection signal="area_entered" from="LongSword/Marker2D/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="LongSword/Marker2D/HitBox" to="." method="_on_hit_box_body_entered"]

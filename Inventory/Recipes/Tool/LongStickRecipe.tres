@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://njgic1rvcixc"]
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://njgic1rvcixc"]
 
 [ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_4xrdo"]
 [ext_resource type="Resource" uid="uid://cxqvlr0feppso" path="res://Inventory/Items/LongStick.tres" id="1_g0u0k"]
@@ -8,7 +8,6 @@
 [sub_resource type="Resource" id="Resource_4xrdo"]
 script = ExtResource("1_4xrdo")
 item = ExtResource("1_g0u0k")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_1tu5a"]

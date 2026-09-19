@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=9 format=3 uid="uid://cgk3kosv6g1fs"]
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://cgk3kosv6g1fs"]
 
 [ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_0d4l6"]
 [ext_resource type="Resource" uid="uid://coxbk330mje3y" path="res://Inventory/Items/ChoppingBoard.tres" id="1_5b81w"]
@@ -9,7 +9,6 @@
 [sub_resource type="Resource" id="Resource_5b81w"]
 script = ExtResource("1_0d4l6")
 item = ExtResource("1_5b81w")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_0d4l6"]
@@ -21,7 +20,6 @@ metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 [sub_resource type="Resource" id="Resource_sm7lw"]
 script = ExtResource("1_0d4l6")
 item = ExtResource("3_sm7lw")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [resource]

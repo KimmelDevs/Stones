@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemRecipe" load_steps=11 format=3 uid="uid://dsk815a4mu331"]
+[gd_resource type="Resource" script_class="ItemRecipe" format=3 uid="uid://dsk815a4mu331"]
 
 [ext_resource type="Script" uid="uid://buxrj2y6lymkm" path="res://Inventory/Recipes/RecipeMaterial.gd" id="1_4wp2h"]
 [ext_resource type="Resource" uid="uid://b4jv6y7hk6hgo" path="res://Equipments/Weapons/Spear.tres" id="1_cfyo3"]
@@ -10,13 +10,11 @@
 [sub_resource type="Resource" id="Resource_cfyo3"]
 script = ExtResource("1_4wp2h")
 item = ExtResource("1_cfyo3")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_7iqj4"]
 script = ExtResource("1_4wp2h")
 item = ExtResource("3_8hdn8")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [sub_resource type="Resource" id="Resource_46u71"]
@@ -28,7 +26,6 @@ metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 [sub_resource type="Resource" id="Resource_34hfw"]
 script = ExtResource("1_4wp2h")
 item = ExtResource("4_cfyo3")
-quantity = 1
 metadata/_custom_type_script = "uid://buxrj2y6lymkm"
 
 [resource]
